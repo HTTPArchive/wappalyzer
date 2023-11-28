@@ -25,6 +25,12 @@ yarn install
 
 ## Usage
 
+### Command line
+
+```sh
+node src/drivers/npm/cli.js https://example.com
+```
+
 ### Chrome extension
 
 - Go to `about:extensions`

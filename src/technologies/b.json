@@ -2684,7 +2684,7 @@
       "burst.url": ""
     },
     "pricing": [
-      "recurring"
+      "free"
     ],
     "requires": "WordPress",
     "saas": true,

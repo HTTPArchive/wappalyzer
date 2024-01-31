@@ -5,18 +5,17 @@ const currentVersion = JSON.parse(
   fs.readFileSync('./src/manifest-v3.json')
 ).version
 
-const version = process.argv[2]
+version = process.argv[2]
 
 if (!version) {
   // eslint-disable-next-line no-console
-  console.error(
-    `No version number specified. Current version is ${currentVersion}.`
+  console.warn(
+    `No version number specified. Current version is ${currentVersion}: will it use it.`
   )
-
-  process.exit(1)
+  version = currentVersion
 }
 
-;['./src/manifest-v2.json', './src/manifest-v3.json'].forEach((file) => {
+;['./src/drivers/npm/package.json', './src/manifest-v2.json', './src/manifest-v3.json'].forEach((file) => {
   const json = JSON.parse(fs.readFileSync(file))
 
   json.version = version

@@ -1,4 +1,7 @@
 /build/*
+/src/drivers/**/categories.json
+/src/drivers/**/technologies/*
+/src/drivers/**/wappalyzer.js
 /src/images/icons/converted/*
 /src/manifest.json
 /src/manifest.bak.json

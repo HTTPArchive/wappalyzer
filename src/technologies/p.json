@@ -399,7 +399,6 @@
     ],
     "css": "--made-with-panda",
     "description": "Panda is a styling engine that generates styling primitives to author atomic CSS and recipes in a type-safe and readable manner.",
-    "icon": "PandaCSS.svg",
     "oss": true,
     "website": "https://panda-css.com/"
   },
@@ -3379,6 +3378,20 @@
     },
     "oss": true,
     "website": "https://github.com/mroderick/PubSubJS"
+  },
+  "PubTech": {
+    "cats": [
+      67
+    ],
+    "description": "PubTech is a consent management platform helping brands and businesses collect, store and leverage their customer consents.",
+    "icon": "PubTech.png",
+    "js": {
+      "__pub_tech_cmp_config": ""
+    },
+    "scriptSrc": [
+      "pubtech-cmp-v(.+?)(?:-esm)?\\.js;version:\\1"
+    ],
+    "website": "https://www.pubtech.ai/"
   },
   "Public CMS": {
     "cats": [

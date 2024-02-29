@@ -2683,9 +2683,6 @@
     "js": {
       "burst.url": ""
     },
-    "pricing": [
-      "free"
-    ],
     "requires": "WordPress",
     "saas": true,
     "scriptSrc": "assets/js/build/burst-statistics",

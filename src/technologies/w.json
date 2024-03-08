@@ -39,7 +39,7 @@
     "headers": {
       "X-Powered-By": "Wake"
     },
-    "icon": "Wake.png",
+    "icon": "wakecommerce.svg",
     "saas": true,
     "website": "https://wake.tech/"
   },

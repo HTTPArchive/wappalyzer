@@ -1025,7 +1025,8 @@
   },
   "Webflow": {
     "cats": [
-      51
+      51,
+      1
     ],
     "description": "Webflow is Software-as-a-Service (SaaS) for website building and hosting.",
     "dom": "html[data-wf-site]",

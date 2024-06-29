@@ -42,11 +42,13 @@ jobs:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          PR_BODY="${{ github.event.pull_request.body }}"
-
           # Read PR body into an array, removing line breaks and carriage returns
-          IFS=$'\n' read -d '' -r -a lines <<< "${PR_BODY//$'\r\n'/ }"
+          lines=()
+          while IFS= read -r line; do
+            lines+=("${line//[$'\r\n']}")
+          done <<< "$PR_BODY"
 
           # Find the index of the line after "**Test websites**:"
           start_index=-1

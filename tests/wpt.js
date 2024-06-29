@@ -6,7 +6,7 @@ const isDirectRun = require.main === module
 
 const wptServer = process.env.WPT_SERVER
 const wptApiKey = process.env.WPT_API_KEY
-const prNumber = parseInt(process.env.PR_NUMBER)
+const prNumber = 35 // parseInt(process.env.PR_NUMBER)
 const wpt = new WebPageTest(wptServer, wptApiKey)
 
 /**

@@ -1025,7 +1025,8 @@
   },
   "Webflow": {
     "cats": [
-      51
+      51,
+      1
     ],
     "description": "Webflow is Software-as-a-Service (SaaS) for website building and hosting.",
     "dom": "html[data-wf-site]",
@@ -2078,6 +2079,16 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/themes/default/",
     "website": "https://wordpress.org/themes/default"
+  },
+  "WordPress Full Site Editing": {
+    "cats": [
+      51
+    ],
+    "description": "Full Site Editing enables users to design and customize their entire WordPress website with a block-based editor.",
+    "html": "<div class=\"wp-site-blocks\">",
+    "icon": "WordPress.svg",
+    "requires": "WordPress",
+    "website": "https://wordpress.org/documentation/article/site-editor/"
   },
   "WordPress Multisite": {
     "cats": [

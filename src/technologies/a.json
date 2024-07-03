@@ -2463,9 +2463,9 @@
     "description": "All in One SEO optimizes a WordPress website and its content for search engines.",
     "meta": {
       "generator": [
-		"^All in One SEO \\(AIOSEO\\) ([\\d\\.]+)\\;version:\\1",
-		"^All in One SEO Pro \\(AIOSEO\\) ([\\d\\.]+)\\;version:Pro \\1"
-	  ]
+		    "^All in One SEO \\(AIOSEO\\) ([\\d\\.]+)\\;version:\\1",
+		    "^All in One SEO Pro \\(AIOSEO\\) ([\\d\\.]+)\\;version:Pro \\1"
+	    ]
     },
     "dom": {
       "script.aioseo-schema": {}

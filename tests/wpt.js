@@ -22,7 +22,9 @@ function runWPTTest(url) {
   return new Promise((resolve, reject) => {
     wpt.runTestAndWait(url, options, (error, response) => {
       if (error || response.statusCode !== 200) {
+        // eslint-disable-next-line no-console
         console.error(`WPT test run for ${url} failed:`)
+        // eslint-disable-next-line no-console
         console.error(error || response)
         reject(error || response)
       } else {

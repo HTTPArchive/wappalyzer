@@ -481,7 +481,7 @@
     ],
     "description": "Beaver Builder is a drag and drop page builder for WordPress.",
     "dom": "body[class*='fl-builder'], link[id*='fl-builder']",
-  	"html": [
+    "html": [
       "<body[^>]+fl-builder"
     ],
     "icon": "beaver-builder-icon.png",

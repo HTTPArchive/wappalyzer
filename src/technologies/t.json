@@ -1631,7 +1631,7 @@
     ],
     "description": "Themify Builder is a plugin that allows users to create complex layouts and designs by dragging and dropping elements onto their pages.",
     "html": "<div[^>]+class=[\"']themify_builder_*",
-    "icon": "brizy.svg",
+    "icon": "themify-builder.png",
     "pricing": [
       "freemium"
     ],

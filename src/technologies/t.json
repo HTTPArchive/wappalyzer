@@ -1624,6 +1624,20 @@
     "scriptSrc": "/wp-content/themes/hitmag(?:-pro)?/",
     "website": "https://themezhut.com/themes/hitmag"
   },
+  "Themify Builder": {
+    "cats": [
+      51,
+      87
+    ],
+    "description": "Themify Builder is a plugin that allows users to create complex layouts and designs by dragging and dropping elements onto their pages.",
+    "html": "<div[^>]+class=[\"']themify_builder_*",
+    "icon": "themify-builder.png",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "website": "https://themify.me/builder"
+  },
   "Themonic Iconic One": {
     "cats": [
       80

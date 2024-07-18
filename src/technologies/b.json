@@ -2363,6 +2363,34 @@
     ],
     "website": "https://brimble.io"
   },
+  "Brizy Cloud": {
+    "cats": [
+      1,
+      51
+    ],
+    "description": "Brizy Cloud is a platform for creating and managing websites using an intuitive drag-and-drop editor, allowing users to design and publish sites without any coding knowledge. ",
+    "html": "<div[^>]+class=[\"']brz-root__container",
+    "icon": "brizy.svg",
+    "saas": true,
+    "scriptSrc": "b-cloud\\.b-cdn\\.net/builds/(?:free|pro)/\\d+-cloud",
+    "website": "https://brizy.io"
+  },
+  "Brizy WordPress": {
+    "cats": [
+      51,
+      87
+    ],
+    "description": "Brizy WordPress is a plugin that enables users to build and design WordPress websites with an easy-to-use drag-and-drop editor and a wide range of customizable templates.",
+    "dom": "link[href*='/wp-content/plugins/brizy/']",
+    "excludes": "Brizy Cloud",
+    "html": "<div[^>]+class=[\"']brz-root__container",
+    "icon": "brizy.svg",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "website": "https://brizy.io"
+  },
   "Broadstreet": {
     "cats": [
       36

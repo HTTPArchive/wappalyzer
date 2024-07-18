@@ -16,12 +16,11 @@ test('wappalyzer successful', () => {
   assert(
     typeof firstView.detected === 'object' &&
       typeof firstView.detected_apps === 'object' &&
-      typeof firstView.detected_technologies === 'object' &&
-      typeof firstView.detected_raw === 'object',
+      typeof firstView.detected_technologies === 'object',
     'not all technology lists are present'
   )
   assert(
-    firstView.detected_raw.length > 1,
+    Object.keys(firstView.detected_technologies).length > 1,
     'number of technologies detected <=1'
   )
 })

@@ -309,7 +309,7 @@
     "description": "Performance plugin from the WordPress Performance Group, which determines and stores the dominant color for newly uploaded images in the media library, then uses that as a placeholder background during front end image loads.",
     "icon": "dominant-color-images.svg",
     "meta": {
-      "generator": "^dominant-color-images ([\\d.]+)?"
+      "generator": "^dominant-color-images ([\\d.]+)?\\;version:\\1"
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/dominant-color-images/"

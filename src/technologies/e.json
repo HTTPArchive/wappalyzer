@@ -964,7 +964,7 @@
     "description": "Performance plugin from the WordPress Performance Group, which optimizes embeds by lazy loading them only as they come into view.",
     "icon": "embed-optimizer.svg",
     "meta": {
-      "generator": "^embed-optimizer ([\\d.]+)?"
+      "generator": "^embed-optimizer ([\\d.]+)?\\;version:\\1"
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/embed-optimizer/"

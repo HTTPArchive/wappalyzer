@@ -5154,6 +5154,19 @@
     "scriptSrc": "/wp-content/plugins/ultimate-addons-for-gutenberg/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://wpspectra.com"
   },
+  "Speculative Loading": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Group, which captures real user metrics about what elements are displayed on the page across a variety of device form factors (e.g. desktop, tablet, and phone) in order to apply loading optimizations.",
+    "icon": "speculation-rules.svg",
+    "meta": {
+      "generator": "^speculation-rules ([\\d.]+)?"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/speculation-rules/"
+  },
   "Speed Kit": {
     "cats": [
       92

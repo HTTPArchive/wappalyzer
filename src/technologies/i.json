@@ -301,6 +301,19 @@
     "scriptSrc": "template-assets\\.iluria\\.com/commons/",
     "website": "https://www.iluria.com.br"
   },
+  "Image Placeholders": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Group, which captures real user metrics about what elements are displayed on the page across a variety of device form factors (e.g. desktop, tablet, and phone) in order to apply loading optimizations.",
+    "icon": "dominant-color-images.svg",
+    "meta": {
+      "generator": "^dominant-color-images ([\\d.]+)?"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/dominant-color-images/"
+  },
   "Image Relay": {
     "cats": [
       95

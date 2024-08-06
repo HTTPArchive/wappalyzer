@@ -1112,7 +1112,7 @@
     "description": "Performance plugin from the WordPress Performance Group, which makes internationalization/localization in WordPress faster than ever before.",
     "icon": "performant-translations.svg",
     "meta": {
-      "generator": "^performant-translations ([\\d.]+)?"
+      "generator": "^performant-translations ([\\d.]+)?\\;version:\\1"
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/performant-translations/"

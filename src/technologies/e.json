@@ -1140,6 +1140,19 @@
     "requires": "Nginx",
     "website": "https://github.com/engintron/engintron"
   },
+  "Enhanced Responsive Images": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Group, which improves image sizes attribute accuracy and implements the HTML spec for adding sizes='auto' to lazy loaded images.",
+    "icon": "enhanced-image-sizes.svg",
+    "meta": {
+      "generator": "^auto-sizes ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/auto-sizes/"
+  },
   "Enigma": {
     "cats": [
       80

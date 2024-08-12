@@ -302,7 +302,7 @@
     "website": "https://www.iluria.com.br"
   },
   "Image Placeholders": {
-    "cats": [
+      "cats": [
       87,
       92
     ],
@@ -313,6 +313,19 @@
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/dominant-color-images/"
+  },
+  "Image Prioritizer": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Group, which optimizes the loading of images which are the LCP (Largest Contentful Paint) element, including both img elements and elements with CSS background images.",
+    "icon": "image-prioritizer.svg",
+    "meta": {
+      "generator": "^image-prioritizer ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/image-prioritizer/"
   },
   "Image Relay": {
     "cats": [

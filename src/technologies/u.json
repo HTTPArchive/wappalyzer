@@ -1030,7 +1030,7 @@
     "icon": "Utiq.svg",
     "oss": false,
     "website": "https://utiq.com/",
-    "xhr": "/utiqLoader\\.js",
+    "scriptSrc": "/utiqLoader\\.js",
     "js": {
       "Utiq": ""
     }

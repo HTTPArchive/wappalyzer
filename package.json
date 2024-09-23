@@ -5,6 +5,8 @@
     "convert-svg-to-png": "^0.5.0"
   },
   "devDependencies": {
+    "@google-cloud/bigquery": "^7.7.0",
+    "@google-cloud/storage": "^7.11.0",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",
@@ -23,6 +25,7 @@
     "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js bin/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "validate": "yarn run lint && node ./bin/validate.js",
     "test": "jest",
+    "upload": "node ./bin/upload_bq_table.js",
     "convert": "node --no-warnings ./bin/convert.js",
     "build": "yarn run validate && yarn run convert && node ./bin/build.js"
   },

@@ -1992,5 +1992,16 @@
       "apple-itunes-app": "app-id=543672169"
     },
     "website": "https://owncloud.org"
+  },
+  "OpenRTB": {
+    "cats": [
+      36
+    ],
+    "html": "Real-time Bidding (RTB) is a way transacting media that allows an individual ad impression to be put up for bid in real-time.",
+    "icon": "IAB.png",
+    "headers": {
+      "x-openrtb-version": "([\\d.]+)\\;version:\\1"
+    },
+    "website": "https://www.iab.com/guidelines/openrtb/"
   }
 }

@@ -10,9 +10,9 @@ const Options = {
    */
   init() {
     ;[
-      ['dynamicIcon', false],
+      ['dynamicIcon', true],
       ['badge', true],
-      ['showCached', true],
+      ['showCached', false],
     ].map(async ([option, defaultValue]) => {
       const el = document
         .querySelector(

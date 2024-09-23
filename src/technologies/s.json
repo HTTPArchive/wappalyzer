@@ -2533,7 +2533,8 @@
   },
   "Shopify": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "_shopify_s": "",
@@ -5140,10 +5141,10 @@
     "cats": [
       87
     ],
-    "description": "Spectra is a WordPress plugin that provides a collection of new and enhanced blocks for the Gutenberg editor.",
+    "description": "Spectra is a WordPress plugin that provides a collection of new and enhanced blocks for the WordPress Block editor.",
     "dom": "link[href*='/wp-content/plugins/ultimate-addons-for-gutenberg/']",
     "icon": "Spectra.svg",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "freemium",
       "low",
@@ -5152,6 +5153,19 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/plugins/ultimate-addons-for-gutenberg/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://wpspectra.com"
+  },
+  "Speculative Loading": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Group, which adds support for the Speculation Rules API, by which certain URLs are dynamically prefetched or prerendered based on user interaction.",
+    "icon": "speculation-rules.svg",
+    "meta": {
+      "generator": "^speculation-rules ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/speculation-rules/"
   },
   "Speed Kit": {
     "cats": [
@@ -5918,8 +5932,7 @@
   },
   "Stackable": {
     "cats": [
-      87,
-      51
+      87
     ],
     "description": "Stackable is a plugin for WordPress that offers a collection of blocks, templates, and other design tools to help users create custom, professional-looking websites.",
     "dom": {
@@ -5930,7 +5943,7 @@
       }
     },
     "icon": "Stackable.svg",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "js": {
       "stackable.restUrl": "",
       "stackableAnimations": ""

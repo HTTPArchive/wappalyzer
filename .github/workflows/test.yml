@@ -1,0 +1,89 @@
+name: Tests
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    paths:
+      - "src/technologies/*.json"
+      - "src/categories.json"
+      - "src/groups.json"
+      - "tests/*.js"
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: WebPageTest Test Cases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Validate
+        run: yarn run validate
+
+      - name: Run WebPageTest with unit tests
+        id: unit-test
+        env:
+          WPT_SERVER: "webpagetest.httparchive.org"
+          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: yarn test
+
+      - name: Run WebPageTest for more websites
+        id: wpt-test
+        env:
+          WPT_SERVER: "webpagetest.httparchive.org"
+          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Read PR body into an array, removing line breaks and carriage returns
+          lines=()
+          while IFS= read -r line; do
+            lines+=("${line//[$'\r\n']}")
+          done <<< "$PR_BODY"
+
+          # Find the index of the line after "**Test websites**:"
+          start_index=-1
+          for ((i=0; i<${#lines[@]}; i++)); do
+            if [[ "${lines[$i]}" == *"**Test websites**:"* ]]; then
+              start_index=$((i + 1))
+              break
+            fi
+          done
+
+          # If the index is valid, then parse the URLs
+          if [ $start_index -gt -1 ]; then
+            # Initialize an array for URLs
+            URLS=()
+            url_pattern="((http|https|ftp):\/\/[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,4})(\/[a-zA-Z0-9_.-]+)*(\/?)(\?[a-zA-Z0-9_.-]+=[a-zA-Z0-9%_.-]+)*(\#?)([a-zA-Z0-9%_.-=]+)*)"
+
+            for ((i=start_index; i<${#lines[@]}; i++)); do
+              if [[ ${lines[$i]} =~ $url_pattern ]]; then
+                URLS+=("${BASH_REMATCH[1]}")
+              fi
+            done
+
+            # Run WebPageTest for each URL
+            for TEST_WEBSITE in "${URLS[@]}"; do
+              echo "::group::Running WPT test for $TEST_WEBSITE"
+              node tests/wpt.js "$TEST_WEBSITE"
+              echo "::endgroup::"
+            done
+          else
+            echo "No websites found."
+          fi
+
+      - name: Add comment with results
+        uses: mshick/add-pr-comment@v2
+        if: steps.unit-test.outcome == 'success' || steps.wpt-test.outcome == 'success'
+        with:
+          refresh-message-position: true
+          message-path: test-results.md

@@ -129,6 +129,17 @@ const Popup = {
       })
     })
 
+    Array.from(document.querySelectorAll('a[href^="http"]')).forEach((a) => {
+      a.addEventListener('click', (event) => {
+        event.preventDefault()
+        event.stopImmediatePropagation()
+
+        open(a.href.replace(/__URL__/g, url))
+
+        return false
+      })
+    })
+
     // Reload
     el.emptyReload.addEventListener('click', (event) => {
       chrome.tabs.reload({ bypassCache: true })

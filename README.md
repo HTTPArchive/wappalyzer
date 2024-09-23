@@ -1,4 +1,8 @@
-[![Validate](https://github.com/HTTPArchive/wappalyzer/actions/workflows/validate.yml/badge.svg)](https://github.com/HTTPArchive/wappalyzer/actions/workflows/validate.yml)
+
+[![Test](https://github.com/HTTPArchive/wappalyzer/actions/workflows/test.yml/badge.svg)](https://github.com/HTTPArchive/wappalyzer/actions/workflows/test.yml)
+
+[![Lint](https://github.com/HTTPArchive/wappalyzer/actions/workflows/lint.yml/badge.svg)](https://github.com/HTTPArchive/wappalyzer/actions/workflows/lint.yml)
+
 [![Github Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/AliasIO)](https://github.com/sponsors/AliasIO)
 
 <a href="https://www.wappalyzer.com/?utm_source=readme&utm_medium=github&utm_campaign=wappalyzer"><img src="https://www.wappalyzer.com/images/logo/icon_192.png" height="72" alt="Wappalyzer" align="left" /></a>

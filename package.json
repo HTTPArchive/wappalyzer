@@ -8,21 +8,33 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-nuxt": "^1.0.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.2",
-    "terminal-overwrite": "^2.0.1"
+    "eslint-plugin-prettier": "^3.4.1",
+    "jest": "^29.7.0",
+    "prettier": "^2.8.8",
+    "terminal-overwrite": "^2.0.1",
+    "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "scripts": {
-    "lint": "eslint src/**/*.{js,json} && jsonlint -jsV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
-    "lint:fix": "eslint --fix src/**/*.{js,json} && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "lint": "eslint src/**/*.{js,json} tests/**/*.js bin/**/*.js && jsonlint -jsV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js bin/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "validate": "yarn run lint && node ./bin/validate.js",
+    "test": "jest",
     "convert": "node --no-warnings ./bin/convert.js",
-    "build": "yarn run validate && yarn run prettify && yarn run convert && node ./bin/build.js",
-    "build:safari": "xcrun safari-web-extension-converter --swift --project-location build --force src",
-    "manifest": "node ./bin/manifest.js"
+    "build": "yarn run validate && yarn run convert && node ./bin/build.js"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      [
+        "github-actions",
+        {
+          "silent": false
+        }
+      ]
+    ]
   }
 }

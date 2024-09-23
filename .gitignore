@@ -8,3 +8,8 @@ Desktop.ini
 *.log
 ._*
 .idea
+/nbproject/private/
+src/out.json
+
+keys.json
+.env

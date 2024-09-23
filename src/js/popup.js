@@ -87,7 +87,7 @@ const Popup = {
 
         el.headerSwitchDisabled.addEventListener('click', async () => {
           disabledDomains = disabledDomains.filter(
-            (_hostname) => _hostname !== hostname,
+            (_hostname) => _hostname !== hostname
           )
 
           await setOption('disabledDomains', disabledDomains)
@@ -115,7 +115,7 @@ const Popup = {
 
     // Header
     el.headerSettings.addEventListener('click', () =>
-      chrome.runtime.openOptionsPage(),
+      chrome.runtime.openOptionsPage()
     )
 
     // Tabs
@@ -171,7 +171,7 @@ const Popup = {
           })
 
           return categories
-        }, {}),
+        }, {})
     )
   },
 
@@ -238,7 +238,7 @@ const Popup = {
           const pinnedCategory = await getOption('pinnedCategory')
 
           el.pinsActive.forEach((pin) =>
-            pin.classList.remove('category__pin--active'),
+            pin.classList.remove('category__pin--active')
           )
 
           if (pinnedCategory === id) {
@@ -248,7 +248,7 @@ const Popup = {
 
             el.pins.forEach((pin) => pin.classList.add('category__pin--active'))
           }
-        }),
+        })
       )
 
       technologies.forEach(
@@ -282,7 +282,7 @@ const Popup = {
           }
 
           el.technologies.appendChild(technologyNode)
-        },
+        }
       )
 
       el.detections.appendChild(categoryNode)
@@ -300,7 +300,7 @@ const Popup = {
         open(a.href)
 
         return false
-      }),
+      })
     )
 
     i18n()

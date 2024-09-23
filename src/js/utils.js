@@ -43,7 +43,7 @@ const Utils = {
         const managed = await Utils.promisify(
           chrome.storage.managed,
           'get',
-          name,
+          name
         )
 
         if (managed[name] !== undefined) {
@@ -87,7 +87,7 @@ const Utils = {
    */
   i18n() {
     Array.from(document.querySelectorAll('[data-i18n]')).forEach(
-      (node) => (node.innerHTML = chrome.i18n.getMessage(node.dataset.i18n)),
+      (node) => (node.innerHTML = chrome.i18n.getMessage(node.dataset.i18n))
     )
   },
 
@@ -103,7 +103,7 @@ const Utils = {
           chrome.runtime.lastError
             ? reject(chrome.runtime.lastError)
             : resolve(response)
-        },
+        }
       )
     })
   },

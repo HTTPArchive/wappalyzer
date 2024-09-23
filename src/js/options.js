@@ -18,7 +18,7 @@ const Options = {
         .querySelector(
           `[data-i18n="option${
             option.charAt(0).toUpperCase() + option.slice(1)
-          }"]`,
+          }"]`
         )
         .parentNode.querySelector('input')
 
@@ -50,7 +50,7 @@ const Options = {
           chrome.runtime.lastError
             ? reject(new Error(chrome.runtime.lastError.message))
             : resolve(response)
-        },
+        }
       )
     })
   },

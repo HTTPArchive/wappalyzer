@@ -1630,22 +1630,21 @@
       "__utma": "",
       "_ga": "",
       "_ga_*": "\\;version:GA4",
-      "_gat": "\\;version:UA"
+      "_gat": ""
     },
     "description": "Google Analytics is a free web analytics service that tracks and reports website traffic.",
     "dom": "amp-analytics[type*=googleanalytics]",
     "icon": "Google Analytics.svg",
     "js": {
-      "GoogleAnalyticsObject": "",
-      "gaGlobal": ""
+      "GoogleAnalyticsObject": "\\;version:UA",
+      "gaGlobal": "\\;version:Classic"
     },
     "scriptSrc": [
-      "google-analytics\\.com/(?:ga|urchin|analytics)\\.js",
-      "googletagmanager\\.com/gtag/js"
-    ],
-    "scripts": [
-      "gtag\\([^)]+'(UA-)\\;version:\\1?UA:",
-      "gtag\\([^)]+'(G-)\\;version:\\1?GA4:"
+      "google-analytics\\.com/urchin\\.js\\;version:Urchin",
+      "google-analytics\\.com/ga\\.js\\;version:Classic",
+      "google-analytics\\.com/analytics\\.js\\;version:UA",
+      "googletagmanager\\.com/gtag/js/?id=UA-\\;version:UA",
+      "googletagmanager\\.com/gtag/js/?id=G-\\;version:GA4"
     ],
     "website": "https://google.com/analytics"
   },
@@ -1910,6 +1909,16 @@
     "url": "^https?://sites\\.google\\.com",
     "website": "https://sites.google.com"
   },
+  "Google Tag": {
+    "cats": [
+      42
+    ],
+    "description": "The Google tag is a single tag you can add to your website to use Google measurement and advertising products like Google Ads, Google Analytics, Campaign Manager, Display & Video 360, and Search Ads 360.",
+    "icon": "Google Tag Manager.svg",
+    "saas": true,
+    "scriptSrc": "googletagmanager\\.com/gtag/js",
+    "website": "https://developers.google.com/tag-platform/gtagjs"
+  },
   "Google Tag Manager": {
     "cats": [
       42
@@ -1920,12 +1929,9 @@
       "<!-- (?:End )?Google Tag Manager -->"
     ],
     "icon": "Google Tag Manager.svg",
-    "js": {
-      "googletag": ""
-    },
     "saas": true,
     "scriptSrc": "googletagmanager\\.com/gtm\\.js",
-    "website": "https://www.google.com/tagmanager"
+    "website": "https://developers.google.com/tag-platform/tag-manager"
   },
   "Google Tag Manager for WordPress": {
     "cats": [

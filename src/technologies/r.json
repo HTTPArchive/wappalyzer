@@ -634,7 +634,7 @@
     "implies": "React",
     "oss": true,
     "js": {
-      "__reactRouterVersion": ""
+      "__reactRouterVersion": "([\\d\\.]+)\\;version:\\1"
     },
     "website": "https://reactrouter.com"
   },

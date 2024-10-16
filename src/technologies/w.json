@@ -2506,7 +2506,8 @@
   },
   "wp.cloud": {
     "cats": [
-      62
+      62,
+      88
     ],
     "description": "WordPress-first cloud hosting.",
     "headers": {

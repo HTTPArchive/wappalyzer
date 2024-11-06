@@ -95,11 +95,9 @@ async function getDom(technologies) {
             }
 
             if (text) {
-              // eslint-disable-next-line unicorn/prefer-text-content
-              const value = (node.innerText ? node.innerText.trim() : '').slice(
-                0,
-                1000000
-              )
+              const value = (
+                node.textContent ? node.textContent.trim() : ''
+              ).slice(0, 1000000)
 
               if (
                 value &&
@@ -245,8 +243,10 @@ const Content = {
       )
 
       // Text
-      // eslint-disable-next-line unicorn/prefer-text-content
-      const text = document.body.innerText.replace(/\s+/g, ' ').slice(0, 25000)
+
+      const text = document.body.textContent
+        .replace(/\s+/g, ' ')
+        .slice(0, 25000)
 
       // CSS rules
       let css = []
@@ -332,8 +332,7 @@ const Content = {
                 .split('/')
                 .shift()}`,
 
-              // eslint-disable-next-line unicorn/prefer-text-content
-              `https://${ad.innerText.split('\n').pop()}`,
+              `https://${ad.textContent.split('\n').pop()}`,
             ]),
           ]
 

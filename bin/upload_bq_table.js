@@ -18,15 +18,29 @@ function readJsonFiles(directory) {
 }
 
 function getString(value) {
-  return {
-    name: value,
-    value: null,
+  try {
+    return value
+  } catch (error) {
+    return null
   }
 }
 
 function getArray(value) {
   if (typeof value === 'string') {
-    getString(value)
+    return [value]
+  } else if (Array.isArray(value)) {
+    return value
+  } else {
+    return []
+  }
+}
+
+function getRuleObject(value) {
+  if (typeof value === 'string') {
+    return {
+      name: value,
+      value: null,
+    }
   } else if (Array.isArray(value)) {
     return value.map((key) => {
       return {
@@ -34,25 +48,15 @@ function getArray(value) {
         value: null,
       }
     })
-  } else {
-    return null
-  }
-}
-
-function getRuleObject(value) {
-  if (typeof value === 'string') {
-    getString(value)
-  } else if (Array.isArray(value)) {
-    return getArray(value)
   } else if (typeof value === 'object') {
     return Object.keys(value).map((key) => {
       return {
         name: key,
-        value: value[key],
+        value: typeof value[key] === 'object' ? JSON.stringify(value[key]) : value[key].toString(),
       }
     })
   } else {
-    return null
+    return []
   }
 }
 
@@ -73,8 +77,76 @@ async function loadToBigQuery(
 
     const bigquery = new BigQuery()
 
+    const schema = {
+      fields: [
+        { name: 'name', type: 'STRING' },
+        { name: 'categories', type: 'STRING', mode: 'REPEATED' },
+        { name: 'website', type: 'STRING' },
+        { name: 'description', type: 'STRING' },
+        { name: 'icon', type: 'STRING' },
+        { name: 'cpe', type: 'STRING' },
+        { name: 'saas', type: 'BOOLEAN' },
+        { name: 'oss', type: 'BOOLEAN' },
+        { name: 'pricing', type: 'STRING', mode: 'REPEATED' },
+        { name: 'implies', type: 'STRING', mode: 'REPEATED' },
+        { name: 'requires', type: 'STRING', mode: 'REPEATED' },
+        { name: 'requiresCategory', type: 'STRING', mode: 'REPEATED' },
+        { name: 'excludes', type: 'STRING', mode: 'REPEATED' },
+        {
+          name: 'cookies', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        {
+          name: 'dom', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        {
+          name: 'dns', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        {
+          name: 'js', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        {
+          name: 'headers', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        { name: 'text', type: 'STRING', mode: 'REPEATED' },
+        { name: 'css', type: 'STRING', mode: 'REPEATED' },
+        {
+          name: 'probe', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        { name: 'robots', type: 'STRING', mode: 'REPEATED' },
+        { name: 'url', type: 'STRING', mode: 'REPEATED' },
+        { name: 'xhr', type: 'STRING', mode: 'REPEATED' },
+        {
+          name: 'meta', type: 'RECORD', mode: 'REPEATED', fields: [
+            { name: 'name', type: 'STRING' },
+            { name: 'value', type: 'STRING' }
+          ]
+        },
+        { name: 'scriptSrc', type: 'STRING', mode: 'REPEATED' },
+        { name: 'script', type: 'STRING', mode: 'REPEATED' },
+        { name: 'html', type: 'STRING', mode: 'REPEATED' }
+      ]
+    }
+
     const options = {
-      autodetect: true,
+      schema,
       sourceFormat,
       writeDisposition,
     }
@@ -105,17 +177,37 @@ async function main() {
   const transformedTechnologies = Object.keys(technologies).map((key) => {
     const app = {}
     app.name = key
-    app.cats = technologies[key].cats.map(
+    app.categories = technologies[key].cats.map(
       (category) => categories[category].name
     )
-
     app.website = technologies[key].website
     app.description = technologies[key].description
+    app.icon = technologies[key].icon
     app.cpe = technologies[key].cpe
+    app.saas = technologies[key].saas
+    app.oss = technologies[key].oss
+    app.pricing = technologies[key].pricing
 
+    app.implies = getArray(technologies[key].implies)
+    app.requires = getArray(technologies[key].requires)
+    app.requiresCategory = getArray(technologies[key].requiresCategory)
+    app.excludes = getArray(technologies[key].excludes)
+
+    app.cookies = getRuleObject(technologies[key].cookies)
+    app.dom = getRuleObject(technologies[key].dom)
+    app.dns = getRuleObject(technologies[key].dns)
+    app.js = getRuleObject(technologies[key].js)
     app.headers = getRuleObject(technologies[key].headers)
-    app.xhr = getRuleObject(technologies[key].xhr)
-    app.scriptSrc = getRuleObject(technologies[key].scriptSrc)
+    app.text = getArray(technologies[key].text)
+    app.css = getArray(technologies[key].css)
+    app.probe = getRuleObject(technologies[key].probe)
+    app.robots = getArray(technologies[key].robots)
+    app.url = getArray(technologies[key].url)
+    app.xhr = getArray(technologies[key].xhr)
+    app.meta = getRuleObject(technologies[key].meta)
+    app.scriptSrc = getArray(technologies[key].scriptSrc)
+    app.script = getArray(technologies[key].script)
+    app.html = getArray(technologies[key].html)
 
     return app
   })
@@ -127,7 +219,7 @@ async function main() {
   const filePath = './transformedTechnologies.jsonl'
   fs.writeFileSync(filePath, transformedTechnologiesJsonL)
 
-  await loadToBigQuery(filePath, 'apps')
+  await loadToBigQuery(filePath, 'apps_current')
 
   // cleanup file
   fs.unlinkSync(filePath)

@@ -219,7 +219,7 @@ async function main() {
   const filePath = './transformedTechnologies.jsonl'
   fs.writeFileSync(filePath, transformedTechnologiesJsonL)
 
-  await loadToBigQuery(filePath, 'apps_current')
+  await loadToBigQuery(filePath, 'apps')
 
   // cleanup file
   fs.unlinkSync(filePath)

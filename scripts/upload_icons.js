@@ -4,7 +4,7 @@ const path = require('path')
 const { Storage } = require('@google-cloud/storage')
 
 // Configuration
-const BUCKET_NAME = 'wappalizer-icons'
+const BUCKET_NAME = 'technology_detections'
 const ICONS_DIR = path.resolve(__dirname, '../src/images/icons/converted') // Local directory where your PNG icons are stored
 
 const storage = new Storage({
@@ -40,7 +40,7 @@ async function syncIcons() {
     ) {
       try {
         await bucket.upload(filePath, {
-          destination: file,
+          destination: 'icons/'+file,
           metadata: {
             contentType: 'image/png',
           },

@@ -40,7 +40,7 @@ async function syncIcons() {
     ) {
       try {
         await bucket.upload(filePath, {
-          destination: 'icons/'+file,
+          destination: 'icons/' + file,
           metadata: {
             contentType: 'image/png',
           },

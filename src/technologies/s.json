@@ -4132,6 +4132,7 @@
     "description": "Slider Revolution is a flexible and highly customisable slider.",
     "icon": "Slider Revolution.svg",
     "js": {
+      "SR7.version": "^Slider Revolution\\s([\\d\\.]+)$\\;version:\\1",
       "RS_MODULES.main.version": "^Slider Revolution\\s([\\d\\.]+)$\\;version:\\1",
       "revapi1": "",
       "revapi2": "",
@@ -5159,7 +5160,7 @@
       87,
       92
     ],
-    "description": "Performance plugin from the WordPress Performance Group, which adds support for the Speculation Rules API, by which certain URLs are dynamically prefetched or prerendered based on user interaction.",
+    "description": "Performance plugin from the WordPress Performance Team, which adds support for the Speculation Rules API, by which certain URLs are dynamically prefetched or prerendered based on user interaction.",
     "icon": "speculation-rules.svg",
     "meta": {
       "generator": "^speculation-rules ([\\d.]+)?\\;version:\\1"

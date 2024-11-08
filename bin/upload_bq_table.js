@@ -1,221 +1,213 @@
 /* eslint-disable no-console */
-// A script to upload technologies and their groups and categories to BigQuery.
+// A script to upload technologies and their categories to BigQuery.
 
 const fs = require('fs')
 const path = require('path')
 const { BigQuery } = require('@google-cloud/bigquery')
 
-function readJsonFiles(directory) {
+const readJsonFiles = (directory) => {
   const files = fs.readdirSync(directory)
-  let mergedData = {}
-  files.forEach((file) => {
+  return files.reduce((mergedData, file) => {
     const filePath = path.join(directory, file)
     const data = fs.readFileSync(filePath, 'utf8')
-    const jsonData = JSON.parse(data)
-    mergedData = { ...mergedData, ...jsonData }
-  })
-  return mergedData
+    return { ...mergedData, ...JSON.parse(data) }
+  }, {})
 }
 
-function getString(value) {
-  try {
-    return value
-  } catch (error) {
-    return null
-  }
-}
+const getArray = (value) =>
+  typeof value === 'string' ? [value] : Array.isArray(value) ? value : []
 
-function getArray(value) {
+const getRuleObject = (value) => {
   if (typeof value === 'string') {
-    return [value]
-  } else if (Array.isArray(value)) {
-    return value
-  } else {
-    return []
+    return [{ name: value, value: null }]
   }
+  if (Array.isArray(value)) {
+    return value.map((key) => ({ name: key, value: null }))
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).map((key) => ({
+      name: key,
+      value:
+        typeof value[key] === 'object'
+          ? JSON.stringify(value[key])
+          : value[key].toString(),
+    }))
+  }
+  return []
 }
 
-function getRuleObject(value) {
-  if (typeof value === 'string') {
-    return {
-      name: value,
-      value: null,
-    }
-  } else if (Array.isArray(value)) {
-    return value.map((key) => {
-      return {
-        name: key,
-        value: null,
-      }
-    })
-  } else if (typeof value === 'object') {
-    return Object.keys(value).map((key) => {
-      return {
-        name: key,
-        value: typeof value[key] === 'object' ? JSON.stringify(value[key]) : value[key].toString(),
-      }
-    })
-  } else {
-    return []
-  }
-}
-
-async function loadToBigQuery(
+const loadToBigQuery = async (
   data,
   tableName,
   datasetName = 'wappalyzer',
   writeDisposition = 'WRITE_TRUNCATE',
   sourceFormat = 'NEWLINE_DELIMITED_JSON'
-) {
-  try {
-    if (!data) {
-      throw new Error(`No data to load from \`${datasetName}.${tableName}\`.`)
-    }
-
-    const datasetDestination = `${datasetName}`
-    const tableDestination = `${datasetDestination}.${tableName}`
-
-    const bigquery = new BigQuery()
-
-    const schema = {
-      fields: [
-        { name: 'name', type: 'STRING' },
-        { name: 'categories', type: 'STRING', mode: 'REPEATED' },
-        { name: 'website', type: 'STRING' },
-        { name: 'description', type: 'STRING' },
-        { name: 'icon', type: 'STRING' },
-        { name: 'cpe', type: 'STRING' },
-        { name: 'saas', type: 'BOOLEAN' },
-        { name: 'oss', type: 'BOOLEAN' },
-        { name: 'pricing', type: 'STRING', mode: 'REPEATED' },
-        { name: 'implies', type: 'STRING', mode: 'REPEATED' },
-        { name: 'requires', type: 'STRING', mode: 'REPEATED' },
-        { name: 'requiresCategory', type: 'STRING', mode: 'REPEATED' },
-        { name: 'excludes', type: 'STRING', mode: 'REPEATED' },
-        {
-          name: 'cookies', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        {
-          name: 'dom', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        {
-          name: 'dns', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        {
-          name: 'js', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        {
-          name: 'headers', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        { name: 'text', type: 'STRING', mode: 'REPEATED' },
-        { name: 'css', type: 'STRING', mode: 'REPEATED' },
-        {
-          name: 'probe', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        { name: 'robots', type: 'STRING', mode: 'REPEATED' },
-        { name: 'url', type: 'STRING', mode: 'REPEATED' },
-        { name: 'xhr', type: 'STRING', mode: 'REPEATED' },
-        {
-          name: 'meta', type: 'RECORD', mode: 'REPEATED', fields: [
-            { name: 'name', type: 'STRING' },
-            { name: 'value', type: 'STRING' }
-          ]
-        },
-        { name: 'scriptSrc', type: 'STRING', mode: 'REPEATED' },
-        { name: 'script', type: 'STRING', mode: 'REPEATED' },
-        { name: 'html', type: 'STRING', mode: 'REPEATED' }
-      ]
-    }
-
-    const options = {
-      schema,
-      sourceFormat,
-      writeDisposition,
-    }
-
-    const [job] = await bigquery
-      .dataset(datasetDestination)
-      .table(tableName)
-      .load(data, options)
-
-    if (job.status.errors && job.status.errors.length > 0) {
-      console.error('Errors encountered:', job.status.errors)
-      throw new Error('Error loading data into BigQuery')
-    }
-
-    console.log(`Loaded ${job.numRowsLoaded} rows into ${tableDestination}...`)
-  } catch (err) {
-    console.error('Error loading data into BigQuery:', err)
-    throw err
+) => {
+  if (!data) {
+    throw new Error(`No data to load from \`${datasetName}.${tableName}\`.`)
   }
+
+  const bigquery = new BigQuery({
+    keyFilename: '/tmp/gcp_key.json',
+  })
+  const schema = {
+    fields: [
+      { name: 'name', type: 'STRING' },
+      { name: 'categories', type: 'STRING', mode: 'REPEATED' },
+      { name: 'website', type: 'STRING' },
+      { name: 'description', type: 'STRING' },
+      { name: 'icon', type: 'STRING' },
+      { name: 'cpe', type: 'STRING' },
+      { name: 'saas', type: 'BOOLEAN' },
+      { name: 'oss', type: 'BOOLEAN' },
+      { name: 'pricing', type: 'STRING', mode: 'REPEATED' },
+      { name: 'implies', type: 'STRING', mode: 'REPEATED' },
+      { name: 'requires', type: 'STRING', mode: 'REPEATED' },
+      { name: 'requiresCategory', type: 'STRING', mode: 'REPEATED' },
+      { name: 'excludes', type: 'STRING', mode: 'REPEATED' },
+      {
+        name: 'cookies',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      {
+        name: 'dom',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      {
+        name: 'dns',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      {
+        name: 'js',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      {
+        name: 'headers',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      { name: 'text', type: 'STRING', mode: 'REPEATED' },
+      { name: 'css', type: 'STRING', mode: 'REPEATED' },
+      {
+        name: 'probe',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      { name: 'robots', type: 'STRING', mode: 'REPEATED' },
+      { name: 'url', type: 'STRING', mode: 'REPEATED' },
+      { name: 'xhr', type: 'STRING', mode: 'REPEATED' },
+      {
+        name: 'meta',
+        type: 'RECORD',
+        mode: 'REPEATED',
+        fields: [
+          { name: 'name', type: 'STRING' },
+          { name: 'value', type: 'STRING' },
+        ],
+      },
+      { name: 'scriptSrc', type: 'STRING', mode: 'REPEATED' },
+      { name: 'script', type: 'STRING', mode: 'REPEATED' },
+      { name: 'html', type: 'STRING', mode: 'REPEATED' },
+    ],
+  }
+
+  const options = { schema, sourceFormat, writeDisposition }
+  const [job] = await bigquery
+    .dataset(datasetName)
+    .table(tableName)
+    .load(data, options)
+
+  if (job.status.errors && job.status.errors.length > 0) {
+    console.error('Errors encountered:', job.status.errors)
+    throw new Error('Error loading data into BigQuery')
+  }
+
+  console.log(
+    `Loaded ${job.numRowsLoaded} rows into ${datasetName}.${tableName}...`
+  )
 }
 
-async function main() {
-  const technologies = await readJsonFiles('./src/technologies')
+const main = async () => {
+  const technologies = readJsonFiles('./src/technologies')
   const categories = JSON.parse(
     fs.readFileSync('./src/categories.json', 'utf8')
   )
 
   const transformedTechnologies = Object.keys(technologies).map((key) => {
-    const app = {}
-    app.name = key
-    app.categories = technologies[key].cats.map(
-      (category) => categories[category].name
+    const app = {
+      name: key,
+      categories: technologies[key].cats.map(
+        (category) => categories[category].name
+      ),
+    }
+
+    ;[
+      'implies',
+      'requires',
+      'requiresCategory',
+      'excludes',
+      'text',
+      'css',
+      'robots',
+      'url',
+      'xhr',
+      'scriptSrc',
+      'script',
+      'html',
+    ].forEach((field) => {
+      app[field] = getArray(technologies[key][field])
+    })
+    ;['cookies', 'dom', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
+      (field) => {
+        app[field] = getRuleObject(technologies[key][field])
+      }
     )
-    app.website = technologies[key].website
-    app.description = technologies[key].description
-    app.icon = technologies[key].icon
-    app.cpe = technologies[key].cpe
-    app.saas = technologies[key].saas
-    app.oss = technologies[key].oss
-    app.pricing = technologies[key].pricing
-
-    app.implies = getArray(technologies[key].implies)
-    app.requires = getArray(technologies[key].requires)
-    app.requiresCategory = getArray(technologies[key].requiresCategory)
-    app.excludes = getArray(technologies[key].excludes)
-
-    app.cookies = getRuleObject(technologies[key].cookies)
-    app.dom = getRuleObject(technologies[key].dom)
-    app.dns = getRuleObject(technologies[key].dns)
-    app.js = getRuleObject(technologies[key].js)
-    app.headers = getRuleObject(technologies[key].headers)
-    app.text = getArray(technologies[key].text)
-    app.css = getArray(technologies[key].css)
-    app.probe = getRuleObject(technologies[key].probe)
-    app.robots = getArray(technologies[key].robots)
-    app.url = getArray(technologies[key].url)
-    app.xhr = getArray(technologies[key].xhr)
-    app.meta = getRuleObject(technologies[key].meta)
-    app.scriptSrc = getArray(technologies[key].scriptSrc)
-    app.script = getArray(technologies[key].script)
-    app.html = getArray(technologies[key].html)
+    ;[
+      'website',
+      'description',
+      'icon',
+      'cpe',
+      'saas',
+      'oss',
+      'pricing',
+    ].forEach((field) => {
+      app[field] = technologies[key][field]
+    })
 
     return app
   })
 
-  let transformedTechnologiesJsonL = transformedTechnologies.map((line) =>
-    JSON.stringify(line)
-  )
-  transformedTechnologiesJsonL = transformedTechnologiesJsonL.join('\n')
+  const transformedTechnologiesJsonL = transformedTechnologies
+    .map((line) => JSON.stringify(line))
+    .join('\n')
   const filePath = './transformedTechnologies.jsonl'
   fs.writeFileSync(filePath, transformedTechnologiesJsonL)
 

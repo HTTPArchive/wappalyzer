@@ -5,38 +5,39 @@ const { Storage } = require('@google-cloud/storage')
 
 // Configuration
 const BUCKET_NAME = 'wappalizer-icons'
-const ICONS_DIR = (() => {
-  const fileDir = path.dirname(require.main.filename).split('/')
-  fileDir.pop() // Remove current bin directory
-  const appDir = fileDir.join('/')
-  return appDir + '/src/images/icons/converted' // Local directory where your PNG icons are stored
-})()
+const ICONS_DIR = path.resolve(__dirname, '../src/images/icons/converted') // Local directory where your PNG icons are stored
 
-const storage = new Storage()
+const storage = new Storage({
+  keyFilename: '/tmp/gcp_key.json',
+})
 
 async function syncIcons() {
   const bucket = storage.bucket(BUCKET_NAME)
 
   // Get list of files in the bucket
-  let [filesInBucket] = await bucket.getFiles()
-  filesInBucket = filesInBucket.map((file) => ({
-    name: file.name,
-    updated: new Date(file.metadata.updated).getTime(),
-  }))
+  const [filesInBucket] = await bucket.getFiles()
+  const bucketFilesMap = new Map(
+    filesInBucket.map((file) => [
+      file.name,
+      new Date(file.metadata.updated).getTime(),
+    ])
+  )
 
   // Read all files from the local icons directory
-  const files = fs
+  const localFiles = fs
     .readdirSync(ICONS_DIR)
     .filter((file) => file.endsWith('.png'))
 
-  for (const file of files) {
+  for (const file of localFiles) {
     const filePath = path.join(ICONS_DIR, file)
     const fileMetadata = fs.statSync(filePath)
-
-    const fileInBucket = filesInBucket.find((f) => f.name === file)
+    const fileInBucketUpdatedTime = bucketFilesMap.get(file)
 
     // Upload file if it's new or has been updated
-    if (!fileInBucket || fileMetadata.mtime.getTime() > fileInBucket.updated) {
+    if (
+      !fileInBucketUpdatedTime ||
+      fileMetadata.mtime.getTime() > fileInBucketUpdatedTime
+    ) {
       try {
         await bucket.upload(filePath, {
           destination: file,

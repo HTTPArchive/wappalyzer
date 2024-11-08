@@ -1,0 +1,45 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/technologies/*.json"
+      - "src/categories.json"
+      - "src/groups.json"
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test and upload to GCP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Validate
+        run: yarn run validate
+
+      - name: Run WebPageTest with unit tests
+        id: unit-test
+        env:
+          WPT_SERVER: "webpagetest.httparchive.org"
+          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: yarn run test
+
+      - name: Upload to GCP
+        id: upload
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo $GCP_SA_KEY > /tmp/gcp_key.json
+          yarn run upload

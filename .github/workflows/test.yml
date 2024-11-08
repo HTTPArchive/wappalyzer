@@ -34,7 +34,7 @@ jobs:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: yarn test
+        run: yarn run test
 
       - name: Run WebPageTest for more websites
         id: wpt-test

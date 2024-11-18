@@ -5,6 +5,8 @@
     "convert-svg-to-png": "^0.5.0"
   },
   "devDependencies": {
+    "@google-cloud/bigquery": "^7.7.0",
+    "@google-cloud/storage": "^7.11.0",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",
@@ -19,12 +21,13 @@
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "scripts": {
-    "lint": "eslint src/**/*.{js,json} tests/**/*.js bin/**/*.js && jsonlint -jsV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
-    "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js bin/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
-    "validate": "yarn run lint && node ./bin/validate.js",
+    "lint": "eslint src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -jsV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "validate": "yarn run lint && node ./scripts/validate.js",
     "test": "jest",
-    "convert": "node --no-warnings ./bin/convert.js",
-    "build": "yarn run validate && yarn run convert && node ./bin/build.js"
+    "upload": "node ./scripts/upload_technology.js",
+    "convert": "node --no-warnings ./scripts/convert.js",
+    "build": "yarn run validate && yarn run convert && node ./scripts/build.js"
   },
   "jest": {
     "reporters": [

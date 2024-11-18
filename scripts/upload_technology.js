@@ -217,4 +217,4 @@ const main = async () => {
   fs.unlinkSync(filePath)
 }
 
-main().catch(console.error)
+main()

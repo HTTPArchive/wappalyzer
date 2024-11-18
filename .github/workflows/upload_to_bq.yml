@@ -1,4 +1,4 @@
-name: Tests
+name: Upload technology meta to BQ
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Test and upload to GCP
+    name: Test and upload
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,11 +35,11 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: yarn run test
 
-      - name: Upload to GCP
+      - name: Upload to BQ
         id: upload
         env:
           GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           echo $GCP_SA_KEY > /tmp/gcp_key.json
-          yarn run upload
+          yarn run upload_to_bq

@@ -38,13 +38,13 @@ const getRuleObject = (value) => {
 
 const loadToBigQuery = async (
   data,
-  tableName,
+  tableName = 'apps',
   datasetName = 'wappalyzer',
   writeDisposition = 'WRITE_TRUNCATE',
   sourceFormat = 'NEWLINE_DELIMITED_JSON'
 ) => {
   if (!data) {
-    throw new Error(`No data to load from \`${datasetName}.${tableName}\`.`)
+    throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`)
   }
 
   const bigquery = new BigQuery({

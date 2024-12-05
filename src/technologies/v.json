@@ -411,6 +411,7 @@
     "cats": [
       10
     ],
+    "description": "Vercel Speed Insights provides you with a detailed view of your website's performance metrics, based on Core Web Vitals.",
     "dom": {
       "script[data-sdkn='@vercel/speed-insights/next']": {
         "attributes": {

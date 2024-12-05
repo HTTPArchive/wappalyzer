@@ -407,6 +407,29 @@
     ],
     "website": "https://vercel.com/analytics"
   },
+  "Vercel Speed Insights": {
+    "cats": [
+      10
+    ],
+    "dom": {
+      "script[data-sdkn='@vercel/speed-insights/next']": {
+        "attributes": {
+          "data-sdkv": "^(.+)$\\;version:\\1"
+        }
+      }
+    },
+    "icon": "vercel.svg",
+    "js": {
+      "si": ""
+    },
+    "requires": [
+      "Vercel"
+    ],
+    "scriptSrc": [
+      "/_vercel/speed-insights/script\\.js"
+    ],
+    "website": "https://vercel.com/docs/speed-insights"
+  },
   "Verifone 2Checkout": {
     "cats": [
       41

@@ -845,8 +845,9 @@
     "description": "Klaviyo is an email marketing platform for online businesses.",
     "icon": "Klaviyo.svg",
     "js": {
-      "klaviyoModulesObject.loadedModules": "reviews"
+      "klaviyoReviewsProductDesignMode": ""
     },
+    "scriptSrc": "static\\.klaviyo\\.com/onsite/js/reviews",
     "website": "https://www.klaviyo.com/product-reviews"
   },
   "Klevu": {

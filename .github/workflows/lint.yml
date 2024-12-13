@@ -1,0 +1,28 @@
+name: Linting
+
+on:
+  pull_request_target:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Validate
+        run: yarn run validate
+
+      - name: Run WebPageTest with unit tests
+        id: unit-test
+        run: yarn run lint

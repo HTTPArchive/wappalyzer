@@ -1997,8 +1997,8 @@
     },
     "oss": true,
     "scriptSrc": [
-      "/clientjs@(\\d.*?)/\\;version:\\1",
-      "/ClientJS/(?:(\\d.*?)/)?\\;version:\\1"
+      "/clientjs@([\\d.]+)\\;version:\\1",
+      "/ClientJS/([\\d.]+)/\\;version:\\1"
     ],
     "website": "https://clientjs.org"
   },
@@ -3113,8 +3113,8 @@
     "description": "Constructor.io is a site search and merchandising platform designed to help ecommerce.",
     "icon": "ConstructorIO.png",
     "js": {
-      "constructorio": "",
-      "ConstructorioClient": ""
+      "ConstructorioClient": "",
+      "constructorio": ""
     },
     "pricing": [
       "high",
@@ -4363,7 +4363,7 @@
     "description": "Cwicly is an advanced professional design and block toolkit that integrates directly with the WordPress editor.",
     "dom": "link[href*='/wp-content/uploads/cwicly/']",
     "icon": "Cwicly.png",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "low",
       "recurring"

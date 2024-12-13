@@ -376,12 +376,13 @@
   },
   "GenerateBlocks": {
     "cats": [
-      87,
-      51
+      87
     ],
-    "description": "GenerateBlocks is a WordPress plugin that has the trappings of a page builder.",
+    "description": "GenerateBlocks is a small collection of lightweight WordPress blocks for the WordPress Block Editor.",
     "dom": "link#generateblocks-css",
+    "html": "<link[^>]* id=[^>]+generateblocks-css",
     "icon": "GenerateBlocks.svg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "freemium",
       "low",
@@ -442,16 +443,32 @@
     "scriptSrc": "/wp-content/plugins/gp-premium/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://docs.generatepress.com/article/installing-gp-premium/"
   },
+  "Genesis blocks": {
+    "cats": [
+      87
+    ],
+    "description": "Premium block library & block editor enhancements from StudioPress.",
+    "icon": "genesis-blocks.png",
+    "requires": "WordPress",
+    "dom": [
+      "link[href*='/wp-content/plugins/atomic-blocks']", 
+      "link[href*='/wp-content/plugins/genesis-blocks']"
+    ],
+    "html": "<div[^>]+class=[\"']wp-block-atomic-blocks-*",
+    "scriptSrc": "/wp-content/themes/genesis-blocks/lib/js/",
+    "website": "https://www.studiopress.com/genesis-blocks/"
+  },
   "Genesis theme": {
     "cats": [
       80
     ],
     "description": "Genesis theme is a WordPress theme that has been developed using the Genesis Framework from Studiopress.",
     "icon": "Genesis theme.svg",
-    "js": {
-      "genesisBlocksShare": "",
-      "genesis_responsive_menu": ""
-    },
+    "dom": [
+      "body[class*='theme-genesis']",
+      "body[class*='genesis-breadcrumbs-hidden']",
+      "body[class*='genesis-title-hidden']"
+    ],
     "requires": "WordPress",
     "scriptSrc": "/wp-content/themes/genesis/lib/js/",
     "website": "https://www.studiopress.com/themes/genesis"
@@ -1033,18 +1050,18 @@
       106
     ],
     "cookies": {
-      "GlobalE_CT_Data": "",
-      "GlobalE_Data": "",
-      "GlobalE_SupportThirdPartCookies": "",
       "GLBE_SESS_ID": "",
-      "GlobalE_Consent": ""
+      "GlobalE_CT_Data": "",
+      "GlobalE_Consent": "",
+      "GlobalE_Data": "",
+      "GlobalE_SupportThirdPartCookies": ""
     },
     "description": "Global-e is a provider of cross-border ecommerce solutions.",
     "icon": "Global-e.svg",
     "js": {
+      "GLBE_PARAMS": "",
       "GLOBALE_ENGINE_CONFIG": "",
-      "GlobalE": "",
-      "GLBE_PARAMS": ""
+      "GlobalE": ""
     },
     "pricing": [
       "poa"
@@ -1324,10 +1341,9 @@
   },
   "GoDaddy CoBlocks": {
     "cats": [
-      87,
-      51
+      87
     ],
-    "description": "GoDaddy CoBlocks is a suite of professional page building content blocks for the WordPress Gutenberg block editor.",
+    "description": "GoDaddy CoBlocks is a suite of professional page building content blocks for the WordPress Block Editor.",
     "dom": "link[href*='/wp-content/plugins/coblocks/']",
     "icon": "GoDaddy.svg",
     "oss": true,
@@ -1359,9 +1375,10 @@
     "cats": [
       80
     ],
-    "description": "GoDaddy Go is a flexible Gutenberg-first WordPress theme built for go-getters everywhere.",
+    "description": "GoDaddy Go is a flexible Block Editor WordPress theme built for go-getters everywhere.",
     "dom": "link#go-style-css",
     "icon": "GoDaddy.svg",
+    "implies": "WordPress Block Editor",
     "js": {
       "goFrontend.openMenuOnHover": ""
     },
@@ -2521,10 +2538,9 @@
   },
   "Gutenberg": {
     "cats": [
-      87,
-      20
+      87
     ],
-    "description": "Gutenberg is the code name for the new block based editor introduced in WordPress 5.",
+    "description": "Gutenberg is the development plugin in which new features for the WordPress Block Editor are tested.",
     "dom": {
       "link[href*='/wp-content/plugins/gutenberg/']": {
         "attributes": {
@@ -2533,6 +2549,7 @@
       }
     },
     "icon": "Gutenberg.png",
+    "implies": "WordPress Block Editor",
     "oss": true,
     "requires": "WordPress",
     "scriptSrc": "/wp-content/plugins/gutenberg/",

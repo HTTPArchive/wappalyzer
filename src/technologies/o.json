@@ -1,4 +1,15 @@
 {
+  "Otter Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "Otter blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "dom": "link[href*='/wp-content/plugins/otter-blocks']",
+    "html": "<div[^>]+class=[\"']wp-block-themeisle-blocks-*",
+    "icon": "otter-blocks.png",
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/otter-blocks/"
+  },
   "OTYS": {
     "cats": [
       101
@@ -959,7 +970,8 @@
   },
   "OpenCart": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "OCSESSID": ""
@@ -1271,6 +1283,19 @@
     "scriptSrc": "track\\.omguk\\.com",
     "website": "https://www.optimisemedia.com"
   },
+  "Optimization Detective": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which captures real user metrics about what elements are displayed on the page across a variety of device form factors (e.g. desktop, tablet, and phone) in order to apply loading optimizations.",
+    "icon": "optimization-detective.svg",
+    "meta": {
+      "generator": "^optimization-detective ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/optimization-detective/"
+  },
   "Optimizely": {
     "cats": [
       74,
@@ -1579,10 +1604,9 @@
   },
   "OrbitFox": {
     "cats": [
-      87,
-      5
+      87
     ],
-    "description": "OrbitFox is a multi-featured WordPress plugin that works with the Elementor, Beaver Builder and Gutenberg site-building utilities by Themeisle.",
+    "description": "OrbitFox is a multi-featured WordPress plugin that works with the Elementor, Beaver Builder and WordPress Block Editor site-building utilities by Themeisle.",
     "dom": "link[href*='/wp-content/plugins/themeisle-companion/']",
     "icon": "OrbitFox.svg",
     "requires": "WordPress",

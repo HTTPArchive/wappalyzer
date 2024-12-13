@@ -1537,16 +1537,22 @@
     "scripts": "aem-(?:GridColumn|apps/)",
     "website": "https://www.adobe.com/marketing/experience-manager.html"
   },
-  "Adobe Experience Manager Franklin": {
+  "Adobe Experience Manager Edge Delivery Services": {
     "cats": [
       1
     ],
     "cpe": "cpe:2.3:a:adobe:experience_manager:*:*:*:*:*:*:*:*",
-    "description": "Adobe Experience Manager Franklin, also known as Project Helix or Composability, is a new way to publish AEM pages using Google Drive or Microsoft Office via Sharepoint. Instead of components, Franklin uses blocks to build pages. Blocks are pieces of a document that will be transformed into web page content.",
-    "excludes": "Adobe Experience Manager",
-    "icon": "Adobe Experience Manager Franklin.svg",
-    "scriptSrc": "^.+/scripts/lib-franklin\\.js$",
-    "website": "https://www.hlx.live"
+    "description": "Edge Delivery Services in Adobe Experience Manager Sites as a Cloud Service, also know as Helix, Franklin, Next-Generation Composability is a fast and lightweight content management system from Adobe.",
+    "excludes": [
+      "Adobe Experience Manager"
+    ],
+    "icon": "Adobe Experience Platform.svg",
+    "saas": true,
+    "scriptSrc": [
+      "^.+/scripts/lib-franklin\\.js$",
+      "^.+/scripts/aem\\.js$"
+    ],
+    "website": "https://www.aem.live"
   },
   "Adobe Experience Platform Identity Service": {
     "cats": [
@@ -2448,21 +2454,35 @@
     "scriptSrc": "cf\\.aliyun\\.com/",
     "website": "https://help.aliyun.com/document_detail/193141.html"
   },
-  "All in One SEO Pack": {
+  "All in One SEO": {
     "cats": [
       54,
       87
     ],
     "cpe": "cpe:2.3:a:aioseo:all_in_one_seo:*:*:*:*:*:wordpress:*:*",
-    "description": "All in One SEO plugin optimizes WordPress website and its content for search engines.",
-    "html": "<!-- All in One SEO Pack ([\\d.]+) \\;version:\\1",
+    "description": "All in One SEO optimizes a WordPress website and its content for search engines.",
+    "dom": {
+      "script.aioseo-schema": {}
+    },
+    "html": [
+      "<!-- All in One SEO Pack ([\\d.]+) \\;version:\\1",
+      "<!-- All in One SEO ([\\d.]+) \\;version:\\1",
+      "<!-- All in One SEO Pro ([\\d.]+) \\;version:Pro \\1"
+    ],
     "icon": "AIOSEO.svg",
+    "implies": "WordPress",
+    "meta": {
+      "generator": [
+        "^All in One SEO \\(AIOSEO\\) ([\\d\\.]+)\\;version:\\1",
+        "^All in One SEO Pro \\(AIOSEO\\) ([\\d\\.]+)\\;version:Pro \\1"
+      ]
+    },
+    "oss": true,
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
     "website": "https://aioseo.com"
   },
   "Alli": {

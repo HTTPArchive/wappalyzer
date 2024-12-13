@@ -166,6 +166,17 @@
     "saas": true,
     "website": "https://www.index-education.com/fr/logiciel-gestion-vie-scolaire.php"
   },
+  "PublishPress Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "PublishPress Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "icon": "publishpress-blocks.png",
+    "requires": "WordPress",
+    "dom": "link[href*='/wp-content/plugins/advanced-gutenberg/assets/css/blocks.css?ver=([\\d\\.]+))?\\;version:\\1']",
+    "html": "<div[^>]+class=[\"']wp-block-advgb-*",
+    "website": "https://publishpress.com/blocks/"
+  },
   "PWA": {
     "cats": [
       19
@@ -399,6 +410,7 @@
     ],
     "css": "--made-with-panda",
     "description": "Panda is a styling engine that generates styling primitives to author atomic CSS and recipes in a type-safe and readable manner.",
+    "icon": "PandaCSS.svg",
     "oss": true,
     "website": "https://panda-css.com/"
   },
@@ -1095,13 +1107,26 @@
       87,
       92
     ],
-    "description": "Performance plugin from the WordPress Performance Group, which is a collection of standalone performance modules.",
+    "description": "Performance plugin from the WordPress Performance Team, which is a collection of standalone performance modules.",
     "icon": "Performance Lab.svg",
     "meta": {
       "generator": "^(Performance Lab|performance-lab) ?([\\d.]+)?\\;version:\\2"
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/performance-lab/"
+  },
+  "Performant Translations": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which makes internationalization/localization in WordPress faster than ever before.",
+    "icon": "performant-translations.svg",
+    "meta": {
+      "generator": "^performant-translations ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/performant-translations/"
   },
   "PerimeterX": {
     "cats": [
@@ -2774,7 +2799,8 @@
   },
   "PrestaShop": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "PrestaShop": ""

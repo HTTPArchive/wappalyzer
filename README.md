@@ -52,7 +52,7 @@ Patterns (regular expressions) are kept in [`src/technologies/`](https://github.
   "cookies": {
     "cookie_name": "Example"
   },
-  "dom": {
+  "dom": [{
     "#example-id": {
       "exists": "",
       "attributes": {
@@ -63,7 +63,7 @@ Patterns (regular expressions) are kept in [`src/technologies/`](https://github.
       },
       "text": "Example text content"
     }
-  },
+  }],
   "dns": {
     "MX": [
       "example\\.com"
@@ -72,26 +72,26 @@ Patterns (regular expressions) are kept in [`src/technologies/`](https://github.
   "js": {
     "Example.method": ""
   },
-  "excludes": "Example",
+  "excludes": ["Example"],
   "headers": {
     "X-Powered-By": "Example"
   },
-  "text": "\bexample\b",
-  "css": "\\.example-class",
-  "robots": "Disallow: /unique-path/",
-  "implies": "PHP\\;confidence:50",
-  "requires": "WordPress",
-  "requiresCategory": "Ecommerce",
+  "text": ["\bexample\b"],
+  "css": ["\\.example-class"],
+  "robots": ["Disallow: /unique-path/"],
+  "implies": ["PHP\\;confidence:50"],
+  "requires": ["WordPress"],
+  "requiresCategory": ["Ecommerce"],
   "meta": {
     "generator": "(?:Example|Another Example)"
   },
   "probe": {
     "/path": ""
   },
-  "scriptSrc": "example-([0-9.]+)\\.js\\;confidence:50\\;version:\\1",
-  "scripts": "function webpackJsonpCallback\\(data\\) {",
-  "url": "example\\.com",
-  "xhr": "example\\.com",
+  "scriptSrc": ["example-([0-9.]+)\\.js\\;confidence:50\\;version:\\1"],
+  "scripts": ["function webpackJsonpCallback\\(data\\) {"],
+  "url": ["example\\.com"],
+  "xhr": ["example\\.com"],
   "oss": true,
   "saas": true,
   "pricing": ["mid", "freemium", "recurring"],
@@ -230,37 +230,37 @@ Plus any of:
   <tbody>
     <tr>
       <td><code>implies</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         The presence of one application can imply the presence of
         another, e.g. WordPress means PHP is also in use.
       </td>
-      <td><code>"PHP"</code></td>
+      <td><code>["PHP"]</code></td>
     </tr>
     <tr>
       <td><code>requires</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         Similar to implies but detection only runs if the required technology has been identified. Useful for themes for a specific CMS.
       </td>
-      <td><code>"WordPress"</code></td>
+      <td><code>["WordPress"]</code></td>
     </tr>
     <tr>
       <td><code>requiresCategory</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         Similar to requires; detection only runs if a technology in the required category has been identified.
       </td>
-      <td><code>"Ecommerce"</code></td>
+      <td><code>["Ecommerce"]</code></td>
     </tr>
     <tr>
       <td><code>excludes</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         Opposite of implies. The presence of one application can exclude
         the presence of another.
       </td>
-      <td><code>"Apache"</code></td>
+      <td><code>["Apache"]</code></td>
     </tr>
   </tbody>
 </table>
@@ -285,7 +285,7 @@ Plus any of:
     </tr>
     <tr>
       <td><code>dom</code></td>
-      <td>String | Array | Object</td>
+      <td>Array | Object</td>
       <td>
         Uses a
         <a
@@ -330,21 +330,21 @@ Plus any of:
     </tr>
     <tr>
       <td><code>text</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         Matches plain text. Should only be used in very specific cases where other methods can't be used.
       </td>
-      <td><code>\bexample\b</code></td>
+      <td><code>["\bexample\b"]</code></td>
     </tr>
     <tr>
       <td><code>css</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         CSS rules. Unavailable when a website enforces a same-origin
         policy. For performance reasons, only a portion of the available
         CSS rules are used to find matches.
       </td>
-      <td><code>"\\.example-class"</code></td>
+      <td><code>["\\.example-class"]</code></td>
     </tr>
     <tr>
       <td><code>probe</code></td>
@@ -356,23 +356,23 @@ Plus any of:
     </tr>
     <tr>
       <td><code>robots</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         Robots.txt contents.
       </td>
-      <td><code>"Disallow: /unique-path/"</code></td>
+      <td><code>["Disallow: /unique-path/"]</code></td>
     </tr>
     <tr>
       <td><code>url</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>Full URL of the page.</td>
-      <td><code>"^https?//.+\\.wordpress\\.com"</code></td>
+      <td><code>["^https?//.+\\.wordpress\\.com"]</code></td>
     </tr>
     <tr>
       <td><code>xhr</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>Hostnames of XHR requests.</td>
-      <td><code>"cdn\\.netlify\\.com"</code></td>
+      <td><code>["cdn\\.netlify\\.com"]</code></td>
     </tr>
     <tr>
       <td><code>meta</code></td>
@@ -382,32 +382,32 @@ Plus any of:
     </tr>
     <tr>
       <td><code>scriptSrc</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         URLs of JavaScript files included on the page.
       </td>
-      <td><code>"jquery\\.js"</code></td>
+      <td><code>["jquery\\.js"]</code></td>
     </tr>
     <tr>
       <td><code>scripts</code></td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         JavaScript source code. Inspects inline and external scripts. For performance reasons, avoid
         <code>scripts</code> where possible and use
         <code>js</code> instead.
       </td>
-      <td><code>"function webpackJsonpCallback\\(data\\) {"</code></td>
+      <td><code>["function webpackJsonpCallback\\(data\\) \\{"]</code></td>
     </tr>
     <tr>
       <td><code>html</code> (deprecated)</td>
-      <td>String | Array</td>
+      <td>Array</td>
       <td>
         HTML source code. Patterns must include an HTML opening tag to
         avoid matching plain text. <strong>For performance reasons, avoid
         <code>html</code> where possible and use
         <code>dom</code> instead.</strong>
       </td>
-      <td><code>"&lt;a [^&gt;]*href=\"index.html"</code></td>
+      <td><code>["&lt;a [^&gt;]*href=\"index.html"]</code></td>
     </tr>
   </tbody>
 </table>

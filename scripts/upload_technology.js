@@ -14,9 +14,6 @@ const readJsonFiles = (directory) => {
   }, {})
 }
 
-const getArray = (value) =>
-  typeof value === 'string' ? [value] : Array.isArray(value) ? value : []
-
 const getRuleObject = (value) => {
   if (typeof value === 'string') {
     return [{ name: value, value: null }]
@@ -38,7 +35,7 @@ const getRuleObject = (value) => {
 
 const loadToBigQuery = async (
   data,
-  tableName = 'apps',
+  tableName = 'apps_test',
   datasetName = 'wappalyzer',
   writeDisposition = 'WRITE_TRUNCATE',
   sourceFormat = 'NEWLINE_DELIMITED_JSON'
@@ -47,9 +44,7 @@ const loadToBigQuery = async (
     throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`)
   }
 
-  const bigquery = new BigQuery({
-    keyFilename: '/tmp/gcp_key.json',
-  })
+  const bigquery = new BigQuery()
   const schema = {
     fields: [
       { name: 'name', type: 'STRING' },
@@ -151,7 +146,7 @@ const loadToBigQuery = async (
   }
 
   console.log(
-    `Loaded ${job.numRowsLoaded} rows into ${datasetName}.${tableName}...`
+    `Loaded ${job.statistics.load.outputRows} rows into ${datasetName}.${tableName}...`
   )
 }
 
@@ -182,15 +177,8 @@ const main = async () => {
       'scriptSrc',
       'script',
       'html',
-    ].forEach((field) => {
-      app[field] = getArray(technologies[key][field])
-    })
-    ;['cookies', 'dom', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
-      (field) => {
-        app[field] = getRuleObject(technologies[key][field])
-      }
-    )
-    ;[
+      'dom',
+
       'website',
       'description',
       'icon',
@@ -202,6 +190,12 @@ const main = async () => {
       app[field] = technologies[key][field]
     })
 
+    ;['cookies', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
+      (field) => {
+        app[field] = getRuleObject(technologies[key][field])
+      }
+    )
+
     return app
   })
 
@@ -211,7 +205,7 @@ const main = async () => {
   const filePath = './transformedTechnologies.jsonl'
   fs.writeFileSync(filePath, transformedTechnologiesJsonL)
 
-  await loadToBigQuery(filePath, 'apps')
+  await loadToBigQuery(filePath)
 
   // cleanup file
   fs.unlinkSync(filePath)

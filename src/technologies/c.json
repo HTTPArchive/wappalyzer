@@ -12,7 +12,9 @@
       6
     ],
     "icon": "ccvshop.png",
-    "scriptSrc": "/website/JavaScript/Vertoshop\\.js",
+    "scriptSrc": [
+      "/website/JavaScript/Vertoshop\\.js"
+    ],
     "website": "https://ccvshop.be"
   },
   "CDN77": {
@@ -31,7 +33,9 @@
       52
     ],
     "description": "CEMax is a premium customer engagement platform.",
-    "dom": "div[data-chat-url*='.cemaxai.com/']",
+    "dom": [
+      "div[data-chat-url*='.cemaxai.com/']"
+    ],
     "icon": "CEMax.png",
     "pricing": [
       "poa"
@@ -53,7 +57,9 @@
     ],
     "description": "Civic provides cookie control for user consent and the use of cookies.",
     "icon": "civic.png",
-    "scriptSrc": "cc\\.cdn\\.civiccomputing\\.com",
+    "scriptSrc": [
+      "cc\\.cdn\\.civiccomputing\\.com"
+    ],
     "website": "https://www.civicuk.com/cookie-control"
   },
   "CJDropshipping app": {
@@ -65,9 +71,13 @@
     "pricing": [
       "payg"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
-    "scriptSrc": "app\\.cjdropshipping\\.com/",
+    "scriptSrc": [
+      "app\\.cjdropshipping\\.com/"
+    ],
     "website": "https://apps.shopify.com/cucheng"
   },
   "CKEditor": {
@@ -95,7 +105,9 @@
     },
     "cpe": "cpe:2.3:a:cmsmadesimple:cms_made_simple:*:*:*:*:*:*:*:*",
     "icon": "CMS Made Simple.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "CMS Made Simple"
     },
@@ -106,7 +118,9 @@
       1
     ],
     "cpe": "cpe:2.3:a:cmsimple:cmsimple:*:*:*:*:*:*:*:*",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "CMSimple( [\\d.]+)?\\;version:\\1"
     },
@@ -120,7 +134,9 @@
     "js": {
       "cnzz_protocol": ""
     },
-    "scriptSrc": "//[^./]+\\.cnzz\\.com/(?:z_stat.php|core)\\?",
+    "scriptSrc": [
+      "//[^./]+\\.cnzz\\.com/(?:z_stat.php|core)\\?"
+    ],
     "website": "https://web.umeng.com/"
   },
   "CPABuild": {
@@ -142,7 +158,9 @@
       "X-Powered-By": "^Dragonfly CMS"
     },
     "icon": "CPG Dragonfly.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "CPG Dragonfly"
     },
@@ -182,9 +200,13 @@
       6
     ],
     "description": "CS Cart is a turnkey ecommerce shopping cart software solution.",
-    "dom": "a[href*='.cs-cart.com'][target='_blank']",
+    "dom": [
+      "a[href*='.cs-cart.com'][target='_blank']"
+    ],
     "icon": "CS Cart.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "fn_buy_together_apply_discount": "",
       "fn_calculate_total_shipping": "",
@@ -194,7 +216,9 @@
       "mid",
       "onetime"
     ],
-    "scriptSrc": "var/cache/misc/assets/js/tygh/scripts-(?:[\\d\\w]+)\\.js",
+    "scriptSrc": [
+      "var/cache/misc/assets/js/tygh/scripts-(?:[\\d\\w]+)\\.js"
+    ],
     "website": "https://www.cs-cart.com"
   },
   "CSSIgniter Olsen Light": {
@@ -209,8 +233,12 @@
       "recurring",
       "low"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/olsen-light/.+scripts(?:\\.min)?\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/olsen-light/.+scripts(?:\\.min)?\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.cssigniter.com/themes/olsen-light"
   },
   "CTT": {
@@ -219,7 +247,9 @@
     ],
     "description": "CTT operates as the national postal service of Portugal.",
     "icon": "CTT.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bTourline Express\\b",
       "\\bCTT\\b"
@@ -240,7 +270,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.caast\\.tv/",
+    "scriptSrc": [
+      "cdn\\.caast\\.tv/"
+    ],
     "website": "https://en.caast.tv"
   },
   "CacheFly": {
@@ -262,7 +294,9 @@
     ],
     "description": "Cachet is the free and open-source status page for your API, service or company.",
     "icon": "Cachet.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "Cachet.Notifier": ""
     },
@@ -318,7 +352,9 @@
       1
     ],
     "description": "Caisy is a headless CMS platform providing flexible content management, seamless integration with various devices and channels, and API access for structured content delivery.",
-    "dom": "img[src*='assets.caisy.io/']",
+    "dom": [
+      "img[src*='assets.caisy.io/']"
+    ],
     "icon": "Caisy.svg",
     "pricing": [
       "freemium",
@@ -338,7 +374,9 @@
     "cpe": "cpe:2.3:a:cakephp:cakephp:*:*:*:*:*:*:*:*",
     "description": "CakePHP is an open-source web framework. It follows the model–view–controller (MVC) approach and is written in PHP.",
     "icon": "CakePHP.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "application-name": "CakePHP"
     },
@@ -366,8 +404,12 @@
       "freemium",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/caldera-forms/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/caldera-forms/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://calderaforms.com"
   },
   "CalendarHero": {
@@ -392,7 +434,9 @@
       72
     ],
     "description": "Calendly is an app for scheduling appointments, meetings, and events.",
-    "dom": "a[href*='//calendly.com/'][target='_blank']",
+    "dom": [
+      "a[href*='//calendly.com/'][target='_blank']"
+    ],
     "icon": "Calendly.svg",
     "js": {
       "Calendly": ""
@@ -402,7 +446,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "assets\\.calendly\\.com/",
+    "scriptSrc": [
+      "assets\\.calendly\\.com/"
+    ],
     "website": "https://calendly.com/"
   },
   "CallRail": {
@@ -456,7 +502,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.callbell\\.eu/",
+    "scriptSrc": [
+      "\\.callbell\\.eu/"
+    ],
     "website": "https://www.callbell.eu"
   },
   "Campaign Monitor": {
@@ -465,14 +513,18 @@
       75
     ],
     "description": "Campaign Monitor is a global technology company that provides an email marketing platform.",
-    "dom": "input[value='campaignmonitor_subscribe_form'][name='form_id'], form[action*='createsend'][class='js-cm-form']",
+    "dom": [
+      "input[value='campaignmonitor_subscribe_form'][name='form_id'], form[action*='createsend'][class='js-cm-form']"
+    ],
     "icon": "Campaign Monitor.svg",
     "pricing": [
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.createsend1\\.com/",
+    "scriptSrc": [
+      "\\.createsend1\\.com/"
+    ],
     "website": "https://www.campaignmonitor.com"
   },
   "Candid Themes Fairy": {
@@ -485,8 +537,12 @@
       "freemium",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/fairy(?:-premium)?/.+custom\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/fairy(?:-premium)?/.+custom\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.candidthemes.com/themes/fairy"
   },
   "Canny": {
@@ -494,7 +550,9 @@
       13
     ],
     "description": "Canny is a cloud-based solution that helps small to large businesses collect, analyse, prioritise and track user feedback to make informed product decisions.",
-    "dom": "a[href*='.canny.io/']",
+    "dom": [
+      "a[href*='.canny.io/']"
+    ],
     "headers": {
       "Content-Security-Policy": "//canny\\.io"
     },
@@ -515,7 +573,9 @@
       95
     ],
     "description": "Canto is a digital asset management solution.",
-    "dom": "link[href*='.canto.com/'], a[href*='.canto.com/'], img[src*='.canto.com/']",
+    "dom": [
+      "link[href*='.canto.com/'], a[href*='.canto.com/'], img[src*='.canto.com/']"
+    ],
     "icon": "Canto.svg",
     "pricing": [
       "poa"
@@ -584,7 +644,9 @@
     "js": {
       "Captchme": ""
     },
-    "scriptSrc": "^https?://api\\.captchme\\.net/",
+    "scriptSrc": [
+      "^https?://api\\.captchme\\.net/"
+    ],
     "website": "https://captchme.com"
   },
   "Captivate.fm": {
@@ -592,7 +654,9 @@
       5
     ],
     "description": "Captivate.fm is a podcast hosting and analytics platform that provides tools for creating, hosting, and distributing podcasts.",
-    "dom": "iframe[src*='player.captivate.fm/']",
+    "dom": [
+      "iframe[src*='player.captivate.fm/']"
+    ],
     "icon": "Captivate.fm.svg",
     "js": {
       "CAPTIVATE_PLAYER_APP_URL": ""
@@ -609,7 +673,9 @@
       36
     ],
     "description": "Carbon Ads is an ad tech company, that connects advertisers to users through targeted verticals called Circles.",
-    "dom": "div#carbonads-container",
+    "dom": [
+      "div#carbonads-container"
+    ],
     "icon": "Carbon Ads.svg",
     "js": {
       "_carbonads": "",
@@ -619,7 +685,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.carbonads\\.com/",
+    "scriptSrc": [
+      "\\.carbonads\\.com/"
+    ],
     "website": "https://carbonads.net"
   },
   "CareCart": {
@@ -629,13 +697,17 @@
     ],
     "description": "CareCart is a smart app to recover big value carts on all sizes of shopify stores.",
     "icon": "CareCart.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "app\\.carecart\\.io/api/abandoned-cart/",
+    "scriptSrc": [
+      "app\\.carecart\\.io/api/abandoned-cart/"
+    ],
     "website": "https://carecart.io/abandoned-cart-recovery-app"
   },
   "CareCart Sales Pop Up": {
@@ -645,12 +717,16 @@
     ],
     "description": "CareCart Sales Pop Up is a stock countdown timer, recent sales notifications, live sales pop up widget.",
     "icon": "CareCart.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "sales-pop\\.carecart\\.io/",
+    "scriptSrc": [
+      "sales-pop\\.carecart\\.io/"
+    ],
     "website": "https://carecart.io/sales-pop-up-app"
   },
   "Cargo": {
@@ -659,7 +735,9 @@
     ],
     "description": "Cargo is a professional site building platform for designers and artists.",
     "icon": "Cargo.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "Cargo.Config": "",
       "__cargo_js_ver__": ""
@@ -667,7 +745,9 @@
     "meta": {
       "cargo_title": ""
     },
-    "scriptSrc": "(?<!elo\\.io)/cargo\\.",
+    "scriptSrc": [
+      "(?<!elo\\.io)/cargo\\."
+    ],
     "website": "https://cargo.site"
   },
   "Carrd": {
@@ -681,9 +761,13 @@
       "low",
       "recurring"
     ],
-    "requires": "Apache HTTP Server",
+    "requires": [
+      "Apache HTTP Server"
+    ],
     "saas": true,
-    "scripts": "\\(\\!section\\s\\|\\|\\ssection\\.tagName\\s\\!\\=\\s\\'SECTION\\'\\)",
+    "scripts": [
+      "\\(\\!section\\s\\|\\|\\ssection\\.tagName\\s\\!\\=\\s\\'SECTION\\'\\)"
+    ],
     "website": "https://carrd.co"
   },
   "Carro": {
@@ -692,7 +776,9 @@
     ],
     "description": "Carro connects participating Shopify stores together to enable cross-store selling or the ability for like-minded partners to directly sell each other products without the need for inventory, managing returns, or minimum order quantities.",
     "icon": "Carro.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "freemium",
       "low",
@@ -753,7 +839,9 @@
     "scriptSrc": [
       "googlecommerce\\.com/trustedstores/api/js"
     ],
-    "url": "/(?:cart|order|basket|trolley|bag|shoppingbag|checkout)",
+    "url": [
+      "/(?:cart|order|basket|trolley|bag|shoppingbag|checkout)"
+    ],
     "website": "https://www.wappalyzer.com/technologies/ecommerce/cart-functionality"
   },
   "Cart.com": {
@@ -761,7 +849,9 @@
       6
     ],
     "description": "Cart.com is an ecommerce platform built for high volume online stores and complex products with features such as multi-store management.",
-    "dom": "p.AmeriCommerce-powered-by-link > a[href*='.americommerce.com/'][target='_blank']",
+    "dom": [
+      "p.AmeriCommerce-powered-by-link > a[href*='.americommerce.com/'][target='_blank']"
+    ],
     "icon": "Cart.com.svg",
     "js": {
       "AC.storeDomain": ""
@@ -771,7 +861,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.americommerce\\.com/",
+    "scriptSrc": [
+      "\\.americommerce\\.com/"
+    ],
     "website": "https://www.americommerce.com"
   },
   "Cart.js": {
@@ -780,9 +872,13 @@
     ],
     "description": "Cart.js is a very small open-source Javascript library that makes the addition of powerful Ajax cart functionality to your Shopify theme a breeze.",
     "icon": "Cart.js.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "oss": true,
-    "scriptSrc": "(?:shopify-cartjs/([\\d\\.]+)|assets)/rivets-cart\\.min\\.js\\;version:\\1",
+    "scriptSrc": [
+      "(?:shopify-cartjs/([\\d\\.]+)|assets)/rivets-cart\\.min\\.js\\;version:\\1"
+    ],
     "website": "https://cartjs.org"
   },
   "CartKit": {
@@ -796,7 +892,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.cartkitcdn\\.com/",
+    "scriptSrc": [
+      "\\.cartkitcdn\\.com/"
+    ],
     "website": "https://www.cartkit.com"
   },
   "CartStack": {
@@ -813,7 +911,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "api\\.cartstack\\.\\w+",
+    "scriptSrc": [
+      "api\\.cartstack\\.\\w+"
+    ],
     "website": "https://www.cartstack.com"
   },
   "Carts Guru": {
@@ -828,7 +928,9 @@
       "mid"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.cartsguru\\.io/",
+    "scriptSrc": [
+      "cdn\\.cartsguru\\.io/"
+    ],
     "website": "https://www.carts.guru"
   },
   "Catberry.js": {
@@ -840,7 +942,9 @@
       "X-Powered-By": "Catberry"
     },
     "icon": "Catberry.js.png",
-    "implies": "Node.js",
+    "implies": [
+      "Node.js"
+    ],
     "js": {
       "catberry": "",
       "catberry.version": "^(.+)$\\;version:\\1"
@@ -863,14 +967,20 @@
       80
     ],
     "description": "Catch Box is a lightweight, box shaped, clean responsive WordPress theme by Catch Themes.",
-    "dom": "link[href*='/wp-content/themes/catch-box/']",
+    "dom": [
+      "link[href*='/wp-content/themes/catch-box/']"
+    ],
     "icon": "Catch Themes.png",
     "pricing": [
       "freemium",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/catch-box(?:-pro)?/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/catch-box(?:-pro)?/"
+    ],
     "website": "https://catchthemes.com/themes/catch-box"
   },
   "Catch Themes Fotografie": {
@@ -878,14 +988,20 @@
       80
     ],
     "description": "Fotografie is a modern photography WordPress theme that comes with high-quality features and minimal design by Catch Themes.",
-    "dom": "link[href*='/wp-content/themes/fotografie/']",
+    "dom": [
+      "link[href*='/wp-content/themes/fotografie/']"
+    ],
     "icon": "Catch Themes.png",
     "pricing": [
       "freemium",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/fotografie(?:-pro)?/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/fotografie(?:-pro)?/"
+    ],
     "website": "https://catchthemes.com/themes/fotografie"
   },
   "Cecil": {
@@ -905,7 +1021,9 @@
     ],
     "description": "Celeritas offers transportation logistics services for package deliveries.",
     "icon": "Celeritas.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bCeleritas\\b"
     ],
@@ -916,7 +1034,9 @@
       95
     ],
     "description": "Celum is a software developer that specialises in enterprise digital asset management and marketing content management systems.",
-    "dom": "img[src*='/celum/'], img[src*='/celum_assets/']",
+    "dom": [
+      "img[src*='/celum/'], img[src*='/celum_assets/']"
+    ],
     "icon": "Celum.svg",
     "pricing": [
       "freemium",
@@ -943,7 +1063,9 @@
       95
     ],
     "description": "Censhare is a commercial digital experience platform in the form of an enterprise content management system.",
-    "dom": "img[data-src*='CENSHARE'], img[src*='CENSHARE']",
+    "dom": [
+      "img[data-src*='CENSHARE'], img[src*='CENSHARE']"
+    ],
     "icon": "Censhare.svg",
     "pricing": [
       "high",
@@ -985,8 +1107,12 @@
       6
     ],
     "description": "Centra is the headless ecommerce platform.",
-    "dom": "img[src*='.centracdn.net/']",
-    "excludes": "Magento",
+    "dom": [
+      "img[src*='.centracdn.net/']"
+    ],
+    "excludes": [
+      "Magento"
+    ],
     "headers": {
       "Content-Security-Policy": "\\.centra(?:cdn)?\\.(?:com|net)"
     },
@@ -999,7 +1125,9 @@
       "poa"
     ],
     "saas": true,
-    "scripts": "centraCheckoutScript",
+    "scripts": [
+      "centraCheckoutScript"
+    ],
     "website": "https://centra.com"
   },
   "Chabokan": {
@@ -1022,11 +1150,17 @@
       66
     ],
     "description": "Chakra UI is a simple, modular and accessible component library that gives you the building blocks you need to build your React applications.",
-    "dom": "html[style*='chakra-ui-color-mode'], body.chakra-ui-dark, body.chakra-ui-light, div.chakra-portal",
+    "dom": [
+      "html[style*='chakra-ui-color-mode'], body.chakra-ui-dark, body.chakra-ui-light, div.chakra-portal"
+    ],
     "icon": "Chakra UI.svg",
-    "implies": "React",
+    "implies": [
+      "React"
+    ],
     "oss": true,
-    "scriptSrc": "\\.chakra-ui\\.",
+    "scriptSrc": [
+      "\\.chakra-ui\\."
+    ],
     "website": "https://chakra-ui.com"
   },
   "Chameleon": {
@@ -1044,7 +1178,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.trychameleon\\.com/",
+    "scriptSrc": [
+      "\\.trychameleon\\.com/"
+    ],
     "website": "https://www.trychameleon.com"
   },
   "Chameleon system": {
@@ -1069,12 +1205,16 @@
     ],
     "cpe": "cpe:2.3:a:chamilo:chamilo_lms:*:*:*:*:*:*:*:*",
     "description": "Chamilo is an open-source learning management and collaboration system.",
-    "dom": "link[href*='chamilo.org/']",
+    "dom": [
+      "link[href*='chamilo.org/']"
+    ],
     "headers": {
       "X-Powered-By": "Chamilo ([\\d.]+)\\;version:\\1"
     },
     "icon": "Chamilo.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "Chamilo ([\\d.]+)\\;version:\\1"
     },
@@ -1104,13 +1244,17 @@
       32
     ],
     "description": "ChannelAdvisor is a provider of cloud-based solutions to ecommerce companies.",
-    "dom": "link[href*='.channeladvisor.com']",
+    "dom": [
+      "link[href*='.channeladvisor.com']"
+    ],
     "icon": "ChannelAdvisor.svg",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.channeladvisor\\.com/",
+    "scriptSrc": [
+      "\\.channeladvisor\\.com/"
+    ],
     "website": "https://www.channeladvisor.com"
   },
   "ChannelApe": {
@@ -1123,10 +1267,14 @@
       "mid",
       "recurring"
     ],
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "saas": true,
     "website": "https://www.channelape.com",
-    "xhr": "\\.channelape\\.com"
+    "xhr": [
+      "\\.channelape\\.com"
+    ]
   },
   "Chaport": {
     "cats": [
@@ -1144,7 +1292,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.chaport\\.com",
+    "scriptSrc": [
+      "\\.chaport\\.com"
+    ],
     "website": "https://www.chaport.com"
   },
   "ChargeAfter": {
@@ -1158,7 +1308,9 @@
       "ChargeAfter": ""
     },
     "saas": true,
-    "scriptSrc": "cdn\\.chargeafter\\.com",
+    "scriptSrc": [
+      "cdn\\.chargeafter\\.com"
+    ],
     "website": "https://chargeafter.com/"
   },
   "Chargebee": {
@@ -1176,7 +1328,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "js\\.chargebee\\.com/v([\\d.]+)\\;version:\\1",
+    "scriptSrc": [
+      "js\\.chargebee\\.com/v([\\d.]+)\\;version:\\1"
+    ],
     "website": "https://www.chargebee.com"
   },
   "Chart.js": {
@@ -1207,7 +1361,9 @@
       "_sf_async_config": "",
       "_sf_endpt": ""
     },
-    "scriptSrc": "chartbeat\\.js",
+    "scriptSrc": [
+      "chartbeat\\.js"
+    ],
     "website": "https://chartbeat.com"
   },
   "ChatStack": {
@@ -1231,13 +1387,17 @@
       5
     ],
     "description": "Chatango is a website used for connecting to a large selection of users.",
-    "dom": "iframe[src*='st.chatango.com']",
+    "dom": [
+      "iframe[src*='st.chatango.com']"
+    ],
     "icon": "Chatango.png",
     "pricing": [
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "st\\.chatango\\.com",
+    "scriptSrc": [
+      "st\\.chatango\\.com"
+    ],
     "website": "https://chatango.com"
   },
   "Chatra": {
@@ -1256,9 +1416,13 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "call\\.chatra\\.io/chatra\\.js",
+    "scriptSrc": [
+      "call\\.chatra\\.io/chatra\\.js"
+    ],
     "website": "https://chatra.com",
-    "xhr": "chat\\.chatra\\.io/"
+    "xhr": [
+      "chat\\.chatra\\.io/"
+    ]
   },
   "Chatwoot": {
     "cats": [
@@ -1291,7 +1455,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.checkfront\\.com/",
+    "scriptSrc": [
+      "\\.checkfront\\.com/"
+    ],
     "website": "https://www.checkfront.com"
   },
   "Checkly": {
@@ -1308,10 +1474,14 @@
       "recurring",
       "mid"
     ],
-    "requires": "Nuxt.js",
+    "requires": [
+      "Nuxt.js"
+    ],
     "saas": true,
     "website": "https://www.checklyhq.com",
-    "xhr": "api\\.checklyhq\\.com/"
+    "xhr": [
+      "api\\.checklyhq\\.com/"
+    ]
   },
   "Checkout.com": {
     "cats": [
@@ -1323,7 +1493,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.checkout\\.com/js/.+js(?:\\?ver=)?([\\d\\.]+)?\\;version:\\1",
+    "scriptSrc": [
+      "cdn\\.checkout\\.com/js/.+js(?:\\?ver=)?([\\d\\.]+)?\\;version:\\1"
+    ],
     "website": "https://www.checkout.com"
   },
   "Chekkit": {
@@ -1371,7 +1543,9 @@
     ],
     "description": "Chevereto is an image hosting software that allows you to create a full-featured image hosting website on your own server.",
     "icon": "Chevereto.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "CHEVERETO.version": "([\\d\\.]+)\\;version:\\1"
     },
@@ -1383,7 +1557,9 @@
       "onetime"
     ],
     "saas": true,
-    "scriptSrc": "/chevereto\\.js",
+    "scriptSrc": [
+      "/chevereto\\.js"
+    ],
     "website": "https://chevereto.com"
   },
   "Chicago Boss": {
@@ -1395,7 +1571,9 @@
     },
     "description": "Chicago Boss is a web framework for Erlang.",
     "icon": "Chicago Boss.svg",
-    "implies": "Erlang",
+    "implies": [
+      "Erlang"
+    ],
     "oss": true,
     "website": "https://github.com/ChicagoBoss/ChicagoBoss"
   },
@@ -1413,7 +1591,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "js\\.chilipiper\\.com/marketing\\.js",
+    "scriptSrc": [
+      "js\\.chilipiper\\.com/marketing\\.js"
+    ],
     "website": "https://www.chilipiper.com/"
   },
   "Chimpmatic": {
@@ -1437,7 +1617,9 @@
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "saas": true,
     "website": "https://chimpmatic.com"
   },
@@ -1447,7 +1629,9 @@
       93
     ],
     "description": "Chinese Menu Online is an online food ordering service.",
-    "dom": "li > a[href*='chinesemenuonline.com']",
+    "dom": [
+      "li > a[href*='chinesemenuonline.com']"
+    ],
     "icon": "Chinese Menu Online.png",
     "pricing": [
       "payg"
@@ -1464,7 +1648,9 @@
       "ch_client": "",
       "ch_color_site_link": ""
     },
-    "scriptSrc": "scripts\\.chitika\\.net/",
+    "scriptSrc": [
+      "scripts\\.chitika\\.net/"
+    ],
     "website": "https://chitika.com"
   },
   "Choices": {
@@ -1501,7 +1687,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "chord\\.us/embeddable/client-([\\d\\.]+)\\.min\\.js\\;version:\\1",
+    "scriptSrc": [
+      "chord\\.us/embeddable/client-([\\d\\.]+)\\.min\\.js\\;version:\\1"
+    ],
     "website": "https://m.chord.us"
   },
   "Chorus": {
@@ -1531,7 +1719,9 @@
     ],
     "description": "Chronofresh is an express transport service for food products.",
     "icon": "Chronopost.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bChronofresh\\b"
     ],
@@ -1543,7 +1733,9 @@
     ],
     "description": "Chronopost provides a domestic and international express shipping and delivery service.",
     "icon": "Chronopost.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bChronopost\\b"
     ],
@@ -1575,7 +1767,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "checkout-static\\.citruspay\\.com/",
+    "scriptSrc": [
+      "checkout-static\\.citruspay\\.com/"
+    ],
     "website": "https://consumers.citruspay.com/"
   },
   "City Hive": {
@@ -1601,7 +1795,9 @@
     ],
     "description": "CityMail is a private postal organisation operating in Sweden.",
     "icon": "CityMail.png",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bCitymail\\b"
     ],
@@ -1612,7 +1808,9 @@
       53
     ],
     "description": "CiviCRM is a web-based suite of internationalised open-source software for constituency relationship management.",
-    "dom": "a[href*='/civicrm/contribute/transact'], link[href*='/com_civicrm/civicrm/']",
+    "dom": [
+      "a[href*='/civicrm/contribute/transact'], link[href*='/com_civicrm/civicrm/']"
+    ],
     "icon": "CiviCRM.png",
     "oss": true,
     "website": "https://civicrm.org"
@@ -1623,9 +1821,15 @@
     ],
     "description": "CiviCRM is a web-based suite of internationalised open-source software for constituency relationship management.",
     "icon": "CiviCRM.png",
-    "implies": "CiviCRM",
-    "requires": "WordPress",
-    "scriptSrc": "wp-content/plugins/(?:[\\w\\-]+)?civicrm(?:[\\w\\-]+)?/",
+    "implies": [
+      "CiviCRM"
+    ],
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "wp-content/plugins/(?:[\\w\\-]+)?civicrm(?:[\\w\\-]+)?/"
+    ],
     "website": "https://wordpress.org/plugins/search/civicrm/"
   },
   "CivicTheme": {
@@ -1678,7 +1882,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "//cdn\\.clarip\\.com/",
+    "scriptSrc": [
+      "//cdn\\.clarip\\.com/"
+    ],
     "website": "https://www.clarip.com"
   },
   "Claris FileMaker": {
@@ -1696,7 +1902,9 @@
       "Application Request Routing",
       "Java"
     ],
-    "url": "\\.[\\w]+/fmi/webd/",
+    "url": [
+      "\\.[\\w]+/fmi/webd/"
+    ],
     "website": "https://www.claris.com/filemaker"
   },
   "Clarity": {
@@ -1704,14 +1912,20 @@
       66
     ],
     "description": "Clarity is an open-source design system that brings together UX guidelines, an HTML/CSS framework, and Angular components.",
-    "dom": "link[href*='clr-ui'], clr-main-container",
+    "dom": [
+      "link[href*='clr-ui'], clr-main-container"
+    ],
     "icon": "clarity.svg",
-    "implies": "Angular",
+    "implies": [
+      "Angular"
+    ],
     "js": {
       "ClarityIcons": ""
     },
     "oss": true,
-    "scriptSrc": "clr-angular(?:\\.umd)?(?:\\.min)?\\.js",
+    "scriptSrc": [
+      "clr-angular(?:\\.umd)?(?:\\.min)?\\.js"
+    ],
     "website": "https://clarity.design"
   },
   "Classeh": {
@@ -1719,7 +1933,9 @@
       21
     ],
     "description": "Classeh is a LMS that allows user to participate in webinars and also use LMS options like messanger,finances,homework,quiz and some extra options like sending messages and more.",
-    "dom": "a[href*='apps.classeh.ir'][target='_blank']",
+    "dom": [
+      "a[href*='apps.classeh.ir'][target='_blank']"
+    ],
     "icon": "Classeh.svg",
     "implies": [
       "PHP",
@@ -1744,7 +1960,9 @@
     "js": {
       "Classy.clientId": ""
     },
-    "scripts": "classy\\.org",
+    "scripts": [
+      "classy\\.org"
+    ],
     "website": "https://www.classy.org/"
   },
   "ClearSale": {
@@ -1846,13 +2064,17 @@
       111
     ],
     "description": "Click & Pledge is an all-in-one digital fundraising platform.",
-    "dom": "a[href*='.clickandpledge.com/']",
+    "dom": [
+      "a[href*='.clickandpledge.com/']"
+    ],
     "icon": "Click & Pledge.png",
     "pricing": [
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.clickandpledge\\.com/",
+    "scriptSrc": [
+      "\\.clickandpledge\\.com/"
+    ],
     "website": "https://clickandpledge.com"
   },
   "ClickCease": {
@@ -1866,7 +2088,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.clickcease\\.com/monitor/",
+    "scriptSrc": [
+      "\\.clickcease\\.com/monitor/"
+    ],
     "website": "https://www.clickcease.com"
   },
   "ClickDimensions": {
@@ -1883,7 +2107,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "analytics\\.clickdimensions\\.com/",
+    "scriptSrc": [
+      "analytics\\.clickdimensions\\.com/"
+    ],
     "website": "https://clickdimensions.com"
   },
   "ClickFunnels": {
@@ -1914,18 +2140,24 @@
       10
     ],
     "icon": "ClickHeat.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "clickHeatServer": ""
     },
-    "scriptSrc": "clickheat.*\\.js",
+    "scriptSrc": [
+      "clickheat.*\\.js"
+    ],
     "website": "https://www.labsmedia.com/clickheat/index.html"
   },
   "ClickOnce": {
     "cats": [
       47
     ],
-    "css": "\\.ClickOnceInfoText",
+    "css": [
+      "\\.ClickOnceInfoText"
+    ],
     "description": "ClickOnce is a Microsoft .NET deployment technology that enables the creation of self-updating Windows-based applications that can be installed and run with minimal user interaction.",
     "dom": {
       "a[href='https://go.microsoft.com/fwlink/?LinkId=154571']": {
@@ -1952,19 +2184,25 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.clicktale\\.net",
+    "scriptSrc": [
+      "\\.clicktale\\.net"
+    ],
     "website": "https://www.clicktale.com"
   },
   "Clickbank": {
     "cats": [
       71
     ],
-    "dom": "a[href*='pay.clickbank.net?cbfid'], img[width='1'][src*='hop.clickbank.net?affiliate']",
+    "dom": [
+      "a[href*='pay.clickbank.net?cbfid'], img[width='1'][src*='hop.clickbank.net?affiliate']"
+    ],
     "icon": "Clickbank.svg",
     "js": {
       "cbtb": ""
     },
-    "scriptSrc": "r\\.wdfl\\.co",
+    "scriptSrc": [
+      "r\\.wdfl\\.co"
+    ],
     "website": "https://www.clickbank.com/"
   },
   "Clicky": {
@@ -1982,7 +2220,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "static\\.getclicky\\.com",
+    "scriptSrc": [
+      "static\\.getclicky\\.com"
+    ],
     "website": "https://getclicky.com"
   },
   "ClientJS": {
@@ -2024,7 +2264,9 @@
     ],
     "description": "Clinch delivers hyper-personalized creative experiences and consumer intelligence across all channels.",
     "icon": "Clinch.png",
-    "scriptSrc": "cdn\\.clinch\\.co",
+    "scriptSrc": [
+      "cdn\\.clinch\\.co"
+    ],
     "website": "https://clinch.co/"
   },
   "Clipboard.js": {
@@ -2032,7 +2274,9 @@
       59
     ],
     "icon": "Clipboard.js.svg",
-    "scriptSrc": "clipboard(?:-([\\d.]+))?(?:\\.min)?\\.js\\;version:\\1",
+    "scriptSrc": [
+      "clipboard(?:-([\\d.]+))?(?:\\.min)?\\.js\\;version:\\1"
+    ],
     "website": "https://clipboardjs.com/"
   },
   "Clockwork": {
@@ -2044,7 +2288,9 @@
       "x-clockwork-version": "^([\\d\\.]+)$\\;version:\\1"
     },
     "icon": "default.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "oss": true,
     "website": "https://github.com/underground-works/clockwork-app"
   },
@@ -2070,7 +2316,9 @@
     "meta": {
       "author": "^CloudCart LLC$"
     },
-    "scriptSrc": "/cloudcart-(?:assets|storage)/",
+    "scriptSrc": [
+      "/cloudcart-(?:assets|storage)/"
+    ],
     "website": "https://cloudcart.com"
   },
   "CloudSuite": {
@@ -2088,7 +2336,9 @@
       72
     ],
     "description": "Cloudbeds is a cloud-based hotel management platform which includes tools for managing reservations, availability, rates, distribution channels, payments, guests, housekeeping, and more.",
-    "dom": "a[href*='.cloudbeds.com/'][target='_blank']",
+    "dom": [
+      "a[href*='.cloudbeds.com/'][target='_blank']"
+    ],
     "icon": "Cloudbeds.svg",
     "js": {
       "CloudBeds_widget": ""
@@ -2098,7 +2348,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.cloudbeds\\.com/",
+    "scriptSrc": [
+      "\\.cloudbeds\\.com/"
+    ],
     "website": "https://www.cloudbeds.com"
   },
   "Cloudera": {
@@ -2124,7 +2376,9 @@
       "NS": "\\.cloudflare\\.com",
       "SOA": "\\.cloudflare\\.com"
     },
-    "dom": "img[src*='//cdn.cloudflare']",
+    "dom": [
+      "img[src*='//cdn.cloudflare']"
+    ],
     "headers": {
       "Server": "^cloudflare$",
       "cf-cache-status": "",
@@ -2148,7 +2402,9 @@
     },
     "description": "Cloudflare bot management solution identifies and mitigates automated traffic to protect websites from bad bots.",
     "icon": "CloudFlare.svg",
-    "implies": "Cloudflare",
+    "implies": [
+      "Cloudflare"
+    ],
     "saas": true,
     "website": "https://www.cloudflare.com/en-gb/products/bot-management/"
   },
@@ -2162,7 +2418,9 @@
     "js": {
       "__cfBeaconCustomTag": ""
     },
-    "scriptSrc": "static\\.cloudflareinsights\\.com/beacon(?:\\.min)?\\.js",
+    "scriptSrc": [
+      "static\\.cloudflareinsights\\.com/beacon(?:\\.min)?\\.js"
+    ],
     "website": "https://www.cloudflare.com"
   },
   "Cloudflare Rocket Loader": {
@@ -2183,7 +2441,9 @@
       103
     ],
     "description": "Cloudflare Stream is a serverless live and on-demand video streaming platform.",
-    "dom": "iframe[src*='.cloudflarestream\\.com'], iframe[src*='iframe\\.videodelivery\\.net/']",
+    "dom": [
+      "iframe[src*='.cloudflarestream\\.com'], iframe[src*='iframe\\.videodelivery\\.net/']"
+    ],
     "icon": "CloudFlare.svg",
     "pricing": [
       "recurring",
@@ -2222,7 +2482,9 @@
     ],
     "saas": true,
     "website": "https://workers.cloudflare.com",
-    "xhr": "\\.workers\\.dev"
+    "xhr": [
+      "\\.workers\\.dev"
+    ]
   },
   "Cloudflare Zaraz": {
     "cats": [
@@ -2268,7 +2530,9 @@
       95
     ],
     "description": "Cloudimage automates the transformation and optimisation of images on the fly and accelerates their distribution via the Content Delivery Network (CDN).",
-    "dom": "img[src*='.cloudimg.io/'], link[href*='.cloudimg.io/'], amp-img[src*='.cloudimg.io/']",
+    "dom": [
+      "img[src*='.cloudimg.io/'], link[href*='.cloudimg.io/'], amp-img[src*='.cloudimg.io/']"
+    ],
     "icon": "Cloudimage.svg",
     "js": {
       "ciResponsive.config.domain": "cloudimg\\.io"
@@ -2287,7 +2551,9 @@
       95
     ],
     "description": "Cloudinary is an end-to-end image- and video-management solution for websites and mobile apps, covering everything from image and video uploads, storage, manipulations, optimisations to delivery.",
-    "dom": "img[src*='.cloudinary.com/'], img[data-src*='.cloudinary.com/'], link[href*='.cloudinary.com/']",
+    "dom": [
+      "img[src*='.cloudinary.com/'], img[data-src*='.cloudinary.com/'], link[href*='.cloudinary.com/']"
+    ],
     "headers": {
       "Content-Security-Policy": "player\\.cloudinary\\.com"
     },
@@ -2350,7 +2616,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "apps\\.cloverly\\.com/",
+    "scriptSrc": [
+      "apps\\.cloverly\\.com/"
+    ],
     "website": "https://www.cloverly.com"
   },
   "Cluep": {
@@ -2359,7 +2627,9 @@
     ],
     "description": "Cluep's artificially intelligent mobile ad platform targets people based on what they are sharing, how they are feeling and where they go in the physical world.",
     "icon": "Cluep.png",
-    "scriptSrc": "cas\\.cluep\\.com",
+    "scriptSrc": [
+      "cas\\.cluep\\.com"
+    ],
     "website": "https://cluep.com/"
   },
   "ClustrMaps Widget": {
@@ -2367,9 +2637,13 @@
       35
     ],
     "description": "ClustrMaps widget is a visitor tracker, designed for general web and blog use.",
-    "dom": "img[src*='clustrmaps.com']",
+    "dom": [
+      "img[src*='clustrmaps.com']"
+    ],
     "icon": "ClustrMaps.svg",
-    "scriptSrc": "clustrmaps\\.com",
+    "scriptSrc": [
+      "clustrmaps\\.com"
+    ],
     "website": "https://clustrmaps.com/"
   },
   "Clutch": {
@@ -2379,14 +2653,18 @@
     ],
     "description": "Clutch review widgets are stand-alone applications that you can embed on your website to show your dynamic ratings and reviews.",
     "icon": "clutch.svg",
-    "scriptSrc": "//widget\\.clutch\\.co/",
+    "scriptSrc": [
+      "//widget\\.clutch\\.co/"
+    ],
     "website": "https://clutch.co/content/add-review-widget-your-website"
   },
   "CoConstruct": {
     "cats": [
       19
     ],
-    "dom": "a[href*='co-construct.com/skins'], iframe[src*='co-construct.com']",
+    "dom": [
+      "a[href*='co-construct.com/skins'], iframe[src*='co-construct.com']"
+    ],
     "icon": "CoConstruct.png",
     "pricing": [
       "mid",
@@ -2408,7 +2686,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.corover\\.mobi/",
+    "scriptSrc": [
+      "\\.corover\\.mobi/"
+    ],
     "website": "https://corover.ai"
   },
   "Coaster CMS": {
@@ -2417,7 +2697,9 @@
     ],
     "cpe": "cpe:2.3:a:web-feet:coaster_cms:*:*:*:*:*:*:*:*",
     "icon": "coaster-cms.png",
-    "implies": "Laravel",
+    "implies": [
+      "Laravel"
+    ],
     "meta": {
       "generator": "^Coaster CMS v([\\d.]+)$\\;version:\\1"
     },
@@ -2476,9 +2758,13 @@
       "exp_tracker": ""
     },
     "cpe": "cpe:2.3:a:codeigniter:codeigniter:*:*:*:*:*:*:*:*",
-    "html": "<input[^>]+name=\"ci_csrf_token\"\\;version:2+",
+    "html": [
+      "<input[^>]+name=\"ci_csrf_token\"\\;version:2+"
+    ],
     "icon": "CodeIgniter.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "website": "https://codeigniter.com"
   },
   "CodeMirror": {
@@ -2499,7 +2785,9 @@
       20
     ],
     "description": "CodeSandbox is an online code editor and prototyping tool that makes creating and sharing web apps faster.",
-    "dom": "iframe[src^='https://codesandbox.io/embed/']",
+    "dom": [
+      "iframe[src^='https://codesandbox.io/embed/']"
+    ],
     "icon": "CodeSandbox.svg",
     "pricing": [
       "low",
@@ -2515,13 +2803,17 @@
     ],
     "description": "Coin Currency Converter is an automatic currency conversion app for Shopify.",
     "icon": "Coin Currency Converter.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "/apps/coin/coin\\.js.+\\.myshopify\\.com",
+    "scriptSrc": [
+      "/apps/coin/coin\\.js.+\\.myshopify\\.com"
+    ],
     "website": "https://apps.shopify.com/coin"
   },
   "CoinHive": {
@@ -2537,7 +2829,9 @@
       "\\/(?:coinhive|(authedmine))(?:\\.min)?\\.js\\;version:\\1?opt-in:",
       "coinhive\\.com/lib"
     ],
-    "url": "https?://cnhv\\.co/",
+    "url": [
+      "https?://cnhv\\.co/"
+    ],
     "website": "https://coinhive.com"
   },
   "CoinHive Captcha": {
@@ -2546,9 +2840,13 @@
       56
     ],
     "description": "Coinhive Captcha provides captcha service that is simple to integrate, where your users’ devices need to solve a number of hashes, adjustable by you, in order to login or post a comment to your site.",
-    "dom": "div.coinhive-captcha",
+    "dom": [
+      "div.coinhive-captcha"
+    ],
     "icon": "CoinHive.svg",
-    "scriptSrc": "https?://authedmine\\.com/(?:lib/captcha|captcha)",
+    "scriptSrc": [
+      "https?://authedmine\\.com/(?:lib/captcha|captcha)"
+    ],
     "website": "https://coinhive.com"
   },
   "Coinbase Commerce": {
@@ -2556,7 +2854,9 @@
       41
     ],
     "description": "Coinbase Commerce is a platform that enables merchants to accept cryptocurrency payments.",
-    "dom": "a[href^='https://commerce.coinbase.com/checkout/']",
+    "dom": [
+      "a[href^='https://commerce.coinbase.com/checkout/']"
+    ],
     "icon": "Coinbase.svg",
     "website": "https://commerce.coinbase.com/"
   },
@@ -2566,7 +2866,9 @@
     ],
     "description": "CoinHave is a cryptocurrency mining service.",
     "icon": "coinhave.png",
-    "scriptSrc": "https?://coin-have\\.com/c/[0-9a-zA-Z]{4}\\.js",
+    "scriptSrc": [
+      "https?://coin-have\\.com/c/[0-9a-zA-Z]{4}\\.js"
+    ],
     "website": "https://coin-have.com/"
   },
   "Coinimp": {
@@ -2578,7 +2880,9 @@
     "js": {
       "Client.Anonymous": "\\;confidence:50"
     },
-    "scriptSrc": "https?://www\\.hashing\\.win/scripts/min\\.js",
+    "scriptSrc": [
+      "https?://www\\.hashing\\.win/scripts/min\\.js"
+    ],
     "website": "https://www.coinimp.com"
   },
   "Colbass": {
@@ -2603,7 +2907,9 @@
       51
     ],
     "description": "Colibri WP is a drag-and-drop WordPress website builder.",
-    "dom": "link[href*='/wp-content/plugins/colibri-page-builder']",
+    "dom": [
+      "link[href*='/wp-content/plugins/colibri-page-builder']"
+    ],
     "icon": "Colibri WP.png",
     "js": {
       "Colibri": "",
@@ -2616,8 +2922,12 @@
       "recurring",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/colibri-page-builder.+\\.js(?:.+ver=([\\d\\.\\-\\w]+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/colibri-page-builder.+\\.js(?:.+ver=([\\d\\.\\-\\w]+))?\\;version:\\1"
+    ],
     "website": "https://colibriwp.com"
   },
   "Colis Privé": {
@@ -2626,7 +2936,9 @@
     ],
     "description": "Colis Privé is a private parcel delivery service provider specialised in last-mile delivery.",
     "icon": "Colis Prive.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bColis Priv[eé]\\b"
     ],
@@ -2638,7 +2950,9 @@
     ],
     "description": "Colissimo is a 'drop off' parcel delivery service.",
     "icon": "DPD.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bColissimo\\b"
     ],
@@ -2660,8 +2974,12 @@
       }
     },
     "icon": "ThemeGrill.png",
-    "requires": "WordPress",
-    "scriptSrc": "themes/colormag.*\\.js(?:\\?ver=([0-9.]+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "themes/colormag.*\\.js(?:\\?ver=([0-9.]+))?\\;version:\\1"
+    ],
     "website": "https://themegrill.com/themes/colormag/"
   },
   "ColorMeShop": {
@@ -2680,7 +2998,9 @@
       80
     ],
     "description": "Colorlib Activello is a clean, minimal multipurpose WordPress blog theme developer using the Bootstrap frontend framework making it fully responsive and mobile-friendly.",
-    "dom": "link#activello-style-css",
+    "dom": [
+      "link#activello-style-css"
+    ],
     "icon": "Colorlib.png",
     "js": {
       "ActivelloIsMobile": ""
@@ -2688,8 +3008,12 @@
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/activello/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/activello/"
+    ],
     "website": "https://colorlib.com/wp/themes/activello"
   },
   "Colorlib Illdy": {
@@ -2697,13 +3021,19 @@
       80
     ],
     "description": "Colorlib Illdy is a stunning multipurpose WordPress theme built based on Bootstrap frontend framework making it fully responsive and mobile friendly.",
-    "dom": "link#illdy-style-css",
+    "dom": [
+      "link#illdy-style-css"
+    ],
     "icon": "Colorlib.png",
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/illdy/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/illdy/"
+    ],
     "website": "https://colorlib.com/wp/themes/illdy"
   },
   "Colorlib Shapely": {
@@ -2711,7 +3041,9 @@
       80
     ],
     "description": "Colorlib Shapely is considered as a powerful, clean and beautiful full-width free WordPress theme.",
-    "dom": "link#shapely-style-css",
+    "dom": [
+      "link#shapely-style-css"
+    ],
     "icon": "Colorlib.png",
     "js": {
       "ShapelyAdminObject": ""
@@ -2719,8 +3051,12 @@
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/shapely/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/shapely/"
+    ],
     "website": "https://colorlib.com/wp/themes/shapely"
   },
   "Colorlib Sparkling": {
@@ -2728,13 +3064,19 @@
       80
     ],
     "description": "Colorlib Sparkling is a clean, modern, flat design WordPress theme developed using Bootstrap.",
-    "dom": "link#sparkling-style-css",
+    "dom": [
+      "link#sparkling-style-css"
+    ],
     "icon": "Colorlib.png",
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/sparkling/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/sparkling/"
+    ],
     "website": "https://colorlib.com/wp/themes/sparkling"
   },
   "Colorlib Travelify": {
@@ -2742,7 +3084,9 @@
       80
     ],
     "description": "Colorlib Travelify is a responsive, free, travel WordPress theme.",
-    "dom": "link#travelify-style-css",
+    "dom": [
+      "link#travelify-style-css"
+    ],
     "icon": "Colorlib.png",
     "js": {
       "travelify_slider_value": ""
@@ -2750,8 +3094,12 @@
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/travelify/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/travelify/"
+    ],
     "website": "https://colorlib.com/wp/themes/travelify"
   },
   "Combahton FlowShield": {
@@ -2779,7 +3127,9 @@
       76
     ],
     "description": "Combeenation is a powerful cloud-based configurator platform.",
-    "dom": "iframe[src*='portal.combeenation.com/']",
+    "dom": [
+      "iframe[src*='portal.combeenation.com/']"
+    ],
     "icon": "Combeenation.png",
     "pricing": [
       "poa"
@@ -2855,7 +3205,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.tagcommander\\.com",
+    "scriptSrc": [
+      "\\.tagcommander\\.com"
+    ],
     "website": "https://www.commandersact.com/en/solutions/tagcommander/"
   },
   "Commanders Act TrustCommander": {
@@ -2868,7 +3220,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.trustcommander\\.net/privacy/.+_v([\\d]+)_([\\d]+)\\.js\\;version:\\1.\\2",
+    "scriptSrc": [
+      "\\.trustcommander\\.net/privacy/.+_v([\\d]+)_([\\d]+)\\.js\\;version:\\1.\\2"
+    ],
     "website": "https://www.commandersact.com/en/solutions/trustcommander/"
   },
   "Commerce Server": {
@@ -2880,7 +3234,9 @@
       "COMMERCE-SERVER-SOFTWARE": ""
     },
     "icon": "Commerce Server.png",
-    "implies": "Microsoft ASP.NET",
+    "implies": [
+      "Microsoft ASP.NET"
+    ],
     "website": "https://commerceserver.net"
   },
   "Commerce.js": {
@@ -2900,7 +3256,9 @@
       "cdn\\.chec\\.io/v(\\d+)/commerce\\.js\\;version:\\1",
       "chec/commerce\\.js"
     ],
-    "url": "\\.spaces.chec\\.io",
+    "url": [
+      "\\.spaces.chec\\.io"
+    ],
     "website": "https://www.commercejs.com"
   },
   "Commerce7": {
@@ -2915,9 +3273,13 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.commerce7\\.com",
+    "scriptSrc": [
+      "cdn\\.commerce7\\.com"
+    ],
     "website": "https://commerce7.com",
-    "xhr": "api\\.commerce7\\.com"
+    "xhr": [
+      "api\\.commerce7\\.com"
+    ]
   },
   "Commercelayer": {
     "cats": [
@@ -2931,20 +3293,26 @@
     ],
     "saas": true,
     "website": "https://commercelayer.io",
-    "xhr": "\\.commercelayer\\.io"
+    "xhr": [
+      "\\.commercelayer\\.io"
+    ]
   },
   "Community Funded": {
     "cats": [
       111
     ],
     "description": "Community Funded is a digital fundraising and engagement platform.",
-    "dom": "a[href*='//give.communityfunded.com/']",
+    "dom": [
+      "a[href*='//give.communityfunded.com/']"
+    ],
     "icon": "Community Funded.png",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "//give\\.communityfunded\\.com/",
+    "scriptSrc": [
+      "//give\\.communityfunded\\.com/"
+    ],
     "website": "https://www.communityfunded.com"
   },
   "Complianz": {
@@ -2962,9 +3330,13 @@
       "freemium",
       "recurring"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "saas": true,
-    "scriptSrc": "wp-content/plugins/complianz-gdpr",
+    "scriptSrc": [
+      "wp-content/plugins/complianz-gdpr"
+    ],
     "website": "https://complianz.io"
   },
   "Concrete CMS": {
@@ -2976,7 +3348,9 @@
     },
     "cpe": "cpe:2.3:a:concrete5:concrete5:*:*:*:*:*:*:*:*",
     "icon": "Concrete CMS.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "CCM_IMAGE_PATH": "",
       "Concrete": ""
@@ -2985,7 +3359,9 @@
       "generator": "^concrete5(?: - ([\\d.]+)$)?\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "/concrete/js/",
+    "scriptSrc": [
+      "/concrete/js/"
+    ],
     "website": "https://www.concretecms.com/"
   },
   "Conekta": {
@@ -3013,9 +3389,13 @@
     "pricing": [
       "poa"
     ],
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "saas": true,
-    "scriptSrc": "\\.conferwith\\.io/",
+    "scriptSrc": [
+      "\\.conferwith\\.io/"
+    ],
     "website": "https://conferwith.io"
   },
   "Confiant": {
@@ -3064,7 +3444,9 @@
       "mid"
     ],
     "saas": true,
-    "scriptSrc": "app\\.conjured\\.co/",
+    "scriptSrc": [
+      "app\\.conjured\\.co/"
+    ],
     "website": "https://conjured.co"
   },
   "Connectif": {
@@ -3083,7 +3465,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.connectif\\.cloud/",
+    "scriptSrc": [
+      "cdn\\.connectif\\.cloud/"
+    ],
     "website": "https://connectif.ai"
   },
   "Constant Contact": {
@@ -3092,7 +3476,9 @@
       75
     ],
     "description": "Constant Contact is a marketing automation and email marketing solution.",
-    "dom": "a[href*='.constantcontact.com/'][target='_blank']",
+    "dom": [
+      "a[href*='.constantcontact.com/'][target='_blank']"
+    ],
     "icon": "Constant Contact.svg",
     "js": {
       "_ctct_m": "",
@@ -3103,7 +3489,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.ctctcdn\\.com/",
+    "scriptSrc": [
+      "\\.ctctcdn\\.com/"
+    ],
     "website": "https://www.constantcontact.com"
   },
   "Constructor.io": {
@@ -3121,7 +3509,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.cnstrc.com\\.com/",
+    "scriptSrc": [
+      "\\.cnstrc.com\\.com/"
+    ],
     "website": "https://constructor.io/"
   },
   "Contabo": {
@@ -3145,7 +3535,9 @@
       110
     ],
     "description": "Contact Form 7 is an WordPress plugin which can manage multiple contact forms. The form supports Ajax-powered submitting, CAPTCHA, Akismet spam filtering.",
-    "dom": "link[href*='/wp-content/plugins/contact-form-7/']",
+    "dom": [
+      "link[href*='/wp-content/plugins/contact-form-7/']"
+    ],
     "icon": "Contact Form 7.png",
     "js": {
       "wpcf7": ""
@@ -3153,8 +3545,12 @@
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/contact-form-7/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/contact-form-7/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://contactform7.com"
   },
   "Container Media Group": {
@@ -3167,7 +3563,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.containermedia\\.net/",
+    "scriptSrc": [
+      "\\.containermedia\\.net/"
+    ],
     "website": "https://containermedia.net"
   },
   "Contao": {
@@ -3176,9 +3574,13 @@
     ],
     "cpe": "cpe:2.3:a:contao:contao_cms:*:*:*:*:*:*:*:*",
     "description": "Contao is an open source CMS that allows you to create websites and scalable web applications.",
-    "dom": "link[href*='/typolight.css'], link[href*='/contao.css']",
+    "dom": [
+      "link[href*='/typolight.css'], link[href*='/contao.css']"
+    ],
     "icon": "Contao.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "^Contao Open Source CMS$"
     },
@@ -3191,7 +3593,9 @@
     ],
     "cpe": "cpe:2.3:a:contenido:contendio:*:*:*:*:*:*:*:*",
     "icon": "Contenido.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "Contenido ([\\d.]+)\\;version:\\1"
     },
@@ -3217,7 +3621,9 @@
       11
     ],
     "icon": "ContentBox.png",
-    "implies": "Adobe ColdFusion",
+    "implies": [
+      "Adobe ColdFusion"
+    ],
     "meta": {
       "generator": "ContentBox powered by ColdBox"
     },
@@ -3228,7 +3634,9 @@
       96
     ],
     "description": "ContentStudio is an integrated cloud-based social media management and content marketing solution.",
-    "dom": "link[href*='/wp-content/plugins/contentstudio']",
+    "dom": [
+      "link[href*='/wp-content/plugins/contentstudio']"
+    ],
     "icon": "ContentStudio.png",
     "pricing": [
       "mid",
@@ -3245,7 +3653,9 @@
     "headers": {
       "x-contentful-request-id": ""
     },
-    "html": "<[^>]+(?:assets|downloads|images|videos)\\.(?:ct?fassets\\.net|contentful\\.com)",
+    "html": [
+      "<[^>]+(?:assets|downloads|images|videos)\\.(?:ct?fassets\\.net|contentful\\.com)"
+    ],
     "icon": "Contentful.svg",
     "pricing": [
       "mid",
@@ -3254,7 +3664,9 @@
     ],
     "saas": true,
     "website": "https://www.contentful.com",
-    "xhr": "(?:cdn|graphql)\\.contentful\\.com"
+    "xhr": [
+      "(?:cdn|graphql)\\.contentful\\.com"
+    ]
   },
   "Contently": {
     "cats": [
@@ -3285,7 +3697,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.contentsquare\\.net/",
+    "scriptSrc": [
+      "\\.contentsquare\\.net/"
+    ],
     "website": "https://contentsquare.com"
   },
   "Contentstack": {
@@ -3324,7 +3738,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.contlo\\.com/",
+    "scriptSrc": [
+      "\\.contlo\\.com/"
+    ],
     "website": "https://www.contlo.com"
   },
   "Conversant Consent Tool": {
@@ -3340,7 +3756,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.conversant\\.mgr\\.consensu\\.org/",
+    "scriptSrc": [
+      "cdn\\.conversant\\.mgr\\.consensu\\.org/"
+    ],
     "website": "https://www.conversantmedia.eu/consent-tool"
   },
   "Conversio": {
@@ -3356,7 +3774,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.conversio\\.com/",
+    "scriptSrc": [
+      "\\.conversio\\.com/"
+    ],
     "website": "https://conversio.com"
   },
   "Conversio App": {
@@ -3365,13 +3785,19 @@
     ],
     "description": "Conversio App is an optimisation and analytics app for Shopify stores.",
     "icon": "Conversio.svg",
-    "implies": "Conversio",
+    "implies": [
+      "Conversio"
+    ],
     "pricing": [
       "poa"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
-    "scriptSrc": "\\.conversio\\.com/.+\\.myshopify\\.com",
+    "scriptSrc": [
+      "\\.conversio\\.com/.+\\.myshopify\\.com"
+    ],
     "website": "https://apps.shopify.com/conversio"
   },
   "Convert": {
@@ -3390,7 +3816,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.convertexperiments\\.com/js",
+    "scriptSrc": [
+      "\\.convertexperiments\\.com/js"
+    ],
     "website": "https://www.convert.com"
   },
   "ConvertFlow": {
@@ -3409,7 +3837,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "(?:app|js)\\.convertflow\\.co",
+    "scriptSrc": [
+      "(?:app|js)\\.convertflow\\.co"
+    ],
     "website": "https://www.convertflow.com"
   },
   "ConvertKit": {
@@ -3418,7 +3848,9 @@
       75
     ],
     "description": "ConvertKit is an email marketing tool built for content creators.",
-    "dom": "form[action*='.convertkit.com'], link[href*='.convertkit.com']",
+    "dom": [
+      "form[action*='.convertkit.com'], link[href*='.convertkit.com']"
+    ],
     "icon": "ConvertKit.svg",
     "pricing": [
       "low",
@@ -3426,7 +3858,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.convertkit\\.com",
+    "scriptSrc": [
+      "\\.convertkit\\.com"
+    ],
     "website": "https://convertkit.com"
   },
   "Convertcart": {
@@ -3436,7 +3870,9 @@
     "description": "ConvertCart helps online businesses deliver outstanding experiences to customers throughout their journey.",
     "icon": "Convertcart.svg",
     "saas": true,
-    "scriptSrc": "cdn\\.convertcart\\.com",
+    "scriptSrc": [
+      "cdn\\.convertcart\\.com"
+    ],
     "website": "https://www.convertcart.com/"
   },
   "Convertr": {
@@ -3480,7 +3916,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.convertri\\.com/",
+    "scriptSrc": [
+      "cdn\\.convertri\\.com/"
+    ],
     "website": "https://www.convertri.com"
   },
   "ConveyThis": {
@@ -3494,7 +3932,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.conveythis\\.com",
+    "scriptSrc": [
+      "cdn\\.conveythis\\.com"
+    ],
     "website": "https://www.conveythis.com/"
   },
   "Conviva": {
@@ -3534,14 +3974,20 @@
     ],
     "description": "Cookie Information plugin helps your website stay compliant with GDPR using a free cookie pop-up, consent log, and more.",
     "icon": "Cookie Information.svg",
-    "implies": "Cookie Information",
+    "implies": [
+      "Cookie Information"
+    ],
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/wp-gdpr-compliance/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/wp-gdpr-compliance/"
+    ],
     "website": "https://wordpress.org/plugins/wp-gdpr-compliance"
   },
   "Cookie Notice": {
@@ -3551,7 +3997,9 @@
     ],
     "description": "Cookie Notice provides a simple, customizable website banner that can be used to help your website comply with certain cookie consent requirements under the EU GDPR cookie law and CCPA regulations and includes seamless integration with Cookie Compliance to help your site comply with the latest updates to existing consent laws.",
     "icon": "Cookie Notice.png",
-    "scriptSrc": "/wp-content/plugins/cookie-notice/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "scriptSrc": [
+      "/wp-content/plugins/cookie-notice/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://wordpress.org/plugins/cookie-notice"
   },
   "Cookie Script": {
@@ -3566,7 +4014,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.cookie-script\\.com/",
+    "scriptSrc": [
+      "\\.cookie-script\\.com/"
+    ],
     "website": "https://cookie-script.com"
   },
   "CookieFirst": {
@@ -3584,7 +4034,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "consent\\.cookiefirst\\.com/",
+    "scriptSrc": [
+      "consent\\.cookiefirst\\.com/"
+    ],
     "website": "https://cookiefirst.com"
   },
   "CookieHub": {
@@ -3629,7 +4081,9 @@
     "js": {
       "Cookiebot.version": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "consent\\.cookiebot\\.com",
+    "scriptSrc": [
+      "consent\\.cookiebot\\.com"
+    ],
     "website": "https://www.cookiebot.com"
   },
   "Cooladata": {
@@ -3645,7 +4099,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.cooladata\\.com/",
+    "scriptSrc": [
+      "cdn\\.cooladata\\.com/"
+    ],
     "website": "https://www.cooladata.com"
   },
   "Coppermine": {
@@ -3654,9 +4110,13 @@
     ],
     "cpe": "cpe:2.3:a:coppermine-gallery:coppermine_photo_gallery:*:*:*:*:*:*:*:*",
     "description": "Coppermine is an open-source image gallery application.",
-    "html": "<!--Coppermine Photo Gallery ([\\d.]+)\\;version:\\1",
+    "html": [
+      "<!--Coppermine Photo Gallery ([\\d.]+)\\;version:\\1"
+    ],
     "icon": "Coppermine.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "website": "https://coppermine-gallery.net"
   },
   "CopyPoison": {
@@ -3665,7 +4125,9 @@
     ],
     "description": "Copypoison is a plagarism protection tool that protects content by replacing text with symbols that are visually similar.",
     "icon": "Copypoison.png",
-    "scriptSrc": "copypoison\\.com/cp\\.js",
+    "scriptSrc": [
+      "copypoison\\.com/cp\\.js"
+    ],
     "website": "https://copypoison.com/"
   },
   "CoreMedia Content Cloud": {
@@ -3699,7 +4161,9 @@
       "recurring"
     ],
     "saas": true,
-    "scripts": "webpackJsonp@coreui/coreui",
+    "scripts": [
+      "webpackJsonp@coreui/coreui"
+    ],
     "website": "https://coreui.io"
   },
   "Corebine": {
@@ -3707,7 +4171,9 @@
       1
     ],
     "description": "Corebine is a content management system designed for Sports",
-    "dom": "#corebine-app",
+    "dom": [
+      "#corebine-app"
+    ],
     "icon": "Corebine.png",
     "js": {
       "corebine": ""
@@ -3723,7 +4189,9 @@
     ],
     "description": "Correos is a state-owned company responsible for providing postal service in Spain.",
     "icon": "Correos.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bCorreos\\b"
     ],
@@ -3742,7 +4210,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.mycorreosecommerce\\.com/",
+    "scriptSrc": [
+      "\\.mycorreosecommerce\\.com/"
+    ],
     "website": "https://www.correosecommerce.com"
   },
   "Cosmic": {
@@ -3750,7 +4220,9 @@
       1
     ],
     "description": "Cosmic is a cloud-based CMS that provides developers with an API and web interface for content management, enabling the creation of custom content types, relationship definitions, and webhooks for actions based on content changes.",
-    "dom": "link[href*='.cosmicjs.com/'], img[src*='.cosmicjs.com/'], img[data-src*='.cosmicjs.com/']",
+    "dom": [
+      "link[href*='.cosmicjs.com/'], img[src*='.cosmicjs.com/'], img[data-src*='.cosmicjs.com/']"
+    ],
     "icon": "cosmicjs.svg",
     "oss": true,
     "website": "https://www.cosmicjs.com"
@@ -3761,7 +4233,9 @@
     ],
     "cpe": "cpe:2.3:a:cosmoshop:cosmoshop:*:*:*:*:*:*:*:*",
     "icon": "Cosmoshop.png",
-    "scriptSrc": "cosmoshop_functions\\.js",
+    "scriptSrc": [
+      "cosmoshop_functions\\.js"
+    ],
     "website": "https://cosmoshop.de"
   },
   "Cotonti": {
@@ -3770,7 +4244,9 @@
     ],
     "cpe": "cpe:2.3:a:cotonti:cotonti_siena:*:*:*:*:*:*:*:*",
     "icon": "Cotonti.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "Cotonti"
     },
@@ -3803,7 +4279,9 @@
     ],
     "description": "Coureon is a digital logistics carrier for international shipping.",
     "icon": "Coureon.png",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bCoureon\\b"
     ],
@@ -3829,13 +4307,17 @@
       93
     ],
     "description": "CoverManager is a restaurant table booking widget.",
-    "dom": "iframe[src*='.covermanager.com/']",
+    "dom": [
+      "iframe[src*='.covermanager.com/']"
+    ],
     "icon": "CoverManager.svg",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.covermanager\\.com/",
+    "scriptSrc": [
+      "\\.covermanager\\.com/"
+    ],
     "website": "https://www.covermanager.com"
   },
   "Covet.pics": {
@@ -3850,7 +4332,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.covet\\.pics/",
+    "scriptSrc": [
+      "\\.covet\\.pics/"
+    ],
     "website": "https://covet.pics"
   },
   "Cowboy": {
@@ -3862,7 +4346,9 @@
       "Server": "^Cowboy$"
     },
     "icon": "Cowboy.png",
-    "implies": "Erlang",
+    "implies": [
+      "Erlang"
+    ],
     "oss": true,
     "website": "https://github.com/ninenines/cowboy"
   },
@@ -3872,7 +4358,9 @@
     ],
     "description": "Cozy AntiTheft helps you to protect your store content, images and texts from being stolen with a few simple clicks.",
     "icon": "Cozy AntiTheft.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "cozyEcoAdnsUa": ""
     },
@@ -3880,7 +4368,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "cdncozyantitheft\\.addons\\.business/",
+    "scriptSrc": [
+      "cdncozyantitheft\\.addons\\.business/"
+    ],
     "website": "https://apps.shopify.com/cozy-antitheft-for-images-and-more"
   },
   "CppCMS": {
@@ -3906,7 +4396,9 @@
       "X-Powered-By": "\\bCraft CMS\\b"
     },
     "icon": "Craft CMS.svg",
-    "implies": "Yii",
+    "implies": [
+      "Yii"
+    ],
     "oss": true,
     "pricing": [
       "low",
@@ -3924,7 +4416,9 @@
       "X-Powered-By": "\\bCraft Commerce\\b"
     },
     "icon": "Craft CMS.svg",
-    "implies": "Craft CMS",
+    "implies": [
+      "Craft CMS"
+    ],
     "website": "https://craftcommerce.com"
   },
   "Craftum": {
@@ -3973,7 +4467,9 @@
     "js": {
       "CE2": ""
     },
-    "scriptSrc": "script\\.crazyegg\\.com/pages/scripts/\\d+/\\d+\\.js",
+    "scriptSrc": [
+      "script\\.crazyegg\\.com/pages/scripts/\\d+/\\d+\\.js"
+    ],
     "website": "https://crazyegg.com"
   },
   "CreateJS": {
@@ -3983,7 +4479,9 @@
     "description": "CreateJS is a suite of modular libraries and tools which work together or independently to enable interactive content on open web technologies via HTML5.",
     "icon": "CreateJS.svg",
     "saas": true,
-    "scriptSrc": "code\\.createjs\\.com/",
+    "scriptSrc": [
+      "code\\.createjs\\.com/"
+    ],
     "website": "https://code.createjs.com"
   },
   "Creatium": {
@@ -4014,8 +4512,12 @@
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/creative-mail-by-constant-contact/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/creative-mail-by-constant-contact/"
+    ],
     "website": "https://www.creativemail.com"
   },
   "Crikle": {
@@ -4051,7 +4553,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "client\\.crisp\\.chat/",
+    "scriptSrc": [
+      "client\\.crisp\\.chat/"
+    ],
     "website": "https://crisp.chat/"
   },
   "Criteo": {
@@ -4060,7 +4564,9 @@
       77
     ],
     "description": "Criteo provides personalised retargeting that works with Internet retailers to serve personalised online display advertisements to consumers who have previously visited the advertiser's website.",
-    "dom": "link[href*='.criteo.com']",
+    "dom": [
+      "link[href*='.criteo.com']"
+    ],
     "icon": "Criteo.svg",
     "js": {
       "Criteo": "",
@@ -4085,7 +4591,9 @@
     "js": {
       "crobox": ""
     },
-    "scriptSrc": "cdn\\.crobox\\.com",
+    "scriptSrc": [
+      "cdn\\.crobox\\.com"
+    ],
     "website": "https://crobox.com/"
   },
   "Crocoblock JetElements": {
@@ -4101,7 +4609,9 @@
       "low",
       "recurring"
     ],
-    "requires": "Elementor",
+    "requires": [
+      "Elementor"
+    ],
     "website": "https://crocoblock.com/plugins/jetelements"
   },
   "Cross Pixel": {
@@ -4113,7 +4623,9 @@
     "js": {
       "cp_C4w1ldN2d9PmVrkN": ""
     },
-    "scriptSrc": "tag\\.crsspxl\\.com",
+    "scriptSrc": [
+      "tag\\.crsspxl\\.com"
+    ],
     "website": "https://crosspixel.net"
   },
   "Cross Sell": {
@@ -4163,8 +4675,12 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "js/crownpeak\\.",
-    "scripts": "crownpeak\\.net",
+    "scriptSrc": [
+      "js/crownpeak\\."
+    ],
+    "scripts": [
+      "crownpeak\\.net"
+    ],
     "website": "https://www.crownpeak.com"
   },
   "Cryout Creations Bravada": {
@@ -4172,15 +4688,21 @@
       80
     ],
     "description": "Bravada is an unparalleled fullscreen WordPress theme created by Cryout Creations.",
-    "dom": "link#bravada-style-css, img[src*='/wp-content/themes/bravada/']",
+    "dom": [
+      "link#bravada-style-css, img[src*='/wp-content/themes/bravada/']"
+    ],
     "icon": "Cryout Creations.svg",
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/bravada(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/bravada(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.cryoutcreations.eu/wordpress-themes/bravada"
   },
   "Cryout Creations Fluida": {
@@ -4188,15 +4710,21 @@
       80
     ],
     "description": "Fluida is a modern, crystal clear and squeaky clean WordPress theme by Cryout Creations.",
-    "dom": "link#fluida-themefonts-css",
+    "dom": [
+      "link#fluida-themefonts-css"
+    ],
     "icon": "Cryout Creations.svg",
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/fluida(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/fluida(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.cryoutcreations.eu/wordpress-themes/fluida"
   },
   "Cryout Creations Mantra": {
@@ -4204,7 +4732,9 @@
       80
     ],
     "description": "Mantra is a do-it-yourself WordPress theme, featuring a pack of over 100 customization option created by Cryout Creations.",
-    "dom": "link#mantra-style-css, img[src*='/wp-content/themes/mantra/']",
+    "dom": [
+      "link#mantra-style-css, img[src*='/wp-content/themes/mantra/']"
+    ],
     "icon": "Cryout Creations.svg",
     "js": {
       "mantra_mobilemenu_init": "",
@@ -4216,8 +4746,12 @@
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/mantra(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/mantra(?:-plus)?/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.cryoutcreations.eu/wordpress-themes/mantra"
   },
   "Cryout Creations Parabola": {
@@ -4225,7 +4759,9 @@
       80
     ],
     "description": "Parabola is an fully responsive, clean and elegant design WordPress theme created by Cryout Creations.",
-    "dom": "link#parabola-style-css, img[src*='/wp-content/themes/parabola/']",
+    "dom": [
+      "link#parabola-style-css, img[src*='/wp-content/themes/parabola/']"
+    ],
     "icon": "Cryout Creations.svg",
     "js": {
       "parabola_mobilemenu_init": "",
@@ -4234,8 +4770,12 @@
     "pricing": [
       "freemium"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/parabola/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/parabola/.+frontend\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://www.cryoutcreations.eu/wordpress-themes/parabola"
   },
   "Crypto-Loot": {
@@ -4261,7 +4801,9 @@
       6
     ],
     "description": "Crystallize is an ecommerce platform that offers a headless ecommerce solution for businesses.",
-    "dom": "link[href*='.crystallize.com']",
+    "dom": [
+      "link[href*='.crystallize.com']"
+    ],
     "icon": "Crystallize.svg",
     "js": {
       "__crystallizeConfig.API_URL": "\\.crystallize\\.com"
@@ -4280,9 +4822,13 @@
     ],
     "cpe": "cpe:2.3:a:cubecart:cubecart:*:*:*:*:*:*:*:*",
     "description": "CubeCart is a free ecommerce platform that businesses can use to build, manage, and market their online stores.",
-    "dom": "a[href*='.cubecart.com'][target='_blank']",
+    "dom": [
+      "a[href*='.cubecart.com'][target='_blank']"
+    ],
     "icon": "CubeCart.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "cubecart"
     },
@@ -4295,7 +4841,9 @@
     ],
     "description": "Cubyn is B2B logistics company headquartered in France.",
     "icon": "Cubyn.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bCubyn\\b"
     ],
@@ -4310,7 +4858,9 @@
     "js": {
       "Cufon": ""
     },
-    "scriptSrc": "cufon-yui\\.js",
+    "scriptSrc": [
+      "cufon-yui\\.js"
+    ],
     "website": "https://cufon.shoqolate.com"
   },
   "Custom Fonts": {
@@ -4321,8 +4871,12 @@
     "description": "Custom Fonts plugin helps you easily embed custom fonts files (woff2, woff, ttf, svg, eot, otf) easily in your WordPress website.",
     "icon": "Custom Fonts.png",
     "oss": true,
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/custom-fonts/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/custom-fonts/"
+    ],
     "website": "https://github.com/brainstormforce/custom-fonts"
   },
   "Customer.io": {
@@ -4336,7 +4890,9 @@
       "mid"
     ],
     "saas": true,
-    "scriptSrc": "assets\\.customer\\.io",
+    "scriptSrc": [
+      "assets\\.customer\\.io"
+    ],
     "website": "https://customer.io/"
   },
   "Customily": {
@@ -4353,7 +4909,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "(?:cdn|app)\\.customily\\.com/",
+    "scriptSrc": [
+      "(?:cdn|app)\\.customily\\.com/"
+    ],
     "website": "https://www.customily.com"
   },
   "Cwicly": {
@@ -4361,15 +4919,23 @@
       87
     ],
     "description": "Cwicly is an advanced professional design and block toolkit that integrates directly with the WordPress editor.",
-    "dom": "link[href*='/wp-content/uploads/cwicly/']",
+    "dom": [
+      "link[href*='/wp-content/uploads/cwicly/']"
+    ],
     "icon": "Cwicly.png",
-    "implies": "WordPress Block Editor",
+    "implies": [
+      "WordPress Block Editor"
+    ],
     "pricing": [
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/cwicly/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/cwicly/"
+    ],
     "website": "https://cwicly.com"
   },
   "Cxense": {
@@ -4390,7 +4956,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.cxense\\.com/",
+    "scriptSrc": [
+      "\\.cxense\\.com/"
+    ],
     "website": "https://www.cxense.com"
   },
   "CyberChimps Responsive": {
@@ -4398,15 +4966,21 @@
       80
     ],
     "description": "CyberChimps Responsive is a modern, lightweight, fully customizable, fast and responsive WordPress theme.",
-    "dom": "link[href*='/wp-content/themes/responsive/'], link[href*='/wp-content/themes/responsivepro/']",
+    "dom": [
+      "link[href*='/wp-content/themes/responsive/'], link[href*='/wp-content/themes/responsivepro/']"
+    ],
     "icon": "CyberChimps.png",
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/responsive(?:pro)?/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/responsive(?:pro)?/"
+    ],
     "website": "https://cyberchimps.com/responsive"
   },
   "Cybersource": {
@@ -4415,7 +4989,9 @@
     ],
     "description": "Cybersource is an ecommerce credit card payment system solution.",
     "icon": "cybersource.png",
-    "scriptSrc": "cybersource\\..+\\.js",
+    "scriptSrc": [
+      "cybersource\\..+\\.js"
+    ],
     "website": "https://www.cybersource.com/"
   },
   "Czater": {
@@ -4433,7 +5009,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.czater\\.pl",
+    "scriptSrc": [
+      "\\.czater\\.pl"
+    ],
     "website": "https://www.czater.pl"
   },
   "cPanel": {
@@ -4449,7 +5027,9 @@
     "headers": {
       "Server": "cpsrvd/([\\d.]+)\\;version:\\1"
     },
-    "html": "<!-- cPanel",
+    "html": [
+      "<!-- cPanel"
+    ],
     "icon": "cPanel.png",
     "website": "https://www.cpanel.net"
   },
@@ -4477,9 +5057,13 @@
     "pricing": [
       "payg"
     ],
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "saas": true,
-    "scriptSrc": "\\.cashewpayments\\.com/",
+    "scriptSrc": [
+      "\\.cashewpayments\\.com/"
+    ],
     "website": "https://www.cashewpayments.com"
   },
   "cdnjs": {
@@ -4487,11 +5071,17 @@
       31
     ],
     "description": "cdnjs is a free distributed JS library delivery service.",
-    "dom": "link[href*='cdnjs.cloudflare.com/']",
+    "dom": [
+      "link[href*='cdnjs.cloudflare.com/']"
+    ],
     "icon": "cdnjs.svg",
-    "implies": "Cloudflare",
+    "implies": [
+      "Cloudflare"
+    ],
     "oss": true,
-    "scriptSrc": "cdnjs\\.cloudflare\\.com",
+    "scriptSrc": [
+      "cdnjs\\.cloudflare\\.com"
+    ],
     "website": "https://cdnjs.com"
   },
   "cgit": {
@@ -4516,7 +5106,9 @@
     ],
     "description": "Clickio Consent Tool collects and communicates consent both to IAB Framework vendors and to Google Ads products.",
     "icon": "clickio.png",
-    "scriptSrc": "clickio\\.mgr\\.consensu\\.org/t/consent_[0-9]+\\.js",
+    "scriptSrc": [
+      "clickio\\.mgr\\.consensu\\.org/t/consent_[0-9]+\\.js"
+    ],
     "website": "https://www.gdpr.clickio.com/"
   },
   "comScore": {
@@ -4524,7 +5116,9 @@
       10
     ],
     "description": "comScore is an American media measurement and analytics company providing marketing data and analytics to enterprises; media and advertising agencies; and publishers.",
-    "dom": "iframe[src*='.scorecardresearch.com/beacon'], iframe#comscore, iframe[src*='COMSCORE.beacon']",
+    "dom": [
+      "iframe[src*='.scorecardresearch.com/beacon'], iframe#comscore, iframe[src*='COMSCORE.beacon']"
+    ],
     "icon": "comScore.svg",
     "js": {
       "COMSCORE": "",
@@ -4536,7 +5130,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.scorecardresearch\\.com/beacon\\.js|COMSCORE\\.beacon",
+    "scriptSrc": [
+      "\\.scorecardresearch\\.com/beacon\\.js|COMSCORE\\.beacon"
+    ],
     "website": "https://comscore.com"
   },
   "commercetools": {
@@ -4544,9 +5140,13 @@
       6
     ],
     "description": "commercetools is a headless commerce platform.",
-    "dom": "link[href*='.commercetools.com/'], body[data-commerce-tools-host*='.commercetools.com']",
+    "dom": [
+      "link[href*='.commercetools.com/'], body[data-commerce-tools-host*='.commercetools.com']"
+    ],
     "icon": "commercetools.svg",
-    "implies": "GraphQL",
+    "implies": [
+      "GraphQL"
+    ],
     "js": {
       "COMMERCE_TOOLS_HOST_ATT": "",
       "COMMERCE_TOOLS_PROJECT_KEY_ATT": "",
@@ -4558,7 +5158,9 @@
     ],
     "saas": true,
     "website": "https://commercetools.com",
-    "xhr": "\\.commercetools\\.com/"
+    "xhr": [
+      "\\.commercetools\\.com/"
+    ]
   },
   "core-js": {
     "cats": [
@@ -4587,7 +5189,9 @@
       "CryptoJS.algo": ""
     },
     "oss": true,
-    "scriptSrc": "(?:/([\\d\\.-]+))?/crypto-js(?:\\.min)?\\.js\\;version:\\1",
+    "scriptSrc": [
+      "(?:/([\\d\\.-]+))?/crypto-js(?:\\.min)?\\.js\\;version:\\1"
+    ],
     "website": "https://github.com/brix/crypto-js"
   }
 }

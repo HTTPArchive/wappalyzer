@@ -4,7 +4,9 @@
       10
     ],
     "icon": "IBM.svg",
-    "scriptSrc": "cmdatatagutils\\.js",
+    "scriptSrc": [
+      "cmdatatagutils\\.js"
+    ],
     "website": "https://ibm.com/software/marketing-solutions/coremetrics"
   },
   "IBM DataPower": {
@@ -49,7 +51,9 @@
       "^https://(?:cdn\\.)?id5-sync\\.com/"
     ],
     "website": "https://id5.io/",
-    "xhr": ".*id5-sync\\.com"
+    "xhr": [
+      ".*id5-sync\\.com"
+    ]
   },
   "IIS": {
     "cats": [
@@ -61,7 +65,9 @@
       "Server": "^(?:Microsoft-)?IIS(?:/([\\d.]+))?\\;version:\\1"
     },
     "icon": "Microsoft.svg",
-    "implies": "Windows Server",
+    "implies": [
+      "Windows Server"
+    ],
     "website": "https://www.iis.net"
   },
   "INFOnline": {
@@ -73,7 +79,9 @@
       "iam_data": "",
       "szmvars": ""
     },
-    "scriptSrc": "^https?://(?:[^/]+\\.)?i(?:oam|v)wbox\\.de/",
+    "scriptSrc": [
+      "^https?://(?:[^/]+\\.)?i(?:oam|v)wbox\\.de/"
+    ],
     "website": "https://www.infonline.de"
   },
   "IONOS": {
@@ -115,7 +123,9 @@
       "ipbWWLmodpids": "",
       "ipbWWLsession_id": ""
     },
-    "html": "<link[^>]+ipb_[^>]+\\.css",
+    "html": [
+      "<link[^>]+ipb_[^>]+\\.css"
+    ],
     "icon": "IPB.png",
     "implies": [
       "PHP",
@@ -126,7 +136,9 @@
       "ipb_var": "",
       "ipsSettings": ""
     },
-    "scriptSrc": "jscripts/ips_",
+    "scriptSrc": [
+      "jscripts/ips_"
+    ],
     "website": "https://invisioncommunity.com/"
   },
   "IPFS": {
@@ -156,7 +168,9 @@
     "icon": "IPInfoDB.png",
     "saas": true,
     "website": "https://www.ipinfodb.com/",
-    "xhr": "api\\.ipinfodb\\.com"
+    "xhr": [
+      "api\\.ipinfodb\\.com"
+    ]
   },
   "IPinfo": {
     "cats": [
@@ -169,18 +183,26 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "ipinfo\\.io/",
+    "scriptSrc": [
+      "ipinfo\\.io/"
+    ],
     "website": "https://ipinfo.io",
-    "xhr": "ipinfo\\.io/"
+    "xhr": [
+      "ipinfo\\.io/"
+    ]
   },
   "ISAY": {
     "cats": [
       1
     ],
     "description": "ISAY (Internet Pages Management) is a CMS service provided by the Turkish Ministry of Interior for governorships, district governorships and various official websites.",
-    "dom": "div.topbar-img img[src*='/Areas/WebPart/Contents/FHeader/img/ataturk.svg']",
+    "dom": [
+      "div.topbar-img img[src*='/Areas/WebPart/Contents/FHeader/img/ataturk.svg']"
+    ],
     "icon": "ISAY.png",
-    "requires": "Microsoft ASP.NET",
+    "requires": [
+      "Microsoft ASP.NET"
+    ],
     "website": "https://www.icisleri.gov.tr/internet-sayfalari-yonetimi-isay"
   },
   "Iamport": {
@@ -196,8 +218,33 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.iamport\\.kr/js/iamport\\.payment-([\\d\\.]+)\\.js\\;version:\\1",
+    "scriptSrc": [
+      "cdn\\.iamport\\.kr/js/iamport\\.payment-([\\d\\.]+)\\.js\\;version:\\1"
+    ],
     "website": "https://www.iamport.kr"
+  },
+  "Ibexa DXP": {
+    "cats": [
+      1
+    ],
+    "description": "Ibexa DXP is an open-source enterprise PHP content management system (CMS) and Digital Experience Platform (DXP) developed by the company Ibexa (known previously as eZ Systems).",
+    "headers": {
+      "x-powered-by": "^Ibexa\\sExperience\\sv([\\d\\.]+)$\\;version:\\1"
+    },
+    "icon": "Ibexa.svg",
+    "implies": [
+      "PHP",
+      "Symfony"
+    ],
+    "meta": {
+      "generator": "^eZ Platform"
+    },
+    "pricing": [
+      "high",
+      "recurring"
+    ],
+    "saas": true,
+    "website": "https://www.ibexa.co"
   },
   "Ibexa DXP ": {
     "cats": [
@@ -298,7 +345,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "template-assets\\.iluria\\.com/commons/",
+    "scriptSrc": [
+      "template-assets\\.iluria\\.com/commons/"
+    ],
     "website": "https://www.iluria.com.br"
   },
   "Image Placeholders": {
@@ -311,7 +360,9 @@
     "meta": {
       "generator": "^dominant-color-images ([\\d.]+)?\\;version:\\1"
     },
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://wordpress.org/plugins/dominant-color-images/"
   },
   "Image Prioritizer": {
@@ -324,7 +375,9 @@
     "meta": {
       "generator": "^image-prioritizer ([\\d.]+)?\\;version:\\1"
     },
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://wordpress.org/plugins/image-prioritizer/"
   },
   "Image Relay": {
@@ -332,7 +385,9 @@
       95
     ],
     "description": "Image Relay is a digital asset management system that allows organizations to upload, manage, organize, monitor and track their digital assets.",
-    "dom": "a[href*='.imagerelay.com/'][target='_blank']",
+    "dom": [
+      "a[href*='.imagerelay.com/'][target='_blank']"
+    ],
     "icon": "Image Relay.svg",
     "js": {
       "ImageRelay.accounts": ""
@@ -341,7 +396,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "static\\.imagerelay\\.com/",
+    "scriptSrc": [
+      "static\\.imagerelay\\.com/"
+    ],
     "website": "https://www.imagerelay.com"
   },
   "ImageEngine": {
@@ -350,7 +407,9 @@
       92
     ],
     "description": "ImageEngine is an intelligent image content delivery network. ImageEngine will resize your image content tailored to the end users device.",
-    "dom": "link[href*='.imgeng.in/'], img[src*='.imgeng.in/'], img[data-src*='.imgeng.in/'], source[srcset*='.imgeng.in/']",
+    "dom": [
+      "link[href*='.imgeng.in/'], img[src*='.imgeng.in/'], img[data-src*='.imgeng.in/'], source[srcset*='.imgeng.in/']"
+    ],
     "icon": "ImageEngine.svg",
     "pricing": [
       "low",
@@ -365,7 +424,9 @@
       7
     ],
     "description": "NextGEN Gallery is a WordPress gallery plugin maintained by Imagely.",
-    "dom": "link[href*='/wp-content/plugins/nextgen-gallery/']",
+    "dom": [
+      "link[href*='/wp-content/plugins/nextgen-gallery/']"
+    ],
     "icon": "Imagely.png",
     "pricing": [
       "freemium",
@@ -373,8 +434,12 @@
       "recurring",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/nextgen-gallery(?:-pro|-plus)?/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/nextgen-gallery(?:-pro|-plus)?/"
+    ],
     "website": "https://www.imagely.com/wordpress-gallery-plugin"
   },
   "Imber": {
@@ -405,7 +470,9 @@
     "dns": {
       "SOA": "\\.imgix\\.net"
     },
-    "dom": "img[src*='.imgix.net/'], img[data-src*='.imgix.net/'], img[srcset*='.imgix.net/'], source[src*='.imgix.net/'], source[data-src*='.imgix.net/']",
+    "dom": [
+      "img[src*='.imgix.net/'], img[data-src*='.imgix.net/'], img[srcset*='.imgix.net/'], source[src*='.imgix.net/'], source[data-src*='.imgix.net/']"
+    ],
     "icon": "Imgix.svg",
     "pricing": [
       "freemium",
@@ -423,7 +490,9 @@
       "Immutable": "",
       "Immutable.version": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "^immutable\\.(?:min\\.)?js$",
+    "scriptSrc": [
+      "^immutable\\.(?:min\\.)?js$"
+    ],
     "website": "https://facebook.github.io/immutable-js/"
   },
   "Impact": {
@@ -436,7 +505,9 @@
       "ImpactRadiusEvent": "",
       "irEvent": ""
     },
-    "scriptSrc": "d\\.impactradius-event\\.com",
+    "scriptSrc": [
+      "d\\.impactradius-event\\.com"
+    ],
     "website": "https://impact.com/"
   },
   "Imperva": {
@@ -465,11 +536,15 @@
     },
     "cpe": "cpe:2.3:a:impresscms:impresscms:*:*:*:*:*:*:*:*",
     "icon": "ImpressCMS.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "ImpressCMS"
     },
-    "scriptSrc": "include/linkexternal\\.js",
+    "scriptSrc": [
+      "include/linkexternal\\.js"
+    ],
     "website": "https://www.impresscms.org"
   },
   "ImpressPages": {
@@ -478,7 +553,9 @@
     ],
     "cpe": "cpe:2.3:a:impresspages:impresspages_cms:*:*:*:*:*:*:*:*",
     "icon": "ImpressPages.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "ImpressPages(?: CMS)?( [\\d.]*)?\\;version:\\1"
     },
@@ -516,7 +593,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "vendor-cdn\\.imweb\\.me/",
+    "scriptSrc": [
+      "vendor-cdn\\.imweb\\.me/"
+    ],
     "website": "https://imweb.me"
   },
   "In Cart Upsell & Cross-Sell": {
@@ -529,9 +608,13 @@
       "low",
       "recurring"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
-    "scriptSrc": "\\.incartupsell\\.com/",
+    "scriptSrc": [
+      "\\.incartupsell\\.com/"
+    ],
     "website": "https://incartupsell.com"
   },
   "InMoment": {
@@ -549,7 +632,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.inmoment\\.com(?:\\.\\w+)?/",
+    "scriptSrc": [
+      "\\.inmoment\\.com(?:\\.\\w+)?/"
+    ],
     "website": "https://inmoment.com"
   },
   "InSyncai": {
@@ -557,7 +642,9 @@
       52
     ],
     "description": "InSyncai offers a conversational platform for enterprises to design and build chatbots having applications in customer support and services.",
-    "dom": "iframe[src*='insync_iframe_webchat_js_prod'], iframe#insync-iframe",
+    "dom": [
+      "iframe[src*='insync_iframe_webchat_js_prod'], iframe#insync-iframe"
+    ],
     "icon": "InSyncai.png",
     "pricing": [
       "poa"
@@ -593,14 +680,18 @@
     "description": "Index Exchange is a customizable exchange technology that enables sell side media firms to monetize ad inventories programmatically and in real time.",
     "icon": "Index Exchange.svg",
     "website": "https://www.indexexchange.com",
-    "xhr": "\\.casalemedia\\.com"
+    "xhr": [
+      "\\.casalemedia\\.com"
+    ]
   },
   "Indexhibit": {
     "cats": [
       1
     ],
     "cpe": "cpe:2.3:a:indexhibit:indexhibit:*:*:*:*:*:*:*:*",
-    "html": "<(?:link|a href) [^>]+ndxz-studio",
+    "html": [
+      "<(?:link|a href) [^>]+ndxz-studio"
+    ],
     "implies": [
       "PHP",
       "Apache HTTP Server",
@@ -631,7 +722,9 @@
     "cookies": {
       "MAKACSESSION": ""
     },
-    "html": "Powered by\\s+(?:CERN )?<a href=\"http://(?:cdsware\\.cern\\.ch/indico/|indico-software\\.org|cern\\.ch/indico)\">(?:CDS )?Indico( [\\d\\.]+)?\\;version:\\1",
+    "html": [
+      "Powered by\\s+(?:CERN )?<a href=\"http://(?:cdsware\\.cern\\.ch/indico/|indico-software\\.org|cern\\.ch/indico)\">(?:CDS )?Indico( [\\d\\.]+)?\\;version:\\1"
+    ],
     "icon": "Indico.png",
     "website": "https://indico-software.org"
   },
@@ -680,7 +773,9 @@
       5
     ],
     "description": "Infogram is a web-based data visualisation and infographics platform.",
-    "dom": "iframe[src*='.infogram.com/']",
+    "dom": [
+      "iframe[src*='.infogram.com/']"
+    ],
     "icon": "Infogram.svg",
     "js": {
       "InfogramEmbeds": ""
@@ -730,7 +825,9 @@
       52
     ],
     "description": "InforUMobile is a multi-channel system that enables digital communication with customers, offering various channels for interacting and engaging with users, developed by the Shamir Systems Group.",
-    "dom": "iframe[src*='bot.frontcld.com/bot/chat']",
+    "dom": [
+      "iframe[src*='bot.frontcld.com/bot/chat']"
+    ],
     "pricing": [
       "poa"
     ],
@@ -768,7 +865,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "api\\.useinsider\\.\\w+/",
+    "scriptSrc": [
+      "api\\.useinsider\\.\\w+/"
+    ],
     "website": "https://useinsider.com"
   },
   "Insightly CRM": {
@@ -776,7 +875,9 @@
       53
     ],
     "description": "Insightly CRM is a cloud-based customer relationship management software, helps businesses manage leads, contacts, and opportunities, track customer interactions, create custom reports, automate workflows, and integrate with third-party applications, improving customer engagement and streamlining business processes.",
-    "dom": "form[action*='.insightly.com/']",
+    "dom": [
+      "form[action*='.insightly.com/']"
+    ],
     "icon": "Insightly.svg",
     "pricing": [
       "recurring",
@@ -784,7 +885,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.insightly\\.services/",
+    "scriptSrc": [
+      "\\.insightly\\.services/"
+    ],
     "website": "https://www.insightly.com/crm/"
   },
   "Inspectlet": {
@@ -817,7 +920,9 @@
     "js": {
       "Instabot": ""
     },
-    "scriptSrc": "/rokoInstabot\\.js",
+    "scriptSrc": [
+      "/rokoInstabot\\.js"
+    ],
     "website": "https://instabot.io/"
   },
   "Instafeed": {
@@ -831,9 +936,13 @@
       "low",
       "recurring"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
-    "scriptSrc": "instafeed\\.nfcube\\.com/",
+    "scriptSrc": [
+      "instafeed\\.nfcube\\.com/"
+    ],
     "website": "https://apps.shopify.com/instafeed"
   },
   "Instamojo": {
@@ -864,7 +973,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "eum\\.instana\\.io",
+    "scriptSrc": [
+      "eum\\.instana\\.io"
+    ],
     "website": "https://www.instana.com"
   },
   "Instant.Page": {
@@ -875,7 +986,9 @@
     "description": "Instant.Page is a JavaScript library which uses just-in-time preloading technique to make websites faster.",
     "icon": "Instant.page.svg",
     "oss": true,
-    "scriptSrc": "instant\\.page",
+    "scriptSrc": [
+      "instant\\.page"
+    ],
     "website": "https://instant.page/"
   },
   "InstantCMS": {
@@ -887,7 +1000,9 @@
     },
     "cpe": "cpe:2.3:a:instantcms:instantcms:*:*:*:*:*:*:*:*",
     "icon": "InstantCMS.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "InstantCMS"
     },
@@ -904,7 +1019,9 @@
       "InstantClick": ""
     },
     "oss": true,
-    "scriptSrc": "instantclick\\.min\\.js",
+    "scriptSrc": [
+      "instantclick\\.min\\.js"
+    ],
     "website": "https://instantclick.io/"
   },
   "InstantGeo": {
@@ -980,13 +1097,17 @@
       36
     ],
     "description": "Integral Ad Science is an American publicly owned technology company that analyses the value of digital advertising placements.",
-    "dom": "link[href*='.adsafeprotected.com']",
+    "dom": [
+      "link[href*='.adsafeprotected.com']"
+    ],
     "icon": "Integral Ad Science.svg",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.adsafeprotected\\.com/",
+    "scriptSrc": [
+      "\\.adsafeprotected\\.com/"
+    ],
     "website": "https://integralads.com"
   },
   "Intel Active Management Technology": {
@@ -1008,7 +1129,9 @@
     ],
     "description": "IntenseDebate is a blog commenting system that supports Typepad, Blogger and Wordpress blogs. The system allows blog owners to track and moderate comments from one place with features like threading, comment analytics, user reputation, and comment aggregation.",
     "icon": "IntenseDebate.png",
-    "scriptSrc": "intensedebate\\.com",
+    "scriptSrc": [
+      "intensedebate\\.com"
+    ],
     "website": "https://intensedebate.com"
   },
   "Interact": {
@@ -1027,7 +1150,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.tryinteract\\.com/",
+    "scriptSrc": [
+      "\\.tryinteract\\.com/"
+    ],
     "website": "https://www.tryinteract.com"
   },
   "Intercom": {
@@ -1050,7 +1175,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "(?:api\\.intercom\\.io/api|static\\.intercomcdn\\.com/intercom\\.v1)",
+    "scriptSrc": [
+      "(?:api\\.intercom\\.io/api|static\\.intercomcdn\\.com/intercom\\.v1)"
+    ],
     "website": "https://www.intercom.com"
   },
   "Intercom Articles": {
@@ -1058,7 +1185,9 @@
       4
     ],
     "description": "Intercom Articles is a tool to create, organise and publish help articles.",
-    "html": "<a href=\"https://www.intercom.com/intercom-link[^\"]+solution=customer-support[^>]+>We run on Intercom",
+    "html": [
+      "<a href=\"https://www.intercom.com/intercom-link[^\"]+solution=customer-support[^>]+>We run on Intercom"
+    ],
     "icon": "Intercom.svg",
     "website": "https://www.intercom.com/articles"
   },
@@ -1098,14 +1227,18 @@
       6
     ],
     "description": "Intershop is an ecommerce platform, tailored to the needs of complex business processes and major organisations.",
-    "html": "<ish-root",
+    "html": [
+      "<ish-root"
+    ],
     "icon": "Intershop.png",
     "pricing": [
       "onetime",
       "high"
     ],
     "saas": true,
-    "scriptSrc": "(?:is-bin|INTERSHOP)",
+    "scriptSrc": [
+      "(?:is-bin|INTERSHOP)"
+    ],
     "website": "https://intershop.com"
   },
   "Invenio": {
@@ -1116,7 +1249,9 @@
       "INVENIOSESSION": ""
     },
     "description": "Invenio is an open-source software framework for large-scale digital repositories that provides the tools for management of digital assets in an institutional repository and research data management systems.",
-    "html": "(?:Powered by|System)\\s+(?:CERN )?<a (?:class=\"footer\" )?href=\"http://(?:cdsware\\.cern\\.ch(?:/invenio)?|invenio-software\\.org|cern\\.ch/invenio)(?:/)?\">(?:CDS )?Invenio</a>\\s*v?([\\d\\.]+)?\\;version:\\1",
+    "html": [
+      "(?:Powered by|System)\\s+(?:CERN )?<a (?:class=\"footer\" )?href=\"http://(?:cdsware\\.cern\\.ch(?:/invenio)?|invenio-software\\.org|cern\\.ch/invenio)(?:/)?\">(?:CDS )?Invenio</a>\\s*v?([\\d\\.]+)?\\;version:\\1"
+    ],
     "icon": "Invenio.png",
     "website": "https://invenio-software.org"
   },
@@ -1151,7 +1286,9 @@
       "InvApp": "\\;confidence:50",
       "invTagManagerParams": ""
     },
-    "scriptSrc": "Scripts/_app/Inv(?:\\w+)\\.js\\?v=(.+)$\\;version:\\1",
+    "scriptSrc": [
+      "Scripts/_app/Inv(?:\\w+)\\.js\\?v=(.+)$\\;version:\\1"
+    ],
     "website": "https://www.inveon.com"
   },
   "Invoca": {
@@ -1169,7 +1306,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.dialogtech\\.com/",
+    "scriptSrc": [
+      "\\.dialogtech\\.com/"
+    ],
     "website": "https://www.invoca.com"
   },
   "Ionic": {
@@ -1190,7 +1329,9 @@
       17
     ],
     "description": "Ionicons is an open-source icon set crafted for web, iOS, Android, and desktop apps.",
-    "dom": "link[href*='/ionicons.min.css'], link[href*='/ionicons.css']",
+    "dom": [
+      "link[href*='/ionicons.min.css'], link[href*='/ionicons.css']"
+    ],
     "icon": "Ionicons.svg",
     "oss": true,
     "website": "https://ionicons.com"
@@ -1205,14 +1346,18 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.irislms\\.ir/",
+    "scriptSrc": [
+      "\\.irislms\\.ir/"
+    ],
     "website": "https://irislms.ir"
   },
   "Irroba": {
     "cats": [
       6
     ],
-    "html": "<a[^>]*href=\"https://www\\.irroba\\.com\\.br",
+    "html": [
+      "<a[^>]*href=\"https://www\\.irroba\\.com\\.br"
+    ],
     "icon": "irroba.svg",
     "website": "https://www.irroba.com.br/"
   },
@@ -1239,7 +1384,9 @@
       15
     ],
     "description": "Isso is a lightweight commenting server written in Python and JavaScript, referred to as \"Ich schrei sonst\" in German.",
-    "implies": "Python",
+    "implies": [
+      "Python"
+    ],
     "js": {
       "Isso.fetchComments": ""
     },
@@ -1252,7 +1399,9 @@
       5
     ],
     "description": "Issuu is a digital discovery and publishing platform.",
-    "dom": "a[href*='issuu.com/'][target='_blank']",
+    "dom": [
+      "a[href*='issuu.com/'][target='_blank']"
+    ],
     "icon": "Issuu.svg",
     "js": {
       "IssuuReaders": "",
@@ -1264,7 +1413,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.issuu\\.com/",
+    "scriptSrc": [
+      "\\.issuu\\.com/"
+    ],
     "website": "https://issuu.com"
   },
   "Iterable": {
@@ -1297,8 +1448,12 @@
       "recurring",
       "onetime"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/add-search-to-menu/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/add-search-to-menu/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://ivorysearch.com"
   },
   "Izooto": {
@@ -1317,7 +1472,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.izooto\\.\\w+",
+    "scriptSrc": [
+      "cdn\\.izooto\\.\\w+"
+    ],
     "website": "https://www.izooto.com"
   },
   "i-MSCP": {
@@ -1337,13 +1494,17 @@
       36
     ],
     "description": "i-mobile is a advertising platform for clients to advertise their product and for publishers to monetize their cyberspace.",
-    "dom": "img[src*='.i-mobile.co.jp/']",
+    "dom": [
+      "img[src*='.i-mobile.co.jp/']"
+    ],
     "icon": "i-mobile.png",
     "pricing": [
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.i-mobile\\.co\\.jp/",
+    "scriptSrc": [
+      "\\.i-mobile\\.co\\.jp/"
+    ],
     "website": "https://www2.i-mobile.co.jp"
   },
   "i30con": {
@@ -1351,7 +1512,9 @@
       17
     ],
     "description": "i30con is an icon toolkit based on CSS and JavaScript.",
-    "dom": "[class^='i30con']",
+    "dom": [
+      "[class^='i30con']"
+    ],
     "icon": "30namaPlayer.png",
     "website": "https://30nama.com/"
   },
@@ -1360,13 +1523,17 @@
       52
     ],
     "description": "iAdvize is a conversational marketing platform that connects customers in need of advice with experts who are available 24/7 via messaging.",
-    "dom": "link[href*='.iadvize.com']",
+    "dom": [
+      "link[href*='.iadvize.com']"
+    ],
     "icon": "iAdvize.svg",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.iadvize\\.com/",
+    "scriptSrc": [
+      "\\.iadvize\\.com/"
+    ],
     "website": "https://www.iadvize.com"
   },
   "iEXExchanger": {
@@ -1393,7 +1560,9 @@
     ],
     "description": "iGoDigital provides web-based commerce tools, personalisation, and product recommendations designed to increase customer interaction.",
     "icon": "default.svg",
-    "scriptSrc": "\\.igodigital\\.com/",
+    "scriptSrc": [
+      "\\.igodigital\\.com/"
+    ],
     "website": "https://www.igodigital.com"
   },
   "iHomefinder IDX": {
@@ -1410,7 +1579,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.idxhome\\.com/",
+    "scriptSrc": [
+      "\\.idxhome\\.com/"
+    ],
     "website": "https://www.ihomefinder.com"
   },
   "iPresta": {
@@ -1437,7 +1608,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "chat\\.isina\\.agency/",
+    "scriptSrc": [
+      "chat\\.isina\\.agency/"
+    ],
     "website": "https://isina.agency"
   },
   "iThemes Security": {
@@ -1446,15 +1619,21 @@
       16
     ],
     "description": " iThemes Security(formerly known as Better WP Security) plugin enhances the security and protection of your WordPress website.",
-    "dom": "link[href*='/wp-content/plugins/better-wp-security/']",
+    "dom": [
+      "link[href*='/wp-content/plugins/better-wp-security/']"
+    ],
     "icon": "iThemes Security.svg",
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/better-wp-security/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/better-wp-security/"
+    ],
     "website": "https://ithemes.com/security"
   },
   "iWeb": {
@@ -1497,9 +1676,13 @@
       1
     ],
     "description": "imperia CMS is a headless content management for large editorial.",
-    "dom": "source[srcset*='.de/imperia/md/images/']",
+    "dom": [
+      "source[srcset*='.de/imperia/md/images/']"
+    ],
     "icon": "imperiaCMS.svg",
-    "implies": "Perl",
+    "implies": [
+      "Perl"
+    ],
     "meta": {
       "generator": "^IMPERIA\\s([\\d\\.\\_]+)\\;version:\\1",
       "x-imperia-live-info": ""
@@ -1559,7 +1742,9 @@
     ],
     "saas": true,
     "website": "https://ip-api.com/",
-    "xhr": "ip-api\\.com"
+    "xhr": [
+      "ip-api\\.com"
+    ]
   },
   "ip-label": {
     "cats": [
@@ -1569,7 +1754,9 @@
     "js": {
       "clobs": ""
     },
-    "scriptSrc": "clobs\\.js",
+    "scriptSrc": [
+      "clobs\\.js"
+    ],
     "website": "https://www.ip-label.com"
   },
   "ipapi": {
@@ -1585,7 +1772,9 @@
     ],
     "saas": true,
     "website": "https://ipapi.com",
-    "xhr": "api\\.ipapi\\.com"
+    "xhr": [
+      "api\\.ipapi\\.com"
+    ]
   },
   "ipapi.co": {
     "cats": [
@@ -1600,7 +1789,9 @@
     ],
     "saas": true,
     "website": "https://ipapi.co",
-    "xhr": "ipapi\\.co/"
+    "xhr": [
+      "ipapi\\.co/"
+    ]
   },
   "ipbase": {
     "cats": [
@@ -1615,7 +1806,9 @@
     ],
     "saas": true,
     "website": "https://ipbase.com",
-    "xhr": "api\\.ipbase\\.com"
+    "xhr": [
+      "api\\.ipbase\\.com"
+    ]
   },
   "ipdata": {
     "cats": [
@@ -1630,7 +1823,9 @@
     ],
     "saas": true,
     "website": "https://ipdata.co/",
-    "xhr": "api\\.ipdata\\.co"
+    "xhr": [
+      "api\\.ipdata\\.co"
+    ]
   },
   "ipgeolocation": {
     "cats": [
@@ -1645,7 +1840,9 @@
     ],
     "saas": true,
     "website": "https://ipgeolocation.co/",
-    "xhr": "api\\.ipgeolocation\\.io"
+    "xhr": [
+      "api\\.ipgeolocation\\.io"
+    ]
   },
   "ipify": {
     "cats": [
@@ -1660,9 +1857,13 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.ipify\\.org",
+    "scriptSrc": [
+      "\\.ipify\\.org"
+    ],
     "website": "https://ipify.org",
-    "xhr": "(?:api|api64|geo)\\.ipify\\.org"
+    "xhr": [
+      "(?:api|api64|geo)\\.ipify\\.org"
+    ]
   },
   "ipstack": {
     "cats": [
@@ -1679,7 +1880,9 @@
     ],
     "saas": true,
     "website": "https://ipstack.com",
-    "xhr": "api\\.ipstack\\.com"
+    "xhr": [
+      "api\\.ipstack\\.com"
+    ]
   },
   "iubenda": {
     "cats": [
@@ -1697,7 +1900,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "iubenda\\.com/",
+    "scriptSrc": [
+      "iubenda\\.com/"
+    ],
     "website": "https://www.iubenda.com"
   },
   "iyzico": {

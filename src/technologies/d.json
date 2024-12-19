@@ -9,7 +9,9 @@
     "js": {
       "d3.version": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "/d3(?:\\. v\\d+)?(?:\\.min)?\\.js",
+    "scriptSrc": [
+      "/d3(?:\\. v\\d+)?(?:\\.min)?\\.js"
+    ],
     "website": "https://d3js.org"
   },
   "DDoS-Guard": {
@@ -59,8 +61,12 @@
       }
     },
     "icon": "DHL.svg",
-    "requiresCategory": 6,
-    "text": "\\bDHL\\b",
+    "requiresCategory": [
+      6
+    ],
+    "text": [
+      "\\bDHL\\b"
+    ],
     "website": "https://www.dhl.com"
   },
   "DHTMLX": {
@@ -76,7 +82,9 @@
     "pricing": [
       "onetime"
     ],
-    "scriptSrc": "/dhtmlxcommon\\.js",
+    "scriptSrc": [
+      "/dhtmlxcommon\\.js"
+    ],
     "website": "https://dhtmlx.com"
   },
   "DM Polopoly": {
@@ -84,9 +92,13 @@
       1
     ],
     "description": "DM Polopoly is a web content management solution focused on enhancing the user experience built by Atex.",
-    "dom": "img[data-src*='/polopoly_fs/'], link[href*='/polopoly_fs/'], img[src*='/polopoly_fs/']",
+    "dom": [
+      "img[data-src*='/polopoly_fs/'], link[href*='/polopoly_fs/'], img[src*='/polopoly_fs/']"
+    ],
     "icon": "DM Polopoly.png",
-    "implies": "Java",
+    "implies": [
+      "Java"
+    ],
     "website": "https://www.atex.com/products/dm-polopoly"
   },
   "DNN": {
@@ -107,7 +119,9 @@
       "<!-- DNN Platform"
     ],
     "icon": "DNN.svg",
-    "implies": "Microsoft ASP.NET",
+    "implies": [
+      "Microsoft ASP.NET"
+    ],
     "js": {
       "DotNetNuke": "",
       "dnn.apiversion": "^([\\d\\.]+)$\\;version:\\1"
@@ -128,7 +142,9 @@
     ],
     "description": "DPD is an international parcel delivery service for sorter compatible parcels.",
     "icon": "DPD.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bDPD\\b"
     ],
@@ -145,7 +161,9 @@
       "DPlayer.version": "([\\d\\.]+)\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "/dplayer\\.js",
+    "scriptSrc": [
+      "/dplayer\\.js"
+    ],
     "website": "https://dplayer.js.org"
   },
   "DTScout": {
@@ -158,7 +176,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.dtscout\\.com/",
+    "scriptSrc": [
+      "\\.dtscout\\.com/"
+    ],
     "website": "https://www.dtscout.com"
   },
   "DX": {
@@ -167,7 +187,9 @@
     ],
     "description": "DX (also known as DX Freight) is a British mail, courier and logistics company.",
     "icon": "DX.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bDX\\b"
     ],
@@ -186,9 +208,13 @@
       "high",
       "recurring"
     ],
-    "requires": "DNN",
+    "requires": [
+      "DNN"
+    ],
     "saas": true,
-    "scriptSrc": "\\.dx1app\\.com/",
+    "scriptSrc": [
+      "\\.dx1app\\.com/"
+    ],
     "website": "https://www.dx1app.com"
   },
   "Dachser": {
@@ -197,7 +223,9 @@
     ],
     "description": "Dachser is a German freight company.",
     "icon": "Dachser.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bDachser\\b"
     ],
@@ -217,7 +245,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "assets\\.dailydeals\\.ai/",
+    "scriptSrc": [
+      "assets\\.dailydeals\\.ai/"
+    ],
     "website": "https://dailydeals.ai"
   },
   "DailyKarma": {
@@ -236,7 +266,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "assets\\.dailykarma\\.io/",
+    "scriptSrc": [
+      "assets\\.dailykarma\\.io/"
+    ],
     "website": "https://www.dailykarma.com"
   },
   "Dailymotion": {
@@ -244,7 +276,9 @@
       14
     ],
     "description": "Dailymotion is a French video-sharing technology platform.",
-    "dom": "img[data-src*='.dailymotion.com/'], iframe[scr*='.dailymotion.com/']",
+    "dom": [
+      "img[data-src*='.dailymotion.com/'], iframe[scr*='.dailymotion.com/']"
+    ],
     "icon": "Dailymotion.svg",
     "meta": {
       "name": "dailymotion-domain-verification"
@@ -261,7 +295,9 @@
       "X-Powered-By": "Perl Dancer ([\\d.]+)\\;version:\\1"
     },
     "icon": "Dancer.png",
-    "implies": "Perl",
+    "implies": [
+      "Perl"
+    ],
     "pricing": [
       "poa"
     ],
@@ -311,7 +347,9 @@
       "Darkmode": ""
     },
     "oss": true,
-    "scriptSrc": "darkmode-js@([\\d\\.]+)/lib/darkmode-js\\.min\\.js\\;version:\\1",
+    "scriptSrc": [
+      "darkmode-js@([\\d\\.]+)/lib/darkmode-js\\.min\\.js\\;version:\\1"
+    ],
     "website": "https://github.com/sandoche/Darkmode.js"
   },
   "Dart": {
@@ -326,7 +364,9 @@
       "___dart_dispatch_record_ZxYxX_0_": ""
     },
     "oss": true,
-    "scriptSrc": "/(?:\\.)?(?:dart)(?:\\.js)?/",
+    "scriptSrc": [
+      "/(?:\\.)?(?:dart)(?:\\.js)?/"
+    ],
     "website": "https://dart.dev"
   },
   "Darwin": {
@@ -361,7 +401,9 @@
       "high",
       "recurring"
     ],
-    "scriptSrc": "^https://ct\\.datadome\\.co/[a-z]\\.js$",
+    "scriptSrc": [
+      "^https://ct\\.datadome\\.co/[a-z]\\.js$"
+    ],
     "website": "https://datadome.co"
   },
   "DataLife Engine": {
@@ -405,13 +447,17 @@
     "cpe": "cpe:2.3:a:datatables:datatables.net:*:*:*:*:*:*:*:*",
     "description": "DataTables is a plug-in for the jQuery Javascript library adding advanced features like pagination, instant search, themes, and more to any HTML table.",
     "icon": "DataTables.png",
-    "implies": "jQuery",
+    "implies": [
+      "jQuery"
+    ],
     "js": {
       "$.fn.dataTable.version": "^(.+)$\\;version:\\1",
       "jQuery.fn.dataTable.version": "^(.+)$\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "dataTables.*\\.js",
+    "scriptSrc": [
+      "dataTables.*\\.js"
+    ],
     "website": "https://datatables.net"
   },
   "Datadog": {
@@ -432,7 +478,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "www\\.datadoghq-browser-agent\\.com",
+    "scriptSrc": [
+      "www\\.datadoghq-browser-agent\\.com"
+    ],
     "website": "https://www.datadoghq.com"
   },
   "Datatrics": {
@@ -440,7 +488,9 @@
       97
     ],
     "description": "Datatrics is a data-driven marketing platform that provides businesses with advanced tools and analytics to optimise customer experiences, personalise marketing campaigns, and drive engagement through data-driven insights and automation.",
-    "dom": "link[href*='.datatrics.com']",
+    "dom": [
+      "link[href*='.datatrics.com']"
+    ],
     "icon": "Datatrics.svg",
     "js": {
       "DatatricsClick": "",
@@ -459,7 +509,9 @@
       1
     ],
     "description": "DatoCMS is a cloud-based headless Content as a service (CaaS) platform created to work with static websites, mobile apps and server-side applications of any kind.",
-    "dom": "link[href*='datocms-assets.com'], img[src*='datocms-assets.com'], source[src*='datocms-assets.com'], div[style*='datocms-assets.com']",
+    "dom": [
+      "link[href*='datocms-assets.com'], img[src*='datocms-assets.com'], source[src*='datocms-assets.com'], div[style*='datocms-assets.com']"
+    ],
     "headers": {
       "content-security-policy": "\\.datocms-assets\\.com"
     },
@@ -487,15 +539,21 @@
       32
     ],
     "description": "Dealer Spike is a digital marketing and advertising company focused that helps dealers grow their business.",
-    "dom": "meta[name='author'][content*='Dealer Spike']",
+    "dom": [
+      "meta[name='author'][content*='Dealer Spike']"
+    ],
     "icon": "Dealer Spike.svg",
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.dealerspike\\.com",
+    "scriptSrc": [
+      "cdn\\.dealerspike\\.com"
+    ],
     "website": "https://www.dealerspike.com",
-    "xhr": "\\.dealerspike\\.com"
+    "xhr": [
+      "\\.dealerspike\\.com"
+    ]
   },
   "Debian": {
     "cats": [
@@ -525,7 +583,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.decibelinsight\\.net",
+    "scriptSrc": [
+      "cdn\\.decibelinsight\\.net"
+    ],
     "website": "https://decibel.com"
   },
   "DedeCMS": {
@@ -534,11 +594,15 @@
     ],
     "cpe": "cpe:2.3:a:dedecms:dedecms:*:*:*:*:*:*:*:*",
     "icon": "DedeCMS.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "DedeContainer": ""
     },
-    "scriptSrc": "dedeajax",
+    "scriptSrc": [
+      "dedeajax"
+    ],
     "website": "https://dedecms.com"
   },
   "Delacon": {
@@ -564,7 +628,9 @@
     ],
     "description": "Delivengo is an international shipping service powered by La Poste.",
     "icon": "La Poste.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bDelivengo\\b"
     ],
@@ -586,7 +652,9 @@
       "payg",
       "recurring"
     ],
-    "scriptSrc": "fast-tags\\.deliverr\\.com",
+    "scriptSrc": [
+      "fast-tags\\.deliverr\\.com"
+    ],
     "website": "https://deliverr.com"
   },
   "Demandbase": {
@@ -605,7 +673,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "tag.demandbase.com",
+    "scriptSrc": [
+      "tag.demandbase.com"
+    ],
     "website": "https://www.demandbase.com"
   },
   "Deno": {
@@ -641,7 +711,9 @@
       76
     ],
     "description": "Depict is an ecommerce personalisation solution for fashion.",
-    "dom": "link[href*='.depict.ai/']",
+    "dom": [
+      "link[href*='.depict.ai/']"
+    ],
     "icon": "Depict.svg",
     "pricing": [
       "poa"
@@ -692,7 +764,9 @@
       "Server": "^Deta$"
     },
     "icon": "deta.svg",
-    "url": "^https?://[^/]+\\.deta\\.(?:app|dev)",
+    "url": [
+      "^https?://[^/]+\\.deta\\.(?:app|dev)"
+    ],
     "website": "https://deta.sh"
   },
   "Detectify": {
@@ -714,7 +788,9 @@
     ],
     "description": "Deutsche Post is a German multinational package delivery and supply chain management company in Germany.",
     "icon": "Deutsche Post.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bDeutsche Post\\b"
     ],
@@ -736,7 +812,9 @@
       36
     ],
     "description": "Dianomi is an advertiser campaign management software for financial services, premium lifestyle, technology and corporate sectors.",
-    "dom": "iframe[src*='.dianomi.com/']",
+    "dom": [
+      "iframe[src*='.dianomi.com/']"
+    ],
     "icon": "Dianomi.svg",
     "pricing": [
       "high",
@@ -744,7 +822,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.dianomi\\.com/",
+    "scriptSrc": [
+      "\\.dianomi\\.com/"
+    ],
     "website": "https://www.dianomi.com"
   },
   "Didomi": {
@@ -753,7 +833,9 @@
     ],
     "description": "Didomi is a consent management platform helping brands and businesses collect, store and leverage their customer consents.",
     "icon": "didomi.png",
-    "scriptSrc": "sdk\\.privacy-center\\.org/.*/loader\\.js",
+    "scriptSrc": [
+      "sdk\\.privacy-center\\.org/.*/loader\\.js"
+    ],
     "website": "https://www.didomi.io/en/consent-preference-management"
   },
   "Digest": {
@@ -780,7 +862,9 @@
     ],
     "description": "Digismoothie Candy Rack is an upsell app for Shopify which allow merchants to offer custom services or bundle products.",
     "icon": "Digismoothie.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "CANDYRACK_DOCUMENT_LISTENER": "",
       "candyrackEnableDebug": ""
@@ -797,7 +881,9 @@
       71
     ],
     "description": "Digistore24 is a German digital reselling and affiliate marketing platform.",
-    "dom": "a[href*='www.digistore24.com'][target='_blank']",
+    "dom": [
+      "a[href*='www.digistore24.com'][target='_blank']"
+    ],
     "icon": "Digistore24.svg",
     "js": {
       "DIGISTORE_LINK_ID_KEY": "",
@@ -819,7 +905,9 @@
       6
     ],
     "description": "Digital Showroom is an ecommerce platform.",
-    "dom": "div.dd-showrom__layout",
+    "dom": [
+      "div.dd-showrom__layout"
+    ],
     "icon": "Digital Showroom.png",
     "pricing": [
       "freemium",
@@ -834,7 +922,9 @@
       63
     ],
     "description": "DigitalOcean Spaces is a cloud-based object storage service provided by DigitalOcean, a cloud infrastructure provider. It allows users to store and retrieve large amounts of data, such as images, videos, audio files, backups, and logs, using a simple RESTful API or a web-based graphical user interface (GUI).",
-    "dom": "img[data-src*='.digitaloceanspaces.com'], img[src*='.digitaloceanspaces.com']",
+    "dom": [
+      "img[data-src*='.digitaloceanspaces.com'], img[src*='.digitaloceanspaces.com']"
+    ],
     "icon": "DigitalOcean.svg",
     "pricing": [
       "payg",
@@ -860,7 +950,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.digitalriver\\.com/",
+    "scriptSrc": [
+      "\\.digitalriver\\.com/"
+    ],
     "website": "https://www.digitalriver.com"
   },
   "DirectAdmin": {
@@ -872,7 +964,9 @@
     "headers": {
       "Server": "DirectAdmin Daemon v([\\d.]+)\\;version:\\1"
     },
-    "html": "<a[^>]+>DirectAdmin</a> Web Control Panel",
+    "html": [
+      "<a[^>]+>DirectAdmin</a> Web Control Panel"
+    ],
     "icon": "DirectAdmin.png",
     "implies": [
       "PHP",
@@ -909,7 +1003,9 @@
     ],
     "description": "Discourse is an open-source internet forum and mailing list management software application.",
     "icon": "Discourse.png",
-    "implies": "Ruby on Rails",
+    "implies": [
+      "Ruby on Rails"
+    ],
     "js": {
       "Discourse": ""
     },
@@ -924,7 +1020,9 @@
     ],
     "description": "Discuz! X is an internet forum software written in PHP and supports MySQL and PostgreSQL databases.",
     "icon": "Discuz X.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "DISCUZCODE": "",
       "discuzVersion": "^(.+)$\\;version:\\1",
@@ -941,7 +1039,9 @@
     ],
     "cpe": "cpe:2.3:a:disqus:disqus_comment_system:*:*:*:*:*:*:*:*",
     "description": "Disqus is a worldwide blog comment hosting service for web sites and online communities that use a networked platform.",
-    "dom": "div#disqus_thread",
+    "dom": [
+      "div#disqus_thread"
+    ],
     "icon": "Disqus.svg",
     "js": {
       "DISQUS": "",
@@ -952,7 +1052,9 @@
       "low",
       "recurring"
     ],
-    "scriptSrc": "disqus_url",
+    "scriptSrc": [
+      "disqus_url"
+    ],
     "website": "https://disqus.com"
   },
   "Distributor": {
@@ -968,7 +1070,9 @@
     "requires": [
       "WordPress"
     ],
-    "scriptSrc": "/wp-content/plugins/distributor",
+    "scriptSrc": [
+      "/wp-content/plugins/distributor"
+    ],
     "website": "https://distributorplugin.com"
   },
   "District M": {
@@ -976,11 +1080,15 @@
       36
     ],
     "description": "District M is a programmatic advertising exchange.",
-    "dom": "iframe[src*='.districtm.io']",
+    "dom": [
+      "iframe[src*='.districtm.io']"
+    ],
     "icon": "District M.svg",
     "saas": true,
     "website": "https://districtm.net",
-    "xhr": "\\.districtm\\.io"
+    "xhr": [
+      "\\.districtm\\.io"
+    ]
   },
   "Dito": {
     "cats": [
@@ -995,7 +1103,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "storage\\.googleapis\\.com/dito/sdk\\.js",
+    "scriptSrc": [
+      "storage\\.googleapis\\.com/dito/sdk\\.js"
+    ],
     "website": "https://www.dito.com.br"
   },
   "Divi": {
@@ -1022,9 +1132,13 @@
       "recurring",
       "onetime"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "saas": true,
-    "scriptSrc": "Divi/js/custom\\.(?:min|unified)\\.js\\?ver=([\\d.]+)\\;version:\\1",
+    "scriptSrc": [
+      "Divi/js/custom\\.(?:min|unified)\\.js\\?ver=([\\d.]+)\\;version:\\1"
+    ],
     "website": "https://www.elegantthemes.com/gallery/divi"
   },
   "DivideBuy": {
@@ -1033,7 +1147,9 @@
       91
     ],
     "description": "Dividebuy provides retailer financing solutions.",
-    "dom": "div[class*='dividebuy-softcredit']",
+    "dom": [
+      "div[class*='dividebuy-softcredit']"
+    ],
     "icon": "DivideBuy.png",
     "js": {
       "display_dividebuy_modal": ""
@@ -1049,7 +1165,9 @@
     "description": "Divio is a Buy now pay later solution. Divido provided whitelabel platform connects lenders, retailers and channel partners at the point of sale",
     "icon": "Divido.png",
     "saas": true,
-    "scriptSrc": "cdn\\.divido\\.com",
+    "scriptSrc": [
+      "cdn\\.divido\\.com"
+    ],
     "website": "https://www.divido.com/"
   },
   "Django": {
@@ -1061,9 +1179,13 @@
     },
     "cpe": "cpe:2.3:a:djangoproject:django:*:*:*:*:*:*:*:*",
     "description": "Django is a Python-based free and open-source web application framework.",
-    "html": "(?:powered by <a[^>]+>Django ?([\\d.]+)?<\\/a>|<input[^>]*name=[\"']csrfmiddlewaretoken[\"'][^>]*>)\\;version:\\1",
+    "html": [
+      "(?:powered by <a[^>]+>Django ?([\\d.]+)?<\\/a>|<input[^>]*name=[\"']csrfmiddlewaretoken[\"'][^>]*>)\\;version:\\1"
+    ],
     "icon": "Django.png",
-    "implies": "Python",
+    "implies": [
+      "Python"
+    ],
     "js": {
       "__admin_media_prefix__": "",
       "django": ""
@@ -1083,7 +1205,9 @@
       "PostgreSQL"
     ],
     "oss": true,
-    "scriptSrc": "/djangocms_",
+    "scriptSrc": [
+      "/djangocms_"
+    ],
     "website": "https://www.django-cms.org"
   },
   "DocFX": {
@@ -1106,7 +1230,9 @@
     ],
     "cpe": "cpe:2.3:a:docker:engine:*:*:*:*:*:*:*:*",
     "description": "Docker is a tool designed to make it easier to create, deploy, and run applications by using containers.",
-    "html": "<!-- This comment is expected by the docker HEALTHCHECK  -->",
+    "html": [
+      "<!-- This comment is expected by the docker HEALTHCHECK  -->"
+    ],
     "icon": "Docker.svg",
     "website": "https://www.docker.com/"
   },
@@ -1140,7 +1266,9 @@
     ],
     "saas": true,
     "website": "https://www.docusign.com",
-    "xhr": "docusign\\.net"
+    "xhr": [
+      "docusign\\.net"
+    ]
   },
   "Docusaurus": {
     "cats": [
@@ -1175,7 +1303,9 @@
       "dojo": "",
       "dojo.version.major": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "([\\d.]+)/dojo/dojo(?:\\.xd)?\\.js\\;version:\\1",
+    "scriptSrc": [
+      "([\\d.]+)/dojo/dojo(?:\\.xd)?\\.js\\;version:\\1"
+    ],
     "website": "https://dojotoolkit.org"
   },
   "Dokan": {
@@ -1198,7 +1328,9 @@
     "headers": {
       "X-Powered-By": "Dokeos"
     },
-    "html": "(?:Portal <a[^>]+>Dokeos|@import \"[^\"]+dokeos_blue)",
+    "html": [
+      "(?:Portal <a[^>]+>Dokeos|@import \"[^\"]+dokeos_blue)"
+    ],
     "icon": "Dokeos.png",
     "implies": [
       "PHP",
@@ -1220,7 +1352,9 @@
     "cpe": "cpe:2.3:a:dokuwiki:dokuwiki:*:*:*:*:*:*:*:*",
     "description": "DokuWiki is a free open-source wiki software.",
     "icon": "DokuWiki.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "DOKU_TPL": "\\;confidence:50",
       "doku_edit_text_content": "\\;confidence:50"
@@ -1260,7 +1394,9 @@
       "WooCommerce"
     ],
     "saas": true,
-    "scriptSrc": "/wp-content/plugins/iwd-checkout-connector/",
+    "scriptSrc": [
+      "/wp-content/plugins/iwd-checkout-connector/"
+    ],
     "website": "https://www.dominate.co/woocommerce"
   },
   "DonorPerfect": {
@@ -1281,7 +1417,9 @@
       "mid"
     ],
     "saas": true,
-    "scriptSrc": "\\.donorperfect\\.net/",
+    "scriptSrc": [
+      "\\.donorperfect\\.net/"
+    ],
     "website": "https://www.donorperfect.com"
   },
   "Donorbox": {
@@ -1289,7 +1427,9 @@
       111
     ],
     "description": "Donorbox is a US-based technology company. It offers an online fundraising software that allows individuals and nonprofit organisations to receive donations over the Internet.",
-    "dom": "a[href*='//donorbox.org/'], iframe[src*='//donorbox.org/']",
+    "dom": [
+      "a[href*='//donorbox.org/'], iframe[src*='//donorbox.org/']"
+    ],
     "icon": "Donorbox.svg",
     "js": {
       "DONORBOX": "",
@@ -1317,7 +1457,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.doofinder\\.com/",
+    "scriptSrc": [
+      "cdn\\.doofinder\\.com/"
+    ],
     "website": "https://www.doofinder.com"
   },
   "Doppler": {
@@ -1331,7 +1473,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "//(?:hub|cdn)\\.fromdoppler\\.com/",
+    "scriptSrc": [
+      "//(?:hub|cdn)\\.fromdoppler\\.com/"
+    ],
     "website": "https://www.fromdoppler.com"
   },
   "Doppler Forms": {
@@ -1340,9 +1484,15 @@
     ],
     "description": "The Doppler Forms plugin allows you to create fully customised subscription forms that you can add to your website or blog.",
     "icon": "Doppler.svg",
-    "implies": "Doppler",
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/plugins/doppler-form/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "implies": [
+      "Doppler"
+    ],
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/plugins/doppler-form/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://wordpress.org/plugins/doppler-form/"
   },
   "Doppler for WooCommerce": {
@@ -1351,12 +1501,16 @@
     ],
     "description": "The Doppler for WooCommerce plugin adds submit your WooCommerce customers and buyers to a Doppler List.",
     "icon": "Doppler.svg",
-    "implies": "Doppler",
+    "implies": [
+      "Doppler"
+    ],
     "requires": [
       "WordPress",
       "WooCommerce"
     ],
-    "scriptSrc": "/wp-content/plugins/doppler-for-woocommerce/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "scriptSrc": [
+      "/wp-content/plugins/doppler-for-woocommerce/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1"
+    ],
     "website": "https://wordpress.org/plugins/doppler-for-woocommerce/"
   },
   "Dotclear": {
@@ -1368,7 +1522,9 @@
       "X-Dotclear-Static-Cache": ""
     },
     "icon": "Dotclear.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "website": "https://dotclear.org"
   },
   "Dotdigital": {
@@ -1387,7 +1543,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "js/_dmptv([\\d.]+)\\.js\\;version:\\1",
+    "scriptSrc": [
+      "js/_dmptv([\\d.]+)\\.js\\;version:\\1"
+    ],
     "website": "https://dotdigital.com"
   },
   "Dotdigital Chat": {
@@ -1396,7 +1554,9 @@
     ],
     "description": "Dotdigital Chat is a smart, customisable widget that makes it easy for shoppers to communicate in real-time with members of your team.",
     "icon": "Dotdigital.svg",
-    "implies": "Dotdigital",
+    "implies": [
+      "Dotdigital"
+    ],
     "js": {
       "_ddgChatConfig.urlBase": "\\.dotdigital\\.com"
     },
@@ -1424,7 +1584,9 @@
     ],
     "description": "Doteasy Website Builder is a tool provided by Doteasy, a web hosting company that enables users to create and personalise their own websites without necessitating any technical knowledge or expertise in website design.",
     "icon": "Doteasy.svg",
-    "implies": "Doteasy",
+    "implies": [
+      "Doteasy"
+    ],
     "js": {
       "fsData.fs": "\\.dotezcdn\\.com"
     },
@@ -1454,7 +1616,9 @@
       36
     ],
     "icon": "DoubleClick.svg",
-    "scriptSrc": "2mdn\\.net",
+    "scriptSrc": [
+      "2mdn\\.net"
+    ],
     "website": "https://www.doubleclickbygoogle.com/solutions/digital-marketing/campaign-manager/"
   },
   "DoubleClick Floodlight": {
@@ -1462,7 +1626,9 @@
       36
     ],
     "icon": "DoubleClick.svg",
-    "scriptSrc": "https?://fls\\.doubleclick\\.net",
+    "scriptSrc": [
+      "https?://fls\\.doubleclick\\.net"
+    ],
     "website": "https://support.google.com/ds/answer/6029713?hl=en"
   },
   "DoubleClick for Publishers (DFP)": {
@@ -1475,7 +1641,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "googletagservices\\.com/tag/js/gpt(?:_mobile)?\\.js",
+    "scriptSrc": [
+      "googletagservices\\.com/tag/js/gpt(?:_mobile)?\\.js"
+    ],
     "website": "https://www.google.com/dfp"
   },
   "DoubleVerify": {
@@ -1484,7 +1652,9 @@
       10
     ],
     "description": "DoubleVerify is a software platform for digital media measurement, data, and analytics.",
-    "dom": "link[href*='.doubleverify.com']",
+    "dom": [
+      "link[href*='.doubleverify.com']"
+    ],
     "icon": "DoubleVerify.svg",
     "pricing": [
       "poa"
@@ -1501,7 +1671,9 @@
     "js": {
       "Dovetale": ""
     },
-    "scriptSrc": "dttrk\\.com",
+    "scriptSrc": [
+      "dttrk\\.com"
+    ],
     "website": "https://dovetale.com/"
   },
   "Download Monitor": {
@@ -1509,7 +1681,9 @@
       87
     ],
     "description": "Download Monitor is a plugin for selling, uploading and managing downloads, tracking downloads and displaying links.",
-    "dom": "link[href*='/wp-content/plugins/download-monitor/']",
+    "dom": [
+      "link[href*='/wp-content/plugins/download-monitor/']"
+    ],
     "icon": "Download Monitor.png",
     "js": {
       "DLM_XHR_Download": "",
@@ -1522,7 +1696,9 @@
       "freemium",
       "onetime"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://www.download-monitor.com"
   },
   "Doxygen": {
@@ -1531,7 +1707,9 @@
     ],
     "cpe": "cpe:2.3:a:doxygen:doxygen:*:*:*:*:*:*:*:*",
     "description": "Doxygen is a documentation generator, a tool for writing software reference documentation.",
-    "html": "(?:<!-- Generated by Doxygen ([\\d.]+)|<link[^>]+doxygen\\.css)\\;version:\\1",
+    "html": [
+      "(?:<!-- Generated by Doxygen ([\\d.]+)|<link[^>]+doxygen\\.css)\\;version:\\1"
+    ],
     "icon": "Doxygen.png",
     "meta": {
       "generator": "Doxygen ([\\d.]+)\\;version:\\1"
@@ -1544,7 +1722,9 @@
     ],
     "description": "Draft.js is a JavaScript rich text editor framework, built for React.",
     "icon": "draftjs.png",
-    "scriptSrc": "draft-js(@|/)([\\d.]+)\\;version:\\2",
+    "scriptSrc": [
+      "draft-js(@|/)([\\d.]+)\\;version:\\2"
+    ],
     "website": "https://draftjs.org/"
   },
   "Draftpress HFCM": {
@@ -1552,14 +1732,18 @@
       87
     ],
     "description": "Header Footer Code Manager by Draftpress is a easy interface to add snippets to the header or footer or above or below the content of your page.",
-    "html": "<!--[^>]*HFCM\\sby\\s99\\sRobots",
+    "html": [
+      "<!--[^>]*HFCM\\sby\\s99\\sRobots"
+    ],
     "icon": "Draftpress.png",
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://draftpress.com/products/header-footer-code-manager-pro/"
   },
   "Dragon": {
@@ -1571,8 +1755,12 @@
       "X-Powered-By": "Dragon Native ([\\d.]+)\\;version:\\1"
     },
     "icon": "Dragon.png",
-    "implies": "Apache HTTP Server",
-    "url": "^.*(?:\\.dgn)$",
+    "implies": [
+      "Apache HTTP Server"
+    ],
+    "url": [
+      "^.*(?:\\.dgn)$"
+    ],
     "website": "https://dragon-lang.org"
   },
   "Drapr": {
@@ -1585,8 +1773,12 @@
       "drapr_data": "",
       "drapr_deferLoading": ""
     },
-    "requiresCategory": 6,
-    "scriptSrc": "draprpubsubtest\\.firebaseapp\\.com/",
+    "requiresCategory": [
+      6
+    ],
+    "scriptSrc": [
+      "draprpubsubtest\\.firebaseapp\\.com/"
+    ],
     "website": "https://www.drapr.com"
   },
   "DreamApply": {
@@ -1605,7 +1797,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "app\\.cdn\\.dreamapply\\.com/",
+    "scriptSrc": [
+      "app\\.cdn\\.dreamapply\\.com/"
+    ],
     "website": "https://dreamapply.com"
   },
   "DreamHost": {
@@ -1648,7 +1842,9 @@
       10
     ],
     "description": "Dreamdata is a B2B revenue attribution platform.",
-    "dom": "link[href*='.bizible.com']",
+    "dom": [
+      "link[href*='.bizible.com']"
+    ],
     "icon": "Dreamdata.svg",
     "js": {
       "BizTrackingA": "",
@@ -1660,7 +1856,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.bizible\\.com/",
+    "scriptSrc": [
+      "\\.bizible\\.com/"
+    ],
     "website": "https://dreamdata.io"
   },
   "Drift": {
@@ -1691,7 +1889,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.getdrip\\.com/",
+    "scriptSrc": [
+      "\\.getdrip\\.com/"
+    ],
     "website": "https://www.drip.com"
   },
   "Drop A Hint": {
@@ -1709,7 +1909,9 @@
       "low",
       "recurring"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
     "website": "https://apps.shopify.com/drop-a-hint-v2"
   },
@@ -1718,14 +1920,18 @@
       11
     ],
     "description": "DropInBlog is a remotely hosted, cloud based platform that is designed to embed a blog into your html site.",
-    "dom": "link[href*='.dropinblog.com/']",
+    "dom": [
+      "link[href*='.dropinblog.com/']"
+    ],
     "icon": "DropInBlog.png",
     "pricing": [
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.dropinblog\\.com/",
+    "scriptSrc": [
+      "\\.dropinblog\\.com/"
+    ],
     "website": "https://dropinblog.com"
   },
   "Dropbox": {
@@ -1766,7 +1972,9 @@
     },
     "description": "Droxit is an automated web accessibility solution.",
     "icon": "Droxit.png",
-    "scriptSrc": "/droxit-a11y/js/activator\\.js",
+    "scriptSrc": [
+      "/droxit-a11y/js/activator\\.js"
+    ],
     "website": "https://www.droxit.com"
   },
   "Droz Bot": {
@@ -1779,7 +1987,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "chat-app\\.meudroz\\.com/",
+    "scriptSrc": [
+      "chat-app\\.meudroz\\.com/"
+    ],
     "website": "https://meudroz.com/droz-bot/"
   },
   "Drubbit": {
@@ -1813,9 +2023,13 @@
       "X-Drupal-Cache": "",
       "X-Generator": "^Drupal(?:\\s([\\d.]+))?\\;version:\\1"
     },
-    "html": "<(?:link|style)[^>]+\"/sites/(?:default|all)/(?:themes|modules)/",
+    "html": [
+      "<(?:link|style)[^>]+\"/sites/(?:default|all)/(?:themes|modules)/"
+    ],
     "icon": "Drupal.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "Drupal": ""
     },
@@ -1823,8 +2037,12 @@
       "generator": "^Drupal(?:\\s([\\d.]+))?\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "drupal\\.js",
-    "scripts": "drupal_internal__nid",
+    "scriptSrc": [
+      "drupal\\.js"
+    ],
+    "scripts": [
+      "drupal_internal__nid"
+    ],
     "website": "https://www.drupal.org/"
   },
   "Drupal Commerce": {
@@ -1833,10 +2051,16 @@
     ],
     "cpe": "cpe:2.3:a:commerceguys:commerce:*:*:*:*:*:*:*:*",
     "description": "Drupal Commerce is open-source ecommerce software that augments the content management system Drupal.",
-    "dom": "aside#cart-offcanvas, form.commerce-order-item-add-to-cart-form,form.commerce-add-to-cart",
-    "html": "<[^>]+(?:id=\"block[_-]commerce[_-]cart[_-]cart|class=\"commerce[_-]product[_-]field)",
+    "dom": [
+      "aside#cart-offcanvas, form.commerce-order-item-add-to-cart-form,form.commerce-add-to-cart"
+    ],
+    "html": [
+      "<[^>]+(?:id=\"block[_-]commerce[_-]cart[_-]cart|class=\"commerce[_-]product[_-]field)"
+    ],
     "icon": "Drupal Commerce.png",
-    "implies": "Drupal",
+    "implies": [
+      "Drupal"
+    ],
     "oss": true,
     "scriptSrc": [
       "/modules/(?:contrib/)?commerce/js/conditions\\.js\\;confidence:50",
@@ -1868,7 +2092,9 @@
     },
     "icon": "Drupal.svg",
     "oss": true,
-    "requires": "Drupal",
+    "requires": [
+      "Drupal"
+    ],
     "scriptSrc": [
       "/sites/(?!(?:default|all)/).*/(?:files|themes|modules)/"
     ],
@@ -1890,7 +2116,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "dd-cdn\\.multiscreensite\\.com/",
+    "scriptSrc": [
+      "dd-cdn\\.multiscreensite\\.com/"
+    ],
     "website": "https://www.duda.co"
   },
   "Duel": {
@@ -1917,7 +2145,9 @@
       "onetime"
     ],
     "saas": true,
-    "scriptSrc": "\\.duel\\.me/",
+    "scriptSrc": [
+      "\\.duel\\.me/"
+    ],
     "website": "https://www.duel.tech"
   },
   "Dukaan": {
@@ -1933,7 +2163,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "apps\\.mydukaan\\.io/",
+    "scriptSrc": [
+      "apps\\.mydukaan\\.io/"
+    ],
     "website": "https://mydukaan.io"
   },
   "Duopana": {
@@ -1949,7 +2181,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.beracode\\.com/",
+    "scriptSrc": [
+      "\\.beracode\\.com/"
+    ],
     "website": "https://duopana.com"
   },
   "Dynamic Yield": {
@@ -1972,7 +2206,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "cdn(?:-eu)?\\.dynamicyield\\.\\w+/",
+    "scriptSrc": [
+      "cdn(?:-eu)?\\.dynamicyield\\.\\w+/"
+    ],
     "website": "https://www.dynamicyield.com"
   },
   "Dynamicweb": {
@@ -1985,7 +2221,9 @@
     },
     "description": "Dynamicweb is a all-in-one platform for content management, ecommerce, digital marketing​, product information management (PIM) and integration.",
     "icon": "Dynamicweb.svg",
-    "implies": "Microsoft ASP.NET",
+    "implies": [
+      "Microsoft ASP.NET"
+    ],
     "meta": {
       "generator": "Dynamicweb ([\\d.]+)\\;version:\\1"
     },
@@ -2016,23 +2254,31 @@
     ],
     "description": "Dynatrace RUM is a AI powered, full stack, automated real user monutoring platform built by Dynatrace.",
     "icon": "Dynatrace.svg",
-    "implies": "Dynatrace",
+    "implies": [
+      "Dynatrace"
+    ],
     "pricing": [
       "recurring",
       "low"
     ],
     "saas": true,
-    "scriptSrc": "/ruxitagentjs_(?:.+)_(?:.+)\\.js",
+    "scriptSrc": [
+      "/ruxitagentjs_(?:.+)_(?:.+)\\.js"
+    ],
     "website": "https://www.dynatrace.com/platform/real-user-monitoring"
   },
   "Dyte": {
     "cats": [
       103
     ],
-    "css": "\\.dyte-client-selfVideo",
+    "css": [
+      "\\.dyte-client-selfVideo"
+    ],
     "description": "Dyte is a developer-friendly, real-time audio and video communication software development kit (SDK).",
     "icon": "Dyte.svg",
-    "implies": "WebRTC",
+    "implies": [
+      "WebRTC"
+    ],
     "js": {
       "triggerDyteRecording": ""
     },
@@ -2041,7 +2287,9 @@
     ],
     "saas": true,
     "website": "https://dyte.io",
-    "xhr": "cdn\\.dyte\\.in/"
+    "xhr": [
+      "cdn\\.dyte\\.in/"
+    ]
   },
   "daisyUI": {
     "cats": [
@@ -2056,7 +2304,9 @@
       }
     },
     "icon": "daisyUI.png",
-    "implies": "Tailwind CSS",
+    "implies": [
+      "Tailwind CSS"
+    ],
     "oss": true,
     "website": "https://daisyui.com"
   },
@@ -2074,9 +2324,13 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.db-ip\\.com",
+    "scriptSrc": [
+      "cdn\\.db-ip\\.com"
+    ],
     "website": "https://db-ip.com/",
-    "xhr": "api\\.db-ip\\.com"
+    "xhr": [
+      "api\\.db-ip\\.com"
+    ]
   },
   "decimal.js": {
     "cats": [
@@ -2101,7 +2355,9 @@
     "js": {
       "deepMiner": ""
     },
-    "scriptSrc": "deepMiner\\.js",
+    "scriptSrc": [
+      "deepMiner\\.js"
+    ],
     "website": "https://github.com/deepwn/deepMiner"
   }
 }

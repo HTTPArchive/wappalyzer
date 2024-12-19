@@ -15,14 +15,18 @@
       "X-Powered-CMS": "Bitrix Site Manager"
     },
     "icon": "1C-Bitrix.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "pricing": [
       "onetime",
       "mid",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "bitrix(?:\\.info/|/js/main/core)",
+    "scriptSrc": [
+      "bitrix(?:\\.info/|/js/main/core)"
+    ],
     "website": "https://www.1c-bitrix.ru"
   },
   "2B Advice": {
@@ -35,7 +39,9 @@
       "BBCookieControler": ""
     },
     "saas": true,
-    "scriptSrc": "2badvice-cdn\\.azureedge\\.net",
+    "scriptSrc": [
+      "2badvice-cdn\\.azureedge\\.net"
+    ],
     "website": "https://www.2b-advice.com/en/data-privacy-software/cookie-consent-plugin/"
   },
   "30namaPlayer": {
@@ -43,7 +49,9 @@
       14
     ],
     "description": "30namaPlayer is a modified version of Video.js to work with videos on HTML using javascript.",
-    "dom": "section[class*='player30nama']",
+    "dom": [
+      "section[class*='player30nama']"
+    ],
     "icon": "30namaPlayer.png",
     "website": "https://30nama.com/"
   },
@@ -52,7 +60,9 @@
       36
     ],
     "description": "33Across is a technology company focused on solving the challenge of consumer attention for automated advertising.",
-    "dom": "iframe[src*='.33across.com'], link[href*='.33across.com'], link[href*='.tynt.com']",
+    "dom": [
+      "iframe[src*='.33across.com'], link[href*='.33across.com'], link[href*='.tynt.com']"
+    ],
     "icon": "33Across.png",
     "js": {
       "Tynt": ""
@@ -63,7 +73,9 @@
       "\\.tynt\\.com/"
     ],
     "website": "https://www.33across.com",
-    "xhr": "\\.33across\\.com"
+    "xhr": [
+      "\\.33across\\.com"
+    ]
   },
   "34SP.com": {
     "cats": [
@@ -98,7 +110,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "4tellcdn\\.azureedge\\.net",
+    "scriptSrc": [
+      "4tellcdn\\.azureedge\\.net"
+    ],
     "website": "https://4-tell.com"
   },
   "42stores": {
@@ -139,7 +153,9 @@
       31
     ],
     "description": "5centsCDN is a content delivery networks service provider.",
-    "dom": "link[href*='.5centscdn.com/']",
+    "dom": [
+      "link[href*='.5centscdn.com/']"
+    ],
     "headers": {
       "x-cdn": "^5centsCDN$"
     },
@@ -148,7 +164,9 @@
       "recurring",
       "low"
     ],
-    "scriptSrc": "\\.5centscdn\\.com/",
+    "scriptSrc": [
+      "\\.5centscdn\\.com/"
+    ],
     "website": "https://www.5centscdn.net"
   },
   "6sense": {
@@ -167,7 +185,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.6sc\\.co/",
+    "scriptSrc": [
+      "\\.6sc\\.co/"
+    ],
     "website": "https://6sense.com"
   },
   "8base": {
@@ -184,17 +204,23 @@
     ],
     "saas": true,
     "website": "https://8base.com",
-    "xhr": "api\\.8base\\.com"
+    "xhr": [
+      "api\\.8base\\.com"
+    ]
   },
   "<model-viewer>": {
     "cats": [
       105
     ],
     "description": "<model-viewer> is an open-source web component developed by Google and maintained through GitHub. <model-viewer> aims at putting 3D content on the web easily with a few lines of HTML code. This was first introduced with Chrome 72 in July 2019 and enables users to view 3D in the browser and mobile devices.",
-    "dom": "model-viewer",
+    "dom": [
+      "model-viewer"
+    ],
     "icon": "model-viewer.svg",
     "oss": true,
-    "scriptSrc": "/model-viewer/dist/model-viewer\\.min\\.js",
+    "scriptSrc": [
+      "/model-viewer/dist/model-viewer\\.min\\.js"
+    ],
     "website": "https://modelviewer.dev"
   },
   "@sulu/web": {
@@ -207,6 +233,21 @@
     },
     "website": "https://github.com/sulu/web-js"
   },
+  "_hyperscript": {
+    "cats": [
+      59
+    ],
+    "description": "_​hyperscript is a scripting language for adding interactivity to the front-end.",
+    "icon": "_hyperscript.png",
+    "js": {
+      "_hyperscript": ""
+    },
+    "oss": true,
+    "scriptSrc": [
+      "//unpkg\\.com/hyperscript\\.org@([\\d\\.]+)\\;version:\\1"
+    ],
+    "website": "https://hyperscript.org"
+  },
   "_hyperscript ": {
     "cats": [
       59
@@ -217,7 +258,9 @@
       "_hyperscript": ""
     },
     "oss": true,
-    "scriptSrc": "//unpkg\\.com/hyperscript\\.org@([\\d\\.]+)\\;version:\\1",
+    "scriptSrc": [
+      "//unpkg\\.com/hyperscript\\.org@([\\d\\.]+)\\;version:\\1"
+    ],
     "website": "https://hyperscript.org"
   }
 }

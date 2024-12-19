@@ -23,15 +23,23 @@
       6
     ],
     "description": "HCL Commerce is a software platform framework for ecommerce, including marketing, sales, customer and order processing functionality.",
-    "dom": "link[href*='/wcsstore/'], link[href*='webapp/wcs/'], a[href*='/wcsstore/'], a[href*='webapp/wcs/'], script[src*='/wcsstore/'], script[src*='webapp/wcs/']",
+    "dom": [
+      "link[href*='/wcsstore/'], link[href*='webapp/wcs/'], a[href*='/wcsstore/'], a[href*='webapp/wcs/'], script[src*='/wcsstore/'], script[src*='webapp/wcs/']"
+    ],
     "icon": "HCL Commerce.svg",
-    "implies": "Java",
+    "implies": [
+      "Java"
+    ],
     "pricing": [
       "poa"
     ],
     "saas": true,
-    "scripts": "/webapp/wcs/",
-    "url": "/wcs/",
+    "scripts": [
+      "/webapp/wcs/"
+    ],
+    "url": [
+      "/wcs/"
+    ],
     "website": "https://www.hcltechsw.com/commerce"
   },
   "HCL Digital Experience": {
@@ -45,7 +53,9 @@
       "Itx-Generated-Timestamp": ""
     },
     "icon": "hcl-dx.png",
-    "implies": "Java",
+    "implies": [
+      "Java"
+    ],
     "js": {
       "ibmCfg.themeConfig.modulesWebAppBaseURI": "/wps/themeModules"
     },
@@ -53,7 +63,9 @@
       "high",
       "poa"
     ],
-    "url": "/wps/wcm/",
+    "url": [
+      "/wps/wcm/"
+    ],
     "website": "https://www.hcltechsw.com/dx"
   },
   "HCL Domino": {
@@ -66,7 +78,9 @@
       "Server": "^Lotus-Domino$"
     },
     "icon": "HCL Domino.svg",
-    "implies": "Java",
+    "implies": [
+      "Java"
+    ],
     "pricing": [
       "payg",
       "recurring"
@@ -82,7 +96,9 @@
       "X-Powered-By": "HHVM/?([\\d.]+)?\\;version:\\1"
     },
     "icon": "HHVM.png",
-    "implies": "PHP\\;confidence:75",
+    "implies": [
+      "PHP\\;confidence:75"
+    ],
     "website": "https://hhvm.com"
   },
   "HP Compact Server": {
@@ -116,7 +132,9 @@
     "headers": {
       "Strict-Transport-Security": ""
     },
-    "url": "^https://[\\w\\d\\.\\-]+(?:\\.dev)(?:/.+||/)$",
+    "url": [
+      "^https://[\\w\\d\\.\\-]+(?:\\.dev)(?:/.+||/)$"
+    ],
     "website": "https://www.rfc-editor.org/rfc/rfc6797#section-6.1"
   },
   "HTTP/2": {
@@ -124,7 +142,9 @@
       19
     ],
     "description": "HTTP/2 (originally named HTTP/2.0) is a major revision of the HTTP network protocol used by the World Wide Web.",
-    "excludes": "SPDY",
+    "excludes": [
+      "SPDY"
+    ],
     "headers": {
       "Alt-Svc": "h2",
       "X-Firefox-Spdy": "h2"
@@ -137,7 +157,9 @@
       19
     ],
     "description": "HTTP/3 is the third major version of the Hypertext Transfer Protocol used to exchange information on the World Wide Web.",
-    "excludes": "HTTP/2",
+    "excludes": [
+      "HTTP/2"
+    ],
     "headers": {
       "Alt-Svc": "h3",
       "X-Firefox-Http3": "h3"
@@ -150,8 +172,12 @@
       4
     ],
     "description": "Haddock is a tool for automatically generating documentation from annotated Haskell source code.",
-    "html": "<p>Produced by <a href=\"http://www\\.haskell\\.org/haddock/\">Haddock</a> version ([0-9.]+)</p>\\;version:\\1",
-    "scriptSrc": "haddock-util\\.js",
+    "html": [
+      "<p>Produced by <a href=\"http://www\\.haskell\\.org/haddock/\">Haddock</a> version ([0-9.]+)</p>\\;version:\\1"
+    ],
+    "scriptSrc": [
+      "haddock-util\\.js"
+    ],
     "website": "https://www.haskell.org/haddock/"
   },
   "Halo": {
@@ -160,7 +186,9 @@
       11
     ],
     "icon": "Halo.png",
-    "implies": "Java",
+    "implies": [
+      "Java"
+    ],
     "meta": {
       "generator": "Halo ([\\d.]+)?\\;version:\\1"
     },
@@ -172,7 +200,9 @@
     ],
     "description": "Hamechio is a web application framework.",
     "icon": "Hamechio.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "hamech\\.io/"
     },
@@ -189,7 +219,9 @@
       "Hammer": "",
       "Hammer.VERSION": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "hammer(?:\\.min)?\\.js",
+    "scriptSrc": [
+      "hammer(?:\\.min)?\\.js"
+    ],
     "website": "https://hammerjs.github.io"
   },
   "Handlebars": {
@@ -198,14 +230,18 @@
     ],
     "cpe": "cpe:2.3:a:handlebars.js_project:handlebars.js:*:*:*:*:*:*:*:*",
     "description": "Handlebars is a JavaScript library used to create reusable webpage templates.",
-    "dom": "script[type='text/x-handlebars-template']",
+    "dom": [
+      "script[type='text/x-handlebars-template']"
+    ],
     "icon": "Handlebars.svg",
     "js": {
       "Handlebars": "",
       "Handlebars.VERSION": "^(.+)$\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "handlebars(?:\\.runtime)?(?:-v([\\d.]+?))?(?:\\.min)?\\.js\\;version:\\1",
+    "scriptSrc": [
+      "handlebars(?:\\.runtime)?(?:-v([\\d.]+?))?(?:\\.min)?\\.js\\;version:\\1"
+    ],
     "website": "https://handlebarsjs.com"
   },
   "Handtalk": {
@@ -217,7 +253,9 @@
     "js": {
       "HandTalk": ""
     },
-    "scriptSrc": "api\\.handtalk\\.me",
+    "scriptSrc": [
+      "api\\.handtalk\\.me"
+    ],
     "website": "https://www.handtalk.me/"
   },
   "Hansel": {
@@ -235,7 +273,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.hansel\\.io/web/([\\d\\.]+)/\\;version:\\1",
+    "scriptSrc": [
+      "\\.hansel\\.io/web/([\\d\\.]+)/\\;version:\\1"
+    ],
     "website": "https://hansel.io"
   },
   "Happy Returns": {
@@ -243,7 +283,9 @@
       102
     ],
     "description": "Happy Returns is a return software and reverse logistics company, provides a packaging-free, in-person way for customers to return an online purchase for an immediate refund.",
-    "dom": "a[href*='.happyreturns.com'], img[src*='.happyreturns.com/']",
+    "dom": [
+      "a[href*='.happyreturns.com'], img[src*='.happyreturns.com/']"
+    ],
     "icon": "Happy Returns.png",
     "pricing": [
       "mid",
@@ -262,7 +304,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.happyfox\\.com/media/",
+    "scriptSrc": [
+      "\\.happyfox\\.com/media/"
+    ],
     "website": "https://www.happyfox.com/customer-service-software/"
   },
   "HappyFox Live Chat": {
@@ -279,7 +323,9 @@
       "low"
     ],
     "saas": true,
-    "scriptSrc": "\\.happyfoxchat\\.com/",
+    "scriptSrc": [
+      "\\.happyfoxchat\\.com/"
+    ],
     "website": "https://www.happyfox.com/live-chat"
   },
   "Haptik": {
@@ -298,7 +344,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.haptikapi\\.com/",
+    "scriptSrc": [
+      "\\.haptikapi\\.com/"
+    ],
     "website": "https://www.haptik.ai"
   },
   "Haravan": {
@@ -310,7 +358,9 @@
     "js": {
       "Haravan": ""
     },
-    "scriptSrc": "haravan.*\\.js",
+    "scriptSrc": [
+      "haravan.*\\.js"
+    ],
     "website": "https://www.haravan.com"
   },
   "Harbor": {
@@ -318,9 +368,13 @@
       60
     ],
     "description": "Harbor is an open-source registry that secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as trusted.",
-    "dom": "harbor-app",
+    "dom": [
+      "harbor-app"
+    ],
     "icon": "Harbor.svg",
-    "implies": "Go",
+    "implies": [
+      "Go"
+    ],
     "oss": true,
     "website": "https://goharbor.io"
   },
@@ -335,8 +389,12 @@
       "onetime",
       "low"
     ],
-    "requires": "WordPress",
-    "scriptSrc": "/wp-content/themes/(?:t|T)otal(?:-plus)?/",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "/wp-content/themes/(?:t|T)otal(?:-plus)?/"
+    ],
     "website": "https://hashthemes.com/wordpress-theme/total"
   },
   "Hashnode": {
@@ -344,10 +402,16 @@
       11
     ],
     "description": "Hashnode is a free developer blogging platform that allows you to publish articles on your own domain and helps you stay connected with a global developer community.",
-    "dom": "div.css-zigog8",
+    "dom": [
+      "div.css-zigog8"
+    ],
     "icon": "hashnode.png",
-    "scriptSrc": "hashnode\\.com",
-    "url": "^https?://[^/]+\\.(?:hashnode)\\.dev",
+    "scriptSrc": [
+      "hashnode\\.com"
+    ],
+    "url": [
+      "^https?://[^/]+\\.(?:hashnode)\\.dev"
+    ],
     "website": "https://hashnode.com/"
   },
   "Hashtag Labs": {
@@ -355,7 +419,9 @@
       36
     ],
     "description": "Hashtag Labs is a full-service digital ad operations company.",
-    "dom": "link[href*='//htlbid.com']",
+    "dom": [
+      "link[href*='//htlbid.com']"
+    ],
     "icon": "Hashtag Labs.svg",
     "js": {
       "htlbid.cmd": ""
@@ -386,19 +452,25 @@
       "low",
       "recurring"
     ],
-    "scriptSrc": "cdn\\.blog\\.st-hatena\\.com/",
+    "scriptSrc": [
+      "cdn\\.blog\\.st-hatena\\.com/"
+    ],
     "website": "https://hatenablog.com"
   },
   "HeadJS": {
     "cats": [
       59
     ],
-    "html": "<[^>]*data-headjs-load",
+    "html": [
+      "<[^>]*data-headjs-load"
+    ],
     "icon": "HeadJS.png",
     "js": {
       "head.browser.name": ""
     },
-    "scriptSrc": "head\\.(?:core|load)(?:\\.min)?\\.js",
+    "scriptSrc": [
+      "head\\.(?:core|load)(?:\\.min)?\\.js"
+    ],
     "website": "https://headjs.com"
   },
   "Header Bidding Ai": {
@@ -412,7 +484,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.headerbidding\\.ai/",
+    "scriptSrc": [
+      "\\.headerbidding\\.ai/"
+    ],
     "website": "https://headerbidding.ai"
   },
   "Headless UI": {
@@ -468,7 +542,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.heartlandportico\\.com",
+    "scriptSrc": [
+      "\\.heartlandportico\\.com"
+    ],
     "website": "https://www.heartlandpaymentsystems.com"
   },
   "Helhost": {
@@ -499,7 +575,9 @@
     "headers": {
       "X-Powered-By": "Adrikikicp Development"
     },
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "js": {
       "helium.js": ""
     },
@@ -520,9 +598,13 @@
       18
     ],
     "description": "Helix Ultimate a free template framework for Joomla.",
-    "dom": "header#sp-header, body.helix-ultimate",
+    "dom": [
+      "header#sp-header, body.helix-ultimate"
+    ],
     "icon": "HelixUltimate.svg",
-    "implies": "Joomla",
+    "implies": [
+      "Joomla"
+    ],
     "oss": true,
     "website": "https://www.joomshaper.com/joomla-templates/helixultimate"
   },
@@ -532,7 +614,9 @@
     ],
     "description": "Helixo UFE is a lightweight Shopify upsell sales funnel app.",
     "icon": "Helixo.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "ufe.funnelData": "",
       "ufeStore.cartTotal": ""
@@ -561,7 +645,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.?hellobar\\.(?:com|js)",
+    "scriptSrc": [
+      "\\.?hellobar\\.(?:com|js)"
+    ],
     "website": "https://hellobar.com"
   },
   "Hello Elementor": {
@@ -585,12 +671,16 @@
       }
     },
     "icon": "Hello Elementor.png",
-    "implies": "Elementor",
+    "implies": [
+      "Elementor"
+    ],
     "pricing": [
       "low",
       "freemium"
     ],
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://elementor.com/hello-theme/"
   },
   "Help Scout": {
@@ -609,7 +699,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.helpscout\\.net/",
+    "scriptSrc": [
+      "\\.helpscout\\.net/"
+    ],
     "website": "https://www.helpscout.com"
   },
   "HelpDocs": {
@@ -628,7 +720,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.helpdocs\\.io",
+    "scriptSrc": [
+      "cdn\\.helpdocs\\.io"
+    ],
     "website": "https://www.helpdocs.io"
   },
   "Here": {
@@ -636,7 +730,9 @@
       35
     ],
     "description": "HERE is a PaaS for creating custom maps, visualize location datasets, gather insights and buy and sell location assets.",
-    "dom": "link[href*='//js\\.api\\.here\\.com/']",
+    "dom": [
+      "link[href*='//js\\.api\\.here\\.com/']"
+    ],
     "icon": "here.svg",
     "js": {
       "H.buildInfo": "",
@@ -656,7 +752,9 @@
     ],
     "description": "Hermes offers integrated solutions along the supply chain and partners with national and international trading companies.",
     "icon": "Hermes.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bHermes\\b"
     ],
@@ -674,7 +772,9 @@
     "js": {
       "HeroWebPluginSettings": ""
     },
-    "scriptSrc": "cdn\\.usehero\\.com",
+    "scriptSrc": [
+      "cdn\\.usehero\\.com"
+    ],
     "website": "https://www.usehero.com/"
   },
   "Heroku": {
@@ -691,7 +791,9 @@
       "Via": "[\\d.-]+ vegur$"
     },
     "icon": "heroku.svg",
-    "url": "\\.herokuapp\\.com",
+    "url": [
+      "\\.herokuapp\\.com"
+    ],
     "website": "https://www.heroku.com/"
   },
   "Hestia": {
@@ -710,8 +812,12 @@
       }
     },
     "icon": "ThemeIsle.png",
-    "requires": "WordPress",
-    "scriptSrc": "themes/hestia.*\\.js(?:\\?ver=([0-9.]+))?\\;version:\\1",
+    "requires": [
+      "WordPress"
+    ],
+    "scriptSrc": [
+      "themes/hestia.*\\.js(?:\\?ver=([0-9.]+))?\\;version:\\1"
+    ],
     "website": "https://themeisle.com/themes/hestia/"
   },
   "HetrixTools": {
@@ -732,7 +838,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.hetrixtools\\.com/",
+    "scriptSrc": [
+      "\\.hetrixtools\\.com/"
+    ],
     "website": "https://hetrixtools.com"
   },
   "Hetzner": {
@@ -765,7 +873,9 @@
       "Powered by <a href=\"https?://hexo\\.io/?\"[^>]*>Hexo</"
     ],
     "icon": "Hexo.png",
-    "implies": "Node.js",
+    "implies": [
+      "Node.js"
+    ],
     "meta": {
       "generator": "Hexo(?: v?([\\d.]+))?\\;version:\\1"
     },
@@ -777,14 +887,18 @@
     ],
     "description": "Free Shipping Bar is a Shopify app built by Hextom. Free Shipping Bar help promote free shipping with progressive messages to motivate customers to buy more.",
     "icon": "Hextom.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.hextom\\.com/js/freeshippingbar\\.js",
+    "scriptSrc": [
+      "\\.hextom\\.com/js/freeshippingbar\\.js"
+    ],
     "website": "https://hextom.com/case_study/free-shipping-bar"
   },
   "Hextom Ultimate Sales Boost": {
@@ -793,7 +907,9 @@
     ],
     "description": "Ultimate Sales Boost by Hextom is an app designed to help you drive more sales by creating a sense of urgency, scarcity and trust.",
     "icon": "Hextom.png",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "hextom_usb": "",
       "ht_usb.isLoaded": ""
@@ -804,7 +920,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.hextom\\.com/js/ultimatesalesboost\\.js",
+    "scriptSrc": [
+      "\\.hextom\\.com/js/ultimatesalesboost\\.js"
+    ],
     "website": "https://hextom.com/case_study/ultimate-sales-boost"
   },
   "Hi Platform": {
@@ -812,7 +930,9 @@
       53
     ],
     "description": "Hi Platform provider of an online customer relationship platform.",
-    "dom": "link[href*='.hiplatform.com']",
+    "dom": [
+      "link[href*='.hiplatform.com']"
+    ],
     "icon": "Hi Platform.svg",
     "pricing": [
       "mid",
@@ -820,7 +940,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "\\.hiplatform\\.com/",
+    "scriptSrc": [
+      "\\.hiplatform\\.com/"
+    ],
     "website": "https://www.hiplatform.com"
   },
   "Hiawatha": {
@@ -848,7 +970,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.leadconnectorhq\\.com/",
+    "scriptSrc": [
+      "\\.leadconnectorhq\\.com/"
+    ],
     "website": "https://www.gohighlevel.com"
   },
   "HighStore": {
@@ -856,7 +980,9 @@
       6
     ],
     "description": "HighStore is an ecommerce platform from Iran.",
-    "implies": "Microsoft ASP.NET",
+    "implies": [
+      "Microsoft ASP.NET"
+    ],
     "meta": {
       "generator": "^HighStore\\.IR$",
       "hs:version": "^([\\d\\.]+)$\\;version:\\1\\;confidence:50"
@@ -872,13 +998,17 @@
       25
     ],
     "description": "Highcharts is a charting library written in pure JavaScript, for adding interactive charts to a website or web application. Highcharts meets accessibility standards and works with Python, Angular, React, iOS, Android, and more.",
-    "html": "<svg[^>]*><desc>Created with Highcharts ([\\d.]*)\\;version:\\1",
+    "html": [
+      "<svg[^>]*><desc>Created with Highcharts ([\\d.]*)\\;version:\\1"
+    ],
     "icon": "Highcharts.svg",
     "js": {
       "Highcharts": "",
       "Highcharts.version": "^(.+)$\\;version:\\1"
     },
-    "scriptSrc": "highcharts.*\\.js",
+    "scriptSrc": [
+      "highcharts.*\\.js"
+    ],
     "website": "https://www.highcharts.com"
   },
   "Highlight.js": {
@@ -890,16 +1020,22 @@
       "hljs.highlightBlock": "",
       "hljs.listLanguages": ""
     },
-    "scriptSrc": "/(?:([\\d.])+/)?highlight(?:\\.min)?\\.js\\;version:\\1",
+    "scriptSrc": [
+      "/(?:([\\d.])+/)?highlight(?:\\.min)?\\.js\\;version:\\1"
+    ],
     "website": "https://highlightjs.org/"
   },
   "Highstock": {
     "cats": [
       25
     ],
-    "html": "<svg[^>]*><desc>Created with Highstock ([\\d.]*)\\;version:\\1",
+    "html": [
+      "<svg[^>]*><desc>Created with Highstock ([\\d.]*)\\;version:\\1"
+    ],
     "icon": "Highcharts.svg",
-    "scriptSrc": "highstock[.-]?([\\d\\.]*\\d).*\\.js\\;version:\\1",
+    "scriptSrc": [
+      "highstock[.-]?([\\d\\.]*\\d).*\\.js\\;version:\\1"
+    ],
     "website": "https://highcharts.com/products/highstock"
   },
   "HikeOrders": {
@@ -908,7 +1044,9 @@
     ],
     "description": "HikeOrders is a web accessibility overlay that claims to make your site disability friendly.",
     "icon": "HikeOrders.png",
-    "scriptSrc": "hikeorders\\.com/main/assets/js/hko-accessibility\\.min\\.js",
+    "scriptSrc": [
+      "hikeorders\\.com/main/assets/js/hko-accessibility\\.min\\.js"
+    ],
     "website": "https://hikeorders.com/"
   },
   "Hinza Advanced CMS": {
@@ -917,7 +1055,9 @@
       6
     ],
     "icon": "hinza_advanced_cms.svg",
-    "implies": "Laravel",
+    "implies": [
+      "Laravel"
+    ],
     "meta": {
       "generator": "hinzacms"
     },
@@ -928,14 +1068,18 @@
       101
     ],
     "description": "Hireology is a staffing and hiring platform for the franchise and retail-automotive industries.",
-    "dom": "a[href*='sites.hireology.com/']",
+    "dom": [
+      "a[href*='sites.hireology.com/']"
+    ],
     "icon": "Hireology.png",
     "pricing": [
       "poa",
       "recurring"
     ],
     "saas": true,
-    "url": "sites\\.hireology\\.com/",
+    "url": [
+      "sites\\.hireology\\.com/"
+    ],
     "website": "https://hireology.com"
   },
   "Hirschmann HiOS": {
@@ -964,7 +1108,9 @@
       10
     ],
     "description": "Histats is a simple website visitor analysis and tracking tool.",
-    "dom": "img[src*='.histats.com/']",
+    "dom": [
+      "img[src*='.histats.com/']"
+    ],
     "icon": "Histats.png",
     "js": {
       "Histats.ver": "^([\\d\\.]+)$\\;version:\\1"
@@ -1005,7 +1151,9 @@
       17
     ],
     "description": "Hoefler&Co is a digital type foundry (font design studio) in Woburn, Massachusetts (formerly New York City), founded by type designer Jonathan Hoefler. Hoefler&Co designs typefaces for clients and for retail on its website.",
-    "dom": "link[href*='cloud.typography.com/']",
+    "dom": [
+      "link[href*='cloud.typography.com/']"
+    ],
     "icon": "Hoefler&Co.svg",
     "pricing": [
       "low",
@@ -1034,7 +1182,9 @@
     ],
     "description": "Homerr is a logistics company operating in the Netherlands and Belgium.",
     "icon": "Homerr.svg",
-    "requiresCategory": 6,
+    "requiresCategory": [
+      6
+    ],
     "text": [
       "\\bHomerr\\b"
     ],
@@ -1184,7 +1334,9 @@
     ],
     "description": "Hostinger Website Builder is a web-based platform that allows users to create and design websites without needing to write code or have extensive technical knowledge.",
     "icon": "Hostinger.svg",
-    "implies": "Vue.js",
+    "implies": [
+      "Vue.js"
+    ],
     "meta": {
       "generator": "Hostinger Website Builder"
     },
@@ -1193,7 +1345,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "userapp\\.zyrosite\\.com/",
+    "scriptSrc": [
+      "userapp\\.zyrosite\\.com/"
+    ],
     "website": "https://www.hostinger.com"
   },
   "Hostiq": {
@@ -1223,7 +1377,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "tables\\.hostmeapp\\.com",
+    "scriptSrc": [
+      "tables\\.hostmeapp\\.com"
+    ],
     "website": "https://www.hostmeapp.com"
   },
   "Hostpoint": {
@@ -1249,7 +1405,9 @@
       "hotaru_mobile": ""
     },
     "icon": "Hotaru CMS.png",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "meta": {
       "generator": "Hotaru CMS"
     },
@@ -1272,7 +1430,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "//static\\.hotjar\\.com/",
+    "scriptSrc": [
+      "//static\\.hotjar\\.com/"
+    ],
     "website": "https://www.hotjar.com"
   },
   "Hotjar Incoming Feedback": {
@@ -1280,9 +1440,13 @@
       73
     ],
     "description": "Hotjar Incoming Feedback is a widget that sits at the edge of a page.",
-    "dom": "a[href*='hotjar.com/incoming-feedback'][target='_blank']",
+    "dom": [
+      "a[href*='hotjar.com/incoming-feedback'][target='_blank']"
+    ],
     "icon": "Hotjar.svg",
-    "scriptSrc": "\\.hotjar\\.com/preact-incoming-feedback",
+    "scriptSrc": [
+      "\\.hotjar\\.com/preact-incoming-feedback"
+    ],
     "website": "https://www.hotjar.com"
   },
   "Howler.js": {
@@ -1313,7 +1477,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.hrflow\\.ai",
+    "scriptSrc": [
+      "\\.hrflow\\.ai"
+    ],
     "website": "https://hrflow.ai"
   },
   "Htmx": {
@@ -1321,13 +1487,17 @@
       59
     ],
     "description": "Htmx is a JavaScript library for performing AJAX requests, triggering CSS transitions, and invoking WebSocket and server-sent events directly from HTML elements.",
-    "dom": "script[data-src*='/dist/htmx.min.js']",
+    "dom": [
+      "script[data-src*='/dist/htmx.min.js']"
+    ],
     "icon": "Htmx.svg",
     "js": {
       "htmx": ""
     },
     "oss": true,
-    "scriptSrc": "/htmx\\.org@([\\d\\.]+)\\;version:\\1",
+    "scriptSrc": [
+      "/htmx\\.org@([\\d\\.]+)\\;version:\\1"
+    ],
     "website": "https://htmx.org"
   },
   "HubSpot": {
@@ -1342,7 +1512,9 @@
         "hubspot-domain-verification"
       ]
     },
-    "html": "<!-- Start of Async HubSpot",
+    "html": [
+      "<!-- Start of Async HubSpot"
+    ],
     "icon": "HubSpot.svg",
     "js": {
       "_hsq": "",
@@ -1361,7 +1533,9 @@
     ],
     "description": "HubSpot is a marketing and sales software that helps companies attract visitors, convert leads, and close customers.",
     "icon": "HubSpot.svg",
-    "scriptSrc": "js\\.hs-analytics\\.net/analytics",
+    "scriptSrc": [
+      "js\\.hs-analytics\\.net/analytics"
+    ],
     "website": "https://www.hubspot.com/products/marketing/analytics"
   },
   "HubSpot CMS Hub": {
@@ -1374,7 +1548,9 @@
       "x-powered-by": "HubSpot"
     },
     "icon": "HubSpot.svg",
-    "implies": "HubSpot",
+    "implies": [
+      "HubSpot"
+    ],
     "meta": {
       "generator": "HubSpot"
     },
@@ -1398,7 +1574,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "js\\.usemessages\\.com",
+    "scriptSrc": [
+      "js\\.usemessages\\.com"
+    ],
     "website": "https://www.hubspot.com/products/crm/live-chat"
   },
   "HubSpot Cookie Policy Banner": {
@@ -1406,7 +1584,9 @@
       67
     ],
     "description": "HubSpot Cookie Policy banner is a cookie compliance functionality from HubSpot.",
-    "dom": "#hs-eu-cookie-confirmation",
+    "dom": [
+      "#hs-eu-cookie-confirmation"
+    ],
     "icon": "HubSpot.svg",
     "website": "https://knowledge.hubspot.com/reports/customize-your-cookie-tracking-settings-and-privacy-policy-alert"
   },
@@ -1423,7 +1603,9 @@
     "js": {
       "leadin_wordpress.leadinPluginVersion": "^([\\d.]+)$\\;version:\\1"
     },
-    "requires": "WordPress",
+    "requires": [
+      "WordPress"
+    ],
     "website": "https://wordpress.org/plugins/leadin/"
   },
   "Hubalz": {
@@ -1473,7 +1655,9 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "analytics\\.huberway\\.com/pixel/",
+    "scriptSrc": [
+      "analytics\\.huberway\\.com/pixel/"
+    ],
     "website": "https://www.huberway.com/analytics-software"
   },
   "Huddle": {
@@ -1481,7 +1665,9 @@
       21
     ],
     "description": "Huddle is a digital product agency based in Amsterdam, Netherlands, specialising in developing and designing custom software solutions for startups and enterprises, including e-learning products, community platforms, and mobile applications.",
-    "dom": "link[href*='.thehuddle.nl/']",
+    "dom": [
+      "link[href*='.thehuddle.nl/']"
+    ],
     "icon": "Huddle.svg",
     "js": {
       "HuddleEvent": "",
@@ -1520,13 +1706,17 @@
     ],
     "description": "HulkApps Age Verification allow your customers to certify their age before they land in your store.",
     "icon": "HulkApps.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "age-verification\\.hulkapps\\.com/",
+    "scriptSrc": [
+      "age-verification\\.hulkapps\\.com/"
+    ],
     "website": "https://www.hulkapps.com/products/age-verification-shopify"
   },
   "HulkApps Form Builder": {
@@ -1537,14 +1727,18 @@
     ],
     "description": "HulkApps Form Builder is an application that creates customizable, job-specific forms for unit needs.",
     "icon": "HulkApps.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "pricing": [
       "freemium",
       "low",
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "formbuilder\\.hulkapps\\.com/",
+    "scriptSrc": [
+      "formbuilder\\.hulkapps\\.com/"
+    ],
     "website": "https://www.hulkapps.com/products/form-builder-shopify"
   },
   "HulkApps GDPR/CCPA Compliance Manager": {
@@ -1554,7 +1748,9 @@
     ],
     "description": "HulkApps GDPR/CCPA Compliance Manager is a consent management solution.",
     "icon": "HulkApps.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "hulkSetCookie": ""
     },
@@ -1563,7 +1759,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cookiebar\\.hulkapps\\.com/hulk_cookie_bar\\.js",
+    "scriptSrc": [
+      "cookiebar\\.hulkapps\\.com/hulk_cookie_bar\\.js"
+    ],
     "website": "https://www.hulkapps.com/products/gdpr-ccpa-cookie-manager-shopify-app"
   },
   "HulkApps Infinite Product Options": {
@@ -1573,7 +1771,9 @@
     ],
     "description": "HulkApps Infinite Product Options is a unlimited custom options for products. Display variant options as buttons, color and image swatches, and more.",
     "icon": "HulkApps.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "hulkapps.po_url": "productoption\\.hulkapps\\.com"
     },
@@ -1591,9 +1791,13 @@
       100
     ],
     "description": "HulkApps Product Reviews is a customer product reviews app for building social proof for store.",
-    "dom": "link[href*='reviews.hulkapps.com/']",
+    "dom": [
+      "link[href*='reviews.hulkapps.com/']"
+    ],
     "icon": "HulkApps.svg",
-    "implies": "Shopify",
+    "implies": [
+      "Shopify"
+    ],
     "js": {
       "hulkappsProductReview": "",
       "hulkappsReviews": ""
@@ -1617,7 +1821,9 @@
       "mid",
       "recurring"
     ],
-    "scriptSrc": "/.*\\.humanpresence\\.(?:io|app)/",
+    "scriptSrc": [
+      "/.*\\.humanpresence\\.(?:io|app)/"
+    ],
     "website": "https://www.humanpresence.io"
   },
   "Humm": {
@@ -1644,14 +1850,18 @@
       13
     ],
     "description": "Hund.io is an automated status pages with monitoring.",
-    "dom": "link[href*='hund-client-logos']",
+    "dom": [
+      "link[href*='hund-client-logos']"
+    ],
     "icon": "Hund.io.svg",
     "pricing": [
       "recurring",
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.hund\\.io/",
+    "scriptSrc": [
+      "\\.hund\\.io/"
+    ],
     "website": "https://hund.io"
   },
   "Hushly": {
@@ -1659,7 +1869,9 @@
       32
     ],
     "description": "Hushly is an all-in-one B2B marketing software platform.",
-    "dom": "link[href*='.hushly.com/']",
+    "dom": [
+      "link[href*='.hushly.com/']"
+    ],
     "icon": "Hushly.png",
     "js": {
       "__hly_widget_object": ""
@@ -1668,7 +1880,9 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "\\.hushly\\.com/",
+    "scriptSrc": [
+      "\\.hushly\\.com/"
+    ],
     "website": "https://www.hushly.com"
   },
   "Hydra-Shield": {
@@ -1712,7 +1926,9 @@
       "Server": "hypercorn"
     },
     "icon": "hypercorn.png",
-    "implies": "Python",
+    "implies": [
+      "Python"
+    ],
     "oss": true,
     "website": "https://pgjones.gitlab.io/hypercorn/"
   },
@@ -1735,7 +1951,9 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.shopify\\.com/.+/assets/hs-(?:instantload|lazysizes)\\.min\\.js",
+    "scriptSrc": [
+      "cdn\\.shopify\\.com/.+/assets/hs-(?:instantload|lazysizes)\\.min\\.js"
+    ],
     "website": "https://www.hyperspeed.me"
   },
   "Hypervisual Page Builder": {
@@ -1752,9 +1970,13 @@
       "low",
       "recurring"
     ],
-    "requires": "Shopify",
+    "requires": [
+      "Shopify"
+    ],
     "saas": true,
-    "scriptSrc": "cdn\\.gethypervisual\\.com/",
+    "scriptSrc": [
+      "cdn\\.gethypervisual\\.com/"
+    ],
     "website": "https://gethypervisual.com"
   },
   "Hypestyle CSS": {
@@ -1770,7 +1992,9 @@
       }
     },
     "icon": "Hypestyle CSS.png",
-    "implies": "Sass",
+    "implies": [
+      "Sass"
+    ],
     "oss": true,
     "website": "https://www.hypestylecss.xyz"
   },
@@ -1785,7 +2009,9 @@
       "low"
     ],
     "saas": true,
-    "scriptSrc": "/v1/lst/universal-script\\?ph\\=",
+    "scriptSrc": [
+      "/v1/lst/universal-script\\?ph\\="
+    ],
     "website": "https://hyros.com"
   },
   "Hyva Themes": {
@@ -1813,18 +2039,26 @@
     ],
     "description": "h5ai is a modern HTTP web server index for Apache httpd, lighttpd, and nginx.",
     "icon": "default.svg",
-    "implies": "PHP",
+    "implies": [
+      "PHP"
+    ],
     "oss": true,
-    "scriptSrc": "/_h5ai/(?:public|client)/js/scripts\\.js",
+    "scriptSrc": [
+      "/_h5ai/(?:public|client)/js/scripts\\.js"
+    ],
     "website": "https://github.com/lrsjng/h5ai"
   },
   "hCaptcha": {
     "cats": [
       16
     ],
-    "css": "#cf-hcaptcha-container",
+    "css": [
+      "#cf-hcaptcha-container"
+    ],
     "description": "hCaptcha is an anti-bot solution that protects user privacy and rewards websites.",
-    "dom": "link[href*='hcaptcha.com']",
+    "dom": [
+      "link[href*='hcaptcha.com']"
+    ],
     "headers": {
       "content-security-policy": "(?:\\.|//)hcaptcha\\.com"
     },
@@ -1839,7 +2073,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "hcaptcha\\.com/([\\d]+?)/api\\.js\\;version:\\1",
+    "scriptSrc": [
+      "hcaptcha\\.com/([\\d]+?)/api\\.js\\;version:\\1"
+    ],
     "website": "https://www.hcaptcha.com"
   },
   "hantana": {
@@ -1850,7 +2086,9 @@
     "js": {
       "Hantana": ""
     },
-    "scriptSrc": "//hantana\\.org/widget",
+    "scriptSrc": [
+      "//hantana\\.org/widget"
+    ],
     "website": "https://hantana.org/"
   },
   "hoolah": {
@@ -1866,7 +2104,9 @@
       "poa"
     ],
     "saas": true,
-    "scriptSrc": "merchant\\.cdn\\.hoolah\\.co/",
+    "scriptSrc": [
+      "merchant\\.cdn\\.hoolah\\.co/"
+    ],
     "website": "https://www.hoolah.co"
   }
 }

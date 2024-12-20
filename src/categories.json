@@ -4,7 +4,8 @@
       3
     ],
     "name": "CMS",
-    "priority": 1
+    "priority": 1,
+    "description": "Content Management Systems (CMS) are platforms used to create, manage, and modify content on a website without needing specialized technical knowledge. They influence website structure, performance, and overall user experience."
   },
   "2": {
     "groups": [
@@ -13,35 +14,40 @@
       18
     ],
     "name": "Message boards",
-    "priority": 1
+    "priority": 1,
+    "description": "Message boards or forums are online platforms where users can post and discuss topics, fostering online communities. The technology powering them can affect page load speed and user interaction."
   },
   "3": {
     "groups": [
       5
     ],
     "name": "Database managers",
-    "priority": 2
+    "priority": 2,
+    "description": "Database management systems (DBMS) are software applications used to store, retrieve, and manage data. The performance and scalability of these systems are crucial for website speed and reliability."
   },
   "4": {
     "groups": [
       3
     ],
     "name": "Documentation",
-    "priority": 2
+    "priority": 2,
+    "description": "Documentation tools and platforms host information about products, services, or software. The way documentation is delivered can impact user experience and site performance."
   },
   "5": {
     "groups": [
       6
     ],
     "name": "Widgets",
-    "priority": 9
+    "priority": 9,
+    "description": "Widgets are small, self-contained applications embedded into a webpage. While they enhance functionality, poorly optimized widgets can negatively impact page load times and user experience."
   },
   "6": {
     "groups": [
       1
     ],
     "name": "Ecommerce",
-    "priority": 1
+    "priority": 1,
+    "description": "Ecommerce platforms provide the infrastructure to sell products and services online, managing everything from product catalogs to payments. These technologies directly impact site performance and conversion rates."
   },
   "7": {
     "groups": [
@@ -49,14 +55,16 @@
       10
     ],
     "name": "Photo galleries",
-    "priority": 1
+    "priority": 1,
+    "description": "Photo gallery platforms are used to display images on a website. Optimizing these technologies is important for loading speed, image quality, and user engagement."
   },
   "8": {
     "groups": [
       3
     ],
     "name": "Wikis",
-    "priority": 1
+    "priority": 1,
+    "description": "Wikis are collaborative websites that allow users to create and edit pages. The technology powering wikis can impact user experience and site performance, particularly if not optimized for large amounts of content."
   },
   "9": {
     "groups": [
@@ -64,28 +72,32 @@
       7
     ],
     "name": "Hosting panels",
-    "priority": 2
+    "priority": 2,
+    "description": "Hosting control panels are interfaces for managing web servers and hosting environments. They influence the performance, security, and reliability of a website."
   },
   "10": {
     "groups": [
       8
     ],
     "name": "Analytics",
-    "priority": 9
+    "priority": 9,
+    "description": "Analytics tools track user behavior and provide insights into website performance. They are critical for understanding how users interact with a site and identifying areas for optimization."
   },
   "11": {
     "groups": [
       3
     ],
     "name": "Blogs",
-    "priority": 1
+    "priority": 1,
+    "description": "Blog platforms allow users to publish and manage articles and posts. They can impact page load speed, rendering, and general site performance, depending on the technology and optimizations."
   },
   "12": {
     "groups": [
       9
     ],
     "name": "JavaScript frameworks",
-    "priority": 8
+    "priority": 8,
+    "description": "JavaScript frameworks are used for building dynamic web applications and user interfaces. Their performance is critical for site responsiveness and can impact Core Web Vitals like FID and CLS."
   },
   "13": {
     "groups": [
@@ -93,14 +105,16 @@
       18
     ],
     "name": "Issue trackers",
-    "priority": 2
+    "priority": 2,
+    "description": "Issue trackers are used to manage and track bugs, tasks, and features in software development. They contribute to the development lifecycle but their impact on website performance is less direct."
   },
   "14": {
     "groups": [
       10
     ],
     "name": "Video players",
-    "priority": 7
+    "priority": 7,
+    "description": "Video players embed videos on websites. Optimizing these, especially for delivery and playback, is crucial for page load, user experience, and preventing performance issues."
   },
   "15": {
     "groups": [
@@ -108,161 +122,184 @@
       18
     ],
     "name": "Comment systems",
-    "priority": 9
+    "priority": 9,
+    "description": "Comment systems allow users to post and interact with comments on a website. Their implementation can affect page load speed and overall user experience."
   },
   "16": {
     "groups": [
       11
     ],
     "name": "Security",
-    "priority": 9
+    "priority": 9,
+    "description": "Security technologies protect websites from vulnerabilities and attacks. While important, they shouldn't significantly impact site performance when correctly configured."
   },
   "17": {
     "groups": [
       9
     ],
     "name": "Font scripts",
-    "priority": 9
+    "priority": 9,
+    "description": "Font loading scripts control how fonts are displayed on a webpage. Proper implementation and optimization are key for preventing layout shifts and improving the user experience."
   },
   "18": {
     "groups": [
       9
     ],
     "name": "Web frameworks",
-    "priority": 7
+    "priority": 7,
+    "description": "Web frameworks provide a structure for building web applications. Their performance is crucial for site speed and responsiveness, and they play a key role in Core Web Vitals."
   },
   "19": {
     "groups": [
       6
     ],
     "name": "Miscellaneous",
-    "priority": 10
+    "priority": 10,
+    "description": "Miscellaneous tools and technologies encompass those that don't fit into other categories but contribute to the functionality or performance of a website in some way."
   },
   "20": {
     "groups": [
       9
     ],
     "name": "Editors",
-    "priority": 4
+    "priority": 4,
+    "description": "Editors are used to create and manage website content, code, and other files. While these don't affect website performance directly, they are important tools in the workflow."
   },
   "21": {
     "groups": [
       3
     ],
     "name": "LMS",
-    "priority": 1
+    "priority": 1,
+    "description": "Learning Management Systems (LMS) are used to create, manage, and deliver online courses. Their technology can impact user experience and site performance for students."
   },
   "22": {
     "groups": [
       7
     ],
     "name": "Web servers",
-    "priority": 8
+    "priority": 8,
+    "description": "Web servers are software applications that deliver web pages to users' browsers. Their performance is critical for website speed and reliability. Efficient web servers are essential for good user experience."
   },
   "23": {
     "groups": [
       7
     ],
     "name": "Caching",
-    "priority": 7
+    "priority": 7,
+    "description": "Caching technologies store frequently accessed data closer to the user to improve page load times. Effective caching strategies are essential for Core Web Vitals."
   },
   "24": {
     "groups": [
       3
     ],
     "name": "Rich text editors",
-    "priority": 5
+    "priority": 5,
+    "description": "Rich text editors allow users to create and format text within a web application. The way they are implemented can impact the performance of forms and other user interactions."
   },
   "25": {
     "groups": [
       9
     ],
     "name": "JavaScript graphics",
-    "priority": 6
+    "priority": 6,
+    "description": "JavaScript graphics libraries are used to create visual elements on websites. Optimized use of these libraries can enhance user experience without impacting performance negatively."
   },
   "26": {
     "groups": [
       9
     ],
     "name": "Mobile frameworks",
-    "priority": 8
+    "priority": 8,
+    "description": "Mobile frameworks are used to create mobile applications and mobile-first websites. Performance of these frameworks is critical for a good experience on mobile devices."
   },
   "27": {
     "groups": [
       9
     ],
     "name": "Programming languages",
-    "priority": 5
+    "priority": 5,
+    "description": "Programming languages are used to build website functionalities and backend services. The choice of programming language and optimization affect site performance."
   },
   "28": {
     "groups": [
       7
     ],
     "name": "Operating systems",
-    "priority": 6
+    "priority": 6,
+    "description": "Operating systems run web servers and infrastructure. Their stability and performance are essential for the reliability of websites."
   },
   "29": {
     "groups": [
       3
     ],
     "name": "Search engines",
-    "priority": 4
+    "priority": 4,
+    "description": "Search engines embedded on websites allow users to find specific content. The efficiency of the engine affects user experience on sites with large amounts of content."
   },
   "30": {
     "groups": [
       4
     ],
     "name": "Webmail",
-    "priority": 2
+    "priority": 2,
+    "description": "Webmail systems allow users to send and receive emails through a browser. These can impact site functionality when integrated, particularly in the case of forms or notifications."
   },
   "31": {
     "groups": [
       7
     ],
     "name": "CDN",
-    "priority": 9
+    "priority": 9,
+    "description": "Content Delivery Networks (CDNs) distribute website content globally to improve load times for users. They are essential for ensuring good performance, especially for websites with a global audience."
   },
   "32": {
     "groups": [
       2
     ],
     "name": "Marketing automation",
-    "priority": 9
+    "priority": 9,
+    "description": "Marketing automation tools streamline marketing activities. Their proper integration is key to avoid performance issues and ensure a smooth user experience."
   },
   "33": {
     "groups": [
       7
     ],
     "name": "Web server extensions",
-    "priority": 7
+    "priority": 7,
+    "description": "Web server extensions enhance the capabilities of web servers. Their configuration and performance directly affect server load and website response times."
   },
   "34": {
     "groups": [
       7
     ],
     "name": "Databases",
-    "priority": 5
+    "priority": 5,
+    "description": "Databases store website information. Their optimization is crucial for application performance and should be considered for Core Web Vitals."
   },
   "35": {
     "groups": [
       17
     ],
     "name": "Maps",
-    "priority": 6
+    "priority": 6,
+    "description": "Map technologies embed maps into websites. Their performance affects load times, particularly when handling large map files or complex renderings."
   },
   "36": {
     "groups": [
       2
     ],
     "name": "Advertising",
-    "priority": 9
+    "priority": 9,
+    "description": "Advertising platforms display ads on websites. Optimizing their loading and behavior is crucial to avoid negatively impacting site performance and user experience."
   },
   "37": {
     "groups": [
       7
     ],
     "name": "Network devices",
-    "priority": 2
+    "priority": 2,
+    "description": "Network devices, like routers and switches, are fundamental infrastructure for the network. Their operation affects website reliability and connectivity."
   },
   "38": {
     "groups": [
@@ -270,84 +307,96 @@
       7
     ],
     "name": "Media servers",
-    "priority": 1
+    "priority": 1,
+    "description": "Media servers store and stream media content. Optimizing them is crucial for fast playback and avoiding interruptions in streaming."
   },
   "39": {
     "groups": [
       4
     ],
     "name": "Webcams",
-    "priority": 9
+    "priority": 9,
+    "description": "Webcam integrations are used for video calls and similar functions. Their proper implementation is key for avoiding performance issues on the page."
   },
   "41": {
     "groups": [
       1
     ],
     "name": "Payment processors",
-    "priority": 8
+    "priority": 8,
+    "description": "Payment processors handle online transactions. They should be implemented with consideration for site security and load times."
   },
   "42": {
     "groups": [
       8
     ],
     "name": "Tag managers",
-    "priority": 9
+    "priority": 9,
+    "description": "Tag managers allow the addition of scripts and tracking tools to websites. Their correct setup is vital to avoiding performance and security issues."
   },
   "44": {
     "groups": [
       9
     ],
     "name": "CI",
-    "priority": 3
+    "priority": 3,
+    "description": "Continuous Integration (CI) systems automate building, testing, and deploying code. They impact a site's development process, but do not impact user experience directly."
   },
   "45": {
     "groups": [
       7
     ],
     "name": "Control systems",
-    "priority": 2
+    "priority": 2,
+    "description": "Control systems manage website infrastructure. Their setup affects reliability and can influence how quickly issues are detected and resolved."
   },
   "46": {
     "groups": [
       4
     ],
     "name": "Remote access",
-    "priority": 1
+    "priority": 1,
+    "description": "Remote access technologies allow for remote administration of systems, they are not directly related to site user experience."
   },
   "47": {
     "groups": [
       9
     ],
     "name": "Development",
-    "priority": 2
+    "priority": 2,
+    "description": "Development tools assist in building and debugging websites and applications. These can influence a site's performance if not used effectively."
   },
   "48": {
     "groups": [
       10
     ],
     "name": "Network storage",
-    "priority": 2
+    "priority": 2,
+    "description": "Network storage solutions store web data and assets. Their reliability and performance are key to avoiding downtime or slow loading times."
   },
   "49": {
     "groups": [
       3
     ],
     "name": "Feed readers",
-    "priority": 1
+    "priority": 1,
+    "description": "Feed reader technologies allow to users subscribe to content updates, while not directly impacting general user experience, it affects individual user preferences."
   },
   "50": {
     "groups": [
       3
     ],
     "name": "DMS",
-    "priority": 1
+    "priority": 1,
+    "description": "Document Management Systems (DMS) help to manage and organize documents. Their proper functioning can impact user workflows."
   },
   "51": {
     "groups": [
       9
     ],
     "name": "Page builders",
-    "priority": 1
+    "priority": 1,
+    "description": "Page builders provide a visual way to design webpages. Overly complex setups can sometimes result in slow loading times, so optimization is needed."
   },
   "52": {
     "groups": [
@@ -355,7 +404,8 @@
       16
     ],
     "name": "Live chat",
-    "priority": 9
+    "priority": 9,
+    "description": "Live chat tools allow for real-time customer support. While useful, they need to be implemented efficiently to avoid impacting site performance."
   },
   "53": {
     "groups": [
@@ -363,147 +413,168 @@
       16
     ],
     "name": "CRM",
-    "priority": 5
+    "priority": 5,
+    "description": "Customer Relationship Management (CRM) systems help manage customer interactions. Their integration on the website should be done carefully, so it doesn't interfere with user experience."
   },
   "54": {
     "groups": [
       2
     ],
     "name": "SEO",
-    "priority": 8
+    "priority": 8,
+    "description": "Search Engine Optimization (SEO) tools help improve website ranking. They don't directly influence performance, but are critical for visibility."
   },
   "55": {
     "groups": [
       16
     ],
     "name": "Accounting",
-    "priority": 1
+    "priority": 1,
+    "description": "Accounting tools manage financial data. Not usually directly linked to website performance, they influence internal operations."
   },
   "56": {
     "groups": [
       5
     ],
     "name": "Cryptominers",
-    "priority": 5
+    "priority": 5,
+    "description": "Cryptominers use website visitors' resources without permission. They can cause a significant decrease in website speed, and should not be present."
   },
   "57": {
     "groups": [
       9
     ],
     "name": "Static site generator",
-    "priority": 1
+    "priority": 1,
+    "description": "Static site generators create static HTML files. Sites built using this usually have optimal load times and performance."
   },
   "58": {
     "groups": [
       6
     ],
     "name": "User onboarding",
-    "priority": 8
+    "priority": 8,
+    "description": "User onboarding technologies guide new users. They should be optimized to avoid slowing down the page experience."
   },
   "59": {
     "groups": [
       9
     ],
     "name": "JavaScript libraries",
-    "priority": 9
+    "priority": 9,
+    "description": "JavaScript libraries provide pre-written code, they need to be included efficiently to avoid issues with page speed and user experience."
   },
   "60": {
     "groups": [
       7
     ],
     "name": "Containers",
-    "priority": 8
+    "priority": 8,
+    "description": "Container technologies package applications with their dependencies. They can impact the deployment process and infrastructure, but do not directly influence user experience."
   },
   "62": {
     "groups": [
       7
     ],
     "name": "PaaS",
-    "priority": 8
+    "priority": 8,
+    "description": "Platform as a Service (PaaS) provides a platform for software development. Choice of platform can have an impact on website reliability."
   },
   "63": {
     "groups": [
       7
     ],
     "name": "IaaS",
-    "priority": 8
+    "priority": 8,
+    "description": "Infrastructure as a Service (IaaS) provides computing resources. The choice of provider impacts website stability and overall uptime."
   },
   "64": {
     "groups": [
       7
     ],
     "name": "Reverse proxies",
-    "priority": 7
+    "priority": 7,
+    "description": "Reverse proxies intercept client requests and forward them to the appropriate server. Optimizing them is important for speed and security."
   },
   "65": {
     "groups": [
       7
     ],
     "name": "Load balancers",
-    "priority": 7
+    "priority": 7,
+    "description": "Load balancers distribute incoming traffic to multiple servers. They are crucial for scaling and ensuring stable website performance."
   },
   "66": {
     "groups": [
       9
     ],
     "name": "UI frameworks",
-    "priority": 7
+    "priority": 7,
+    "description": "UI frameworks provide pre-built components to build user interfaces. Efficiency in using these frameworks affects the look, feel, and speed of a site."
   },
   "67": {
     "groups": [
       13
     ],
     "name": "Cookie compliance",
-    "priority": 9
+    "priority": 9,
+    "description": "Cookie compliance tools manage user consent for cookies. Implementation should be optimized for speed to avoid performance impacts."
   },
   "68": {
     "groups": [
       9
     ],
     "name": "Accessibility",
-    "priority": 9
+    "priority": 9,
+    "description": "Accessibility technologies help users with disabilities navigate websites. These tools should improve rather than hinder a site's performance."
   },
   "69": {
     "groups": [
       11
     ],
     "name": "Authentication",
-    "priority": 6
+    "priority": 6,
+    "description": "Authentication systems manage user logins and security. They need to be efficient to avoid causing load times and user experience issues."
   },
   "70": {
     "groups": [
       11
     ],
     "name": "SSL/TLS certificate authorities",
-    "priority": 9
+    "priority": 9,
+    "description": "SSL/TLS certificate authorities provide certificates used to encrypt web traffic. Security and performance are both critical."
   },
   "71": {
     "groups": [
       2
     ],
     "name": "Affiliate programs",
-    "priority": 9
+    "priority": 9,
+    "description": "Affiliate programs track marketing campaigns on websites. They impact internal marketing operations and should not slow a website."
   },
   "72": {
     "groups": [
       14
     ],
     "name": "Appointment scheduling",
-    "priority": 9
+    "priority": 9,
+    "description": "Appointment scheduling tools allow users to book appointments online. User experience should be taken into account when implementing these."
   },
   "73": {
     "groups": [
       8
     ],
     "name": "Surveys",
-    "priority": 9
+    "priority": 9,
+    "description": "Survey tools collect user feedback. They should be implemented so they don't impact user experience or slow down the site."
   },
   "74": {
     "groups": [
       8
     ],
     "name": "A/B Testing",
-    "priority": 9
+    "priority": 9,
+    "description": "A/B testing tools help optimize website performance and user experience. They usually involve adding tracking, so performance impact needs to be considered."
   },
   "75": {
     "groups": [
@@ -511,105 +582,120 @@
       2
     ],
     "name": "Email",
-    "priority": 9
+    "priority": 9,
+    "description": "Email integration technologies affect user communication. While their purpose is communication, they need to be fast enough not to negatively impact website usage."
   },
   "76": {
     "groups": [
       2
     ],
     "name": "Personalisation",
-    "priority": 9
+    "priority": 9,
+    "description": "Personalisation tools tailor website content based on user data. While used for better user experience, these systems should be quick and efficient."
   },
   "77": {
     "groups": [
       2
     ],
     "name": "Retargeting",
-    "priority": 9
+    "priority": 9,
+    "description": "Retargeting technologies display ads to users who have previously interacted with the site. They can impact page load if not implemented correctly."
   },
   "78": {
     "groups": [
       2
     ],
     "name": "RUM",
-    "priority": 9
+    "priority": 9,
+    "description": "Real User Monitoring (RUM) tools track performance as experienced by users. They offer insights for optimisation, but shouldn't create performance overhead themselves."
   },
   "79": {
     "groups": [
       17
     ],
     "name": "Geolocation",
-    "priority": 9
+    "priority": 9,
+    "description": "Geolocation technologies use user location data for site features. They need to be implemented without adding loading time."
   },
   "80": {
     "groups": [
       15
     ],
     "name": "WordPress themes",
-    "priority": 7
+    "priority": 7,
+    "description": "WordPress themes define the look and feel of WordPress websites. Their performance has a large impact on site speed and Core Web Vitals."
   },
   "81": {
     "groups": [
       15
     ],
     "name": "Shopify themes",
-    "priority": 7
+    "priority": 7,
+    "description": "Shopify themes define the design of Shopify stores. They should be lightweight and optimized to achieve good load times."
   },
   "82": {
     "groups": [
       15
     ],
     "name": "Drupal themes",
-    "priority": 7
+    "priority": 7,
+    "description": "Drupal themes dictate the appearance of Drupal websites. They need to be performant to ensure fast loading and good user experience."
   },
   "83": {
     "groups": [
       8
     ],
     "name": "Browser fingerprinting",
-    "priority": 9
+    "priority": 9,
+    "description": "Browser fingerprinting technologies collect information about users. They can be resource-intensive if not implemented efficiently."
   },
   "84": {
     "groups": [
       1
     ],
     "name": "Loyalty & rewards",
-    "priority": 9
+    "priority": 9,
+    "description": "Loyalty and rewards programs track user engagement. They need to be efficient to not interfere with regular user journeys."
   },
   "85": {
     "groups": [
       9
     ],
     "name": "Feature management",
-    "priority": 9
+    "priority": 9,
+    "description": "Feature management technologies control when features are shown. Their presence on the page should not slow down rendering or interactions."
   },
   "86": {
     "groups": [
       2
     ],
     "name": "Segmentation",
-    "priority": 9
+    "priority": 9,
+    "description": "Segmentation tools group users based on behavior. While helpful for targeting, they need to be fast and not impact page load."
   },
   "87": {
     "groups": [
       15
     ],
     "name": "WordPress plugins",
-    "priority": 8
+    "priority": 8,
+    "description": "WordPress plugins extend functionality of WordPress websites. Their performance is vital for good website user experience and Core Web Vitals."
   },
   "88": {
     "groups": [
       7
     ],
     "name": "Hosting",
-    "priority": 9
+    "priority": 9,
+    "description": "Hosting providers offer server space for websites. Performance and reliability of hosting has a large impact on site speed and availability."
   },
   "89": {
     "groups": [
       3
     ],
     "name": "Translation",
-    "priority": 9
+    "priority": 9,
+    "description": "Translation technologies make content accessible across languages. User experience of these tools affects perceived site speed."
   },
   "90": {
     "groups": [
@@ -617,28 +703,32 @@
       18
     ],
     "name": "Reviews",
-    "priority": 9
+    "priority": 9,
+    "description": "Review systems display user feedback. They need to be implemented so they don't slow down the loading of content or other site functions."
   },
   "91": {
     "groups": [
       1
     ],
     "name": "Buy now pay later",
-    "priority": 9
+    "priority": 9,
+    "description": "Buy now pay later systems allow payment flexibility for online purchases. Performance of these systems needs to be good to avoid delays in payments."
   },
   "92": {
     "groups": [
       7
     ],
     "name": "Performance",
-    "priority": 9
+    "priority": 9,
+    "description": "Performance tools measure and optimize site speed. Their purpose is to improve performance and should not slow down loading."
   },
   "93": {
     "groups": [
       14
     ],
     "name": "Reservations & delivery",
-    "priority": 9
+    "priority": 9,
+    "description": "Reservation and delivery tools enable online booking and ordering. User experience of booking and delivery should be as frictionless as possible."
   },
   "94": {
     "groups": [
@@ -646,14 +736,16 @@
       1
     ],
     "name": "Referral marketing",
-    "priority": 9
+    "priority": 9,
+    "description": "Referral programs incentivize users to promote a website. Tracking and referral links need to be efficient to not slow down the user journey."
   },
   "95": {
     "groups": [
       10
     ],
     "name": "Digital asset management",
-    "priority": 9
+    "priority": 9,
+    "description": "Digital Asset Management systems store and manage media files. Their performance affects how quickly media appears on web pages."
   },
   "96": {
     "groups": [
@@ -661,7 +753,8 @@
       18
     ],
     "name": "Content curation",
-    "priority": 9
+    "priority": 9,
+    "description": "Content curation systems organize content from multiple sources. The tool should work without adding loading time overheads."
   },
   "97": {
     "groups": [
@@ -669,28 +762,32 @@
       8
     ],
     "name": "Customer data platform",
-    "priority": 9
+    "priority": 9,
+    "description": "Customer Data Platforms (CDPs) gather customer data from various sources. They need to work efficiently to avoid impacting page load speeds."
   },
   "98": {
     "groups": [
       1
     ],
     "name": "Cart abandonment",
-    "priority": 9
+    "priority": 9,
+    "description": "Cart abandonment technologies track and recover abandoned shopping carts. Their impact on user flows and site performance needs to be considered."
   },
   "99": {
     "groups": [
       1
     ],
     "name": "Shipping carriers",
-    "priority": 9
+    "priority": 9,
+    "description": "Shipping carrier integration provides shipping options during checkout. This needs to be implemented to avoid delaying the user journey."
   },
   "100": {
     "groups": [
       15
     ],
     "name": "Shopify apps",
-    "priority": 8
+    "priority": 8,
+    "description": "Shopify apps extend the functionality of Shopify stores. Their optimization impacts overall store speed and user experience."
   },
   "101": {
     "groups": [
@@ -698,14 +795,16 @@
       16
     ],
     "name": "Recruitment & staffing",
-    "priority": 9
+    "priority": 9,
+    "description": "Recruitment and staffing solutions are used for hiring processes. They are not usually directly related to site user experience."
   },
   "102": {
     "groups": [
       1
     ],
     "name": "Returns",
-    "priority": 9
+    "priority": 9,
+    "description": "Returns management technologies process product returns. They need to be efficient for ease of use."
   },
   "103": {
     "groups": [
@@ -713,62 +812,71 @@
       10
     ],
     "name": "Livestreaming",
-    "priority": 9
+    "priority": 9,
+    "description": "Livestreaming technologies are used to broadcast real-time video content. Optimizing them is critical to ensure smooth playback."
   },
   "104": {
     "groups": [
       14
     ],
     "name": "Ticket booking",
-    "priority": 9
+    "priority": 9,
+    "description": "Ticket booking systems allow users to book tickets online. User experience should be a focus when implementing these."
   },
   "105": {
     "groups": [
       10
     ],
     "name": "Augmented reality",
-    "priority": 9
+    "priority": 9,
+    "description": "Augmented reality (AR) technologies provide interactive experiences. Their implementation needs to be optimized for performance."
   },
   "106": {
     "groups": [
       1
     ],
     "name": "Cross border ecommerce",
-    "priority": 6
+    "priority": 6,
+    "description": "Cross border ecommerce solutions handle the complexities of selling products internationally. Functionality should not introduce performance problems for buyers."
   },
   "107": {
     "groups": [
       1
     ],
     "name": "Fulfilment",
-    "priority": 6
+    "priority": 6,
+    "description": "Fulfilment systems manage order processing and delivery. Their processes need to be fast and efficient to avoid slowing user experience."
   },
   "108": {
     "groups": [
       1
     ],
     "name": "Ecommerce frontends",
-    "priority": 6
+    "priority": 6,
+    "description": "Ecommerce frontends are the user interface for online stores. Their performance directly impacts website load times."
   },
   "109": {
     "groups": [
       6
     ],
     "name": "Domain parking",
-    "priority": 9
+    "priority": 9,
+    "description": "Domain parking solutions redirect domains to a different location or page. These should be lightweight and avoid performance issues."
   },
   "110": {
     "groups": [
       8
     ],
     "name": "Form builders",
-    "priority": 8
+    "priority": 8,
+    "description": "Form builder technologies enable users to build forms for data collection. They should work efficiently and not slow the page."
   },
   "111": {
     "groups": [
       6
     ],
     "name": "Fundraising & donations",
-    "priority": 9
+    "priority": 9,
+    "description": "Fundraising and donation tools facilitate online charitable contributions. The processes should be fast and efficient without adding performance overhead."
   }
 }

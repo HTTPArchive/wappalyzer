@@ -1782,7 +1782,7 @@
     "cats": [
       67
     ],
-    "description": "Osano is a data privacy platform that helps your website become compliant with laws such as GDPR and CCPA.",
+    "description": "Osano is a data privacy platform that helps your website comply with regulations such as GDPR and CCPA.",
     "icon": "Osano.svg",
     "js": {
       "Osano": "",

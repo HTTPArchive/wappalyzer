@@ -5,7 +5,7 @@
     ],
     "name": "CMS",
     "priority": 1,
-    "description": "Content Management Systems (CMS) are platforms used to create, manage, and modify content on a website without needing specialized technical knowledge."
+    "description": "Platforms used to create, manage, and modify content on a website without needing specialized technical knowledge"
   },
   "2": {
     "groups": [
@@ -15,7 +15,7 @@
     ],
     "name": "Message boards",
     "priority": 1,
-    "description": "Message boards or forums are online platforms where users can post and discuss topics, fostering online communities."
+    "description": "Online platforms where users can post and discuss topics, fostering online communities"
   },
   "3": {
     "groups": [
@@ -23,7 +23,7 @@
     ],
     "name": "Database managers",
     "priority": 2,
-    "description": "Database management systems (DBMS) are software applications used to store, retrieve, and manage data."
+    "description": "Software applications used to store, retrieve, and manage data"
   },
   "4": {
     "groups": [
@@ -31,7 +31,7 @@
     ],
     "name": "Documentation",
     "priority": 2,
-    "description": "Documentation tools and platforms host information about products, services, or software."
+    "description": "Tools and platforms to host information about products, services, or software"
   },
   "5": {
     "groups": [
@@ -39,7 +39,7 @@
     ],
     "name": "Widgets",
     "priority": 9,
-    "description": "Widgets are small, self-contained applications embedded into a webpage."
+    "description": "Small, self-contained applications embedded into a webpage"
   },
   "6": {
     "groups": [
@@ -47,7 +47,7 @@
     ],
     "name": "Ecommerce",
     "priority": 1,
-    "description": "Ecommerce platforms provide the infrastructure to sell products and services online, managing everything from product catalogs to payments."
+    "description": "Platforms providing the infrastructure to sell products and services online, managing everything from product catalogs to payments"
   },
   "7": {
     "groups": [
@@ -56,7 +56,7 @@
     ],
     "name": "Photo galleries",
     "priority": 1,
-    "description": "Photo gallery platforms are used to display images on a website."
+    "description": "Platforms used to display images on a website"
   },
   "8": {
     "groups": [
@@ -64,7 +64,7 @@
     ],
     "name": "Wikis",
     "priority": 1,
-    "description": "Wikis are collaborative websites that allow users to create and edit pages."
+    "description": "Collaborative websites that allow users to create and edit pages"
   },
   "9": {
     "groups": [
@@ -73,7 +73,7 @@
     ],
     "name": "Hosting panels",
     "priority": 2,
-    "description": "Hosting control panels are interfaces for managing web servers and hosting environments."
+    "description": "Interfaces for managing web servers and hosting environments"
   },
   "10": {
     "groups": [
@@ -81,7 +81,7 @@
     ],
     "name": "Analytics",
     "priority": 9,
-    "description": "Analytics tools track user behavior and provide insights into website performance."
+    "description": "Tools that track user behavior and provide insights into website performance"
   },
   "11": {
     "groups": [
@@ -89,7 +89,7 @@
     ],
     "name": "Blogs",
     "priority": 1,
-    "description": "Blog platforms allow users to publish and manage articles and posts."
+    "description": "Platforms that allow users to publish and manage articles and posts"
   },
   "12": {
     "groups": [
@@ -97,7 +97,7 @@
     ],
     "name": "JavaScript frameworks",
     "priority": 8,
-    "description": "JavaScript frameworks are used for building dynamic web applications and user interfaces."
+    "description": "Used for building dynamic web applications and user interfaces"
   },
   "13": {
     "groups": [
@@ -106,7 +106,7 @@
     ],
     "name": "Issue trackers",
     "priority": 2,
-    "description": "Issue trackers are used to manage and track bugs, tasks, and features in software development."
+     "description": "Used to manage and track bugs, tasks, and features in software development"
   },
   "14": {
     "groups": [
@@ -114,7 +114,7 @@
     ],
     "name": "Video players",
     "priority": 7,
-    "description": "Video players embed videos on websites."
+    "description": "Embed videos on websites"
   },
   "15": {
     "groups": [
@@ -123,7 +123,7 @@
     ],
     "name": "Comment systems",
     "priority": 9,
-    "description": "Comment systems allow users to post and interact with comments on a website."
+     "description": "Allow users to post and interact with comments on a website"
   },
   "16": {
     "groups": [
@@ -131,7 +131,7 @@
     ],
     "name": "Security",
     "priority": 9,
-    "description": "Security technologies protect websites from vulnerabilities and attacks."
+    "description": "Technologies that protect websites from vulnerabilities and attacks"
   },
   "17": {
     "groups": [
@@ -139,7 +139,7 @@
     ],
     "name": "Font scripts",
     "priority": 9,
-    "description": "Font loading scripts control how fonts are displayed on a webpage."
+    "description": "Control how fonts are displayed on a webpage"
   },
   "18": {
     "groups": [
@@ -147,7 +147,7 @@
     ],
     "name": "Web frameworks",
     "priority": 7,
-    "description": "Web frameworks provide a structure for building web applications."
+    "description": "Provide a structure for building web applications"
   },
   "19": {
     "groups": [
@@ -155,7 +155,7 @@
     ],
     "name": "Miscellaneous",
     "priority": 10,
-    "description": "Miscellaneous tools and technologies encompass those that don't fit into other categories."
+    "description": "Tools and technologies that don't fit into other categories"
   },
   "20": {
     "groups": [
@@ -163,15 +163,15 @@
     ],
     "name": "Editors",
     "priority": 4,
-    "description": "Editors are used to create and manage website content, code, and other files."
+    "description": "Used to create and manage website content, code, and other files"
   },
-  "21": {
+   "21": {
     "groups": [
       3
     ],
     "name": "LMS",
     "priority": 1,
-    "description": "Learning Management Systems (LMS) are used to create, manage, and deliver online courses."
+    "description": "Used to create, manage, and deliver online courses"
   },
   "22": {
     "groups": [
@@ -179,7 +179,7 @@
     ],
     "name": "Web servers",
     "priority": 8,
-    "description": "Web servers are software applications that deliver web pages to users' browsers."
+    "description": "Software applications that deliver web pages to users' browsers"
   },
   "23": {
     "groups": [
@@ -187,15 +187,15 @@
     ],
     "name": "Caching",
     "priority": 7,
-    "description": "Caching technologies store frequently accessed data closer to the user to improve page load times."
+    "description": "Technologies that store frequently accessed data closer to the user to improve page load times"
   },
-  "24": {
+    "24": {
     "groups": [
       3
     ],
     "name": "Rich text editors",
     "priority": 5,
-    "description": "Rich text editors allow users to create and format text within a web application."
+    "description": "Allow users to create and format text within a web application"
   },
   "25": {
     "groups": [
@@ -203,15 +203,15 @@
     ],
     "name": "JavaScript graphics",
     "priority": 6,
-    "description": "JavaScript graphics libraries are used to create visual elements on websites."
+    "description": "Libraries used to create visual elements on websites"
   },
-  "26": {
+    "26": {
     "groups": [
       9
     ],
     "name": "Mobile frameworks",
     "priority": 8,
-    "description": "Mobile frameworks are used to create mobile applications and mobile-first websites."
+     "description": "Used to create mobile applications and mobile-first websites"
   },
   "27": {
     "groups": [
@@ -219,15 +219,15 @@
     ],
     "name": "Programming languages",
     "priority": 5,
-    "description": "Programming languages are used to build website functionalities and backend services."
-  },
-  "28": {
+    "description": "Build website functionalities and backend services"
+   },
+    "28": {
     "groups": [
       7
     ],
     "name": "Operating systems",
     "priority": 6,
-    "description": "Operating systems run web servers and infrastructure."
+    "description": "Run web servers and infrastructure"
   },
   "29": {
     "groups": [
@@ -235,7 +235,7 @@
     ],
     "name": "Search engines",
     "priority": 4,
-    "description": "Search engines embedded on websites allow users to find specific content."
+    "description": "Embedded on websites to allow users to find specific content"
   },
   "30": {
     "groups": [
@@ -243,47 +243,47 @@
     ],
     "name": "Webmail",
     "priority": 2,
-    "description": "Webmail systems allow users to send and receive emails through a browser."
+    "description": "Systems that allow users to send and receive emails through a browser"
   },
-  "31": {
+   "31": {
     "groups": [
       7
     ],
     "name": "CDN",
     "priority": 9,
-    "description": "Content Delivery Networks (CDNs) distribute website content globally to improve load times for users."
+    "description": "Distribute website content globally to improve load times for users"
   },
-  "32": {
+    "32": {
     "groups": [
       2
     ],
     "name": "Marketing automation",
     "priority": 9,
-    "description": "Marketing automation tools streamline marketing activities."
+     "description": "Tools that streamline marketing activities"
   },
-  "33": {
+   "33": {
     "groups": [
       7
     ],
     "name": "Web server extensions",
     "priority": 7,
-    "description": "Web server extensions enhance the capabilities of web servers."
+    "description": "Enhance the capabilities of web servers"
   },
-  "34": {
+    "34": {
     "groups": [
       7
     ],
     "name": "Databases",
     "priority": 5,
-    "description": "Databases store website information."
+    "description": "Store website information"
   },
-  "35": {
+    "35": {
     "groups": [
       17
     ],
     "name": "Maps",
     "priority": 6,
-    "description": "Map technologies embed maps into websites."
+    "description": "Technologies that embed maps into websites"
   },
   "36": {
     "groups": [
@@ -291,40 +291,40 @@
     ],
     "name": "Advertising",
     "priority": 9,
-    "description": "Advertising platforms display ads on websites."
+     "description": "Platforms that display ads on websites"
   },
-  "37": {
+    "37": {
     "groups": [
       7
     ],
     "name": "Network devices",
     "priority": 2,
-    "description": "Network devices, like routers and switches, are fundamental infrastructure for the network."
+    "description": "Like routers and switches, are fundamental infrastructure for the network"
   },
-  "38": {
+    "38": {
     "groups": [
       10,
       7
     ],
     "name": "Media servers",
     "priority": 1,
-    "description": "Media servers store and stream media content."
+    "description": "Store and stream media content"
   },
-  "39": {
+    "39": {
     "groups": [
       4
     ],
     "name": "Webcams",
     "priority": 9,
-    "description": "Webcam integrations are used for video calls and similar functions."
+    "description": "Integrations used for video calls and similar functions"
   },
-  "41": {
+   "41": {
     "groups": [
       1
     ],
     "name": "Payment processors",
     "priority": 8,
-    "description": "Payment processors handle online transactions."
+    "description": "Handle online transactions"
   },
   "42": {
     "groups": [
@@ -332,23 +332,23 @@
     ],
     "name": "Tag managers",
     "priority": 9,
-    "description": "Tag managers allow the addition of scripts and tracking tools to websites."
-  },
-  "44": {
+     "description": "Allow the addition of scripts and tracking tools to websites"
+   },
+   "44": {
     "groups": [
       9
     ],
     "name": "CI",
     "priority": 3,
-    "description": "Continuous Integration (CI) systems automate building, testing, and deploying code."
+    "description": "Systems that automate building, testing, and deploying code"
   },
-  "45": {
+    "45": {
     "groups": [
       7
     ],
     "name": "Control systems",
     "priority": 2,
-    "description": "Control systems manage website infrastructure."
+    "description": "Manage website infrastructure"
   },
   "46": {
     "groups": [
@@ -356,47 +356,47 @@
     ],
     "name": "Remote access",
     "priority": 1,
-    "description": "Remote access technologies allow for remote administration of systems."
+    "description": "Technologies that allow for remote administration of systems"
   },
-  "47": {
+    "47": {
     "groups": [
       9
     ],
     "name": "Development",
     "priority": 2,
-    "description": "Development tools assist in building and debugging websites and applications."
+    "description": "Tools that assist in building and debugging websites and applications"
   },
-  "48": {
+    "48": {
     "groups": [
       10
     ],
     "name": "Network storage",
     "priority": 2,
-    "description": "Network storage solutions store web data and assets."
+     "description": "Solutions that store web data and assets"
   },
-  "49": {
+   "49": {
     "groups": [
       3
     ],
     "name": "Feed readers",
     "priority": 1,
-    "description": "Feed reader technologies allow to users subscribe to content updates."
+    "description": "Technologies that allow users to subscribe to content updates"
   },
-  "50": {
+    "50": {
     "groups": [
       3
     ],
     "name": "DMS",
     "priority": 1,
-    "description": "Document Management Systems (DMS) help to manage and organize documents."
+    "description": "Help to manage and organize documents"
   },
-  "51": {
+   "51": {
     "groups": [
       9
     ],
     "name": "Page builders",
     "priority": 1,
-    "description": "Page builders provide a visual way to design webpages."
+     "description": "Provide a visual way to design webpages"
   },
   "52": {
     "groups": [
@@ -405,40 +405,40 @@
     ],
     "name": "Live chat",
     "priority": 9,
-    "description": "Live chat tools allow for real-time customer support."
+    "description": "Tools that allow for real-time customer support"
   },
-  "53": {
+    "53": {
     "groups": [
       2,
       16
     ],
     "name": "CRM",
     "priority": 5,
-    "description": "Customer Relationship Management (CRM) systems help manage customer interactions."
+    "description": "Systems that help manage customer interactions"
   },
-  "54": {
+   "54": {
     "groups": [
       2
     ],
     "name": "SEO",
     "priority": 8,
-    "description": "Search Engine Optimization (SEO) tools help improve website ranking."
+     "description": "Tools that help improve website ranking"
   },
-  "55": {
+    "55": {
     "groups": [
       16
     ],
     "name": "Accounting",
     "priority": 1,
-    "description": "Accounting tools manage financial data."
-  },
-  "56": {
+    "description": "Tools that manage financial data"
+   },
+    "56": {
     "groups": [
       5
     ],
     "name": "Cryptominers",
     "priority": 5,
-    "description": "Cryptominers use website visitors' resources without permission."
+     "description": "Use website visitors' resources without permission"
   },
   "57": {
     "groups": [
@@ -446,15 +446,15 @@
     ],
     "name": "Static site generator",
     "priority": 1,
-    "description": "Static site generators create static HTML files."
+    "description": "Create static HTML files"
   },
-  "58": {
+   "58": {
     "groups": [
       6
     ],
     "name": "User onboarding",
     "priority": 8,
-    "description": "User onboarding technologies guide new users."
+    "description": "Technologies that guide new users"
   },
   "59": {
     "groups": [
@@ -462,15 +462,15 @@
     ],
     "name": "JavaScript libraries",
     "priority": 9,
-    "description": "JavaScript libraries provide pre-written code."
+    "description": "Provide pre-written code"
   },
-  "60": {
+   "60": {
     "groups": [
       7
     ],
     "name": "Containers",
     "priority": 8,
-    "description": "Container technologies package applications with their dependencies."
+    "description": "Technologies that package applications with their dependencies"
   },
   "62": {
     "groups": [
@@ -478,31 +478,31 @@
     ],
     "name": "PaaS",
     "priority": 8,
-    "description": "Platform as a Service (PaaS) provides a platform for software development."
+    "description": "Provides a platform for software development"
   },
-  "63": {
+   "63": {
     "groups": [
       7
     ],
     "name": "IaaS",
     "priority": 8,
-    "description": "Infrastructure as a Service (IaaS) provides computing resources."
+    "description": "Provides computing resources"
   },
-  "64": {
+    "64": {
     "groups": [
       7
     ],
     "name": "Reverse proxies",
     "priority": 7,
-    "description": "Reverse proxies intercept client requests and forward them to the appropriate server."
-  },
+    "description": "Intercept client requests and forward them to the appropriate server"
+   },
   "65": {
     "groups": [
       7
     ],
     "name": "Load balancers",
     "priority": 7,
-    "description": "Load balancers distribute incoming traffic to multiple servers."
+    "description": "Distribute incoming traffic to multiple servers"
   },
   "66": {
     "groups": [
@@ -510,7 +510,7 @@
     ],
     "name": "UI frameworks",
     "priority": 7,
-    "description": "UI frameworks provide pre-built components to build user interfaces."
+    "description": "Provide pre-built components to build user interfaces"
   },
   "67": {
     "groups": [
@@ -518,39 +518,39 @@
     ],
     "name": "Cookie compliance",
     "priority": 9,
-    "description": "Cookie compliance tools manage user consent for cookies."
+    "description": "Tools that manage user consent for cookies"
   },
-  "68": {
+   "68": {
     "groups": [
       9
     ],
     "name": "Accessibility",
     "priority": 9,
-    "description": "Accessibility technologies help users with disabilities navigate websites."
+     "description": "Technologies that help users with disabilities navigate websites"
   },
-  "69": {
+   "69": {
     "groups": [
       11
     ],
     "name": "Authentication",
     "priority": 6,
-    "description": "Authentication systems manage user logins and security."
+    "description": "Systems that manage user logins and security"
   },
-  "70": {
+    "70": {
     "groups": [
       11
     ],
     "name": "SSL/TLS certificate authorities",
     "priority": 9,
-    "description": "SSL/TLS certificate authorities provide certificates used to encrypt web traffic."
+    "description": "Provide certificates used to encrypt web traffic"
   },
-  "71": {
+    "71": {
     "groups": [
       2
     ],
     "name": "Affiliate programs",
     "priority": 9,
-    "description": "Affiliate programs track marketing campaigns on websites."
+    "description": "Track marketing campaigns on websites"
   },
   "72": {
     "groups": [
@@ -558,40 +558,40 @@
     ],
     "name": "Appointment scheduling",
     "priority": 9,
-    "description": "Appointment scheduling tools allow users to book appointments online."
+    "description": "Tools that allow users to book appointments online"
   },
-  "73": {
+   "73": {
     "groups": [
       8
     ],
     "name": "Surveys",
     "priority": 9,
-    "description": "Survey tools collect user feedback."
+     "description": "Tools that collect user feedback"
   },
-  "74": {
+   "74": {
     "groups": [
       8
     ],
     "name": "A/B Testing",
     "priority": 9,
-    "description": "A/B testing tools help optimize website performance and user experience."
+    "description": "Tools that help optimize website performance and user experience"
   },
-  "75": {
+   "75": {
     "groups": [
       4,
       2
     ],
     "name": "Email",
     "priority": 9,
-    "description": "Email integration technologies affect user communication."
+    "description": "Integration technologies that affect user communication"
   },
-  "76": {
+    "76": {
     "groups": [
       2
     ],
     "name": "Personalisation",
     "priority": 9,
-    "description": "Personalisation tools tailor website content based on user data."
+    "description": "Tools that tailor website content based on user data"
   },
   "77": {
     "groups": [
@@ -599,15 +599,15 @@
     ],
     "name": "Retargeting",
     "priority": 9,
-    "description": "Retargeting technologies display ads to users who have previously interacted with the site."
+    "description": "Technologies that display ads to users who have previously interacted with the site"
   },
-  "78": {
+    "78": {
     "groups": [
       2
     ],
     "name": "RUM",
     "priority": 9,
-    "description": "Real User Monitoring (RUM) tools track performance as experienced by users."
+    "description": "Tools that track performance as experienced by users"
   },
   "79": {
     "groups": [
@@ -615,7 +615,7 @@
     ],
     "name": "Geolocation",
     "priority": 9,
-    "description": "Geolocation technologies use user location data for site features."
+    "description": "Technologies that use user location data for site features"
   },
   "80": {
     "groups": [
@@ -623,7 +623,7 @@
     ],
     "name": "WordPress themes",
     "priority": 7,
-    "description": "WordPress themes define the look and feel of WordPress websites."
+    "description": "Define the look and feel of WordPress websites"
   },
   "81": {
     "groups": [
@@ -631,7 +631,7 @@
     ],
     "name": "Shopify themes",
     "priority": 7,
-    "description": "Shopify themes define the design of Shopify stores."
+     "description": "Define the design of Shopify stores"
   },
   "82": {
     "groups": [
@@ -639,31 +639,31 @@
     ],
     "name": "Drupal themes",
     "priority": 7,
-    "description": "Drupal themes dictate the appearance of Drupal websites."
+    "description": "Dictate the appearance of Drupal websites"
   },
-  "83": {
+    "83": {
     "groups": [
       8
     ],
     "name": "Browser fingerprinting",
     "priority": 9,
-    "description": "Browser fingerprinting technologies collect information about users."
+    "description": "Technologies that collect information about users"
   },
-  "84": {
+    "84": {
     "groups": [
       1
     ],
     "name": "Loyalty & rewards",
     "priority": 9,
-    "description": "Loyalty and rewards programs track user engagement."
+     "description": "Programs that track user engagement"
   },
-  "85": {
+   "85": {
     "groups": [
       9
     ],
     "name": "Feature management",
     "priority": 9,
-    "description": "Feature management technologies control when features are shown."
+    "description": "Technologies that control when features are shown"
   },
   "86": {
     "groups": [
@@ -671,23 +671,23 @@
     ],
     "name": "Segmentation",
     "priority": 9,
-    "description": "Segmentation tools group users based on behavior."
+     "description": "Tools that group users based on behavior"
   },
-  "87": {
+   "87": {
     "groups": [
       15
     ],
     "name": "WordPress plugins",
     "priority": 8,
-    "description": "WordPress plugins extend functionality of WordPress websites."
+     "description": "Extend functionality of WordPress websites"
   },
-  "88": {
+    "88": {
     "groups": [
       7
     ],
     "name": "Hosting",
     "priority": 9,
-    "description": "Hosting providers offer server space for websites."
+    "description": "Providers that offer server space for websites"
   },
   "89": {
     "groups": [
@@ -695,7 +695,7 @@
     ],
     "name": "Translation",
     "priority": 9,
-    "description": "Translation technologies make content accessible across languages."
+    "description": "Technologies that make content accessible across languages"
   },
   "90": {
     "groups": [
@@ -704,40 +704,40 @@
     ],
     "name": "Reviews",
     "priority": 9,
-    "description": "Review systems display user feedback."
+    "description": "Systems that display user feedback"
   },
-  "91": {
+    "91": {
     "groups": [
       1
     ],
     "name": "Buy now pay later",
     "priority": 9,
-    "description": "Buy now pay later systems allow payment flexibility for online purchases."
+     "description": "Systems that allow payment flexibility for online purchases"
   },
-  "92": {
+    "92": {
     "groups": [
       7
     ],
     "name": "Performance",
     "priority": 9,
-    "description": "Performance tools measure and optimize site speed."
+    "description": "Tools that measure and optimize site speed"
   },
-  "93": {
+   "93": {
     "groups": [
       14
     ],
     "name": "Reservations & delivery",
     "priority": 9,
-    "description": "Reservation and delivery tools enable online booking and ordering."
+     "description": "Tools that enable online booking and ordering"
   },
-  "94": {
+    "94": {
     "groups": [
       2,
       1
     ],
     "name": "Referral marketing",
     "priority": 9,
-    "description": "Referral programs incentivize users to promote a website."
+     "description": "Programs that incentivize users to promote a website"
   },
   "95": {
     "groups": [
@@ -745,33 +745,33 @@
     ],
     "name": "Digital asset management",
     "priority": 9,
-    "description": "Digital Asset Management systems store and manage media files."
+    "description": "Systems that store and manage media files"
   },
-  "96": {
+    "96": {
     "groups": [
       2,
       18
     ],
     "name": "Content curation",
     "priority": 9,
-    "description": "Content curation systems organize content from multiple sources."
+    "description": "Systems that organize content from multiple sources"
   },
-  "97": {
+   "97": {
     "groups": [
       2,
       8
     ],
     "name": "Customer data platform",
     "priority": 9,
-    "description": "Customer Data Platforms (CDPs) gather customer data from various sources."
+    "description": "Gather customer data from various sources"
   },
-  "98": {
+   "98": {
     "groups": [
       1
     ],
     "name": "Cart abandonment",
     "priority": 9,
-    "description": "Cart abandonment technologies track and recover abandoned shopping carts."
+     "description": "Technologies that track and recover abandoned shopping carts"
   },
   "99": {
     "groups": [
@@ -779,7 +779,7 @@
     ],
     "name": "Shipping carriers",
     "priority": 9,
-    "description": "Shipping carrier integration provides shipping options during checkout."
+    "description": "Integration that provides shipping options during checkout"
   },
   "100": {
     "groups": [
@@ -787,7 +787,7 @@
     ],
     "name": "Shopify apps",
     "priority": 8,
-    "description": "Shopify apps extend the functionality of Shopify stores."
+    "description": "Extend the functionality of Shopify stores"
   },
   "101": {
     "groups": [
@@ -796,7 +796,7 @@
     ],
     "name": "Recruitment & staffing",
     "priority": 9,
-    "description": "Recruitment and staffing solutions are used for hiring processes."
+    "description": "Solutions used for hiring processes"
   },
   "102": {
     "groups": [
@@ -804,7 +804,7 @@
     ],
     "name": "Returns",
     "priority": 9,
-    "description": "Returns management technologies process product returns."
+    "description": "Technologies that process product returns"
   },
   "103": {
     "groups": [
@@ -813,39 +813,39 @@
     ],
     "name": "Livestreaming",
     "priority": 9,
-    "description": "Livestreaming technologies are used to broadcast real-time video content."
+    "description": "Technologies used to broadcast real-time video content"
   },
-  "104": {
+   "104": {
     "groups": [
       14
     ],
     "name": "Ticket booking",
     "priority": 9,
-    "description": "Ticket booking systems allow users to book tickets online."
+     "description": "Systems that allow users to book tickets online"
   },
-  "105": {
+    "105": {
     "groups": [
       10
     ],
     "name": "Augmented reality",
     "priority": 9,
-    "description": "Augmented reality (AR) technologies provide interactive experiences."
+    "description": "Technologies that provide interactive experiences"
   },
-  "106": {
+    "106": {
     "groups": [
       1
     ],
     "name": "Cross border ecommerce",
     "priority": 6,
-    "description": "Cross border ecommerce solutions handle the complexities of selling products internationally."
+    "description": "Solutions that handle the complexities of selling products internationally"
   },
-  "107": {
+   "107": {
     "groups": [
       1
     ],
     "name": "Fulfilment",
     "priority": 6,
-    "description": "Fulfilment systems manage order processing and delivery."
+    "description": "Systems that manage order processing and delivery"
   },
   "108": {
     "groups": [
@@ -853,30 +853,30 @@
     ],
     "name": "Ecommerce frontends",
     "priority": 6,
-    "description": "Ecommerce frontends are the user interface for online stores."
+    "description": "The user interface for online stores"
   },
   "109": {
-    "groups": [
+     "groups": [
       6
     ],
     "name": "Domain parking",
     "priority": 9,
-    "description": "Domain parking solutions redirect domains to a different location or page."
+     "description": "Solutions that redirect domains to a different location or page"
   },
-  "110": {
+    "110": {
     "groups": [
       8
     ],
     "name": "Form builders",
     "priority": 8,
-    "description": "Form builder technologies enable users to build forms for data collection."
+    "description": "Technologies that enable users to build forms for data collection"
   },
-  "111": {
+   "111": {
     "groups": [
       6
     ],
     "name": "Fundraising & donations",
     "priority": 9,
-    "description": "Fundraising and donation tools facilitate online charitable contributions."
+    "description": "Tools that facilitate online charitable contributions"
   }
 }

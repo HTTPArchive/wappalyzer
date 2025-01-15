@@ -5,52 +5,12 @@ const fs = require('fs')
 const path = require('path')
 const { BigQuery } = require('@google-cloud/bigquery')
 
-const readJsonFiles = (directory) => {
-  const files = fs.readdirSync(directory)
-  return files.reduce((mergedData, file) => {
-    const filePath = path.join(directory, file)
-    const data = fs.readFileSync(filePath, 'utf8')
-    return { ...mergedData, ...JSON.parse(data) }
-  }, {})
-}
+const bigquery = new BigQuery({
+  keyFilename: '/tmp/gcp_key.json',
+})
 
-const getArray = (value) =>
-  typeof value === 'string' ? [value] : Array.isArray(value) ? value : []
-
-const getRuleObject = (value) => {
-  if (typeof value === 'string') {
-    return [{ name: value, value: null }]
-  }
-  if (Array.isArray(value)) {
-    return value.map((key) => ({ name: key, value: null }))
-  }
-  if (typeof value === 'object') {
-    return Object.keys(value).map((key) => ({
-      name: key,
-      value:
-        typeof value[key] === 'object'
-          ? JSON.stringify(value[key])
-          : value[key].toString(),
-    }))
-  }
-  return []
-}
-
-const loadToBigQuery = async (
-  data,
-  tableName = 'apps',
-  datasetName = 'wappalyzer',
-  writeDisposition = 'WRITE_TRUNCATE',
-  sourceFormat = 'NEWLINE_DELIMITED_JSON'
-) => {
-  if (!data) {
-    throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`)
-  }
-
-  const bigquery = new BigQuery({
-    keyFilename: '/tmp/gcp_key.json',
-  })
-  const schema = {
+const schemas = {
+  technologies: {
     fields: [
       { name: 'name', type: 'STRING' },
       { name: 'categories', type: 'STRING', mode: 'REPEATED' },
@@ -137,8 +97,58 @@ const loadToBigQuery = async (
       { name: 'script', type: 'STRING', mode: 'REPEATED' },
       { name: 'html', type: 'STRING', mode: 'REPEATED' },
     ],
+  },
+  categories: {
+    fields: [
+      { name: 'name', type: 'STRING' },
+      { name: 'description', type: 'STRING' },
+    ],
+  },
+}
+
+const readJsonFiles = (directory) => {
+  const files = fs.readdirSync(directory)
+  return files.reduce((mergedData, file) => {
+    const filePath = path.join(directory, file)
+    const data = fs.readFileSync(filePath, 'utf8')
+    return { ...mergedData, ...JSON.parse(data) }
+  }, {})
+}
+
+const getArray = (value) =>
+  typeof value === 'string' ? [value] : Array.isArray(value) ? value.sort() : []
+
+const getRuleObject = (value) => {
+  if (typeof value === 'string') {
+    return [{ name: value, value: null }]
+  }
+  if (Array.isArray(value)) {
+    return value.map((key) => ({ name: key, value: null }))
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).map((key) => ({
+      name: key,
+      value:
+        typeof value[key] === 'object'
+          ? JSON.stringify(value[key])
+          : value[key].toString(),
+    }))
+  }
+  return []
+}
+
+const loadToBigQuery = async (
+  data,
+  tableName = 'technologies',
+  datasetName = 'wappalyzer',
+  writeDisposition = 'WRITE_TRUNCATE',
+  sourceFormat = 'NEWLINE_DELIMITED_JSON'
+) => {
+  if (!data) {
+    throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`)
   }
 
+  const schema = schemas[tableName]
   const options = { schema, sourceFormat, writeDisposition }
   const [job] = await bigquery
     .dataset(datasetName)
@@ -147,11 +157,11 @@ const loadToBigQuery = async (
 
   if (job.status.errors && job.status.errors.length > 0) {
     console.error('Errors encountered:', job.status.errors)
-    throw new Error('Error loading data into BigQuery')
+    throw new Error(`Error loading data into ${datasetName}.${tableName}`)
   }
 
   console.log(
-    `Loaded ${job.numRowsLoaded} rows into ${datasetName}.${tableName}...`
+    `Loaded ${job.statistics.load.outputRows} rows into ${datasetName}.${tableName}`
   )
 }
 
@@ -164,9 +174,9 @@ const main = async () => {
   const transformedTechnologies = Object.keys(technologies).map((key) => {
     const app = {
       name: key,
-      categories: technologies[key].cats.map(
-        (category) => categories[category].name
-      ),
+      categories: technologies[key].cats
+        .map((category) => categories[category].name)
+        .sort(),
     }
 
     ;[
@@ -208,13 +218,23 @@ const main = async () => {
   const transformedTechnologiesJsonL = transformedTechnologies
     .map((line) => JSON.stringify(line))
     .join('\n')
-  const filePath = './transformedTechnologies.jsonl'
-  fs.writeFileSync(filePath, transformedTechnologiesJsonL)
+  const technologiesFilePath = './transformedTechnologies.jsonl'
+  fs.writeFileSync(technologiesFilePath, transformedTechnologiesJsonL)
+  await loadToBigQuery(technologiesFilePath, 'technologies')
+  fs.unlinkSync(technologiesFilePath)
 
-  await loadToBigQuery(filePath, 'apps')
-
-  // cleanup file
-  fs.unlinkSync(filePath)
+  const transformedCategoriesJsonL = Object.values(categories)
+    .map((value) =>
+      JSON.stringify({
+        name: value.name,
+        description: value.description,
+      })
+    )
+    .join('\n')
+  const categoriesFilePath = './transformedCategories.jsonl'
+  fs.writeFileSync(categoriesFilePath, transformedCategoriesJsonL)
+  await loadToBigQuery(categoriesFilePath, 'categories')
+  fs.unlinkSync(categoriesFilePath)
 }
 
 main().catch(console.error)

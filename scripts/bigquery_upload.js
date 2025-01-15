@@ -174,9 +174,9 @@ const main = async () => {
   const transformedTechnologies = Object.keys(technologies).map((key) => {
     const app = {
       name: key,
-      categories: technologies[key].cats.map(
-        (category) => categories[category].name
-      ).sort(),
+      categories: technologies[key].cats
+        .map((category) => categories[category].name)
+        .sort(),
     }
 
     ;[

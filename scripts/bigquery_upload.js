@@ -116,7 +116,7 @@ const readJsonFiles = (directory) => {
 }
 
 const getArray = (value) =>
-  typeof value === 'string' ? [value] : Array.isArray(value) ? value : []
+  typeof value === 'string' ? [value] : Array.isArray(value) ? value.sort() : []
 
 const getRuleObject = (value) => {
   if (typeof value === 'string') {
@@ -176,7 +176,7 @@ const main = async () => {
       name: key,
       categories: technologies[key].cats.map(
         (category) => categories[category].name
-      ),
+      ).sort(),
     }
 
     ;[

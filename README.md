@@ -347,7 +347,7 @@ Plus any of:
       <td><code>"\\.example-class"</code></td>
     </tr>
     <tr>
-      <td><code>probe</code></td>
+      <td><code>probe</code><br>(not used in HTTP Archive)</td>
       <td>Object</td>
       <td>
         Request a URL to test for its existence or match text content.
@@ -355,7 +355,7 @@ Plus any of:
       <td><code>{ "/path": "Example text" }</code></td>
     </tr>
     <tr>
-      <td><code>robots</code></td>
+      <td><code>robots</code><br>(not used in HTTP Archive)</td>
       <td>String | Array</td>
       <td>
         Robots.txt contents.
@@ -369,7 +369,7 @@ Plus any of:
       <td><code>"^https?//.+\\.wordpress\\.com"</code></td>
     </tr>
     <tr>
-      <td><code>xhr</code></td>
+      <td><code>xhr</code><br>(not used in HTTP Archive)</td>
       <td>String | Array</td>
       <td>Hostnames of XHR requests.</td>
       <td><code>"cdn\\.netlify\\.com"</code></td>
@@ -389,7 +389,7 @@ Plus any of:
       <td><code>"jquery\\.js"</code></td>
     </tr>
     <tr>
-      <td><code>scripts</code></td>
+      <td><code>scripts</code><br>(not used in HTTP Archive)</td>
       <td>String | Array</td>
       <td>
         JavaScript source code. Inspects inline and external scripts. For performance reasons, avoid

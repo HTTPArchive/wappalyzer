@@ -375,6 +375,9 @@
       "payg",
       "recurring"
     ],
+    "dns": {
+      "SOA": "\\.imgkit\\.net"
+    },
     "saas": true,
     "website": "https://imagekit.io/"
   },

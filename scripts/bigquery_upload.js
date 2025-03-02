@@ -203,7 +203,6 @@ const main = async () => {
     ;[
       'website',
       'description',
-      'icon',
       'cpe',
       'saas',
       'oss',
@@ -211,6 +210,9 @@ const main = async () => {
     ].forEach((field) => {
       app[field] = technologies[key][field]
     })
+
+    // Handle icon field separately to ensure .png extension
+    app.icon = technologies[key].icon ? `${technologies[key].icon.replace(/\.[^/.]+$/, '')}.png` : technologies[key].icon;
 
     return app
   })

@@ -200,19 +200,16 @@ const main = async () => {
         app[field] = getRuleObject(technologies[key][field])
       }
     )
-    ;[
-      'website',
-      'description',
-      'cpe',
-      'saas',
-      'oss',
-      'pricing',
-    ].forEach((field) => {
-      app[field] = technologies[key][field]
-    })
+    ;['website', 'description', 'cpe', 'saas', 'oss', 'pricing'].forEach(
+      (field) => {
+        app[field] = technologies[key][field]
+      }
+    )
 
     // Handle icon field separately to ensure .png extension
-    app.icon = technologies[key].icon ? `${technologies[key].icon.replace(/\.[^/.]+$/, '')}.png` : technologies[key].icon;
+    app.icon = technologies[key].icon
+      ? `${technologies[key].icon.replace(/\.[^/.]+$/, '')}.png`
+      : technologies[key].icon
 
     return app
   })

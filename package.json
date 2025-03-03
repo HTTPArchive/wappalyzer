@@ -25,8 +25,9 @@
     "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "validate": "yarn run lint && node ./scripts/validate.js",
     "test": "jest",
-    "upload": "node ./scripts/bigquery_upload.js",
     "convert": "node --no-warnings ./scripts/convert.js",
+    "upload": "yarn ./scripts/bigquery_upload.js",
+    "icons_upload": "yarn ./scripts/upload_icons.js",
     "build": "yarn run validate && yarn run convert && node ./scripts/build.js"
   },
   "jest": {

@@ -2577,7 +2577,7 @@
     ],
     "description": "Transformers.js is a JavaScript library that brings Hugging Face's Transformers to the browser and Node.js.",
     "icon": "Transformers.js.svg",
-    "js": {
+    "scripts": {
       "pipeline\\s*\\(\\s*[\"'](?:fill\\-mask|question\\-answering|sentence\\-similarity|summarization|table\\-question\\-answering|text\\-classification|sentiment\\-analysis|text\\-generation|text2text\\-generation|token\\-classification|ner|translation|zero\\-shot\\-classification|feature\\-extraction|background\\-removal|depth\\-estimation|image\\-classification|image\\-segmentation|image\\-to\\-image|mask\\-generation|object\\-detection|image\\-feature\\-extraction|audio\\-classification|automatic\\-speech\\-recognition|text\\-to\\-speech|text\\-to\\-audio|document\\-question\\-answering|image\\-to\\-text|text\\-to\\-image|visual\\-question\\-answering|zero\\-shot\\-audio\\-classification|zero\\-shot\\-image\\-classification|zero\\-shot\\-object\\-detection)['\"]": ""
     },
     "oss": true,

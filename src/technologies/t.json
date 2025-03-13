@@ -2573,7 +2573,7 @@
   },
   "Transformers.js": {
     "cats": [
-      12
+      59
     ],
     "description": "Transformers.js is a JavaScript library that brings Hugging Face Transformers to the browser and Node.js.",
     "icon": "Transformers.js.svg",

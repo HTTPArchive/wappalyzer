@@ -11,7 +11,10 @@
 
 <br>
 
-**[Wappalyzer](https://www.wappalyzer.com) identifies technologies on websites, such as CMS, web frameworks, ecommerce platforms, JavaScript libraries, analytics tools and [more](https://www.wappalyzer.com/technologies).**
+[Wappalyzer](https://www.wappalyzer.com) identifies technologies on websites, such as CMS, web frameworks, ecommerce platforms, JavaScript libraries, analytics tools and [more](https://www.wappalyzer.com/technologies).
+
+> [!IMPORTANT]
+> Wappalyzer is now closed source. This is a fork from the last open-source version and is used for the monthly HTTP Archive crawl. This repo is **not** used for the Wappalyzer browser extension, which is now also closed source.
 
 ## Prerequisites
 

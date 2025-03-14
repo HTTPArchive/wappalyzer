@@ -1793,7 +1793,9 @@
       41
     ],
     "description": "A Checkout built for Hyvä Themes using Magewire, Alpine.js and Tailwind CSS.",
-    "js": "{ "hyvaCheckout": "" }",
+    "js": {
+      "hyvaCheckout": ""
+    },
     "headers": {
       "X-Built-With": "^Hyva Checkout$"
     },
@@ -1815,7 +1817,9 @@
       108
     ],
     "description": "Hyva Themes is a performance-optimised theme for Magento 2 which eliminated the third-party libraries and having only two dependencies Alpine.js and Tailwind CSS.",
-    "js": "{ "window.hyva": "" }",
+    "js": {
+      "window.hyva": ""
+    },
     "headers": {
       "X-Built-With": "^Hyva Themes$"
     },

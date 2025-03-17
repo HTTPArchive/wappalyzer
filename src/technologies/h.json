@@ -1788,30 +1788,6 @@
     "scriptSrc": "/v1/lst/universal-script\\?ph\\=",
     "website": "https://hyros.com"
   },
-  "Hyva Checkout": {
-    "cats": [
-      6
-    ],
-    "description": "A Checkout built for Hyvä Themes using Magewire, Alpine.js and Tailwind CSS.",
-    "js": {
-      "hyvaCheckout": ""
-    },
-    "headers": {
-      "X-Built-With": "^Hyva Checkout$"
-    },
-    "icon": "Hyva Themes.svg",
-    "implies": [
-      "Magento\\;version:2",
-      "Tailwind CSS",
-      "Alpine.js",
-      "Magewire"
-    ],
-    "pricing": [
-      "recurring",
-      "low"
-    ],
-    "website": "https://www.hyva.io/hyva-checkout.html"
-  },
   "Hyva Themes": {
     "cats": [
       6,

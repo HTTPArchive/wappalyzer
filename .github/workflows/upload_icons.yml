@@ -1,0 +1,45 @@
+name: Convert and Upload Icons to Cloud Storage
+
+on:
+  push:
+    paths:
+      - 'src/technologies/*.json'
+      - 'src/images/icons/**'
+  workflow_dispatch:
+
+jobs:
+  convert-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # To be able to detect changed files
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            src/images/icons/**
+            src/technologies/*.json
+
+      - name: Convert changed icons
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: node scripts/convert-changed.js
+
+      - name: Upload to Cloud Storage
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: node scripts/upload-changed-icons.js

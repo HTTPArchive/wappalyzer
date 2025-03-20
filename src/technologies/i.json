@@ -365,6 +365,9 @@
       95
     ],
     "description": "ImageKit is a real-time image and video transformation, optimization, and delivery service with built-in digital asset management, powered by a global CDN.",
+    "dns": {
+      "SOA": "\\.imgkit\\.net"
+    },
     "dom": "img[src*='.imagekit.io/'], img[data-src*='.imagekit.io/'], source[src*='.imagekit.io/'], source[data-src*='.imagekit.io/']",
     "headers": {
       "x-server": "ImageKit\\.io"
@@ -375,9 +378,6 @@
       "payg",
       "recurring"
     ],
-    "dns": {
-      "SOA": "\\.imgkit\\.net"
-    },
     "saas": true,
     "website": "https://imagekit.io/"
   },

@@ -847,6 +847,9 @@
     "description": "Klaviyo Customer Hub gives customers a unified signed-in experience to track orders, manage returns, and get help",
     "dom": "div#k-hub",
     "icon": "Klaviyo.svg",
+    "js": {
+      "customerHub": ""
+    },
     "website": "https://www.klaviyo.com/products/customer-experience-hub"
   },
   "Klaviyo Data Platform": {
@@ -855,9 +858,7 @@
     ],
     "description": "Klaviyo Data Platform is Klaviyo's CDP offering.",
     "icon": "Klaviyo.svg",
-    "js": {
-      "klaviyoModulesObject.loadedModules": "web_personalization"
-    },
+    "scriptSrc": "static-tracking\\.klaviyo\\.com/onsite/js/web_personalization",
     "website": "https://www.klaviyo.com/solutions/customer-data-platform"
   },
   "Klaviyo Reviews": {
@@ -867,6 +868,7 @@
     "description": "Klaviyo reviews is Klaviyo's customer reivews offering for Shopify and WooCommerce platforms",
     "dom": "div#klaviyo-product-reviews-wrapper",
     "icon": "Klaviyo.svg",
+    "scriptSrc": "static\\.klaviyo\\.com/onsite/js/vendors~reviews",
     "website": "https://www.klaviyo.com/product-reviews"
   },
   "Klevu": {

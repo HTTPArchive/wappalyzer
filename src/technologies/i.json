@@ -1024,6 +1024,22 @@
     "icon": "Intel Active Management Technology.png",
     "website": "https://intel.com"
   },
+  "Intelligems": {
+    "cats": [
+      74,
+      76,
+      100
+    ],
+    "cookies": {
+      "ig-location": ""
+    },
+    "description": "Intelligems is an experimentation platform that helps developers build and run A/B tests on websites.",
+    "icon": "Intelligems.png",
+    "implies": "Shopify",
+    "saas": true,
+    "scriptSrc": "cdn\\.intelligems\\.io",
+    "website": "https://www.intelligems.io/"
+  },
   "IntenseDebate": {
     "cats": [
       15

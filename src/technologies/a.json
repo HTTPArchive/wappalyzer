@@ -227,6 +227,15 @@
     "text": "\\APC\\b",
     "website": "https://www.apc-pli.com"
   },
+  "APPLOVIN": {
+    "cats": [
+      36
+    ],
+    "description": "APPLOVIN is an advertising platform.",
+    "icon": "APPLOVIN.png",
+    "scriptSrc": "\\.applovin\\.com",
+    "website": "https://www.applovin.com/"
+  },
   "ARI Network Services": {
     "cats": [
       6

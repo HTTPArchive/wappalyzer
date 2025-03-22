@@ -3121,7 +3121,7 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.cnstrc.com\\.com/",
+    "scriptSrc": "\\.cnstrc\\.com/",
     "website": "https://constructor.io/"
   },
   "Contabo": {

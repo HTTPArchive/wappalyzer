@@ -450,6 +450,17 @@
     "url": "https?://(?:[^/]+\\.)?edgecastcdn\\.net/",
     "website": "https://www.edgecast.com"
   },
+  "Edgemesh": {
+    "cats": [
+      92
+    ],
+    "description": "Edgemesh is web acceleration platform for e-commerce brands",
+    "icon": "Edgemesh.png",
+    "js": {
+      "edgemesh": ""
+    },
+    "website": "https://edgemesh.com/"
+  },
   "Edgio": {
     "cats": [
       31,

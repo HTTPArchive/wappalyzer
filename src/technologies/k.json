@@ -861,6 +861,15 @@
     "scriptSrc": "static-tracking\\.klaviyo\\.com/onsite/js/web_personalization",
     "website": "https://www.klaviyo.com/solutions/customer-data-platform"
   },
+  "Klaviyo Forms": {
+    "cats": [
+      110
+    ],
+    "description": "Klaviyo Forms are used to capture Email and SMS sign-ups",
+    "dom": "div.klaviyo-form",
+    "icon": "Klaviyo.svg",
+    "website": "https://www.klaviyo.com/features/web-forms"
+  },
   "Klaviyo Reviews": {
     "cats": [
       90

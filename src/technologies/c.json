@@ -1632,7 +1632,7 @@
     "cats": [
       66
     ],
-    "description": "CivicTheme is an open source, inclusive and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
+    "description": "CivicTheme is an open source, inclusive, and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
     "dom": [
       "img[class~='civictheme-image']",
       "img[class~='civic-image']",

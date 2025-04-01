@@ -10,3 +10,6 @@ Description of the changes...
 **Test websites**:
 
 - https://example.com/
+
+<!-- Did you include test websites? With one bullet per sites? -->
+<!-- Test websites MUST be provided for any detection changes of PRs will be closed. -->

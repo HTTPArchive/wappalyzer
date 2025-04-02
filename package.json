@@ -26,8 +26,6 @@
     "validate": "yarn run lint && node ./scripts/validate.js",
     "test": "jest",
     "tech_upload": "node ./scripts/tech_upload.js",
-    "icons_convert": "node --no-warnings ./scripts/convert_changed_icons.js",
-    "icons_upload": "gcloud storage rsync ./src/images/icons/converted/ gs://httparchive/static/icons_dev/ --continue-on-error --gzip-in-flight=png --cache-control=\"public, max-age=31536000, immutable\"",
     "build": "yarn run validate && yarn run convert && node ./scripts/build.js"
   },
   "jest": {

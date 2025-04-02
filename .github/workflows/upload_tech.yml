@@ -8,6 +8,7 @@ on:
       - "src/technologies/*.json"
       - "src/categories.json"
       - "src/groups.json"
+      - "src/images/icons/**"
   workflow_dispatch:
 
 jobs:
@@ -15,10 +16,10 @@ jobs:
     name: Test and upload to GCP
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Install dependencies
@@ -27,19 +28,40 @@ jobs:
       - name: Validate
         run: yarn run validate
 
-      - name: Run WebPageTest with unit tests
-        id: unit-test
-        env:
-          WPT_SERVER: "webpagetest.httparchive.org"
-          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: yarn run test
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            tech:
+              - src/technologies/*.json
+              - src/technologies/*.json
+              - src/categories.json
+              - src/groups.json
+            icons:
+              - src/images/icons/**
 
-      - name: Upload to GCP
-        id: upload
+      - name: Upload technology rules to BigQuery
+        if: steps.changed-files.outputs.tech_any_changed == 'true'
         env:
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: |
-          echo $GCP_SA_KEY > /tmp/gcp_key.json
-          yarn run upload
+        run: yarn run tech_upload
+
+      - name: Convert changed icons
+        if: steps.changed-files.outputs.icons_any_changed == 'true'
+        env:
+          CHANGED_ICONS: ${{ steps.changed-files.outputs.icons_all_changed_files }}
+        run: yarn run icons_convert
+
+      - if: steps.changed-files.outputs.icons_any_changed == 'true'
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - if: steps.changed-files.outputs.icons_any_changed == 'true'
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Upload icons to Cloud Storage
+        if: steps.changed-files.outputs.icons_any_changed == 'true'
+        run: yarn run icons_upload

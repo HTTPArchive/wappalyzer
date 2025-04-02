@@ -88,6 +88,11 @@ function dateDiff(file) {
   const batchNum = Math.ceil(totalFiles / maxConvertProcesses)
   let batchCount = 1
 
+  // Ensure temp directory exists
+  if (!fs.existsSync(appPaths().convertPath)) {
+    fs.mkdirSync(appPaths().convertPath, { recursive: true })
+  }
+
   const converter = createConverter()
 
   do {

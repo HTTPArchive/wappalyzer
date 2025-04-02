@@ -6,7 +6,7 @@ const path = require('path')
 const { BigQuery } = require('@google-cloud/bigquery')
 
 const bigquery = new BigQuery({
-  keyFilename: '/tmp/gcp_key.json',
+  credentials: JSON.parse(process.env.GCP_SA_KEY),
 })
 
 const schemas = {

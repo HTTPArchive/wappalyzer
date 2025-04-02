@@ -651,7 +651,9 @@
     "dom": "a[href*='tapcart.app'][target='_blank']",
     "icon": "Tapcart.svg",
     "js": {
-      "tapcartwebBanner": ""
+      "tapcartwebBanner": "",
+      "tapcartParams": "",
+      "Tapcart": ""
     },
     "pricing": [
       "mid",
@@ -659,7 +661,7 @@
     ],
     "requires": "Shopify",
     "saas": true,
-    "scriptSrc": "cdn\\.tapcart\\.com/",
+    "scriptSrc": "\\.tapcart\\.com/",
     "website": "https://tapcart.com"
   },
   "Tapfiliate": {

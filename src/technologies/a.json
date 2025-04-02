@@ -227,6 +227,15 @@
     "text": "\\APC\\b",
     "website": "https://www.apc-pli.com"
   },
+  "APPLOVIN": {
+    "cats": [
+      36
+    ],
+    "description": "APPLOVIN is an advertising platform.",
+    "icon": "APPLOVIN.png",
+    "scriptSrc": "\\.applovin\\.com",
+    "website": "https://www.applovin.com/"
+  },
   "ARI Network Services": {
     "cats": [
       6
@@ -2417,6 +2426,19 @@
     },
     "saas": true,
     "website": "https://apps.shopify.com/ali-reviews"
+  },
+  "Alia": {
+    "cats": [
+      100,
+      110
+    ],
+    "description": "Alia is a Shopify app to design Email and SMS sign-up pop-up units",
+    "icon": "Alia.png",
+    "implies": "Shopify",
+    "js": {
+      "alia": ""
+    },
+    "website": "https://www.alialearn.com/"
   },
   "Alibaba Cloud CDN": {
     "cats": [

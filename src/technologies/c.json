@@ -1632,11 +1632,11 @@
     "cats": [
       66
     ],
-    "description": "CivicTheme is an open source, inclusive and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
+    "description": "CivicTheme is an open source, inclusive, and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
     "dom": [
-      "img[class*='civictheme-image']",
-      "img[class*='civic-image']",
-      "img[class*='ct-image']"
+      "img[class~='civictheme-image']",
+      "img[class~='civic-image']",
+      "img[class~='ct-image']"
     ],
     "icon": "civictheme.png",
     "oss": true,
@@ -3121,7 +3121,7 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "\\.cnstrc.com\\.com/",
+    "scriptSrc": "\\.cnstrc\\.com/",
     "website": "https://constructor.io/"
   },
   "Contabo": {

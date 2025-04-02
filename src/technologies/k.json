@@ -831,7 +831,7 @@
     "cats": [
       32
     ],
-    "description": "Klaviyo is an email marketing platform for online businesses.",
+    "description": "Klaviyo is an email and SMS marketing platform for online businesses.",
     "icon": "Klaviyo.svg",
     "js": {
       "KlaviyoSubscribe": "",
@@ -840,15 +840,44 @@
     "scriptSrc": "klaviyo\\.com",
     "website": "https://www.klaviyo.com/"
   },
+  "Klaviyo Customer Hub": {
+    "cats": [
+      19
+    ],
+    "description": "Klaviyo Customer Hub gives customers a unified signed-in experience to track orders, manage returns, and get help",
+    "dom": "div#k-hub",
+    "icon": "Klaviyo.svg",
+    "js": {
+      "customerHub": ""
+    },
+    "website": "https://www.klaviyo.com/products/customer-experience-hub"
+  },
+  "Klaviyo Data Platform": {
+    "cats": [
+      97
+    ],
+    "description": "Klaviyo Data Platform is Klaviyo's CDP offering.",
+    "icon": "Klaviyo.svg",
+    "scriptSrc": "static-tracking\\.klaviyo\\.com/onsite/js/web_personalization",
+    "website": "https://www.klaviyo.com/solutions/customer-data-platform"
+  },
+  "Klaviyo Forms": {
+    "cats": [
+      110
+    ],
+    "description": "Klaviyo Forms are used to capture Email and SMS sign-ups",
+    "dom": "div.klaviyo-form",
+    "icon": "Klaviyo.svg",
+    "website": "https://www.klaviyo.com/features/web-forms"
+  },
   "Klaviyo Reviews": {
     "cats": [
       90
     ],
-    "description": "Klaviyo is an email marketing platform for online businesses.",
+    "description": "Klaviyo reviews is Klaviyo's customer reivews offering for Shopify and WooCommerce platforms",
+    "dom": "div#klaviyo-product-reviews-wrapper",
     "icon": "Klaviyo.svg",
-    "js": {
-      "klaviyoModulesObject.loadedModules": "reviews"
-    },
+    "scriptSrc": "static\\.klaviyo\\.com/onsite/js/vendors~reviews",
     "website": "https://www.klaviyo.com/product-reviews"
   },
   "Klevu": {

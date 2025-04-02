@@ -774,6 +774,17 @@
     "icon": "DigiCert.svg",
     "website": "https://www.digicert.com/"
   },
+  "Digioh": {
+    "cats": [
+      110
+    ],
+    "description": "Digioh is a lead generation and marketing company helping to convert clicks to customers known for it's email/sms sign-up units",
+    "icon": "Digioh.png",
+    "js": {
+      "DIGIOH_API": ""
+    },
+    "website": "https://www.digioh.com/"
+  },
   "Digismoothie Candy Rack": {
     "cats": [
       100

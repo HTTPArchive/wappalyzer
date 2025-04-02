@@ -1120,6 +1120,18 @@
     "scriptSrc": "\\.stackla\\.com/",
     "website": "https://www.nosto.com/products/visual-ugc/"
   },
+  "Nostra": {
+    "cats": [
+      92
+    ],
+    "description": "Nostra is a web performance optimisation solution.",
+    "icon": "Nostra.png",
+    "js": {
+      "Nostra": "",
+      "NostraEventManager": ""
+    },
+    "website": "https://www.nostra.ai/"
+  },
   "Notion": {
     "cats": [
       51

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix-icon-extension
     paths:
       - "src/technologies/*.json"
       - "src/categories.json"
@@ -49,7 +50,8 @@ jobs:
         env:
           GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: yarn run tech_upload
+        run: echo "uploaded tech to BQ"
+        # yarn run tech_upload
 
       - name: Get Changed Icons
         run: |

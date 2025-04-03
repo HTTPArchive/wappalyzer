@@ -39,7 +39,7 @@ jobs:
           echo "Validation failed. Stopping workflow."
           exit 1
 
-      - name: Get Changed Technology Files
+      - name: Get changed technology files
         run: |
           git fetch origin main --depth=25
           TECH_FILES_CHANGED=$(git diff --name-only HEAD~25 HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
@@ -54,7 +54,7 @@ jobs:
         run: echo $TECH_FILES_CHANGED
         # yarn run tech_upload
 
-      - name: Get Changed Icons
+      - name: Get changed icons
         run: |
           git fetch origin main --depth=25
           CHANGED_ICONS=$(git diff --name-only HEAD~25 HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
@@ -65,7 +65,7 @@ jobs:
         if: env.CHANGED_ICONS != ''
         run: sudo apt-get install -y librsvg2-bin
 
-      - name: Convert Only Changed SVGs to PNGs
+      - name: Convert changed SVGs to PNGs
         if: env.CHANGED_ICONS != ''
         run: |
           for file in $CHANGED_ICONS; do
@@ -84,14 +84,16 @@ jobs:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
 
-      - name: Sync Only New PNGs to Cloud Storage
+      - name: Sync new PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
         run: |
           TMP_SYNC_DIR=$(mktemp -d)
           for file in $CHANGED_ICONS; do
-            if [[ "$file" == *.png || "$file" == *.svg ]]; then
+            if [[ "$file" == *.svg ]]; then
               png_file="${file%.svg}.png"
               cp "$png_file" "$TMP_SYNC_DIR/"
+            elif [[ "$file" == *.png ]]; then
+              cp "$file" "$TMP_SYNC_DIR/"
             fi
           done
 

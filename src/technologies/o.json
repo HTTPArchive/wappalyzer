@@ -363,8 +363,8 @@
     "implies": "Shopify",
     "js": {
       "okeReviewsWidgetOnInit": "",
-      "okeWidgetControlInit": "",
       "okeWidgetApi": "",
+      "okeWidgetControlInit": "",
       "okendoReviews": ""
     },
     "pricing": [

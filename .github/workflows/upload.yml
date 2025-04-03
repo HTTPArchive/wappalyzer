@@ -76,12 +76,10 @@ jobs:
 
       - name: Authenticate with Google Cloud
         if: env.CHANGED_ICONS != ''
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
-          echo "$GCP_SA_KEY" > gcp-key.json
+          echo '${{ secrets.GCP_SA_KEY }}' > ./gcp-key.json
           gcloud config set project httparchive
-          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud auth activate-service-account --key-file=./gcp-key.json
 
       - name: Sync Only New PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''

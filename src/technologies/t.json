@@ -651,9 +651,9 @@
     "dom": "a[href*='tapcart.app'][target='_blank']",
     "icon": "Tapcart.svg",
     "js": {
-      "tapcartwebBanner": "",
+      "Tapcart": "",
       "tapcartParams": "",
-      "Tapcart": ""
+      "tapcartwebBanner": ""
     },
     "pricing": [
       "mid",

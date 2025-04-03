@@ -80,7 +80,7 @@ jobs:
         if: env.CHANGED_ICONS != ''
         uses: 'google-github-actions/auth@v2'
         with:
-          project_id: '${{ env.GCP_PROJECT_ID }}'
+          project_id: 'httparchive'
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
 

@@ -56,7 +56,7 @@ jobs:
       - name: Get Changed Icons
         run: |
           git fetch origin main --depth=1
-          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/**/*.svg' 'src/images/icons/**/*.png' | xargs)
+          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 
       - name: Install Required Packages

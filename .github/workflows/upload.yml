@@ -100,4 +100,4 @@ jobs:
             fi
           done
 
-          gcloud storage rsync src/images/icons/ gs://httparchive/static/icons_dev/ --exclude="*.svg" --cache-control="public, max-age=31536000, immutable"
+          gcloud storage rsync src/images/icons/ gs://httparchive/static/icons_dev/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

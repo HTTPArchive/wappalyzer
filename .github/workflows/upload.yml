@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - fix-icon-extension
     paths:
       - "src/technologies/*.json"
       - "src/categories.json"
@@ -18,16 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 50
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Validate
-        id: validate
+      - name: Validate and Lint
         run: |
           yarn run lint
           yarn run validate
@@ -44,13 +39,12 @@ jobs:
         env:
           GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: echo $TECH_FILES_CHANGED
-        # yarn run tech_upload
+        run: yarn run tech_upload
 
       - name: Get changed icons
         run: |
-          git fetch origin main --depth=50
-          CHANGED_ICONS=$(git diff --name-only HEAD~50 HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+          git fetch origin main --depth=1
+          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
           echo $CHANGED_ICONS
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 
@@ -82,14 +76,4 @@ jobs:
       - name: Sync new PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
         run: |
-          TMP_SYNC_DIR=$(mktemp -d)
-          for file in $CHANGED_ICONS; do
-            if [[ "$file" == *.svg ]]; then
-              png_file="${file%.svg}.png"
-              cp "$png_file" "$TMP_SYNC_DIR/"
-            elif [[ "$file" == *.png ]]; then
-              cp "$file" "$TMP_SYNC_DIR/"
-            fi
-          done
-
           gcloud storage rsync src/images/icons/ gs://httparchive/static/icons_dev/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

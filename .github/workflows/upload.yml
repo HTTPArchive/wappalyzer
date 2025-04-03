@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 25
+          fetch-depth: 50
 
 
       - name: Install dependencies
@@ -41,7 +41,7 @@ jobs:
 
       - name: Get changed technology files
         run: |
-          git fetch origin main --depth=25
+          git fetch origin main --depth=50
           TECH_FILES_CHANGED=$(git diff --name-only HEAD~25 HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
           echo $TECH_FILES_CHANGED
           echo "TECH_FILES_CHANGED=${TECH_FILES_CHANGED}" >> $GITHUB_ENV
@@ -56,8 +56,8 @@ jobs:
 
       - name: Get changed icons
         run: |
-          git fetch origin main --depth=25
-          CHANGED_ICONS=$(git diff --name-only HEAD~25 HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+          git fetch origin main --depth=50
+          CHANGED_ICONS=$(git diff --name-only HEAD~50 HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
           echo $CHANGED_ICONS
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 

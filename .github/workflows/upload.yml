@@ -80,9 +80,7 @@ jobs:
         if: env.CHANGED_ICONS != ''
         uses: 'google-github-actions/auth@v2'
         with:
-          project_id: 'httparchive'
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-
 
       - name: Sync new PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
@@ -102,4 +100,3 @@ jobs:
             echo "Error: gcloud storage rsync failed."
             exit 1
           }
-

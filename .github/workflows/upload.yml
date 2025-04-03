@@ -20,6 +20,9 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 25
+
 
       - name: Install dependencies
         run: yarn install
@@ -34,32 +37,27 @@ jobs:
           echo "Validation failed. Stopping workflow."
           exit 1
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v41
-        with:
-          files: |
-            tech:
-              - src/technologies/*.json
-              - src/technologies/*.json
-              - src/categories.json
-              - src/groups.json
+      - name: Get Changed Technology Files
+        run: |
+          git fetch origin main --depth=25
+          TECH_FILES_CHANGED=$(git diff --name-only HEAD~25 HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
+          echo "TECH_FILES_CHANGED=${TECH_FILES_CHANGED}" >> $GITHUB_ENV
 
       - name: Upload technology rules to BigQuery
-        if: steps.changed-files.outputs.tech_any_changed == 'true'
+        if: env.TECH_FILES_CHANGED != ''
         env:
           GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: echo "uploaded tech to BQ"
+        run: echo $TECH_FILES_CHANGED
         # yarn run tech_upload
 
       - name: Get Changed Icons
         run: |
-          git fetch origin main --depth=1
-          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+          git fetch origin main --depth=25
+          CHANGED_ICONS=$(git diff --name-only HEAD~25 HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 
-      - name: Install Required Packages
+      - name: Install Image Convertion Package
         if: env.CHANGED_ICONS != ''
         run: sudo apt-get install -y librsvg2-bin
 
@@ -81,7 +79,7 @@ jobs:
         run: |
           echo "$GCP_SA_KEY" | base64 --decode > gcp-key.json
           gcloud auth activate-service-account --key-file=gcp-key.json
-          gcloud config set project httparchive
+        # gcloud config set project httparchive
 
       - name: Sync Only New PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
@@ -94,5 +92,5 @@ jobs:
             fi
           done
 
-          gcloud storage rsync "$TMP_SYNC_DIR" gs://your-bucket-name/icons/ --exclude="*.svg" --continue-on-error --gzip-in-flight=png --cache-control="public, max-age=31536000, immutable"
+          gcloud storage rsync "$TMP_SYNC_DIR" gs://httparchive/static/icons_dev/ --exclude="*.svg" --continue-on-error --gzip-in-flight=png --cache-control="public, max-age=31536000, immutable"
 

@@ -10,6 +10,11 @@ on:
       - "src/groups.json"
       - "src/images/icons/**"
   workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update regardless of changes'
+        required: false
+        default: 'false'
 
 jobs:
   test:
@@ -32,13 +37,16 @@ jobs:
 
       - name: Get changed technology files
         run: |
+          git log -1 HEAD^
+          git log -1 HEAD
+
           git fetch origin main --depth=1
           TECH_FILES_CHANGED=$(git diff --name-only HEAD^ HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
           echo $TECH_FILES_CHANGED
           echo "TECH_FILES_CHANGED=${TECH_FILES_CHANGED}" >> $GITHUB_ENV
 
       - name: Upload technology rules to BigQuery
-        if: env.TECH_FILES_CHANGED != ''
+        if: env.TECH_FILES_CHANGED != '' || inputs.force_update == 'true'
         env:
           GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
@@ -47,11 +55,17 @@ jobs:
       - name: Get changed icons
         run: |
           git fetch origin main --depth=1
+
+          if [[ "${{ inputs.force_update }}" == "true" ]]; then
+          CHANGED_ICONS=$(find src/images/icons -name "*.svg" -o -name "*.png" | xargs)
+          else
           CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+          fi
+
           echo $CHANGED_ICONS
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 
-      - name: Install Image Convertion Package
+      - name: Install Image Conversion Package
         if: env.CHANGED_ICONS != ''
         run: sudo apt-get install -y librsvg2-bin
 
@@ -60,23 +74,19 @@ jobs:
         run: |
           for file in $CHANGED_ICONS; do
             if [[ "$file" == *.svg ]]; then
-              png_file="${file%.svg}.png"
-              echo "Converting $file to $png_file"
-              rsvg-convert "$file" -o "$png_file" -w 16 -h 16
+              rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
             fi
           done
 
-      - name: Authenticate with Google Cloud
-        if: env.CHANGED_ICONS != ''
-        uses: 'google-github-actions/auth@v2'
+      - uses: 'google-github-actions/auth@v2'
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Set up Google Cloud SDK
-        if: env.CHANGED_ICONS != ''
-        uses: 'google-github-actions/setup-gcloud@v2'
+      - uses: 'google-github-actions/setup-gcloud@v2'
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
 
       - name: Sync new PNGs to Cloud Storage
-        if: env.CHANGED_ICONS != ''
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
         run: |
           gcloud storage rsync src/images/icons/ gs://httparchive/static/icons_dev/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

@@ -90,6 +90,7 @@ jobs:
         if: env.CHANGED_ICONS != ''
         run: |
           TMP_SYNC_DIR=$(mktemp -d)
+          echo "Temporary directory for sync: $TMP_SYNC_DIR"
           for file in $CHANGED_ICONS; do
             if [[ "$file" == *.svg ]]; then
               png_file="${file%.svg}.png"
@@ -99,8 +100,4 @@ jobs:
             fi
           done
 
-          set -e
-          gcloud storage rsync "$TMP_SYNC_DIR" gs://httparchive/static/icons_dev/ --exclude="*.svg" --gzip-in-flight=png --cache-control="public, max-age=31536000, immutable" || {
-            echo "Error: gcloud storage rsync failed."
-            exit 1
-          }
+          gcloud storage rsync src/images/icons/ gs://httparchive/static/icons_dev/ --exclude="*.svg" --cache-control="public, max-age=31536000, immutable"

@@ -82,6 +82,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Set up Google Cloud SDK
+        if: env.CHANGED_ICONS != ''
+        uses: 'google-github-actions/setup-gcloud@v2'
+
       - name: Sync new PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
         run: |

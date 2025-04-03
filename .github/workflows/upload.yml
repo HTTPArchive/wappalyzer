@@ -91,9 +91,13 @@ jobs:
           for file in $CHANGED_ICONS; do
             if [[ "$file" == *.png || "$file" == *.svg ]]; then
               png_file="${file%.svg}.png"
-              cp "icons/$png_file" "$TMP_SYNC_DIR/"
+              cp "$png_file" "$TMP_SYNC_DIR/"
             fi
           done
 
-          gcloud storage rsync "$TMP_SYNC_DIR" gs://httparchive/static/icons_dev/ --exclude="*.svg" --continue-on-error --gzip-in-flight=png --cache-control="public, max-age=31536000, immutable"
+          set -e
+          gcloud storage rsync "$TMP_SYNC_DIR" gs://httparchive/static/icons_dev/ --exclude="*.svg" --gzip-in-flight=png --cache-control="public, max-age=31536000, immutable" || {
+            echo "Error: gcloud storage rsync failed."
+            exit 1
+          }
 

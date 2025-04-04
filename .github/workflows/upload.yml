@@ -46,7 +46,6 @@ jobs:
       - name: Upload technology rules to BigQuery
         if: env.TECH_FILES_CHANGED != '' || inputs.force_update == 'true'
         env:
-          GCP_PROJECT_ID: 'httparchive'
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: yarn run tech_upload
 

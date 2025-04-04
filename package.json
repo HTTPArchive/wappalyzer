@@ -1,17 +1,17 @@
 {
   "dependencies": {
-    "@prantlf/jsonlint": "^14.0.3",
+    "@prantlf/jsonlint": "^16.0.0",
     "adm-zip": "^0.4.16",
     "convert-svg-to-png": "^0.5.0"
   },
   "devDependencies": {
     "@google-cloud/bigquery": "^7.7.0",
     "@google-cloud/storage": "^7.11.0",
-    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.4.1",

@@ -9,6 +9,9 @@ on:
       - "src/categories.json"
       - "src/groups.json"
       - "src/images/icons/**"
+  push:
+    branches:
+      - fix-icon-extension
 
 jobs:
   lint:

@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - ".github/workflows/upload.yml"
       - "src/technologies/*.json"
       - "src/categories.json"
       - "src/groups.json"

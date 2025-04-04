@@ -9,6 +9,7 @@ on:
       - "src/categories.json"
       - "src/groups.json"
       - "tests/*.js"
+      - ".github/workflows/test.yml"
   workflow_dispatch:
 
 jobs:
@@ -25,8 +26,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Validate
-        run: yarn run validate
+      - name: Lint & Validate
+        run: |
+          yarn run lint
+          yarn run validate
 
       - name: Run WebPageTest with unit tests
         id: unit-test

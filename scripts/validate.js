@@ -208,3 +208,5 @@ fs.readdirSync(iconPath).forEach((file) => {
     }
   }
 })
+
+console.log('Validation completed successfully.')

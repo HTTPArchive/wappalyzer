@@ -15,7 +15,7 @@ on:
 
 jobs:
   lint:
-    name: Lint
+    name: Lint & Validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint & Validate
+      - name: Lint and Validate
         run: |
           yarn run lint
-          yarn run validate
+          node ./scripts/validate.js

@@ -2,10 +2,10 @@
   "dependencies": {
     "@prantlf/jsonlint": "^16.0.0",
     "adm-zip": "^0.4.16",
-    "convert-svg-to-png": "^0.5.0"
+    "convert-svg-to-png": "^0.6.4"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "^7.7.0",
+    "@google-cloud/bigquery": "^7.9.3",
     "@google-cloud/storage": "^7.11.0",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^2.0.0",

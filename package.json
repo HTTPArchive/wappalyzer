@@ -2,7 +2,7 @@
   "dependencies": {
     "@prantlf/jsonlint": "^16.0.0",
     "adm-zip": "^0.4.16",
-    "convert-svg-to-png": "^0.5.0"
+    "convert-svg-to-png": "^0.6.4"
   },
   "devDependencies": {
     "@google-cloud/bigquery": "^7.7.0",

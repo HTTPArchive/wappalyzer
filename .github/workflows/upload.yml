@@ -5,63 +5,61 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/upload.yml"
-      - "src/technologies/*.json"
-      - "src/categories.json"
-      - "src/groups.json"
-      - "src/images/icons/**"
+      - 'src/technologies/*.json'
+      - 'src/categories.json'
+      - 'src/groups.json'
+      - 'src/images/icons/**'
   workflow_dispatch:
-    inputs:
-      force_update:
-        description: 'Force update regardless of changes'
-        required: false
-        default: 'false'
 
 jobs:
   test:
     name: Test and upload to GCP
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Validate
-        run: yarn run validate
+      - name: Lint and validate
+        run: |
+          yarn run lint
+          yarn run validate
 
       - name: Get changed technology files
         run: |
-          git fetch origin main --depth=1
-          TECH_FILES_CHANGED=$(git diff --name-only HEAD^ HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
-          echo $TECH_FILES_CHANGED
-          echo "TECH_FILES_CHANGED=${TECH_FILES_CHANGED}" >> $GITHUB_ENV
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Force update requested, processing all technology files"
+            echo "TECH_FILES_CHANGED=1" >> $GITHUB_ENV
+          else
+            git fetch origin main --depth=2
+            files_changed=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
+            echo "TECH_FILES_CHANGED=$files_changed" >> $GITHUB_ENV
+            echo "Detected $files_changed changed technology files"
+          fi
 
       - name: Upload technology rules to BigQuery
-        if: env.TECH_FILES_CHANGED != '' || inputs.force_update == 'true'
+        if: env.TECH_FILES_CHANGED != '0'
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: yarn run tech_upload
 
       - name: Get changed icons
         run: |
-          git fetch origin main --depth=1
-
-          if [[ "${{ inputs.force_update }}" == "true" ]]; then
-          CHANGED_ICONS=$(find src/images/icons -name "*.svg" -o -name "*.png" | xargs)
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            changed_icons=$(find src/images/icons -name "*.svg" -o -name "*.png" -print0 | xargs -0)
           else
-          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+            git fetch origin main --depth=2
+            changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png' -print0 | xargs -0)
           fi
-
-          echo $CHANGED_ICONS
-          echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
+          echo "CHANGED_ICONS=$changed_icons" >> $GITHUB_ENV
+          echo ${changed_icons}
 
       # PNG are generally smaller, and we have some SVG that are 1Mb, so conversion to PNG is necessary.
-      - name: Install Image Conversion Package
+      - name: Installing Image Conversion Package
         if: env.CHANGED_ICONS != ''
         run: sudo apt-get install -y librsvg2-bin
 
@@ -75,14 +73,14 @@ jobs:
           done
 
       - uses: 'google-github-actions/auth@v2'
-        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+        if: env.CHANGED_ICONS != ''
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - uses: 'google-github-actions/setup-gcloud@v2'
-        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+        if: env.CHANGED_ICONS != ''
 
       - name: Sync new PNGs to Cloud Storage
-        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+        if: env.CHANGED_ICONS != ''
         run: |
           gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

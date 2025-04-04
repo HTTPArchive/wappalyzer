@@ -1,25 +1,32 @@
-name: Tests
+name: Upload technologies to BQ and Cloud Storage
 
 on:
   push:
     branches:
       - main
     paths:
+      - ".github/workflows/upload.yml"
       - "src/technologies/*.json"
       - "src/categories.json"
       - "src/groups.json"
+      - "src/images/icons/**"
   workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update regardless of changes'
+        required: false
+        default: 'false'
 
 jobs:
   test:
     name: Test and upload to GCP
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
 
       - name: Install dependencies
         run: yarn install
@@ -27,19 +34,58 @@ jobs:
       - name: Validate
         run: yarn run validate
 
-      - name: Run WebPageTest with unit tests
-        id: unit-test
-        env:
-          WPT_SERVER: "webpagetest.httparchive.org"
-          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: yarn run test
-
-      - name: Upload to GCP
-        id: upload
-        env:
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+      - name: Get changed technology files
         run: |
-          echo $GCP_SA_KEY > /tmp/gcp_key.json
-          yarn run upload
+          git log -1 HEAD^
+          git log -1 HEAD
+
+          git fetch origin main --depth=1
+          TECH_FILES_CHANGED=$(git diff --name-only HEAD^ HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
+          echo $TECH_FILES_CHANGED
+          echo "TECH_FILES_CHANGED=${TECH_FILES_CHANGED}" >> $GITHUB_ENV
+
+      - name: Upload technology rules to BigQuery
+        if: env.TECH_FILES_CHANGED != '' || inputs.force_update == 'true'
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: yarn run tech_upload
+
+      - name: Get changed icons
+        run: |
+          git fetch origin main --depth=1
+
+          if [[ "${{ inputs.force_update }}" == "true" ]]; then
+          CHANGED_ICONS=$(find src/images/icons -name "*.svg" -o -name "*.png" | xargs)
+          else
+          CHANGED_ICONS=$(git diff --name-only HEAD^ HEAD -- 'src/images/icons/*.svg' 'src/images/icons/*.png' | xargs)
+          fi
+
+          echo $CHANGED_ICONS
+          echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
+
+      # PNG are generally smaller, and we have some SVG that are 1Mb, so conversion to PNG is necessary.
+      - name: Install Image Conversion Package
+        if: env.CHANGED_ICONS != ''
+        run: sudo apt-get install -y librsvg2-bin
+
+      - name: Convert changed SVGs to PNGs
+        if: env.CHANGED_ICONS != ''
+        run: |
+          for file in $CHANGED_ICONS; do
+            if [[ "$file" == *.svg ]]; then
+              rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+            fi
+          done
+
+      - uses: 'google-github-actions/auth@v2'
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: 'google-github-actions/setup-gcloud@v2'
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+
+      - name: Sync new PNGs to Cloud Storage
+        if: env.CHANGED_ICONS != '' || inputs.force_update == 'true'
+        run: |
+          gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

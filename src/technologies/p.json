@@ -1,28 +1,4 @@
 {
-  "Pandectes": {
-    "cats": [
-      67,
-      100
-    ],
-    "cookies": {
-      "_pandectes_gdpr": ""
-    },
-    "description": "Pandectes is a cloud-based data privacy management compliance platform for Shopify stores, ensuring compliance with GDPR, CCPA/CPRA, VCDPA, APPI, PIPEDA, and PDPA regulations.",
-    "icon": "pandectes.svg",
-    "implies": "Shopify",
-    "pricing": [
-      "freemium",
-      "low",
-      "recurring"
-    ],
-    "scriptSrc": [
-      "pandectes-core\\.js",
-      "s3\\.us-west-2\\.amazonaws\\.com/gdpr-privacy-policy-assets/",
-      "gdpr-privacy-policy-assets\\.s3-us-west-2\\.amazonaws\\.com/"
-    ],
-    "saas": true,
-    "website": "https://pandectes.io"
-  },
   "PCRecruiter": {
     "cats": [
       101
@@ -189,17 +165,6 @@
     ],
     "saas": true,
     "website": "https://www.index-education.com/fr/logiciel-gestion-vie-scolaire.php"
-  },
-  "PublishPress Blocks": {
-    "cats": [
-      87
-    ],
-    "description": "PublishPress Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
-    "icon": "publishpress-blocks.png",
-    "requires": "WordPress",
-    "dom": "link[href*='/wp-content/plugins/advanced-gutenberg/assets/css/blocks.css?ver=([\\d\\.]+))?\\;version:\\1']",
-    "html": "<div[^>]+class=[\"']wp-block-advgb-*",
-    "website": "https://publishpress.com/blocks/"
   },
   "PWA": {
     "cats": [
@@ -437,6 +402,30 @@
     "icon": "PandaCSS.svg",
     "oss": true,
     "website": "https://panda-css.com/"
+  },
+  "Pandectes": {
+    "cats": [
+      67,
+      100
+    ],
+    "cookies": {
+      "_pandectes_gdpr": ""
+    },
+    "description": "Pandectes is a cloud-based data privacy management compliance platform for Shopify stores, ensuring compliance with GDPR, CCPA/CPRA, VCDPA, APPI, PIPEDA, and PDPA regulations.",
+    "icon": "pandectes.svg",
+    "implies": "Shopify",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "pandectes-core\\.js",
+      "s3\\.us-west-2\\.amazonaws\\.com/gdpr-privacy-policy-assets/",
+      "gdpr-privacy-policy-assets\\.s3-us-west-2\\.amazonaws\\.com/"
+    ],
+    "website": "https://pandectes.io"
   },
   "Panelbear": {
     "cats": [
@@ -2860,7 +2849,7 @@
   },
   "Pretty Damn Quick": {
     "cats": [
-      74,    
+      74,
       100
     ],
     "description": "Pretty Damn Quick is a Shopify app for eCommerce brands to deliver personalized checkout experiences.",
@@ -3469,6 +3458,17 @@
     "icon": "Public CMS.png",
     "implies": "Java",
     "website": "https://www.publiccms.com"
+  },
+  "PublishPress Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "PublishPress Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "dom": "link[href*='/wp-content/plugins/advanced-gutenberg/assets/css/blocks.css?ver=([\\d\\.]+))?\\;version:\\1']",
+    "html": "<div[^>]+class=[\"']wp-block-advgb-*",
+    "icon": "publishpress-blocks.png",
+    "requires": "WordPress",
+    "website": "https://publishpress.com/blocks/"
   },
   "Pulse Secure": {
     "cats": [

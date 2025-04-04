@@ -164,12 +164,10 @@ function dateDiff(file) {
 })()
 
 /**
-
 cd  ; cp *.svg converted ; cd converted ; convert-svg-to-png *.svg --width 32 --height 32 ; rm *.svg
 (async() => {
   const inputFilePath = '/path/to/my-image.svg';
   const outputFilePath = await convertFile(inputFilePath);
-
   console.log(outputFilePath);
   //=> "/path/to/my-image.png"
 })();

@@ -1,14 +1,18 @@
-name: Linting
+name: Lint & Validate
 
 on:
   pull_request_target:
     branches:
       - main
-  workflow_dispatch:
+    paths-ignore:
+      - "src/technologies/*.json"
+      - "src/categories.json"
+      - "src/groups.json"
+      - "src/images/icons/**"
 
 jobs:
   lint:
-    name: Lint
+    name: Lint & Validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,9 +24,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Validate
-        run: yarn run validate
-
-      - name: Run WebPageTest with unit tests
-        id: unit-test
-        run: yarn run lint
+      - name: Lint and Validate
+        run: |
+          yarn run lint
+          yarn run validate

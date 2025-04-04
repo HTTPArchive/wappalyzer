@@ -36,9 +36,6 @@ jobs:
 
       - name: Get changed technology files
         run: |
-          git log -1 HEAD^
-          git log -1 HEAD
-
           git fetch origin main --depth=1
           TECH_FILES_CHANGED=$(git diff --name-only HEAD^ HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
           echo $TECH_FILES_CHANGED

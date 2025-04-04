@@ -26,6 +26,7 @@
     "validate": "yarn run lint && node ./scripts/validate.js",
     "test": "jest",
     "tech_upload": "node ./scripts/tech_upload.js",
+    "convert": "node ./scripts/convert.js",
     "build": "yarn run validate && yarn run convert && node ./scripts/build.js"
   },
   "jest": {

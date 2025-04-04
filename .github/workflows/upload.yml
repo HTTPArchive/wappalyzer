@@ -62,6 +62,7 @@ jobs:
           echo $CHANGED_ICONS
           echo "CHANGED_ICONS=${CHANGED_ICONS}" >> $GITHUB_ENV
 
+      # PNG are generally smaller, and we have some SVG that are 1Mb, so conversion to PNG is necessary.
       - name: Install Image Conversion Package
         if: env.CHANGED_ICONS != ''
         run: sudo apt-get install -y librsvg2-bin

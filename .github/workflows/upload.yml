@@ -33,13 +33,13 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "Force update requested, processing all technology files"
-            echo "TECH_FILES_CHANGED=1" >> $GITHUB_ENV
+            files_changed=1
           else
             git fetch origin main --depth=2
             files_changed=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
-            echo "TECH_FILES_CHANGED=$files_changed" >> $GITHUB_ENV
             echo "Detected $files_changed changed technology files"
           fi
+          echo "TECH_FILES_CHANGED=$files_changed" >> $GITHUB_ENV
 
       - name: Upload technology rules to BigQuery
         if: env.TECH_FILES_CHANGED != '0'
@@ -54,9 +54,9 @@ jobs:
           else
             git fetch origin main --depth=2
             changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png' -print0 | xargs -0)
+            echo "Detected changed icons: $files_changed"
           fi
           echo "CHANGED_ICONS=$changed_icons" >> $GITHUB_ENV
-          echo ${changed_icons}
 
       # PNG are generally smaller, and we have some SVG that are 1Mb, so conversion to PNG is necessary.
       - name: Installing Image Conversion Package
@@ -82,5 +82,4 @@ jobs:
 
       - name: Sync new PNGs to Cloud Storage
         if: env.CHANGED_ICONS != ''
-        run: |
-          gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"
+        run: gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

@@ -30,4 +30,4 @@ jobs:
       - name: Lint and Validate
         run: |
           yarn run lint
-          node ./scripts/validate.js
+          yarn run validate

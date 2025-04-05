@@ -1,15 +1,4 @@
 {
-  "Otter Blocks": {
-    "cats": [
-      87
-    ],
-    "description": "Otter blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
-    "dom": "link[href*='/wp-content/plugins/otter-blocks']",
-    "html": "<div[^>]+class=[\"']wp-block-themeisle-blocks-*",
-    "icon": "otter-blocks.png",
-    "requires": "WordPress",
-    "website": "https://wordpress.org/plugins/otter-blocks/"
-  },
   "OTYS": {
     "cats": [
       101
@@ -374,8 +363,8 @@
     "implies": "Shopify",
     "js": {
       "okeReviewsWidgetOnInit": "",
-      "okeWidgetControlInit": "",
       "okeWidgetApi": "",
+      "okeWidgetControlInit": "",
       "okendoReviews": ""
     },
     "pricing": [
@@ -1815,6 +1804,17 @@
       "\\b[ÖO]sterreichische Post\\b"
     ],
     "website": "https://www.post.at"
+  },
+  "Otter Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "Otter blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "dom": "link[href*='/wp-content/plugins/otter-blocks']",
+    "html": "<div[^>]+class=[\"']wp-block-themeisle-blocks-*",
+    "icon": "otter-blocks.png",
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/otter-blocks/"
   },
   "OutSystems": {
     "cats": [

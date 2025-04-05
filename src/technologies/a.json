@@ -28,9 +28,11 @@
     "website": "https://www.a8.net"
   },
   "AB Tasty": {
-    "cats": [74],
+    "cats": [
+      74
+    ],
     "description": "AB Tasty is a customer experience optimisation company. AB Tasty offers AI-driven experimentation, personalisation, and product optimisation platforms for user testing.",
-    "icon": "Ab Tasty.svg",
+    "icon": "AB Tasty.svg",
     "js": {
       "ABTasty": "",
       "_abtasty": "",

@@ -1,23 +1,23 @@
 {
   "dependencies": {
-    "@prantlf/jsonlint": "^16.0.0",
-    "adm-zip": "^0.4.16",
-    "convert-svg-to-png": "^0.6.4"
+    "@prantlf/jsonlint": "16.0.0",
+    "adm-zip": "0.4.16",
+    "convert-svg-to-png": "0.6.4"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "^7.9.3",
-    "@google-cloud/storage": "^7.11.0",
-    "@nuxtjs/eslint-config": "^6.0.1",
-    "@nuxtjs/eslint-module": "^2.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-json": "^2.1.2",
-    "eslint-plugin-nuxt": "^1.0.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "jest": "^29.7.0",
-    "prettier": "^2.8.8",
-    "terminal-overwrite": "^2.0.1",
+    "@google-cloud/bigquery": "7.9.3",
+    "@google-cloud/storage": "7.11.0",
+    "@nuxtjs/eslint-config": "6.0.1",
+    "@nuxtjs/eslint-module": "2.0.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "10.1.1",
+    "eslint-plugin-json": "2.1.2",
+    "eslint-plugin-nuxt": "1.0.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "jest": "29.7.0",
+    "prettier": "2.8.8",
+    "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "scripts": {
@@ -27,7 +27,7 @@
     "test": "jest",
     "tech_upload": "node ./scripts/tech_upload.js",
     "convert": "node ./scripts/convert.js",
-    "build": "yarn run lint && yarn run validate && yarn run convert && node ./scripts/build.js"
+    "build": "npm run lint && npm run validate && npm run convert && node ./scripts/build.js"
   },
   "jest": {
     "reporters": [

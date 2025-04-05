@@ -26,7 +26,7 @@
 ```sh
 git clone https://github.com/HTTPArchive/wappalyzer.git
 cd wappalyzer
-yarn install
+npm install
 ```
 
 ## Usage

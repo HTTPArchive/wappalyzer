@@ -22,12 +22,12 @@ jobs:
           fetch-depth: 2
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Lint and validate
         run: |
-          yarn run lint
-          yarn run validate
+          npm run lint
+          npm run validate
 
       - name: Get changed technology files
         run: |
@@ -45,7 +45,7 @@ jobs:
         if: env.TECH_FILES_CHANGED != '0'
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: yarn run tech_upload
+        run: npm run tech_upload
 
       - name: Get changed icons
         run: |

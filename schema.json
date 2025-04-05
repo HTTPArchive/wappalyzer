@@ -10,7 +10,10 @@
   "additionalProperties": {
     "type": "object",
     "additionalProperties": false,
-    "required": ["cats","website"],
+    "required": [
+      "cats",
+      "website"
+    ],
     "properties": {
       "description": {
         "type": "string",
@@ -44,8 +47,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": true,
           "additionalProperties": {
             "type": "string"
           }
@@ -55,8 +57,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": true,
           "additionalProperties": {
             "type": "string"
           }
@@ -77,8 +78,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-              "^.+$": {
-              }
+              "^.+$": true
             }
           }
         ]
@@ -87,16 +87,14 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          }
+          "^.+$": true
         }
       },
       "headers": {
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": true,
           "additionalProperties": {
             "type": "string"
           }
@@ -158,8 +156,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": true,
           "additionalProperties": {
             "type": "string"
           }
@@ -234,8 +231,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": true,
           "additionalProperties": {
             "type": "string"
           }
@@ -300,5 +296,6 @@
         ]
       }
     }
-  }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema"
 }

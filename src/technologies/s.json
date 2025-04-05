@@ -2569,8 +2569,7 @@
     ],
     "saas": true,
     "scriptSrc": [
-      "sdks\\.shopifycdn\\.com",
-      "cdn\\.shopify\\.com"
+      "sdks\\.shopifycdn\\.com"
     ],
     "scripts": "shopifyTag",
     "url": "^https?//.+\\.myshopify\\.com",

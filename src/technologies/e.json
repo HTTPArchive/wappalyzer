@@ -146,20 +146,6 @@
     ],
     "website": "https://erpnext.com"
   },
-  "Essential Blocks": {
-    "cats": [
-      87
-    ],
-    "description": "Essential Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
-    "icon": "essential-blocks.png",
-    "requires": "WordPress",
-    "dom": [
-      "link[href*='/wp-content/uploads/eb-style/']",
-      "link#essential-blocks-frontend-style-css"
-    ],
-    "html": "<div[^>]+class=[\"']wp-block-essential-blocks-*",
-    "website": "https://essential-blocks.com"
-  },
   "ESW": {
     "cats": [
       106
@@ -1491,6 +1477,20 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/uploads/essential-addons-elementor/",
     "website": "https://essential-addons.com/elementor/"
+  },
+  "Essential Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "Essential Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "dom": [
+      "link[href*='/wp-content/uploads/eb-style/']",
+      "link#essential-blocks-frontend-style-css"
+    ],
+    "html": "<div[^>]+class=[\"']wp-block-essential-blocks-*",
+    "icon": "essential-blocks.png",
+    "requires": "WordPress",
+    "website": "https://essential-blocks.com"
   },
   "Essential JS 2": {
     "cats": [

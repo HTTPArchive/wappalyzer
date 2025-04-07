@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "@google-cloud/bigquery": "^7.9.3",
-    "@google-cloud/storage": "^7.11.0",
+    "@google-cloud/storage": "^7.16.0",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",

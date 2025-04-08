@@ -8,7 +8,7 @@ To get started, see the [README](https://github.com/HTTPArchive/wappalyzer/blob/
 
 ## Submitting changes
 
-- First, run `yarn run validate` to identify any issues.
+- First, run `npm run validate` to identify any issues.
 - Use descriptive commit messages, e.g. 'Add WordPress detection'.
 - Push your commits to a new branch on your own fork.
 - Finally, submit a [pull request](https://help.github.com/articles/about-pull-requests/) and describe your changes.

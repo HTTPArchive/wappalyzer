@@ -45,7 +45,7 @@
                               name,
                               selector,
                               property,
-                              value: toScalar(value),
+                              value: toScalar(value)
                             })
                           }
                         }
@@ -59,8 +59,8 @@
             }
 
             return technologies
-          }, []),
-        },
+          }, [])
+        }
       })
     }
 

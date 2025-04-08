@@ -36,7 +36,7 @@ for (const index of Array(27).keys()) {
 
   technologies = {
     ...technologies,
-    ..._technologies,
+    ..._technologies
   }
 }
 
@@ -208,5 +208,3 @@ fs.readdirSync(iconPath).forEach((file) => {
     }
   }
 })
-
-console.log('Validation completed successfully.')

@@ -1,6 +1,6 @@
 'use strict'
 
-function toArray(value) {
+function toArray (value) {
   return Array.isArray(value) ? value : [value]
 }
 
@@ -9,7 +9,7 @@ const benchmarkEnabled =
 
 let benchmarks = []
 
-function benchmark(duration, pattern, value = '', technology) {
+function benchmark (duration, pattern, value = '', technology) {
   if (!benchmarkEnabled) {
     return
   }
@@ -19,11 +19,11 @@ function benchmark(duration, pattern, value = '', technology) {
     pattern: String(pattern.regex),
     value: String(value).slice(0, 100),
     valueLength: value.length,
-    technology: technology.name,
+    technology: technology.name
   })
 }
 
-function benchmarkSummary() {
+function benchmarkSummary () {
   if (!benchmarkEnabled) {
     return
   }
@@ -56,14 +56,14 @@ function benchmarkSummary() {
       .reduce(
         (technologies, { technology, duration }) => ({
           ...technologies,
-          [technology]: duration,
+          [technology]: duration
         }),
         {}
       ),
     slowestPatterns: Object.values(benchmarks)
       .sort(({ duration: a }, { duration: b }) => (a > b ? -1 : 1))
       .filter(({ duration }) => duration)
-      .slice(0, 5),
+      .slice(0, 5)
   })
 }
 
@@ -86,7 +86,7 @@ const Wappalyzer = {
       ...Wappalyzer.requires.map(({ technologies }) => technologies).flat(),
       ...Wappalyzer.categoryRequires
         .map(({ technologies }) => technologies)
-        .flat(),
+        .flat()
     ].find(({ name: _name }) => name === _name),
 
   getCategory: (id) => {
@@ -102,7 +102,7 @@ const Wappalyzer = {
    * Resolve promises for implied technology.
    * @param {Array} detections
    */
-  resolve(detections = []) {
+  resolve (detections = []) {
     const resolved = detections.reduce((resolved, { technology, lastUrl }) => {
       if (
         resolved.findIndex(
@@ -123,7 +123,7 @@ const Wappalyzer = {
               technology: { name },
               pattern,
               version: _version = '',
-              rootPath: _rootPath,
+              rootPath: _rootPath
             }) => {
               confidence = Math.min(100, confidence + pattern.confidence)
               version =
@@ -163,12 +163,12 @@ const Wappalyzer = {
             icon,
             website,
             pricing,
-            cpe,
+            cpe
           },
           confidence,
           version,
           rootPath,
-          lastUrl,
+          lastUrl
         }) => ({
           name,
           description,
@@ -181,7 +181,7 @@ const Wappalyzer = {
           pricing,
           cpe,
           rootPath,
-          lastUrl,
+          lastUrl
         })
       )
   },
@@ -191,7 +191,7 @@ const Wappalyzer = {
    * @param {Promise} resolved
    * @param match
    */
-  resolveVersion({ version, regex }, match) {
+  resolveVersion ({ version, regex }, match) {
     let resolved = version
 
     if (version) {
@@ -233,7 +233,7 @@ const Wappalyzer = {
    * Resolve promises for excluded technology.
    * @param {Promise} resolved
    */
-  resolveExcludes(resolved) {
+  resolveExcludes (resolved) {
     resolved.forEach(({ technology }) => {
       technology.excludes.forEach(({ name }) => {
         const excluded = Wappalyzer.getTechnology(name)
@@ -261,7 +261,7 @@ const Wappalyzer = {
    * Resolve promises for implied technology.
    * @param {Promise} resolved
    */
-  resolveImplies(resolved) {
+  resolveImplies (resolved) {
     let done = false
 
     do {
@@ -285,7 +285,7 @@ const Wappalyzer = {
                 technology: implied,
                 confidence: Math.min(confidence, _confidence),
                 version: version || '',
-                lastUrl,
+                lastUrl
               })
 
               done = false
@@ -300,7 +300,7 @@ const Wappalyzer = {
    * Initialize analyzation.
    * @param {*} param0
    */
-  analyze(items, technologies = Wappalyzer.technologies) {
+  analyze (items, technologies = Wappalyzer.technologies) {
     benchmarks = []
 
     const oo = Wappalyzer.analyzeOneToOne
@@ -321,7 +321,7 @@ const Wappalyzer = {
       scripts: oo,
       text: oo,
       url: oo,
-      xhr: oo,
+      xhr: oo
     }
 
     try {
@@ -349,7 +349,7 @@ const Wappalyzer = {
    * Extract technologies from data collected.
    * @param {object} data
    */
-  setTechnologies(data) {
+  setTechnologies (data) {
     const transform = Wappalyzer.transformPatterns
 
     Wappalyzer.technologies = Object.keys(data).reduce((technologies, name) => {
@@ -379,7 +379,7 @@ const Wappalyzer = {
         text,
         url,
         website,
-        xhr,
+        xhr
       } = data[name]
 
       technologies.push({
@@ -393,9 +393,9 @@ const Wappalyzer = {
         dom: transform(
           typeof dom === 'string' || Array.isArray(dom)
             ? toArray(dom).reduce(
-                (dom, selector) => ({ ...dom, [selector]: { exists: '' } }),
-                {}
-              )
+              (dom, selector) => ({ ...dom, [selector]: { exists: '' } }),
+              {}
+            )
             : dom,
           true,
           false
@@ -407,7 +407,7 @@ const Wappalyzer = {
         implies: transform(implies).map(({ value, confidence, version }) => ({
           name: value,
           confidence,
-          version,
+          version
         })),
         js: transform(js, true),
         meta: transform(meta),
@@ -416,7 +416,7 @@ const Wappalyzer = {
         probe: transform(probe, true),
         requires: transform(requires).map(({ value }) => ({ name: value })),
         requiresCategory: transform(requiresCategory).map(({ value }) => ({
-          id: value,
+          id: value
         })),
         robots: transform(robots),
         scriptSrc: transform(scriptSrc),
@@ -425,7 +425,7 @@ const Wappalyzer = {
         text: transform(text),
         url: transform(url),
         website: website || null,
-        xhr: transform(xhr),
+        xhr: transform(xhr)
       })
 
       return technologies
@@ -447,7 +447,7 @@ const Wappalyzer = {
 
     Wappalyzer.requires = Object.keys(Wappalyzer.requires).map((name) => ({
       name,
-      technologies: Wappalyzer.requires[name],
+      technologies: Wappalyzer.requires[name]
     }))
 
     Wappalyzer.technologies
@@ -464,7 +464,7 @@ const Wappalyzer = {
     Wappalyzer.categoryRequires = Object.keys(Wappalyzer.categoryRequires).map(
       (id) => ({
         categoryId: parseInt(id, 10),
-        technologies: Wappalyzer.categoryRequires[id],
+        technologies: Wappalyzer.categoryRequires[id]
       })
     )
 
@@ -478,7 +478,7 @@ const Wappalyzer = {
    * Assign categories for data.
    * @param {Object} data
    */
-  setCategories(data) {
+  setCategories (data) {
     Wappalyzer.categories = Object.keys(data)
       .reduce((categories, id) => {
         const category = data[id]
@@ -486,7 +486,7 @@ const Wappalyzer = {
         categories.push({
           id: parseInt(id, 10),
           slug: Wappalyzer.slugify(category.name),
-          ...category,
+          ...category
         })
 
         return categories
@@ -499,7 +499,7 @@ const Wappalyzer = {
    * @param {string|array} patterns
    * @param {boolean} caseSensitive
    */
-  transformPatterns(patterns, caseSensitive = false, isRegex = true) {
+  transformPatterns (patterns, caseSensitive = false, isRegex = true) {
     if (!patterns) {
       return []
     }
@@ -527,12 +527,12 @@ const Wappalyzer = {
    * Extract information from regex pattern.
    * @param {string|object} pattern
    */
-  parsePattern(pattern, isRegex = true) {
+  parsePattern (pattern, isRegex = true) {
     if (typeof pattern === 'object') {
       return Object.keys(pattern).reduce(
         (parsed, key) => ({
           ...parsed,
-          [key]: Wappalyzer.parsePattern(pattern[key]),
+          [key]: Wappalyzer.parsePattern(pattern[key])
         }),
         {}
       )
@@ -554,13 +554,13 @@ const Wappalyzer = {
             attrs.regex = new RegExp(
               isRegex
                 ? attr
-                    // Escape slashes
-                    .replace(/\//g, '\\/')
-                    // Optimise quantifiers for long strings
-                    .replace(/\\\+/g, '__escapedPlus__')
-                    .replace(/\+/g, '{1,250}')
-                    .replace(/\*/g, '{0,250}')
-                    .replace(/__escapedPlus__/g, '\\+')
+                // Escape slashes
+                  .replace(/\//g, '\\/')
+                // Optimise quantifiers for long strings
+                  .replace(/\\\+/g, '__escapedPlus__')
+                  .replace(/\+/g, '{1,250}')
+                  .replace(/\*/g, '{0,250}')
+                  .replace(/__escapedPlus__/g, '\\+')
                 : '',
               'i'
             )
@@ -573,7 +573,7 @@ const Wappalyzer = {
         value,
         regex,
         confidence: parseInt(confidence || 100, 10),
-        version: version || '',
+        version: version || ''
       }
     }
   },
@@ -584,7 +584,7 @@ const Wappalyzer = {
    * @param {String} type
    * @param {String} value
    */
-  analyzeOneToOne(technology, type, value) {
+  analyzeOneToOne (technology, type, value) {
     return technology[type].reduce((technologies, pattern) => {
       const startTime = Date.now()
 
@@ -597,9 +597,9 @@ const Wappalyzer = {
             ...pattern,
             type,
             value,
-            match: matches[0],
+            match: matches[0]
           },
-          version: Wappalyzer.resolveVersion(pattern, value),
+          version: Wappalyzer.resolveVersion(pattern, value)
         })
       }
 
@@ -615,7 +615,7 @@ const Wappalyzer = {
    * @param {String} type
    * @param {Array} items
    */
-  analyzeOneToMany(technology, type, items = []) {
+  analyzeOneToMany (technology, type, items = []) {
     return items.reduce((technologies, value) => {
       const patterns = technology[type] || []
 
@@ -631,9 +631,9 @@ const Wappalyzer = {
               ...pattern,
               type,
               value,
-              match: matches[0],
+              match: matches[0]
             },
-            version: Wappalyzer.resolveVersion(pattern, value),
+            version: Wappalyzer.resolveVersion(pattern, value)
           })
         }
 
@@ -650,7 +650,7 @@ const Wappalyzer = {
    * @param {string} types
    * @param {Array} items
    */
-  analyzeManyToMany(technology, types, items = {}) {
+  analyzeManyToMany (technology, types, items = {}) {
     const [type, ...subtypes] = types.split('.')
 
     return Object.keys(technology[type]).reduce((technologies, key) => {
@@ -675,9 +675,9 @@ const Wappalyzer = {
                 ...pattern,
                 type,
                 value,
-                match: matches[0],
+                match: matches[0]
               },
-              version: Wappalyzer.resolveVersion(pattern, value),
+              version: Wappalyzer.resolveVersion(pattern, value)
             })
           }
 
@@ -687,7 +687,7 @@ const Wappalyzer = {
 
       return technologies
     }, [])
-  },
+  }
 }
 
 if (typeof module !== 'undefined') {

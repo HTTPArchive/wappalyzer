@@ -8,11 +8,11 @@ const Options = {
   /**
    * Initialise options
    */
-  init() {
+  init () {
     ;[
       ['dynamicIcon', true],
       ['badge', true],
-      ['showCached', false],
+      ['showCached', false]
     ].map(async ([option, defaultValue]) => {
       const el = document
         .querySelector(
@@ -38,13 +38,13 @@ const Options = {
     i18n()
   },
 
-  driver(func, args, callback) {
+  driver (func, args, callback) {
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         {
           source: 'content.js',
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : [],
+          args: args ? (Array.isArray(args) ? args : [args]) : []
         },
         (response) => {
           chrome.runtime.lastError
@@ -53,7 +53,7 @@ const Options = {
         }
       )
     })
-  },
+  }
 }
 
 if (/complete|interactive|loaded/.test(document.readyState)) {

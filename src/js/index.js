@@ -8,7 +8,7 @@ const {
   analyze,
   analyzeManyToMany,
   resolve,
-  getTechnology,
+  getTechnology
 } = Wappalyzer
 const { promisify, getOption, setOption, globEscape } = Utils
 
@@ -29,17 +29,17 @@ const initPromise = new Promise((resolve) => {
   initDone = resolve
 })
 
-function getRequiredTechnologies(name, categoryId) {
+function getRequiredTechnologies (name, categoryId) {
   return name
     ? Wappalyzer.requires.find(({ name: _name }) => _name === name).technologies
     : categoryId
-    ? Wappalyzer.categoryRequires.find(
+      ? Wappalyzer.categoryRequires.find(
         ({ categoryId: _categoryId }) => _categoryId === categoryId
       ).technologies
-    : undefined
+      : undefined
 }
 
-function isSimilarUrl(a, b) {
+function isSimilarUrl (a, b) {
   const normalise = (url) => String(url || '').replace(/(\/|\/?#.+)$/, '')
 
   return normalise(a) === normalise(b)
@@ -49,7 +49,7 @@ const Driver = {
   /**
    * Initialise driver
    */
-  async init() {
+  async init () {
     await Driver.loadTechnologies()
 
     const hostnameCache = await getOption('hostnames', {})
@@ -64,21 +64,21 @@ const Driver = {
               ({
                 technology: name,
                 pattern: { regex, confidence },
-                version,
+                version
               }) => ({
                 technology: getTechnology(name, true),
                 pattern: {
                   regex: new RegExp(regex, 'i'),
-                  confidence,
+                  confidence
                 },
-                version,
+                version
               })
-            ),
-          },
+            )
+          }
         }),
         {}
       ),
-      robots: await getOption('robots', {}),
+      robots: await getOption('robots', {})
     }
 
     const { version } = chrome.runtime.getManifest()
@@ -97,7 +97,7 @@ const Driver = {
    * @param {String} source
    * @param {String} type
    */
-  log(message, source = 'driver', type = 'log') {
+  log (message, source = 'driver', type = 'log') {
     // eslint-disable-next-line no-console
     console[type](message)
   },
@@ -107,14 +107,14 @@ const Driver = {
    * @param {String} error
    * @param {String} source
    */
-  error(error, source = 'driver') {
+  error (error, source = 'driver') {
     Driver.log(error, source, 'error')
   },
 
   /**
    * Load technologies and categories into memory
    */
-  async loadTechnologies() {
+  async loadTechnologies () {
     try {
       const categories = await (
         await fetch(chrome.runtime.getURL('categories.json'))
@@ -129,7 +129,7 @@ const Driver = {
           ...technologies,
           ...(await (
             await fetch(chrome.runtime.getURL(`technologies/${character}.json`))
-          ).json()),
+          ).json())
         }
       }
 
@@ -150,7 +150,7 @@ const Driver = {
   /**
    * Get all categories
    */
-  getCategories() {
+  getCategories () {
     return Wappalyzer.categories
   },
 
@@ -159,20 +159,20 @@ const Driver = {
    * @param {String} url
    * @param {String} body
    */
-  post(url, body) {
+  post (url, body) {
     return fetch(url, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
   },
 
   /**
    * Wrapper for analyze
    */
-  analyze(...args) {
+  analyze (...args) {
     return analyze(...args)
   },
 
@@ -181,7 +181,7 @@ const Driver = {
    * @param {String} url
    * @param {Array} js
    */
-  analyzeJs(url, js, requires, categoryRequires) {
+  analyzeJs (url, js, requires, categoryRequires) {
     const technologies =
       getRequiredTechnologies(requires, categoryRequires) ||
       Wappalyzer.technologies
@@ -207,7 +207,7 @@ const Driver = {
    * @param {String} url
    * @param {Array} dom
    */
-  analyzeDom(url, dom, requires, categoryRequires) {
+  analyzeDom (url, dom, requires, categoryRequires) {
     const technologies =
       getRequiredTechnologies(requires, categoryRequires) ||
       Wappalyzer.technologies
@@ -230,13 +230,13 @@ const Driver = {
 
             if (typeof exists !== 'undefined') {
               return analyzeManyToMany(technology, 'dom.exists', {
-                [selector]: [''],
+                [selector]: ['']
               })
             }
 
             if (typeof text !== 'undefined') {
               return analyzeManyToMany(technology, 'dom.text', {
-                [selector]: [text],
+                [selector]: [text]
               })
             }
 
@@ -245,7 +245,7 @@ const Driver = {
                 technology,
                 `dom.properties.${property}`,
                 {
-                  [selector]: [value],
+                  [selector]: [value]
                 }
               )
             }
@@ -255,7 +255,7 @@ const Driver = {
                 technology,
                 `dom.attributes.${attribute}`,
                 {
-                  [selector]: [value],
+                  [selector]: [value]
                 }
               )
             }
@@ -272,11 +272,11 @@ const Driver = {
    * @param {String} url
    * @param {String} name
    */
-  detectTechnology(url, name) {
+  detectTechnology (url, name) {
     const technology = getTechnology(name)
 
     return Driver.onDetect(url, [
-      { technology, pattern: { regex: '', confidence: 100 }, version: '' },
+      { technology, pattern: { regex: '', confidence: 100 }, version: '' }
     ])
   },
 
@@ -286,7 +286,7 @@ const Driver = {
    * @param {Object} sender
    * @param {Function} callback
    */
-  onMessage({ source, func, args }, sender, callback) {
+  onMessage ({ source, func, args }, sender, callback) {
     if (!func) {
       return
     }
@@ -313,9 +313,9 @@ const Driver = {
     return !!callback
   },
 
-  async content(url, func, args) {
+  async content (url, func, args) {
     const [tab] = await promisify(chrome.tabs, 'query', {
-      url: globEscape(url),
+      url: globEscape(url)
     })
 
     if (!tab) {
@@ -332,19 +332,19 @@ const Driver = {
         {
           source: 'driver.js',
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : [],
+          args: args ? (Array.isArray(args) ? args : [args]) : []
         },
         (response) => {
           chrome.runtime.lastError
             ? func === 'error'
               ? resolve()
               : Driver.error(
-                  new Error(
+                new Error(
                     `${
                       chrome.runtime.lastError.message
                     }: Driver.${func}(${JSON.stringify(args)})`
-                  )
                 )
+              )
             : resolve(response)
         }
       )
@@ -355,7 +355,7 @@ const Driver = {
    * Analyse response headers
    * @param {Object} request
    */
-  async onWebRequestComplete(request) {
+  async onWebRequestComplete (request) {
     if (request.responseHeaders) {
       if (await Driver.isDisabledDomain(request.url)) {
         return
@@ -367,7 +367,7 @@ const Driver = {
         await new Promise((resolve) => setTimeout(resolve, 500))
 
         const [tab] = await promisify(chrome.tabs, 'query', {
-          url: globEscape(request.url),
+          url: globEscape(request.url)
         })
 
         if (tab) {
@@ -393,7 +393,7 @@ const Driver = {
    * Analyse scripts
    * @param {Object} request
    */
-  async onScriptRequestComplete(request) {
+  async onScriptRequestComplete (request) {
     const initiatorUrl = request.initiator || request.documentUrl || request.url
 
     if (
@@ -430,7 +430,7 @@ const Driver = {
    * Analyse XHR request hostnames
    * @param {Object} request
    */
-  async onXhrRequestComplete(request) {
+  async onXhrRequestComplete (request) {
     if (await Driver.isDisabledDomain(request.url)) {
       return
     }
@@ -475,14 +475,14 @@ const Driver = {
    * @param {Object} items
    * @param {String} language
    */
-  async onContentLoad(url, items, language, requires, categoryRequires) {
+  async onContentLoad (url, items, language, requires, categoryRequires) {
     try {
       items.cookies = items.cookies || {}
 
       //
       ;(
         await promisify(chrome.cookies, 'getAll', {
-          url,
+          url
         })
       ).forEach(
         ({ name, value }) => (items.cookies[name.toLowerCase()] = [value])
@@ -513,14 +513,14 @@ const Driver = {
   /**
    * Get all technologies
    */
-  getTechnologies() {
+  getTechnologies () {
     return Wappalyzer.technologies
   },
 
   /**
    * Check if Wappalyzer has been disabled for the domain
    */
-  async isDisabledDomain(url) {
+  async isDisabledDomain (url) {
     try {
       const { hostname } = new URL(url)
 
@@ -537,7 +537,7 @@ const Driver = {
    * @param {String} language
    * @param {Boolean} incrementHits
    */
-  async onDetect(
+  async onDetect (
     url,
     detections = [],
     language,
@@ -559,7 +559,7 @@ const Driver = {
       https: url.startsWith('https://'),
       analyzedScripts: [],
       ...(Driver.cache.hostnames[hostname] || []),
-      dateTime: Date.now(),
+      dateTime: Date.now()
     })
 
     // Remove duplicates
@@ -572,7 +572,7 @@ const Driver = {
             technology: { name },
             pattern: { regex, value },
             confidence,
-            version,
+            version
           },
           index,
           detections
@@ -582,7 +582,7 @@ const Driver = {
               technology: { name: _name },
               pattern: { regex: _regex, value: _value },
               confidence: _confidence,
-              version: _version,
+              version: _version
             }) =>
               name === _name &&
               version === _version &&
@@ -623,7 +623,7 @@ const Driver = {
         resolved.some(({ categories }) =>
           categories.some(({ id }) => id === categoryId)
         )
-      ),
+      )
     ]
 
     try {
@@ -673,19 +673,19 @@ const Driver = {
                   pattern: { regex, confidence },
                   version,
                   rootPath,
-                  lastUrl,
+                  lastUrl
                 }) => ({
                   technology,
                   pattern: {
                     regex: regex.source,
-                    confidence,
+                    confidence
                   },
                   version,
                   rootPath,
-                  lastUrl,
+                  lastUrl
                 })
-              ),
-          },
+              )
+          }
         }),
         {}
       )
@@ -699,7 +699,7 @@ const Driver = {
    * @param {String} url
    * @param {Object} technologies
    */
-  async setIcon(url, technologies = []) {
+  async setIcon (url, technologies = []) {
     if (await Driver.isDisabledDomain(url)) {
       technologies = []
     }
@@ -734,7 +734,7 @@ const Driver = {
 
     try {
       tabs = await promisify(chrome.tabs, 'query', {
-        url: globEscape(url),
+        url: globEscape(url)
       })
     } catch (error) {
       // Continue
@@ -747,7 +747,7 @@ const Driver = {
           text:
             badge && _technologies.length
               ? _technologies.length.toString()
-              : '',
+              : ''
         },
         () => {}
       )
@@ -761,7 +761,7 @@ const Driver = {
                 ? `converted/${icon.replace(/\.svg$/, '.png')}`
                 : icon
             }`
-          ),
+          )
         },
         () => {}
       )
@@ -771,10 +771,10 @@ const Driver = {
   /**
    * Get the detected technologies for the current tab
    */
-  async getDetections() {
+  async getDetections () {
     const [tab] = await promisify(chrome.tabs, 'query', {
       active: true,
-      currentWindow: true,
+      currentWindow: true
     })
 
     if (!tab) {
@@ -811,7 +811,7 @@ const Driver = {
    * @param {String} hostname
    * @param {Boolean} secure
    */
-  async getRobots(hostname, secure = false) {
+  async getRobots (hostname, secure = false) {
     if (
       !(await getOption('tracking', true)) ||
       hostnameIgnoreList.test(hostname)
@@ -857,7 +857,7 @@ const Driver = {
             }, [])
           )
         }),
-        new Promise((resolve) => setTimeout(() => resolve(''), 5000)),
+        new Promise((resolve) => setTimeout(() => resolve(''), 5000))
       ])
 
       Driver.cache.robots = Object.keys(Driver.cache.robots)
@@ -865,7 +865,7 @@ const Driver = {
         .reduce(
           (cache, hostname) => ({
             ...cache,
-            [hostname]: Driver.cache.robots[hostname],
+            [hostname]: Driver.cache.robots[hostname]
           }),
           {}
         )
@@ -882,7 +882,7 @@ const Driver = {
    * Check if the website allows indexing of a URL
    * @param {String} href
    */
-  async checkRobots(href) {
+  async checkRobots (href) {
     const url = new URL(href)
 
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
@@ -902,13 +902,13 @@ const Driver = {
   /**
    * Clear caches
    */
-  async clearCache() {
+  async clearCache () {
     Driver.cache.hostnames = {}
 
     xhrAnalyzed = {}
 
     await setOption('hostnames', {})
-  },
+  }
 }
 
 chrome.action.setBadgeBackgroundColor({ color: '#6B39BD' }, () => {})
@@ -921,12 +921,12 @@ chrome.webRequest.onCompleted.addListener(
 
 chrome.webRequest.onCompleted.addListener(Driver.onScriptRequestComplete, {
   urls: ['http://*/*', 'https://*/*'],
-  types: ['script'],
+  types: ['script']
 })
 
 chrome.webRequest.onCompleted.addListener(Driver.onXhrRequestComplete, {
   urls: ['http://*/*', 'https://*/*'],
-  types: ['xmlhttprequest'],
+  types: ['xmlhttprequest']
 })
 
 chrome.tabs.onUpdated.addListener(async (id, { status, url }) => {

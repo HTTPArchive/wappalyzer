@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* globals chrome */
 
-function inject(src, id, message) {
+function inject (src, id, message) {
   return new Promise((resolve) => {
     // Inject a script tag into the page to access methods of the window object
     const script = document.createElement('script')
@@ -23,7 +23,7 @@ function inject(src, id, message) {
       window.addEventListener('message', onMessage)
 
       window.postMessage({
-        wappalyzer: message,
+        wappalyzer: message
       })
     }
 
@@ -33,15 +33,15 @@ function inject(src, id, message) {
   })
 }
 
-function getJs(technologies) {
+function getJs (technologies) {
   return inject('js/js.js', 'js', {
     technologies: technologies
       .filter(({ js }) => Object.keys(js).length)
-      .map(({ name, js }) => ({ name, chains: Object.keys(js) })),
+      .map(({ name, js }) => ({ name, chains: Object.keys(js) }))
   })
 }
 
-async function getDom(technologies) {
+async function getDom (technologies) {
   const _technologies = technologies
     .filter(({ dom }) => dom && dom.constructor === Object)
     .map(({ name, dom }) => ({ name, dom }))
@@ -52,7 +52,7 @@ async function getDom(technologies) {
         Object.values(dom)
           .flat()
           .some(({ properties }) => properties)
-      ),
+      )
     })),
     ..._technologies.reduce((technologies, { name, dom }) => {
       const toScalar = (value) =>
@@ -90,7 +90,7 @@ async function getDom(technologies) {
               technologies.push({
                 name,
                 selector,
-                exists: '',
+                exists: ''
               })
             }
 
@@ -109,7 +109,7 @@ async function getDom(technologies) {
                 technologies.push({
                   name,
                   selector,
-                  text: value,
+                  text: value
                 })
               }
             }
@@ -123,7 +123,7 @@ async function getDom(technologies) {
                       name: _name,
                       selector: _selector,
                       property: _property,
-                      value,
+                      value
                     }) =>
                       name === _name &&
                       selector === _selector &&
@@ -138,7 +138,7 @@ async function getDom(technologies) {
                       name,
                       selector,
                       property,
-                      value: toScalar(value),
+                      value: toScalar(value)
                     })
                   }
                 }
@@ -154,7 +154,7 @@ async function getDom(technologies) {
                       name: _name,
                       selector: _selector,
                       attribute: _atrribute,
-                      value,
+                      value
                     }) =>
                       name === _name &&
                       selector === _selector &&
@@ -168,7 +168,7 @@ async function getDom(technologies) {
                     name,
                     selector,
                     attribute,
-                    value: toScalar(value),
+                    value: toScalar(value)
                   })
                 }
               })
@@ -178,7 +178,7 @@ async function getDom(technologies) {
       })
 
       return technologies
-    }, []),
+    }, [])
   ]
 }
 
@@ -191,7 +191,7 @@ const Content = {
   /**
    * Initialise content script
    */
-  async init() {
+  async init () {
     const url = location.href
 
     if (await Content.driver('isDisabledDomain', url)) {
@@ -225,19 +225,19 @@ const Content = {
         (await new Promise((resolve) =>
           chrome.i18n.detectLanguage
             ? chrome.i18n.detectLanguage(html, ({ languages }) =>
-                resolve(
-                  languages
-                    .filter(({ percentage }) => percentage >= 75)
-                    .map(({ language: lang }) => lang)[0]
-                )
+              resolve(
+                languages
+                  .filter(({ percentage }) => percentage >= 75)
+                  .map(({ language: lang }) => lang)[0]
               )
+            )
             : resolve()
         ))
 
       const cookies = document.cookie.split('; ').reduce(
         (cookies, cookie) => ({
           ...cookies,
-          [cookie.split('=').shift()]: [cookie.split('=').pop()],
+          [cookie.split('=').shift()]: [cookie.split('=').pop()]
         }),
         {}
       )
@@ -314,7 +314,7 @@ const Content = {
 
           Content.driver('detectTechnology', [
             url.startsWith('http') ? url : `http://${url}`,
-            'Microsoft Advertising',
+            'Microsoft Advertising'
           ])
         }
       }
@@ -332,8 +332,8 @@ const Content = {
                 .split('/')
                 .shift()}`,
 
-              `https://${ad.textContent.split('\n').pop()}`,
-            ]),
+              `https://${ad.textContent.split('\n').pop()}`
+            ])
           ]
 
           urls.forEach((url) =>
@@ -347,7 +347,7 @@ const Content = {
       await Content.driver('onContentLoad', [
         url,
         Content.cache,
-        Content.language,
+        Content.language
       ])
 
       const technologies = await Content.driver('getTechnologies')
@@ -371,7 +371,7 @@ const Content = {
    * @param {Object} sender
    * @param {Function} callback
    */
-  onMessage({ source, func, args }, sender, callback) {
+  onMessage ({ source, func, args }, sender, callback) {
     if (!func) {
       return
     }
@@ -391,7 +391,7 @@ const Content = {
     return !!callback
   },
 
-  driver(func, args) {
+  driver (func, args) {
     return new Promise((resolve) => {
       chrome.runtime.sendMessage(
         {
@@ -401,30 +401,30 @@ const Content = {
             args instanceof Error
               ? [args.toString()]
               : args
-              ? Array.isArray(args)
-                ? args
-                : [args]
-              : [],
+                ? Array.isArray(args)
+                  ? args
+                  : [args]
+                : []
         },
         (response) => {
           chrome.runtime.lastError
             ? func === 'error'
               ? resolve()
               : Content.driver(
-                  'error',
-                  new Error(
+                'error',
+                new Error(
                     `${
                       chrome.runtime.lastError.message
                     }: Driver.${func}(${JSON.stringify(args)})`
-                  )
                 )
+              )
             : resolve(response)
         }
       )
     })
   },
 
-  async analyzeRequires(url, requires) {
+  async analyzeRequires (url, requires) {
     await Promise.all(
       requires.map(async ({ name, categoryId, technologies }) => {
         const id = categoryId ? `category:${categoryId}` : `technology:${name}`
@@ -442,8 +442,8 @@ const Content = {
               Content.cache,
               Content.language,
               name,
-              categoryId,
-            ]),
+              categoryId
+            ])
           ])
         }
       })
@@ -454,7 +454,7 @@ const Content = {
    * Callback for getTechnologies
    * @param {Array} technologies
    */
-  async onGetTechnologies(technologies = [], requires, categoryRequires) {
+  async onGetTechnologies (technologies = [], requires, categoryRequires) {
     const url = location.href
 
     const js = await getJs(technologies)
@@ -462,9 +462,9 @@ const Content = {
 
     await Promise.all([
       Content.driver('analyzeJs', [url, js, requires, categoryRequires]),
-      Content.driver('analyzeDom', [url, dom, requires, categoryRequires]),
+      Content.driver('analyzeDom', [url, dom, requires, categoryRequires])
     ])
-  },
+  }
 }
 
 // Enable messaging between scripts

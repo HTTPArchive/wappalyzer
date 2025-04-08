@@ -1,5 +1,7 @@
 const assert = require('assert')
 const { runWPTTest } = require('./wpt.js')
+const { beforeAll, test } = require('@jest/globals')
+
 const testWebsite = 'https://almanac.httparchive.org/en/2022/'
 
 let responseData, firstView

@@ -36,7 +36,7 @@ for (const index of Array(27).keys()) {
 
   technologies = {
     ...technologies,
-    ..._technologies,
+    ..._technologies
   }
 }
 

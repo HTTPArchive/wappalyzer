@@ -16,7 +16,7 @@ const wpt = new WebPageTest(wptServer, wptApiKey)
  * @returns {Promise<object>} A promise that resolves with a test result JSON.
  * @throws {Error} If the test run fails or the response status code is not 200.
  */
-function runWPTTest(url) {
+function runWPTTest (url) {
   const options = { key: wptApiKey, wappalyzerPR: prNumber }
 
   return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ function runWPTTest(url) {
           detected: response.data.runs['1'].firstView.detected,
           detected_apps: response.data.runs['1'].firstView.detected_apps,
           detected_technologies:
-            response.data.runs['1'].firstView.detected_technologies,
+            response.data.runs['1'].firstView.detected_technologies
         }
 
         fs.appendFileSync(

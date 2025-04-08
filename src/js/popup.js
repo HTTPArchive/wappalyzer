@@ -4,10 +4,10 @@
 
 const { open, i18n, getOption, setOption, promisify, sendMessage } = Utils
 
-function setDisabledDomain(enabled) {
+function setDisabledDomain (enabled) {
   const el = {
     headerSwitchEnabled: document.querySelector('.header__switch--enabled'),
-    headerSwitchDisabled: document.querySelector('.header__switch--disabled'),
+    headerSwitchDisabled: document.querySelector('.header__switch--disabled')
   }
 
   if (enabled) {
@@ -23,12 +23,12 @@ const Popup = {
   /**
    * Initialise popup
    */
-  async init() {
+  async init () {
     Popup.cache = {
       url: '',
       categories: [],
       detections: [],
-      attributeValues: {},
+      attributeValues: {}
     }
 
     const el = {
@@ -44,7 +44,7 @@ const Popup = {
       issue: document.querySelector('.issue'),
       tabItems: document.querySelectorAll('.tab-item'),
       tabs: document.querySelectorAll('.tab'),
-      templates: document.querySelectorAll('[data-template]'),
+      templates: document.querySelectorAll('[data-template]')
     }
 
     // Templates
@@ -72,7 +72,7 @@ const Popup = {
 
     const tabs = await promisify(chrome.tabs, 'query', {
       active: true,
-      currentWindow: true,
+      currentWindow: true
     })
 
     if (tabs && tabs.length) {
@@ -151,7 +151,7 @@ const Popup = {
     Popup.cache.categories = await Popup.driver('getCategories')
   },
 
-  driver(func, args) {
+  driver (func, args) {
     return sendMessage('popup.js', func, args)
   },
 
@@ -159,7 +159,7 @@ const Popup = {
    * Log debug messages to the console
    * @param {String} message
    */
-  log(message) {
+  log (message) {
     Popup.driver('log', message)
   },
 
@@ -167,7 +167,7 @@ const Popup = {
    * Group technologies into categories
    * @param {Object} technologies
    */
-  categorise(technologies) {
+  categorise (technologies) {
     return Object.values(
       technologies
         .filter(({ confidence }) => confidence >= 50)
@@ -175,7 +175,7 @@ const Popup = {
           technology.categories.forEach((category) => {
             categories[category.id] = categories[category.id] || {
               ...category,
-              technologies: [],
+              technologies: []
             }
 
             categories[category.id].technologies.push(technology)
@@ -190,13 +190,13 @@ const Popup = {
    * Callback for getDetection listener
    * @param {Array} detections
    */
-  async onGetDetections(detections = []) {
+  async onGetDetections (detections = []) {
     Popup.cache.detections = detections
 
     const el = {
       empty: document.querySelector('.empty'),
       detections: document.querySelector('.detections'),
-      issue: document.querySelector('.issue'),
+      issue: document.querySelector('.issue')
     }
 
     detections = (detections || [])
@@ -234,7 +234,7 @@ const Popup = {
         detections: document.querySelector('.detections'),
         link: categoryNode.querySelector('.category__link'),
         pins: categoryNode.querySelectorAll('.category__pin'),
-        pinsActive: document.querySelectorAll('.category__pin--active'),
+        pinsActive: document.querySelectorAll('.category__pin--active')
       }
 
       el.link.href = `https://www.wappalyzer.com/technologies/${categorySlug}/?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer`
@@ -272,7 +272,7 @@ const Popup = {
             link: technologyNode.querySelector('.technology__link'),
             name: technologyNode.querySelector('.technology__name'),
             version: technologyNode.querySelector('.technology__version'),
-            confidence: technologyNode.querySelector('.technology__confidence'),
+            confidence: technologyNode.querySelector('.technology__confidence')
           }
 
           el.iconImage.src = `../images/icons/${icon}`
@@ -315,7 +315,7 @@ const Popup = {
     )
 
     i18n()
-  },
+  }
 }
 
 if (/complete|interactive|loaded/.test(document.readyState)) {

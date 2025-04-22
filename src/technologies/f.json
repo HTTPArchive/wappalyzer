@@ -386,6 +386,7 @@
       87
     ],
     "description": "FastPixel is a web performance and security service that provides caching, a content delivery network, web application firewall, and image optimization.",
+    "html": "<link[^>]+href=\"https://cdn\\.fastpixel\\.io",
     "icon": "FastPixel.svg",
     "pricing": [
       "low",
@@ -393,7 +394,6 @@
       "recurring"
     ],
     "saas": true,
-    "html": "<link[^>]+href=\"https://cdn\\.fastpixel\\.io",
     "website": "https://fastpixel.io/"
   },
   "Fastspring": {

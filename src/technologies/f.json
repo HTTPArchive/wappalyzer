@@ -36,22 +36,6 @@
     ],
     "website": "https://www.farfetchplatformsolutions.com/"
   },
-  "FastPixel": {
-    "cats": [
-      23,
-      87
-    ],
-    "description": "FastPixel is a web performance and security service that provides caching, a content delivery network, web application firewall, and image optimization.",
-    "icon": "FastPixel.svg",
-    "pricing": [
-      "low",
-      "freemium",
-      "recurring"
-    ],
-    "saas": true,
-    "html": "<link[^>]+href=\"https://cdn\\.fastpixel\\.io",
-    "website": "https://fastpixel.io/"
-  },
   "FAST ESP": {
     "cats": [
       29
@@ -395,6 +379,22 @@
     ],
     "website": "https://www.fastly.com",
     "xhr": "\\.fastly\\.net"
+  },
+  "FastPixel": {
+    "cats": [
+      23,
+      87
+    ],
+    "description": "FastPixel is a web performance and security service that provides caching, a content delivery network, web application firewall, and image optimization.",
+    "icon": "FastPixel.svg",
+    "pricing": [
+      "low",
+      "freemium",
+      "recurring"
+    ],
+    "saas": true,
+    "html": "<link[^>]+href=\"https://cdn\\.fastpixel\\.io",
+    "website": "https://fastpixel.io/"
   },
   "Fastspring": {
     "cats": [

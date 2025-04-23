@@ -24,7 +24,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint and Validate
+      - name: Lint
         run: |
           yarn run lint
+
+      - name: Validate
+        run: |
           yarn run validate

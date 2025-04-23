@@ -26,9 +26,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint & Validate
+      - name: Validate
         run: |
-          yarn run lint
           yarn run validate
 
       - name: Run WebPageTest with unit tests

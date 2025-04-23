@@ -21,8 +21,8 @@
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "scripts": {
-    "lint": "eslint src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -jsV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
-    "lint:fix": "eslint --fix src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "lint": "eslint --exit-on-fatal-error --max-warnings 0 src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -jksV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
+    "lint:fix": "eslint --exit-on-fatal-error --fix src/**/*.{js,json} tests/**/*.js scripts/**/*.js && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "validate": "node ./scripts/validate.js",
     "test": "jest",
     "tech_upload": "node ./scripts/tech_upload.js",

@@ -4,11 +4,7 @@ on:
   pull_request_target:
     branches:
       - main
-    paths-ignore:
-      - "src/technologies/*.json"
-      - "src/categories.json"
-      - "src/groups.json"
-      - "src/images/icons/**"
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -24,7 +20,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint and Validate
+      - name: Lint
         run: |
           yarn run lint
+
+      - name: Validate
+        run: |
           yarn run validate

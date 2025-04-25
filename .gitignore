@@ -1,4 +1,3 @@
-/build/*
 /src/images/icons/converted/*
 node_modules
 Thumbs.db
@@ -6,4 +5,3 @@ Desktop.ini
 *.DS_Store
 *.log
 .idea
-/nbproject/private/

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 /* eslint-env browser */
 /* globals chrome */
 
@@ -11,16 +11,16 @@ const Utils = {
    * @param {String} method
    * @param  {...any} args
    */
-  promisify (context, method, ...args) {
+  promisify(context, method, ...args) {
     return new Promise((resolve, reject) => {
       context[method](...args, (...args) => {
         if (chrome.runtime.lastError) {
-          return reject(chrome.runtime.lastError)
+          return reject(chrome.runtime.lastError);
         }
 
-        resolve(...args)
-      })
-    })
+        resolve(...args);
+      });
+    });
   },
 
   /**
@@ -28,8 +28,8 @@ const Utils = {
    * @param {String} url
    * @param {Boolean} active
    */
-  open (url, active = true) {
-    chrome.tabs.create({ url, active })
+  open(url, active = true) {
+    chrome.tabs.create({ url, active });
   },
 
   /**
@@ -37,37 +37,35 @@ const Utils = {
    * @param {String} name
    * @param {string|mixed|null} defaultValue
    */
-  async getOption (name, defaultValue = null) {
+  async getOption(name, defaultValue = null) {
     try {
       try {
         const managed = await Utils.promisify(
           chrome.storage.managed,
           'get',
           name
-        )
+        );
 
         if (managed[name] !== undefined) {
-          return managed[name]
+          return managed[name];
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(
           'wappalyzer | utils | managed storage not available',
           error
-        )
+        );
       }
 
-      const option = await Utils.promisify(chrome.storage.local, 'get', name)
+      const option = await Utils.promisify(chrome.storage.local, 'get', name);
 
       if (option[name] !== undefined) {
-        return option[name]
+        return option[name];
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('wappalyzer | utils |', error)
+      console.error('wappalyzer | utils |', error);
     }
 
-    return defaultValue
+    return defaultValue;
   },
 
   /**
@@ -75,44 +73,43 @@ const Utils = {
    * @param {String} name
    * @param {String} value
    */
-  async setOption (name, value) {
+  async setOption(name, value) {
     try {
       await Utils.promisify(chrome.storage.local, 'set', {
-        [name]: value
-      })
+        [name]: value,
+      });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('wappalyzer | utils |', error)
+      console.error('wappalyzer | utils |', error);
     }
   },
 
   /**
    * Apply internationalization
    */
-  i18n () {
+  i18n() {
     Array.from(document.querySelectorAll('[data-i18n]')).forEach(
       (node) => (node.innerHTML = chrome.i18n.getMessage(node.dataset.i18n))
-    )
+    );
   },
 
-  sendMessage (source, func, args) {
+  sendMessage(source, func, args) {
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         {
           source,
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : []
+          args: args ? (Array.isArray(args) ? args : [args]) : [],
         },
         (response) => {
           chrome.runtime.lastError
             ? reject(chrome.runtime.lastError)
-            : resolve(response)
+            : resolve(response);
         }
-      )
-    })
+      );
+    });
   },
 
-  globEscape (string) {
-    return string.replace(/\*/g, '\\*')
-  }
-}
+  globEscape(string) {
+    return string.replace(/\*/g, '\\*');
+  },
+};

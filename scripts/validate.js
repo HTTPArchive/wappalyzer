@@ -208,3 +208,6 @@ fs.readdirSync(iconPath).forEach((file) => {
     }
   }
 })
+
+// eslint-disable-next-line no-console
+console.log('Validation completed successfully.')

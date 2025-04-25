@@ -1,13 +1,12 @@
-/* eslint-disable no-console */
 // A script to upload technologies and their categories to BigQuery.
 
-const fs = require('fs')
-const path = require('path')
-const { BigQuery } = require('@google-cloud/bigquery')
+const fs = require('fs');
+const path = require('path');
+const { BigQuery } = require('@google-cloud/bigquery');
 
 const bigquery = new BigQuery({
   credentials: JSON.parse(process.env.GCP_SA_KEY),
-})
+});
 
 const schemas = {
   technologies: {
@@ -104,26 +103,30 @@ const schemas = {
       { name: 'description', type: 'STRING' },
     ],
   },
-}
+};
 
 const readJsonFiles = (directory) => {
-  const files = fs.readdirSync(directory)
+  const files = fs.readdirSync(directory);
   return files.reduce((mergedData, file) => {
-    const filePath = path.join(directory, file)
-    const data = fs.readFileSync(filePath, 'utf8')
-    return { ...mergedData, ...JSON.parse(data) }
-  }, {})
-}
+    const filePath = path.join(directory, file);
+    const data = fs.readFileSync(filePath, 'utf8');
+    return { ...mergedData, ...JSON.parse(data) };
+  }, {});
+};
 
 const getArray = (value) =>
-  typeof value === 'string' ? [value] : Array.isArray(value) ? value.sort() : []
+  typeof value === 'string'
+    ? [value]
+    : Array.isArray(value)
+    ? value.sort()
+    : [];
 
 const getRuleObject = (value) => {
   if (typeof value === 'string') {
-    return [{ name: value, value: null }]
+    return [{ name: value, value: null }];
   }
   if (Array.isArray(value)) {
-    return value.map((key) => ({ name: key, value: null }))
+    return value.map((key) => ({ name: key, value: null }));
   }
   if (typeof value === 'object') {
     return Object.keys(value).map((key) => ({
@@ -132,10 +135,10 @@ const getRuleObject = (value) => {
         typeof value[key] === 'object'
           ? JSON.stringify(value[key])
           : value[key].toString(),
-    }))
+    }));
   }
-  return []
-}
+  return [];
+};
 
 const loadToBigQuery = async (
   data,
@@ -145,31 +148,31 @@ const loadToBigQuery = async (
   sourceFormat = 'NEWLINE_DELIMITED_JSON'
 ) => {
   if (!data) {
-    throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`)
+    throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`);
   }
 
-  const schema = schemas[tableName]
-  const options = { schema, sourceFormat, writeDisposition }
+  const schema = schemas[tableName];
+  const options = { schema, sourceFormat, writeDisposition };
   const [job] = await bigquery
     .dataset(datasetName)
     .table(tableName)
-    .load(data, options)
+    .load(data, options);
 
   if (job.status.errors && job.status.errors.length > 0) {
-    console.error('Errors encountered:', job.status.errors)
-    throw new Error(`Error loading data into ${datasetName}.${tableName}`)
+    console.error('Errors encountered:', job.status.errors);
+    throw new Error(`Error loading data into ${datasetName}.${tableName}`);
   }
 
   console.log(
     `Loaded ${job.statistics.load.outputRows} rows into ${datasetName}.${tableName}`
-  )
-}
+  );
+};
 
 const main = async () => {
-  const technologies = readJsonFiles('./src/technologies')
+  const technologies = readJsonFiles('./src/technologies');
   const categories = JSON.parse(
     fs.readFileSync('./src/categories.json', 'utf8')
-  )
+  );
 
   const transformedTechnologies = Object.keys(technologies).map((key) => {
     const app = {
@@ -177,9 +180,9 @@ const main = async () => {
       categories: technologies[key].cats
         .map((category) => categories[category].name)
         .sort(),
-    }
+    };
 
-    ;[
+    [
       'implies',
       'requires',
       'requiresCategory',
@@ -193,34 +196,34 @@ const main = async () => {
       'script',
       'html',
     ].forEach((field) => {
-      app[field] = getArray(technologies[key][field])
-    })
-    ;['cookies', 'dom', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
+      app[field] = getArray(technologies[key][field]);
+    });
+    ['cookies', 'dom', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
       (field) => {
-        app[field] = getRuleObject(technologies[key][field])
+        app[field] = getRuleObject(technologies[key][field]);
       }
-    )
-    ;['website', 'description', 'cpe', 'saas', 'oss', 'pricing'].forEach(
+    );
+    ['website', 'description', 'cpe', 'saas', 'oss', 'pricing'].forEach(
       (field) => {
-        app[field] = technologies[key][field]
+        app[field] = technologies[key][field];
       }
-    )
+    );
 
     // Handle icon field separately to ensure .png extension
     app.icon = technologies[key].icon
       ? `${technologies[key].icon.replace(/\.[^/.]+$/, '')}.png`
-      : technologies[key].icon
+      : technologies[key].icon;
 
-    return app
-  })
+    return app;
+  });
 
   const transformedTechnologiesJsonL = transformedTechnologies
     .map((line) => JSON.stringify(line))
-    .join('\n')
-  const technologiesFilePath = './transformedTechnologies.jsonl'
-  fs.writeFileSync(technologiesFilePath, transformedTechnologiesJsonL)
-  await loadToBigQuery(technologiesFilePath, 'technologies')
-  fs.unlinkSync(technologiesFilePath)
+    .join('\n');
+  const technologiesFilePath = './transformedTechnologies.jsonl';
+  fs.writeFileSync(technologiesFilePath, transformedTechnologiesJsonL);
+  await loadToBigQuery(technologiesFilePath, 'technologies');
+  fs.unlinkSync(technologiesFilePath);
 
   const transformedCategoriesJsonL = Object.values(categories)
     .map((value) =>
@@ -229,11 +232,11 @@ const main = async () => {
         description: value.description,
       })
     )
-    .join('\n')
-  const categoriesFilePath = './transformedCategories.jsonl'
-  fs.writeFileSync(categoriesFilePath, transformedCategoriesJsonL)
-  await loadToBigQuery(categoriesFilePath, 'categories')
-  fs.unlinkSync(categoriesFilePath)
-}
+    .join('\n');
+  const categoriesFilePath = './transformedCategories.jsonl';
+  fs.writeFileSync(categoriesFilePath, transformedCategoriesJsonL);
+  await loadToBigQuery(categoriesFilePath, 'categories');
+  fs.unlinkSync(categoriesFilePath);
+};
 
-main().catch(console.error)
+main().catch(console.error);

@@ -18,12 +18,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Lint
         run: |
-          yarn run lint
+          npm run lint
 
       - name: Validate
         run: |
-          yarn run validate
+          npm run validate

@@ -24,11 +24,11 @@ jobs:
           fetch-depth: 0
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Validate
         run: |
-          yarn run validate
+          npm run validate
 
       - name: Run WebPageTest with unit tests
         id: unit-test
@@ -36,7 +36,7 @@ jobs:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: yarn run test
+        run: npm run test
 
       - name: Run WebPageTest for more websites
         id: wpt-test

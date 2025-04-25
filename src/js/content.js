@@ -1,36 +1,36 @@
-'use strict'
+'use strict';
 /* eslint-env browser */
 /* globals chrome */
 
 function inject(src, id, message) {
   return new Promise((resolve) => {
     // Inject a script tag into the page to access methods of the window object
-    const script = document.createElement('script')
+    const script = document.createElement('script');
 
     script.onload = () => {
       const onMessage = ({ data }) => {
         if (!data.wappalyzer || !data.wappalyzer[id]) {
-          return
+          return;
         }
 
-        window.removeEventListener('message', onMessage)
+        window.removeEventListener('message', onMessage);
 
-        resolve(data.wappalyzer[id])
+        resolve(data.wappalyzer[id]);
 
-        script.remove()
-      }
+        script.remove();
+      };
 
-      window.addEventListener('message', onMessage)
+      window.addEventListener('message', onMessage);
 
       window.postMessage({
         wappalyzer: message,
-      })
-    }
+      });
+    };
 
-    script.setAttribute('src', chrome.runtime.getURL(src))
+    script.setAttribute('src', chrome.runtime.getURL(src));
 
-    document.body.appendChild(script)
-  })
+    document.body.appendChild(script);
+  });
 }
 
 function getJs(technologies) {
@@ -38,13 +38,13 @@ function getJs(technologies) {
     technologies: technologies
       .filter(({ js }) => Object.keys(js).length)
       .map(({ name, js }) => ({ name, chains: Object.keys(js) })),
-  })
+  });
 }
 
 async function getDom(technologies) {
   const _technologies = technologies
     .filter(({ dom }) => dom && dom.constructor === Object)
-    .map(({ name, dom }) => ({ name, dom }))
+    .map(({ name, dom }) => ({ name, dom }));
 
   return [
     ...(await inject('js/dom.js', 'dom', {
@@ -56,19 +56,21 @@ async function getDom(technologies) {
     })),
     ..._technologies.reduce((technologies, { name, dom }) => {
       const toScalar = (value) =>
-        typeof value === 'string' || typeof value === 'number' ? value : !!value
+        typeof value === 'string' || typeof value === 'number'
+          ? value
+          : !!value;
 
       Object.keys(dom).forEach((selector) => {
-        let nodes = []
+        let nodes = [];
 
         try {
-          nodes = document.querySelectorAll(selector)
+          nodes = document.querySelectorAll(selector);
         } catch (error) {
-          Content.driver('error', error)
+          Content.driver('error', error);
         }
 
         if (!nodes.length) {
-          return
+          return;
         }
 
         dom[selector].forEach(({ exists, text, properties, attributes }) => {
@@ -77,7 +79,7 @@ async function getDom(technologies) {
               technologies.filter(({ name: _name }) => _name === name).length >=
               50
             ) {
-              return
+              return;
             }
 
             if (
@@ -91,13 +93,13 @@ async function getDom(technologies) {
                 name,
                 selector,
                 exists: '',
-              })
+              });
             }
 
             if (text) {
               const value = (
                 node.textContent ? node.textContent.trim() : ''
-              ).slice(0, 1000000)
+              ).slice(0, 1000000);
 
               if (
                 value &&
@@ -110,7 +112,7 @@ async function getDom(technologies) {
                   name,
                   selector,
                   text: value,
-                })
+                });
               }
             }
 
@@ -131,7 +133,7 @@ async function getDom(technologies) {
                       value === toScalar(value)
                   ) === -1
                 ) {
-                  const value = node[property]
+                  const value = node[property];
 
                   if (typeof value !== 'undefined') {
                     technologies.push({
@@ -139,10 +141,10 @@ async function getDom(technologies) {
                       selector,
                       property,
                       value: toScalar(value),
-                    })
+                    });
                   }
                 }
-              })
+              });
             }
 
             if (attributes) {
@@ -162,24 +164,24 @@ async function getDom(technologies) {
                       value === toScalar(value)
                   ) === -1
                 ) {
-                  const value = node.getAttribute(attribute)
+                  const value = node.getAttribute(attribute);
 
                   technologies.push({
                     name,
                     selector,
                     attribute,
                     value: toScalar(value),
-                  })
+                  });
                 }
-              })
+              });
             }
-          })
-        })
-      })
+          });
+        });
+      });
 
-      return technologies
+      return technologies;
     }, []),
-  ]
+  ];
 }
 
 const Content = {
@@ -192,31 +194,31 @@ const Content = {
    * Initialise content script
    */
   async init() {
-    const url = location.href
+    const url = location.href;
 
     if (await Content.driver('isDisabledDomain', url)) {
-      return
+      return;
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     try {
       // HTML
-      let html = new XMLSerializer().serializeToString(document)
+      let html = new XMLSerializer().serializeToString(document);
 
       // Discard the middle portion of HTML to avoid performance degradation on large pages
-      const chunks = []
-      const maxCols = 2000
-      const maxRows = 3000
-      const rows = html.length / maxCols
+      const chunks = [];
+      const maxCols = 2000;
+      const maxRows = 3000;
+      const rows = html.length / maxCols;
 
       for (let i = 0; i < rows; i += 1) {
         if (i < maxRows / 2 || i > rows - maxRows / 2) {
-          chunks.push(html.slice(i * maxCols, (i + 1) * maxCols))
+          chunks.push(html.slice(i * maxCols, (i + 1) * maxCols));
         }
       }
 
-      html = chunks.join('\n')
+      html = chunks.join('\n');
 
       // Determine language based on the HTML lang attribute or content
       Content.language =
@@ -232,7 +234,7 @@ const Content = {
                 )
               )
             : resolve()
-        ))
+        ));
 
       const cookies = document.cookie.split('; ').reduce(
         (cookies, cookie) => ({
@@ -240,24 +242,24 @@ const Content = {
           [cookie.split('=').shift()]: [cookie.split('=').pop()],
         }),
         {}
-      )
+      );
 
       // Text
 
       const text = document.body.textContent
         .replace(/\s+/g, ' ')
-        .slice(0, 25000)
+        .slice(0, 25000);
 
       // CSS rules
-      let css = []
+      let css = [];
 
       try {
         for (const sheet of Array.from(document.styleSheets)) {
           for (const rules of Array.from(sheet.cssRules)) {
-            css.push(rules.cssText)
+            css.push(rules.cssText);
 
             if (css.length >= 3000) {
-              break
+              break;
             }
           }
         }
@@ -265,63 +267,64 @@ const Content = {
         // Continue
       }
 
-      css = css.join('\n')
+      css = css.join('\n');
 
       // Script tags
-      const scriptNodes = Array.from(document.scripts)
+      const scriptNodes = Array.from(document.scripts);
 
       const scriptSrc = scriptNodes
         .filter(({ src }) => src && !src.startsWith('data:text/javascript;'))
-        .map(({ src }) => src)
+        .map(({ src }) => src);
 
       const scripts = scriptNodes
         .map((node) => node.textContent)
-        .filter((script) => script)
+        .filter((script) => script);
 
       // Meta tags
       const meta = Array.from(document.querySelectorAll('meta')).reduce(
         (metas, meta) => {
-          const key = meta.getAttribute('name') || meta.getAttribute('property')
+          const key =
+            meta.getAttribute('name') || meta.getAttribute('property');
 
           if (key) {
-            metas[key.toLowerCase()] = metas[key.toLowerCase()] || []
+            metas[key.toLowerCase()] = metas[key.toLowerCase()] || [];
 
-            metas[key.toLowerCase()].push(meta.getAttribute('content'))
+            metas[key.toLowerCase()].push(meta.getAttribute('content'));
           }
 
-          return metas
+          return metas;
         },
         {}
-      )
+      );
 
       // Detect Google Ads
       if (/^(www\.)?google(\.[a-z]{2,3}){1,2}$/.test(location.hostname)) {
         const ads = document.querySelectorAll(
           '#tads [data-text-ad] a[data-pcu]'
-        )
+        );
 
         for (const ad of ads) {
-          Content.driver('detectTechnology', [ad.href, 'Google Ads'])
+          Content.driver('detectTechnology', [ad.href, 'Google Ads']);
         }
       }
 
       // Detect Microsoft Ads
       if (/^(www\.)?bing\.com$/.test(location.hostname)) {
-        const ads = document.querySelectorAll('.b_ad .b_adurl cite')
+        const ads = document.querySelectorAll('.b_ad .b_adurl cite');
 
         for (const ad of ads) {
-          const url = ad.textContent.split(' ')[0].trim()
+          const url = ad.textContent.split(' ')[0].trim();
 
           Content.driver('detectTechnology', [
             url.startsWith('http') ? url : `http://${url}`,
             'Microsoft Advertising',
-          ])
+          ]);
         }
       }
 
       // Detect Facebook Ads
       if (/^(www\.)?facebook\.com$/.test(location.hostname)) {
-        const ads = document.querySelectorAll('a[aria-label="Advertiser"]')
+        const ads = document.querySelectorAll('a[aria-label="Advertiser"]');
 
         for (const ad of ads) {
           const urls = [
@@ -334,34 +337,34 @@ const Content = {
 
               `https://${ad.textContent.split('\n').pop()}`,
             ]),
-          ]
+          ];
 
           urls.forEach((url) =>
             Content.driver('detectTechnology', [url, 'Facebook Ads'])
-          )
+          );
         }
       }
 
-      Content.cache = { html, text, css, scriptSrc, scripts, meta, cookies }
+      Content.cache = { html, text, css, scriptSrc, scripts, meta, cookies };
 
       await Content.driver('onContentLoad', [
         url,
         Content.cache,
         Content.language,
-      ])
+      ]);
 
-      const technologies = await Content.driver('getTechnologies')
+      const technologies = await Content.driver('getTechnologies');
 
-      await Content.onGetTechnologies(technologies)
+      await Content.onGetTechnologies(technologies);
 
       // Delayed second pass to capture async JS
-      await new Promise((resolve) => setTimeout(resolve, 5000))
+      await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      const js = await getJs(technologies)
+      const js = await getJs(technologies);
 
-      await Content.driver('analyzeJs', [url, js])
+      await Content.driver('analyzeJs', [url, js]);
     } catch (error) {
-      Content.driver('error', error)
+      Content.driver('error', error);
     }
   },
 
@@ -373,22 +376,22 @@ const Content = {
    */
   onMessage({ source, func, args }, sender, callback) {
     if (!func) {
-      return
+      return;
     }
 
-    Content.driver('log', { source, func, args })
+    Content.driver('log', { source, func, args });
 
     if (!Content[func]) {
-      Content.error(new Error(`Method does not exist: Content.${func}`))
+      Content.error(new Error(`Method does not exist: Content.${func}`));
 
-      return
+      return;
     }
 
     Promise.resolve(Content[func].call(Content[func], ...(args || [])))
       .then(callback)
-      .catch(Content.error)
+      .catch(Content.error);
 
-    return !!callback
+    return !!callback;
   },
 
   driver(func, args) {
@@ -418,22 +421,22 @@ const Content = {
                     }: Driver.${func}(${JSON.stringify(args)})`
                   )
                 )
-            : resolve(response)
+            : resolve(response);
         }
-      )
-    })
+      );
+    });
   },
 
   async analyzeRequires(url, requires) {
     await Promise.all(
       requires.map(async ({ name, categoryId, technologies }) => {
-        const id = categoryId ? `category:${categoryId}` : `technology:${name}`
+        const id = categoryId ? `category:${categoryId}` : `technology:${name}`;
 
         if (
           !Content.analyzedRequires.includes(id) &&
           Object.keys(Content.cache).length
         ) {
-          Content.analyzedRequires.push(id)
+          Content.analyzedRequires.push(id);
 
           await Promise.all([
             Content.onGetTechnologies(technologies, name, categoryId),
@@ -444,10 +447,10 @@ const Content = {
               name,
               categoryId,
             ]),
-          ])
+          ]);
         }
       })
-    )
+    );
   },
 
   /**
@@ -455,23 +458,23 @@ const Content = {
    * @param {Array} technologies
    */
   async onGetTechnologies(technologies = [], requires, categoryRequires) {
-    const url = location.href
+    const url = location.href;
 
-    const js = await getJs(technologies)
-    const dom = await getDom(technologies)
+    const js = await getJs(technologies);
+    const dom = await getDom(technologies);
 
     await Promise.all([
       Content.driver('analyzeJs', [url, js, requires, categoryRequires]),
       Content.driver('analyzeDom', [url, dom, requires, categoryRequires]),
-    ])
+    ]);
   },
-}
+};
 
 // Enable messaging between scripts
-chrome.runtime.onMessage.addListener(Content.onMessage)
+chrome.runtime.onMessage.addListener(Content.onMessage);
 
 if (/complete|interactive|loaded/.test(document.readyState)) {
-  Content.init()
+  Content.init();
 } else {
-  document.addEventListener('DOMContentLoaded', Content.init)
+  document.addEventListener('DOMContentLoaded', Content.init);
 }

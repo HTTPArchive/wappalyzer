@@ -23,7 +23,7 @@ function inject(src, id, message) {
       window.addEventListener('message', onMessage);
 
       window.postMessage({
-        wappalyzer: message,
+        wappalyzer: message
       });
     };
 
@@ -37,7 +37,7 @@ function getJs(technologies) {
   return inject('js/js.js', 'js', {
     technologies: technologies
       .filter(({ js }) => Object.keys(js).length)
-      .map(({ name, js }) => ({ name, chains: Object.keys(js) })),
+      .map(({ name, js }) => ({ name, chains: Object.keys(js) }))
   });
 }
 
@@ -52,7 +52,7 @@ async function getDom(technologies) {
         Object.values(dom)
           .flat()
           .some(({ properties }) => properties)
-      ),
+      )
     })),
     ..._technologies.reduce((technologies, { name, dom }) => {
       const toScalar = (value) =>
@@ -92,7 +92,7 @@ async function getDom(technologies) {
               technologies.push({
                 name,
                 selector,
-                exists: '',
+                exists: ''
               });
             }
 
@@ -111,7 +111,7 @@ async function getDom(technologies) {
                 technologies.push({
                   name,
                   selector,
-                  text: value,
+                  text: value
                 });
               }
             }
@@ -125,7 +125,7 @@ async function getDom(technologies) {
                       name: _name,
                       selector: _selector,
                       property: _property,
-                      value,
+                      value
                     }) =>
                       name === _name &&
                       selector === _selector &&
@@ -140,7 +140,7 @@ async function getDom(technologies) {
                       name,
                       selector,
                       property,
-                      value: toScalar(value),
+                      value: toScalar(value)
                     });
                   }
                 }
@@ -156,7 +156,7 @@ async function getDom(technologies) {
                       name: _name,
                       selector: _selector,
                       attribute: _atrribute,
-                      value,
+                      value
                     }) =>
                       name === _name &&
                       selector === _selector &&
@@ -170,7 +170,7 @@ async function getDom(technologies) {
                     name,
                     selector,
                     attribute,
-                    value: toScalar(value),
+                    value: toScalar(value)
                   });
                 }
               });
@@ -180,7 +180,7 @@ async function getDom(technologies) {
       });
 
       return technologies;
-    }, []),
+    }, [])
   ];
 }
 
@@ -239,7 +239,7 @@ const Content = {
       const cookies = document.cookie.split('; ').reduce(
         (cookies, cookie) => ({
           ...cookies,
-          [cookie.split('=').shift()]: [cookie.split('=').pop()],
+          [cookie.split('=').shift()]: [cookie.split('=').pop()]
         }),
         {}
       );
@@ -317,7 +317,7 @@ const Content = {
 
           Content.driver('detectTechnology', [
             url.startsWith('http') ? url : `http://${url}`,
-            'Microsoft Advertising',
+            'Microsoft Advertising'
           ]);
         }
       }
@@ -335,8 +335,8 @@ const Content = {
                 .split('/')
                 .shift()}`,
 
-              `https://${ad.textContent.split('\n').pop()}`,
-            ]),
+              `https://${ad.textContent.split('\n').pop()}`
+            ])
           ];
 
           urls.forEach((url) =>
@@ -350,7 +350,7 @@ const Content = {
       await Content.driver('onContentLoad', [
         url,
         Content.cache,
-        Content.language,
+        Content.language
       ]);
 
       const technologies = await Content.driver('getTechnologies');
@@ -404,10 +404,10 @@ const Content = {
             args instanceof Error
               ? [args.toString()]
               : args
-              ? Array.isArray(args)
-                ? args
-                : [args]
-              : [],
+                ? Array.isArray(args)
+                  ? args
+                  : [args]
+                : []
         },
         (response) => {
           chrome.runtime.lastError
@@ -445,8 +445,8 @@ const Content = {
               Content.cache,
               Content.language,
               name,
-              categoryId,
-            ]),
+              categoryId
+            ])
           ]);
         }
       })
@@ -465,9 +465,9 @@ const Content = {
 
     await Promise.all([
       Content.driver('analyzeJs', [url, js, requires, categoryRequires]),
-      Content.driver('analyzeDom', [url, dom, requires, categoryRequires]),
+      Content.driver('analyzeDom', [url, dom, requires, categoryRequires])
     ]);
-  },
+  }
 };
 
 // Enable messaging between scripts

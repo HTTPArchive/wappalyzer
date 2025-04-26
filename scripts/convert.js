@@ -15,7 +15,7 @@ const appPaths = () => {
 
   return {
     iconPath: appDir + '/src/images/icons',
-    convertPath: appDir + '/src/images/icons/converted',
+    convertPath: appDir + '/src/images/icons/converted'
   };
 };
 
@@ -95,7 +95,7 @@ async function convertSvgToPng(page, inputPath, outputPath) {
 
   const fileElement = await page.waitForSelector('svg');
   await fileElement.screenshot({
-    path: outputPath,
+    path: outputPath
   });
 }
 

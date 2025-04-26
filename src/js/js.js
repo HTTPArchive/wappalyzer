@@ -32,14 +32,14 @@
                   value:
                     typeof value === 'string' || typeof value === 'number'
                       ? value
-                      : !!value,
+                      : !!value
                 });
               }
             });
 
             return technologies;
-          }, []),
-        },
+          }, [])
+        }
       });
     };
 

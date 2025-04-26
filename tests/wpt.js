@@ -31,7 +31,7 @@ function runWPTTest(url) {
           detected: response.data.runs['1'].firstView.detected,
           detected_apps: response.data.runs['1'].firstView.detected_apps,
           detected_technologies:
-            response.data.runs['1'].firstView.detected_technologies,
+            response.data.runs['1'].firstView.detected_technologies
         };
 
         fs.appendFileSync(

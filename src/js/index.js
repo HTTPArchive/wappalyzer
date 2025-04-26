@@ -8,7 +8,7 @@ const {
   analyze,
   analyzeManyToMany,
   resolve,
-  getTechnology,
+  getTechnology
 } = Wappalyzer;
 const { promisify, getOption, setOption, globEscape } = Utils;
 
@@ -33,10 +33,10 @@ function getRequiredTechnologies(name, categoryId) {
   return name
     ? Wappalyzer.requires.find(({ name: _name }) => _name === name).technologies
     : categoryId
-    ? Wappalyzer.categoryRequires.find(
-        ({ categoryId: _categoryId }) => _categoryId === categoryId
-      ).technologies
-    : undefined;
+      ? Wappalyzer.categoryRequires.find(
+          ({ categoryId: _categoryId }) => _categoryId === categoryId
+        ).technologies
+      : undefined;
 }
 
 function isSimilarUrl(a, b) {
@@ -64,21 +64,21 @@ const Driver = {
               ({
                 technology: name,
                 pattern: { regex, confidence },
-                version,
+                version
               }) => ({
                 technology: getTechnology(name, true),
                 pattern: {
                   regex: new RegExp(regex, 'i'),
-                  confidence,
+                  confidence
                 },
-                version,
+                version
               })
-            ),
-          },
+            )
+          }
         }),
         {}
       ),
-      robots: await getOption('robots', {}),
+      robots: await getOption('robots', {})
     };
 
     const { version } = chrome.runtime.getManifest();
@@ -128,7 +128,7 @@ const Driver = {
           ...technologies,
           ...(await (
             await fetch(chrome.runtime.getURL(`technologies/${character}.json`))
-          ).json()),
+          ).json())
         };
       }
 
@@ -163,8 +163,8 @@ const Driver = {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     });
   },
 
@@ -229,13 +229,13 @@ const Driver = {
 
             if (typeof exists !== 'undefined') {
               return analyzeManyToMany(technology, 'dom.exists', {
-                [selector]: [''],
+                [selector]: ['']
               });
             }
 
             if (typeof text !== 'undefined') {
               return analyzeManyToMany(technology, 'dom.text', {
-                [selector]: [text],
+                [selector]: [text]
               });
             }
 
@@ -244,7 +244,7 @@ const Driver = {
                 technology,
                 `dom.properties.${property}`,
                 {
-                  [selector]: [value],
+                  [selector]: [value]
                 }
               );
             }
@@ -254,7 +254,7 @@ const Driver = {
                 technology,
                 `dom.attributes.${attribute}`,
                 {
-                  [selector]: [value],
+                  [selector]: [value]
                 }
               );
             }
@@ -275,7 +275,7 @@ const Driver = {
     const technology = getTechnology(name);
 
     return Driver.onDetect(url, [
-      { technology, pattern: { regex: '', confidence: 100 }, version: '' },
+      { technology, pattern: { regex: '', confidence: 100 }, version: '' }
     ]);
   },
 
@@ -313,7 +313,7 @@ const Driver = {
 
   async content(url, func, args) {
     const [tab] = await promisify(chrome.tabs, 'query', {
-      url: globEscape(url),
+      url: globEscape(url)
     });
 
     if (!tab) {
@@ -330,7 +330,7 @@ const Driver = {
         {
           source: 'driver.js',
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : [],
+          args: args ? (Array.isArray(args) ? args : [args]) : []
         },
         (response) => {
           chrome.runtime.lastError
@@ -365,7 +365,7 @@ const Driver = {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         const [tab] = await promisify(chrome.tabs, 'query', {
-          url: globEscape(request.url),
+          url: globEscape(request.url)
         });
 
         if (tab) {
@@ -483,7 +483,7 @@ const Driver = {
       //
       (
         await promisify(chrome.cookies, 'getAll', {
-          url,
+          url
         })
       ).forEach(
         ({ name, value }) => (items.cookies[name.toLowerCase()] = [value])
@@ -560,7 +560,7 @@ const Driver = {
       https: url.startsWith('https://'),
       analyzedScripts: [],
       ...(Driver.cache.hostnames[hostname] || []),
-      dateTime: Date.now(),
+      dateTime: Date.now()
     });
 
     // Remove duplicates
@@ -573,7 +573,7 @@ const Driver = {
             technology: { name },
             pattern: { regex, value },
             confidence,
-            version,
+            version
           },
           index,
           detections
@@ -583,7 +583,7 @@ const Driver = {
               technology: { name: _name },
               pattern: { regex: _regex, value: _value },
               confidence: _confidence,
-              version: _version,
+              version: _version
             }) =>
               name === _name &&
               version === _version &&
@@ -624,7 +624,7 @@ const Driver = {
         resolved.some(({ categories }) =>
           categories.some(({ id }) => id === categoryId)
         )
-      ),
+      )
     ];
 
     try {
@@ -674,19 +674,19 @@ const Driver = {
                   pattern: { regex, confidence },
                   version,
                   rootPath,
-                  lastUrl,
+                  lastUrl
                 }) => ({
                   technology,
                   pattern: {
                     regex: regex.source,
-                    confidence,
+                    confidence
                   },
                   version,
                   rootPath,
-                  lastUrl,
+                  lastUrl
                 })
-              ),
-          },
+              )
+          }
         }),
         {}
       )
@@ -735,7 +735,7 @@ const Driver = {
 
     try {
       tabs = await promisify(chrome.tabs, 'query', {
-        url: globEscape(url),
+        url: globEscape(url)
       });
     } catch (error) {
       // Continue
@@ -746,9 +746,7 @@ const Driver = {
         {
           tabId,
           text:
-            badge && _technologies.length
-              ? _technologies.length.toString()
-              : '',
+            badge && _technologies.length ? _technologies.length.toString() : ''
         },
         () => {}
       );
@@ -762,7 +760,7 @@ const Driver = {
                 ? `converted/${icon.replace(/\.svg$/, '.png')}`
                 : icon
             }`
-          ),
+          )
         },
         () => {}
       );
@@ -775,7 +773,7 @@ const Driver = {
   async getDetections() {
     const [tab] = await promisify(chrome.tabs, 'query', {
       active: true,
-      currentWindow: true,
+      currentWindow: true
     });
 
     if (!tab) {
@@ -857,7 +855,7 @@ const Driver = {
             }, [])
           );
         }),
-        new Promise((resolve) => setTimeout(() => resolve(''), 5000)),
+        new Promise((resolve) => setTimeout(() => resolve(''), 5000))
       ]);
 
       Driver.cache.robots = Object.keys(Driver.cache.robots)
@@ -865,7 +863,7 @@ const Driver = {
         .reduce(
           (cache, hostname) => ({
             ...cache,
-            [hostname]: Driver.cache.robots[hostname],
+            [hostname]: Driver.cache.robots[hostname]
           }),
           {}
         );
@@ -908,7 +906,7 @@ const Driver = {
     xhrAnalyzed = {};
 
     await setOption('hostnames', {});
-  },
+  }
 };
 
 chrome.action.setBadgeBackgroundColor({ color: '#6B39BD' }, () => {});
@@ -921,12 +919,12 @@ chrome.webRequest.onCompleted.addListener(
 
 chrome.webRequest.onCompleted.addListener(Driver.onScriptRequestComplete, {
   urls: ['http://*/*', 'https://*/*'],
-  types: ['script'],
+  types: ['script']
 });
 
 chrome.webRequest.onCompleted.addListener(Driver.onXhrRequestComplete, {
   urls: ['http://*/*', 'https://*/*'],
-  types: ['xmlhttprequest'],
+  types: ['xmlhttprequest']
 });
 
 chrome.tabs.onUpdated.addListener(async (id, { status, url }) => {

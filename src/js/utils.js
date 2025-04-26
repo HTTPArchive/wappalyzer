@@ -76,7 +76,7 @@ const Utils = {
   async setOption(name, value) {
     try {
       await Utils.promisify(chrome.storage.local, 'set', {
-        [name]: value,
+        [name]: value
       });
     } catch (error) {
       console.error('wappalyzer | utils |', error);
@@ -98,7 +98,7 @@ const Utils = {
         {
           source,
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : [],
+          args: args ? (Array.isArray(args) ? args : [args]) : []
         },
         (response) => {
           chrome.runtime.lastError
@@ -111,5 +111,5 @@ const Utils = {
 
   globEscape(string) {
     return string.replace(/\*/g, '\\*');
-  },
+  }
 };

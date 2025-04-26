@@ -5,7 +5,7 @@ const path = require('path');
 const { BigQuery } = require('@google-cloud/bigquery');
 
 const bigquery = new BigQuery({
-  credentials: JSON.parse(process.env.GCP_SA_KEY),
+  credentials: JSON.parse(process.env.GCP_SA_KEY)
 });
 
 const schemas = {
@@ -30,8 +30,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       {
         name: 'dom',
@@ -39,8 +39,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       {
         name: 'dns',
@@ -48,8 +48,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       {
         name: 'js',
@@ -57,8 +57,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       {
         name: 'headers',
@@ -66,8 +66,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       { name: 'text', type: 'STRING', mode: 'REPEATED' },
       { name: 'css', type: 'STRING', mode: 'REPEATED' },
@@ -77,8 +77,8 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       { name: 'robots', type: 'STRING', mode: 'REPEATED' },
       { name: 'url', type: 'STRING', mode: 'REPEATED' },
@@ -89,20 +89,20 @@ const schemas = {
         mode: 'REPEATED',
         fields: [
           { name: 'name', type: 'STRING' },
-          { name: 'value', type: 'STRING' },
-        ],
+          { name: 'value', type: 'STRING' }
+        ]
       },
       { name: 'scriptSrc', type: 'STRING', mode: 'REPEATED' },
       { name: 'script', type: 'STRING', mode: 'REPEATED' },
-      { name: 'html', type: 'STRING', mode: 'REPEATED' },
-    ],
+      { name: 'html', type: 'STRING', mode: 'REPEATED' }
+    ]
   },
   categories: {
     fields: [
       { name: 'name', type: 'STRING' },
-      { name: 'description', type: 'STRING' },
-    ],
-  },
+      { name: 'description', type: 'STRING' }
+    ]
+  }
 };
 
 const readJsonFiles = (directory) => {
@@ -118,8 +118,8 @@ const getArray = (value) =>
   typeof value === 'string'
     ? [value]
     : Array.isArray(value)
-    ? value.sort()
-    : [];
+      ? value.sort()
+      : [];
 
 const getRuleObject = (value) => {
   if (typeof value === 'string') {
@@ -134,7 +134,7 @@ const getRuleObject = (value) => {
       value:
         typeof value[key] === 'object'
           ? JSON.stringify(value[key])
-          : value[key].toString(),
+          : value[key].toString()
     }));
   }
   return [];
@@ -179,7 +179,7 @@ const main = async () => {
       name: key,
       categories: technologies[key].cats
         .map((category) => categories[category].name)
-        .sort(),
+        .sort()
     };
 
     [
@@ -194,7 +194,7 @@ const main = async () => {
       'xhr',
       'scriptSrc',
       'script',
-      'html',
+      'html'
     ].forEach((field) => {
       app[field] = getArray(technologies[key][field]);
     });
@@ -229,7 +229,7 @@ const main = async () => {
     .map((value) =>
       JSON.stringify({
         name: value.name,
-        description: value.description,
+        description: value.description
       })
     )
     .join('\n');

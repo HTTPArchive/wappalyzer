@@ -19,7 +19,7 @@ function benchmark(duration, pattern, value = '', technology) {
     pattern: String(pattern.regex),
     value: String(value).slice(0, 100),
     valueLength: value.length,
-    technology: technology.name,
+    technology: technology.name
   });
 }
 
@@ -55,14 +55,14 @@ function benchmarkSummary() {
       .reduce(
         (technologies, { technology, duration }) => ({
           ...technologies,
-          [technology]: duration,
+          [technology]: duration
         }),
         {}
       ),
     slowestPatterns: Object.values(benchmarks)
       .sort(({ duration: a }, { duration: b }) => (a > b ? -1 : 1))
       .filter(({ duration }) => duration)
-      .slice(0, 5),
+      .slice(0, 5)
   });
 }
 
@@ -85,7 +85,7 @@ const Wappalyzer = {
       ...Wappalyzer.requires.map(({ technologies }) => technologies).flat(),
       ...Wappalyzer.categoryRequires
         .map(({ technologies }) => technologies)
-        .flat(),
+        .flat()
     ].find(({ name: _name }) => name === _name),
 
   getCategory: (id) => {
@@ -122,7 +122,7 @@ const Wappalyzer = {
               technology: { name },
               pattern,
               version: _version = '',
-              rootPath: _rootPath,
+              rootPath: _rootPath
             }) => {
               confidence = Math.min(100, confidence + pattern.confidence);
               version =
@@ -162,12 +162,12 @@ const Wappalyzer = {
             icon,
             website,
             pricing,
-            cpe,
+            cpe
           },
           confidence,
           version,
           rootPath,
-          lastUrl,
+          lastUrl
         }) => ({
           name,
           description,
@@ -180,7 +180,7 @@ const Wappalyzer = {
           pricing,
           cpe,
           rootPath,
-          lastUrl,
+          lastUrl
         })
       );
   },
@@ -284,7 +284,7 @@ const Wappalyzer = {
                 technology: implied,
                 confidence: Math.min(confidence, _confidence),
                 version: version || '',
-                lastUrl,
+                lastUrl
               });
 
               done = false;
@@ -320,7 +320,7 @@ const Wappalyzer = {
       scripts: oo,
       text: oo,
       url: oo,
-      xhr: oo,
+      xhr: oo
     };
 
     try {
@@ -378,7 +378,7 @@ const Wappalyzer = {
         text,
         url,
         website,
-        xhr,
+        xhr
       } = data[name];
 
       technologies.push({
@@ -406,7 +406,7 @@ const Wappalyzer = {
         implies: transform(implies).map(({ value, confidence, version }) => ({
           name: value,
           confidence,
-          version,
+          version
         })),
         js: transform(js, true),
         meta: transform(meta),
@@ -415,7 +415,7 @@ const Wappalyzer = {
         probe: transform(probe, true),
         requires: transform(requires).map(({ value }) => ({ name: value })),
         requiresCategory: transform(requiresCategory).map(({ value }) => ({
-          id: value,
+          id: value
         })),
         robots: transform(robots),
         scriptSrc: transform(scriptSrc),
@@ -424,7 +424,7 @@ const Wappalyzer = {
         text: transform(text),
         url: transform(url),
         website: website || null,
-        xhr: transform(xhr),
+        xhr: transform(xhr)
       });
 
       return technologies;
@@ -446,7 +446,7 @@ const Wappalyzer = {
 
     Wappalyzer.requires = Object.keys(Wappalyzer.requires).map((name) => ({
       name,
-      technologies: Wappalyzer.requires[name],
+      technologies: Wappalyzer.requires[name]
     }));
 
     Wappalyzer.technologies
@@ -463,7 +463,7 @@ const Wappalyzer = {
     Wappalyzer.categoryRequires = Object.keys(Wappalyzer.categoryRequires).map(
       (id) => ({
         categoryId: parseInt(id, 10),
-        technologies: Wappalyzer.categoryRequires[id],
+        technologies: Wappalyzer.categoryRequires[id]
       })
     );
 
@@ -485,7 +485,7 @@ const Wappalyzer = {
         categories.push({
           id: parseInt(id, 10),
           slug: Wappalyzer.slugify(category.name),
-          ...category,
+          ...category
         });
 
         return categories;
@@ -531,7 +531,7 @@ const Wappalyzer = {
       return Object.keys(pattern).reduce(
         (parsed, key) => ({
           ...parsed,
-          [key]: Wappalyzer.parsePattern(pattern[key]),
+          [key]: Wappalyzer.parsePattern(pattern[key])
         }),
         {}
       );
@@ -572,7 +572,7 @@ const Wappalyzer = {
         value,
         regex,
         confidence: parseInt(confidence || 100, 10),
-        version: version || '',
+        version: version || ''
       };
     }
   },
@@ -596,9 +596,9 @@ const Wappalyzer = {
             ...pattern,
             type,
             value,
-            match: matches[0],
+            match: matches[0]
           },
-          version: Wappalyzer.resolveVersion(pattern, value),
+          version: Wappalyzer.resolveVersion(pattern, value)
         });
       }
 
@@ -630,9 +630,9 @@ const Wappalyzer = {
               ...pattern,
               type,
               value,
-              match: matches[0],
+              match: matches[0]
             },
-            version: Wappalyzer.resolveVersion(pattern, value),
+            version: Wappalyzer.resolveVersion(pattern, value)
           });
         }
 
@@ -674,9 +674,9 @@ const Wappalyzer = {
                 ...pattern,
                 type,
                 value,
-                match: matches[0],
+                match: matches[0]
               },
-              version: Wappalyzer.resolveVersion(pattern, value),
+              version: Wappalyzer.resolveVersion(pattern, value)
             });
           }
 
@@ -686,7 +686,7 @@ const Wappalyzer = {
 
       return technologies;
     }, []);
-  },
+  }
 };
 
 if (typeof module !== 'undefined') {

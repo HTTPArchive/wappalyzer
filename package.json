@@ -5,7 +5,7 @@
     "@prantlf/jsonlint": "16.0.0",
     "eslint": "9.27.0",
     "eslint-plugin-jsonc": "2.20.1",
-    "eslint-plugin-prettier": "5.4.0",
+    "eslint-plugin-prettier": "5.4.1",
     "jest": "29.7.0",
     "prettier": "3.5.3",
     "puppeteer": "24.9.0",

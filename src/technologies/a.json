@@ -3401,7 +3401,7 @@
       "anthropic-organization-id": ".+"
     },
     "url": "/^https?:\\/\\/claude\\.ai\\/.*$/",
-    "website": "claude.ai"
+    "website": "https://claude.ai"
   },
   "Anthology Encompass": {
     "cats": [

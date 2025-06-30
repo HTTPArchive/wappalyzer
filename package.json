@@ -6,7 +6,7 @@
     "eslint": "9.29.0",
     "eslint-plugin-jsonc": "2.20.1",
     "eslint-plugin-prettier": "5.5.1",
-    "jest": "30.0.2",
+    "jest": "30.0.3",
     "prettier": "3.6.0",
     "puppeteer": "24.11.1",
     "terminal-overwrite": "2.0.1",

@@ -14,6 +14,22 @@
     ],
     "website": "https://www.otys.nl"
   },
+  "OpenAI":
+  {
+    "cats":[
+      19
+    ],
+    "description": "OpenAI is an AI research and deployment company that provides public access to large language models, enabling users to interact with them across the web.",
+    "headers": {
+      "openai-processing-ms": ".+"
+    },
+    "scriptSrc": "/^https:\/\/(cdn|chat)\\.openai\\.com\/.*$/",
+    "icon": "OpenAI.png",
+    "pricing":[
+      "low", "freemium"
+    ],
+    "website": "https://chatgpt.com"
+  },
   "OVHcloud": {
     "cats": [
       62,

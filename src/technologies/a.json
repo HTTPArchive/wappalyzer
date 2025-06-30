@@ -3392,6 +3392,17 @@
     ],
     "website": "https://ipo.antee.cz"
   },
+  "Anthropic":{
+    "cats":[19],
+    "description": "Anthropic is an AI company that develops and hosts the Claude family of large language models for conversational and enterprise applications.",
+    "icon": "Anthropic.png",
+    "pricing": ["mid"],
+    "headers": {
+      "anthropic-organization-id": ".+"
+    },
+    "url": "/^https?:\\/\\/claude\\.ai\\/.*$/",
+    "website": "claude.ai"
+  },
   "Anthology Encompass": {
     "cats": [
       53

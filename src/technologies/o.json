@@ -23,7 +23,7 @@
     "headers": {
       "openai-processing-ms": ".+"
     },
-    "scriptSrc": "/^https:\/\/(cdn|chat)\\.openai\\.com\/.*$/",
+    "scriptSrc": "https://(chat)\\.openai\\.com/.*",
     "icon": "OpenAI.png",
     "pricing":[
       "low", "freemium"

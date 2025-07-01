@@ -6041,6 +6041,15 @@
     "scriptSrc": "\\.stagetry\\.io/",
     "website": "https://stagetry.com"
   },
+  "Stammer":{
+    "cats": [
+      52
+    ],
+    "description": "Stammer is an AI platform that allows agencies to create and sell custom AI chatbots under their own brand.",
+    "icon": "stammerai.png",
+    "text": "stammer",
+    "website": "https://app.stammer.ai"
+  },
   "Stamped": {
     "cats": [
       90

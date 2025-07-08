@@ -1,4 +1,4 @@
-name: Lint & Validate
+name: Lint, validate & Dependabot auto-merge
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: Lint & Validate
+    name: Lint & validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

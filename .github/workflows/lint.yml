@@ -1,7 +1,7 @@
 name: Lint & Validate
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -14,7 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Install dependencies
@@ -27,3 +26,27 @@ jobs:
       - name: Validate
         run: |
           npm run validate
+
+  dependabot:
+    name: Dependabot auto-merge
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'HTTPArchive/wappalyzer'
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

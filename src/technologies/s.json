@@ -6087,6 +6087,22 @@
     "implies": "Perl",
     "website": "https://metacpan.org/pod/Starlet"
   },
+  "Starlight": {
+    "cats": [
+      4,
+      57
+    ],
+    "description": "Starlight is a documentation website builder for the Astro framework.",
+    "icon": "Starlight.svg",
+    "meta": {
+      "generator": "^Starlight\\sv([\\d\\.]+)$\\;version:\\1"
+    },
+    "oss": true,
+    "requires": [
+      "Astro"
+    ],
+    "website": "https://starlight.astro.build/"
+  },
   "Statamic": {
     "cats": [
       1

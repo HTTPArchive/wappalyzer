@@ -6094,11 +6094,13 @@
     ],
     "description": "Starlight is a documentation website builder for the Astro framework.",
     "icon": "Starlight.svg",
-    "requires": ["Astro"],
     "meta": {
       "generator": "^Starlight\\sv([\\d\\.]+)$\\;version:\\1"
     },
     "oss": true,
+    "requires": [
+      "Astro"
+    ],
     "website": "https://starlight.astro.build/"
   },
   "Statamic": {

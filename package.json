@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@google-cloud/bigquery": "8.1.0",
+    "@google-cloud/bigquery": "8.1.1",
     "@google-cloud/storage": "7.16.0",
     "@prantlf/jsonlint": "16.0.0",
     "eslint": "9.31.0",

@@ -10,7 +10,10 @@
   "additionalProperties": {
     "type": "object",
     "additionalProperties": false,
-    "required": ["cats","website"],
+    "required": [
+      "cats",
+      "website"
+    ],
     "properties": {
       "description": {
         "type": "string",
@@ -44,8 +47,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": {},
           "additionalProperties": {
             "type": "string"
           }
@@ -55,8 +57,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": {},
           "additionalProperties": {
             "type": "string"
           }
@@ -77,8 +78,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-              "^.+$": {
-              }
+              "^.+$": {}
             }
           }
         ]
@@ -87,16 +87,14 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          }
+          "^.+$": {}
         }
       },
       "headers": {
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": {},
           "additionalProperties": {
             "type": "string"
           }
@@ -158,8 +156,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": {},
           "additionalProperties": {
             "type": "string"
           }
@@ -234,8 +231,7 @@
         "type": "object",
         "additionalProperties": false,
         "patternProperties": {
-          "^.+$": {
-          },
+          "^.+$": {},
           "additionalProperties": {
             "type": "string"
           }

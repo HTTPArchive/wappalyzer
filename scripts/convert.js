@@ -1,25 +1,23 @@
-const fs = require('fs')
-const path = require('path')
-const { createConverter } = require('convert-svg-to-png')
-const terminalOverwrite = require('terminal-overwrite')
+const fs = require('fs');
+const path = require('path');
+const puppeteer = require('puppeteer');
+const terminalOverwrite = require('terminal-overwrite');
 
 // Fix memoryleak warning
-const maxConvertProcesses = 1
-process.setMaxListeners(maxConvertProcesses + 1)
+const maxConvertProcesses = 1;
+process.setMaxListeners(maxConvertProcesses + 1);
 
 const appPaths = () => {
-  const fileDir = path.dirname(require.main.filename).split('/')
-  // Remove current bin directory
-  fileDir.pop()
-  const appDir = fileDir.join('/')
+  const fileDir = path.dirname(require.main.filename).split('/');
+  // Remove `scripts` directory
+  fileDir.pop();
+  const appDir = fileDir.join('/');
 
   return {
-    basePath: fileDir,
-    appPath: appDir,
     iconPath: appDir + '/src/images/icons',
-    convertPath: appDir + '/src/images/icons/converted',
-  }
-}
+    convertPath: appDir + '/src/images/icons/converted'
+  };
+};
 
 /**
  * Copy files from source to destination.
@@ -27,9 +25,7 @@ const appPaths = () => {
  * @param destination
  */
 function copyFiles(source, destination) {
-  // File destination will be created or overwritten by default.
-  fs.copyFileSync(source, destination)
-  // console.log(`${source} -> ${destination}`)
+  fs.copyFileSync(source, destination);
 }
 
 /**
@@ -37,7 +33,7 @@ function copyFiles(source, destination) {
  * @returns {string}
  */
 function getFileExtension(filePath) {
-  return path.extname(filePath)
+  return path.extname(filePath);
 }
 
 /**
@@ -45,12 +41,12 @@ function getFileExtension(filePath) {
  * @returns {string}
  */
 function getFileName(filePath) {
-  return path.basename(filePath, getFileExtension(filePath))
+  return path.basename(filePath, getFileExtension(filePath));
 }
 
 function getConvertFileName(filePath) {
-  const name = getFileName(filePath)
-  return `${appPaths().convertPath}/${name}.png`
+  const name = getFileName(filePath);
+  return `${appPaths().convertPath}/${name}.png`;
 }
 
 /**
@@ -58,8 +54,7 @@ function getConvertFileName(filePath) {
  * @returns {boolean}
  */
 function checkFileExists(imagePath) {
-  const fileExists = fs.existsSync(imagePath)
-  return fileExists
+  return fs.existsSync(imagePath);
 }
 
 /**
@@ -68,107 +63,117 @@ function checkFileExists(imagePath) {
  * @returns
  */
 function checkIfFile(filePath) {
-  return fs.statSync(filePath).isFile()
+  return fs.statSync(filePath).isFile();
 }
 
 function dateModified(file) {
-  return fs.statSync(file).mtime
+  return fs.statSync(file).mtime;
 }
 
 function dateDiff(file) {
-  const now = new Date().getTime()
-  const then = dateModified(file).getTime()
-  return Math.round(Math.abs(((then - now) / 1000) * 60 * 60 * 24))
+  const now = new Date().getTime();
+  const then = dateModified(file).getTime();
+  return Math.round(Math.abs(((then - now) / 1000) * 60 * 60 * 24));
 }
 
-;(async () => {
-  // Main script
-  const files = fs.readdirSync(appPaths().iconPath)
-  const totalFiles = files.length
-  const batchNum = Math.ceil(totalFiles / maxConvertProcesses)
-  let batchCount = 1
+/**
+ * Convert SVG to PNG
+ * @param {string} inputPath
+ * @param {string} outputPath
+ * @returns {Promise}
+ */
+async function convertSvgToPng(page, inputPath, outputPath) {
+  await page.goto(`file://${inputPath}`);
 
-  const converter = createConverter()
+  await page.evaluate(() => {
+    const svg = document.querySelector('svg');
+    if (svg) {
+      svg.setAttribute('width', '16');
+      svg.setAttribute('height', '16');
+    }
+  });
+
+  const fileElement = await page.waitForSelector('svg');
+  await fileElement.screenshot({
+    path: outputPath
+  });
+}
+
+(async () => {
+  // Main script
+  const files = fs.readdirSync(appPaths().iconPath);
+  const totalFiles = files.length;
+  const batchNum = Math.ceil(totalFiles / maxConvertProcesses);
+  let batchCount = 1;
+
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Ensure convert directory exists
+  if (!fs.existsSync(appPaths().convertPath)) {
+    fs.mkdirSync(appPaths().convertPath, { recursive: true });
+  }
 
   do {
     const percentComplete = `${
       100 - Math.round((100 / totalFiles) * files.length)
-    }%`
+    }%`;
     terminalOverwrite(
       `Processing Batch: ${batchCount} of ${batchNum} (${percentComplete})`
-    )
+    );
 
     await Promise.all(
       files.splice(0, maxConvertProcesses).map(async (fileName) => {
-        const path = `${appPaths().iconPath}/${fileName}`
-        const outputFilePath = getConvertFileName(fileName)
-        const ext = getFileExtension(path)
+        const filePath = `${appPaths().iconPath}/${fileName}`;
+        const outputFilePath = getConvertFileName(fileName);
+        const ext = getFileExtension(filePath);
 
         if (ext === '.svg') {
           // Check if converted file exists.
           if (checkFileExists(outputFilePath)) {
             // Skip if destination file exists and source file hasn't changed in
             // 30 days or destination file was created in the last day
-            const fileAgeA = dateDiff(path)
-            const fileAgeB = dateDiff(outputFilePath)
+            const fileAgeA = dateDiff(filePath);
+            const fileAgeB = dateDiff(outputFilePath);
 
             if (fileAgeA > 30 || fileAgeB < 1) {
-              return
+              return;
             }
           }
 
-          // Convert and copy file.
+          // Convert SVG to PNG
           for (let attempt = 1; attempt <= 3; attempt++) {
             try {
-              await converter
-                .convertFile(path, {
-                  height: 32,
-                  width: 32,
-                  outputFilePath,
-                })
-                .catch((error) => {
-                  throw new Error(`${error} (${fileName})`)
-                })
-
-              break
+              await convertSvgToPng(page, filePath, outputFilePath);
+              break;
             } catch (error) {
               if (attempt >= 3) {
-                throw error
+                throw new Error(
+                  `Failed to convert ${fileName}: ${error.message}`
+                );
               } else {
-                // eslint-disable-next-line no-console
-                console.error(`${error.message || error} (attempt ${attempt})`)
-
+                console.error(
+                  `Error converting ${fileName}: ${error.message} (attempt ${attempt})`
+                );
                 await new Promise((resolve) =>
                   setTimeout(resolve, 500 * attempt)
-                )
+                );
               }
             }
           }
-        } else if (this.ext === '.png') {
+        } else if (ext === '.png') {
           // If PNG, just copy the file as-is.
-          // eslint-disable-next-line no-lonely-if
-          if (checkIfFile(this.path)) {
-            copyFiles(this.path, this.convertPath)
+          if (checkIfFile(filePath)) {
+            copyFiles(filePath, outputFilePath);
           }
         }
       })
-    )
+    );
 
-    batchCount++
-  } while (files.length)
+    batchCount++;
+  } while (files.length);
 
-  await converter.destroy()
+  await browser.close();
 
-  // eslint-disable-next-line no-console
-  console.log(`Converted ${totalFiles.toLocaleString()} files.`)
-})()
-
-/**
-cd  ; cp *.svg converted ; cd converted ; convert-svg-to-png *.svg --width 32 --height 32 ; rm *.svg
-(async() => {
-  const inputFilePath = '/path/to/my-image.svg';
-  const outputFilePath = await convertFile(inputFilePath);
-  console.log(outputFilePath);
-  //=> "/path/to/my-image.png"
+  console.log(`Converted ${totalFiles.toLocaleString()} files.`);
 })();
-*/

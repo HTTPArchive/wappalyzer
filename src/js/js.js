@@ -1,13 +1,13 @@
 /* eslint-env browser */
 
-;(function () {
+(function () {
   try {
     const onMessage = ({ data }) => {
       if (!data.wappalyzer || !data.wappalyzer.technologies) {
-        return
+        return;
       }
 
-      const { technologies } = data.wappalyzer
+      const { technologies } = data.wappalyzer;
 
       postMessage({
         wappalyzer: {
@@ -23,7 +23,7 @@
                       ? value[method]
                       : '__UNDEFINED__',
                   window
-                )
+                );
 
               if (value !== '__UNDEFINED__') {
                 technologies.push({
@@ -32,19 +32,19 @@
                   value:
                     typeof value === 'string' || typeof value === 'number'
                       ? value
-                      : !!value,
-                })
+                      : !!value
+                });
               }
-            })
+            });
 
-            return technologies
-          }, []),
-        },
-      })
-    }
+            return technologies;
+          }, [])
+        }
+      });
+    };
 
-    addEventListener('message', onMessage, { once: true })
+    addEventListener('message', onMessage, { once: true });
   } catch (e) {
     // Fail quietly
   }
-})()
+})();

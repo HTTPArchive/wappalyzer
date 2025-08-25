@@ -1,30 +1,52 @@
-name: Lint & Validate
+name: Lint, validate & Dependabot auto-merge
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
-    paths-ignore:
-      - "src/technologies/*.json"
-      - "src/categories.json"
-      - "src/groups.json"
-      - "src/images/icons/**"
+  workflow_dispatch:
 
 jobs:
   lint:
-    name: Lint & Validate
+    name: Lint & validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
-      - name: Lint and Validate
+      - name: Lint
         run: |
-          yarn run lint
-          yarn run validate
+          npm run lint
+
+      - name: Validate
+        run: |
+          npm run validate
+
+  dependabot:
+    name: Dependabot auto-merge
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'HTTPArchive/wappalyzer'
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

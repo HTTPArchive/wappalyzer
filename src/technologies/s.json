@@ -2588,7 +2588,8 @@
       "freemium"
     ],
     "scriptSrc": [
-      "sdk\\.shopifycdn\\.com/buy-button/"
+      "sdk\\.shopifycdn\\.com/buy-button/",
+      "sdk\\.shopifycdn\\.com/js-buy-sdk/"
     ],
     "website": "https://apps.shopify.com/buy-button"
   },

@@ -2651,7 +2651,7 @@
     "description": "Storefront Web Components let you bring Shopify-powered commerce capabilities to any website.",
     "icon": "Shopify.svg",
     "scriptSrc": [
-      "cdn\\.shopifycdn\\.com/storefront/web-components\\.js"
+      "cdn\\.shopify\\.com/storefront/web-components\\.js"
     ],
     "website": "https://shopify.dev/docs/api/storefront-web-components"
   },

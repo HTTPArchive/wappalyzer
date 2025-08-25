@@ -2588,7 +2588,7 @@
       "freemium"
     ],
     "scriptSrc": [
-      "sdk\\. shopifycdn\\.com/buy-button/"
+      "sdk\\.shopifycdn\\.com/buy-button/"
     ],
     "website": "https://apps.shopify.com/buy-button"
   },
@@ -2647,12 +2647,12 @@
     "cats": [
       18
     ],
-    "description": "Shopify Web Components are a collection of web standards that allow the creation of components that act as standard elements.",
+    "description": "Storefront Web Components let you bring Shopify-powered commerce capabilities to any website.",
     "icon": "Shopify.svg",
     "scriptSrc": [
       "cdn\\.shopifycdn\\.com/storefront/web-components\\.js"
     ],
-    "website": "https://shopify.dev/docs/storefronts/headless/additional-sdks/web-components"
+    "website": "https://shopify.dev/docs/api/storefront-web-components"
   },
   "Shopistry": {
     "cats": [

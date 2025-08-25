@@ -2321,8 +2321,8 @@
     },
     "icon": "Shop Pay.svg",
     "js": {
-      "ShopifyPay.apiHost": "",
-      "ShopPay": ""
+      "ShopPay": "",
+      "ShopifyPay.apiHost": ""
     },
     "scriptSrc": [
       "cdn\\.shopify\\.com/shopifycloud/shopify_pay/",

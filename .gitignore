@@ -1,15 +1,7 @@
-/build/*
 /src/images/icons/converted/*
 node_modules
-package-lock.json
 Thumbs.db
 Desktop.ini
 *.DS_Store
 *.log
-._*
 .idea
-/nbproject/private/
-src/out.json
-
-keys.json
-.env

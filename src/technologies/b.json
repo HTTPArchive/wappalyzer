@@ -563,6 +563,16 @@
     "scriptSrc": "\\.getbento\\.com/",
     "website": "https://getbento.com"
   },
+  "BerqWP": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "BerqWP is a WordPress performance optimization plugin.",
+    "dom": "style[data-berqwp],script[data-berqwp]",
+    "icon": "BerqWP.png",
+    "website": "https://berqwp.com/"
+  },
   "Better Price": {
     "cats": [
       100

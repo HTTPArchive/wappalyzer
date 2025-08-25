@@ -18,18 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
-      - name: Lint & Validate
+      - name: Validate
         run: |
-          yarn run lint
-          yarn run validate
+          npm run validate
 
       - name: Run WebPageTest with unit tests
         id: unit-test
@@ -37,7 +36,7 @@ jobs:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: yarn run test
+        run: npm run test
 
       - name: Run WebPageTest for more websites
         id: wpt-test

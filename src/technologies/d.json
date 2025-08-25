@@ -1893,7 +1893,7 @@
     "description": "Duda is a user-friendly website builder and CMS platform that enables businesses and individuals to create responsive, mobile-friendly websites without extensive coding knowledge.",
     "icon": "Duda.svg",
     "js": {
-      "SystemID": "^.*DIRECT.*$",
+      "SystemID": "^.*(?:DIRECT|EU_PRODUCTION).*$",
       "d_version": "^(.*)$\\;version:\\1\\;confidence:0"
     },
     "pricing": [

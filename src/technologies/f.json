@@ -338,6 +338,22 @@
     ],
     "website": "https://www.fastcomet.com"
   },
+  "FastPixel": {
+    "cats": [
+      23,
+      87
+    ],
+    "description": "FastPixel is a web performance and security service that provides caching, a content delivery network, web application firewall, and image optimization.",
+    "html": "<link[^>]+href=\"https://cdn\\.fastpixel\\.io",
+    "icon": "FastPixel.svg",
+    "pricing": [
+      "low",
+      "freemium",
+      "recurring"
+    ],
+    "saas": true,
+    "website": "https://fastpixel.io/"
+  },
   "Fastcommerce": {
     "cats": [
       6

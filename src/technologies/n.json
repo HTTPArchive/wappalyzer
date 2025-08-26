@@ -1125,13 +1125,6 @@
       92
     ],
     "description": "Nostra is a web performance optimisation solution.",
-    "headers": {
-      "Edc-C": "",
-      "Edc-V": "",
-      "Ede-C": "",
-      "Ede-T": "",
-      "Ede-V": ""
-    },
     "icon": "Nostra.png",
     "js": {
       "Nostra": "",

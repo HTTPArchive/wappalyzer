@@ -430,12 +430,12 @@
     ],
     "oss": true,
     "scriptSrc": [
-      "maho-autocomplete\\.js",
-      "maho-captcha\\.js",
-      "maho-dialog\\.js",
-      "maho-load-on-intent\\.js",
-      "maho-passkey-tools\\.js",
-      "maho-tree\\.js"
+      "js/maho-autocomplete\\.js",
+      "js/maho-captcha\\.js",
+      "js/maho-dialog\\.js",
+      "js/maho-load-on-intent\\.js",
+      "js/maho-passkey-tools\\.js",
+      "js/maho-tree\\.js"
     ],
     "website": "https://mahocommerce.com"
   },

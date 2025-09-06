@@ -414,6 +414,31 @@
     "scriptSrc": "acc\\.magixite\\.com/",
     "website": "https://acc.magixite.com"
   },
+  "Maho": {
+    "cats": [
+      6,
+      1
+    ],
+    "cookies": {
+      "maho_session": ""
+    },
+    "description": "Maho is a modern, open-source ecommerce platform forked from OpenMage, offering enhanced developer experience while maintaining Magento 1 compatibility.",
+    "icon": "Maho.svg",
+    "implies": [
+      "PHP",
+      "MySQL"
+    ],
+    "oss": true,
+    "scriptSrc": [
+      "js/maho-autocomplete\\.js",
+      "js/maho-captcha\\.js",
+      "js/maho-dialog\\.js",
+      "js/maho-load-on-intent\\.js",
+      "js/maho-passkey-tools\\.js",
+      "js/maho-tree\\.js"
+    ],
+    "website": "https://mahocommerce.com"
+  },
   "MailChimp": {
     "cats": [
       32,

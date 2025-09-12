@@ -4544,13 +4544,13 @@
       6
     ],
     "description": "commercetools is a headless commerce platform.",
+    "headers": {
+      "frontastic-request-id": ".*"
+    },
     "icon": "commercetools.svg",
     "implies": "GraphQL",
     "js": {
       "tastics": ""
-    },
-    "headers": {
-      "frontastic-request-id": ".*"
     },
     "pricing": [
       "poa",

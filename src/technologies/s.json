@@ -2321,6 +2321,7 @@
     },
     "icon": "Shop Pay.svg",
     "js": {
+      "ShopPay": "",
       "ShopifyPay.apiHost": ""
     },
     "scriptSrc": [
@@ -2549,6 +2550,7 @@
       }
     },
     "headers": {
+      "powered-by": "Shopify",
       "x-shopid": "\\;confidence:50",
       "x-shopify-stage": ""
     },
@@ -2568,10 +2570,6 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": [
-      "sdks\\.shopifycdn\\.com",
-      "cdn\\.shopify\\.com"
-    ],
     "scripts": "shopifyTag",
     "url": "^https?//.+\\.myshopify\\.com",
     "website": "https://shopify.com",
@@ -2590,7 +2588,8 @@
       "freemium"
     ],
     "scriptSrc": [
-      "sdk\\. shopifycdn\\.com/buy-button/latest/"
+      "sdks\\.shopifycdn\\.com/buy-button/",
+      "sdks\\.shopifycdn\\.com/js-buy-sdk/"
     ],
     "website": "https://apps.shopify.com/buy-button"
   },
@@ -2644,6 +2643,17 @@
       "productreviews\\.shopifycdn\\.com"
     ],
     "website": "https://apps.shopify.com/product-reviews"
+  },
+  "Shopify Web Components": {
+    "cats": [
+      18
+    ],
+    "description": "Storefront Web Components let you bring Shopify-powered commerce capabilities to any website.",
+    "icon": "Shopify.svg",
+    "scriptSrc": [
+      "cdn\\.shopify\\.com/storefront/web-components\\.js"
+    ],
+    "website": "https://shopify.dev/docs/api/storefront-web-components"
   },
   "Shopistry": {
     "cats": [

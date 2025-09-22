@@ -2811,7 +2811,17 @@
       "x-yerdle-app-name": ""
     },
     "icon": "trove.png",
+    "js": {
+      "troveGlobal": "",
+      "troveDataLayer": ""
+    },
     "saas": true,
+    "scriptSrc": [
+      "recurate-slider\\.js",
+      "recurate-core\\.js",
+      "recurate-pdp\\.js",
+      "recurate-page\\.js"
+    ],
     "website": "https://trove.co",
     "xhr": "reware-production\\.yerdlesite\\.com"
   },

@@ -2812,8 +2812,8 @@
     },
     "icon": "trove.png",
     "js": {
-      "troveGlobal": "",
-      "troveDataLayer": ""
+      "troveDataLayer": "",
+      "troveGlobal": ""
     },
     "saas": true,
     "scriptSrc": [

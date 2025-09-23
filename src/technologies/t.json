@@ -3069,15 +3069,16 @@
     "scriptSrc": "turolinks\\.js",
     "website": "https://github.com/turbolinks/turbolinks"
   },
-    "Turbopack": {
+  "Turbopack": {
     "cats": [
-      47, 20
+      47,
+      20
     ],
     "description": "Turbpack is an open-source Javascript module bundler.",
+    "icon": "Turbopack.svg",
     "js": {
       "TURBOPACK": ""
     },
-    "icon": "Turbopack.svg",
     "oss": true,
     "website": "https://nextjs.org/docs/app/api-reference/turbopack"
   },

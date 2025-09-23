@@ -3073,7 +3073,7 @@
     "cats": [
       47
     ],
-    "description": "Turbopack is an open-source Javascript module bundler.",
+    "description": "Turbopack is an open-source JavaScript module bundler.",
     "icon": "Turbopack.svg",
     "js": {
       "TURBOPACK": ""

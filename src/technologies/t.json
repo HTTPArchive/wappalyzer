@@ -3077,6 +3077,7 @@
     "js": {
       "TURBOPACK": ""
     },
+    "icon": "Turbopack.svg",
     "oss": true,
     "website": "https://nextjs.org/docs/app/api-reference/turbopack"
   },

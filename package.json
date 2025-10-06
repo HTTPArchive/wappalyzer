@@ -1,14 +1,14 @@
 {
   "devDependencies": {
     "@google-cloud/bigquery": "8.1.1",
-    "@google-cloud/storage": "7.17.1",
+    "@google-cloud/storage": "7.17.2",
     "@prantlf/jsonlint": "16.0.0",
     "eslint": "9.37.0",
-    "eslint-plugin-jsonc": "2.20.1",
+    "eslint-plugin-jsonc": "2.21.0",
     "eslint-plugin-prettier": "5.5.4",
     "jest": "30.2.0",
     "prettier": "3.6.2",
-    "puppeteer": "24.22.3",
+    "puppeteer": "24.23.0",
     "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },

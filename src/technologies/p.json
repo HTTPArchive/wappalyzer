@@ -2043,19 +2043,6 @@
     "scriptSrc": "//platincdn\\.com/",
     "website": "https://www.platinmarket.com"
   },
-  "Platter": {
-    "cats": [
-      100
-    ],
-    "description": "Platter is a theme & app bundle designed to help Shopify brands build storefronts.",
-    "icon": "Platter.png",
-    "implies": "Shopify",
-    "js": {
-      "dbKey": "_platter---cached-sections"
-    },
-    "scriptSrc": "/platter-checkout-optimization",
-    "website": "https://www.platter.com/"
-  },
   "Plausible": {
     "cats": [
       10

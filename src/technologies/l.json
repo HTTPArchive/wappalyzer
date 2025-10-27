@@ -262,6 +262,19 @@
     ],
     "website": "https://www.laybuy.com"
   },
+  "Layers": {
+    "cats": [
+      29
+    ],
+    "description": "Layers a site search and merchandising platform designed to help ecommerce.",
+    "icon": "Layers.png",
+    "implies": "Shopify",
+    "js": {
+      "Layers": ""
+    },
+    "saas": true,
+    "website": "https://www.uselayers.com/"
+  },
   "LayoutHub": {
     "cats": [
       100,

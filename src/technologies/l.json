@@ -1835,6 +1835,18 @@
     ],
     "website": "https://lottiefiles.com"
   },
+  "Lovable": {
+    "cats": [
+      1
+    ],
+    "description": "Lovable is an AI-powered, no-code platform that lets users build functional web apps from natural language prompts instead of writing code.",
+    "dom": "link[href*='/lovable-uploads/']",
+    "icon": "Lovable.png",
+    "meta": {
+      "author": "Lovable"
+    },
+    "website": "https://lovable.dev/"
+  },
   "LoyaltyLion": {
     "cats": [
       84

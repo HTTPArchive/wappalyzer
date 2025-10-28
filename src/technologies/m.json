@@ -1562,6 +1562,8 @@
       6
     ],
     "cookies": {
+      "_mshops_ga": "",
+      "_mshops_ga_cid": "",
       "_mshops_ga_gid": ""
     },
     "description": "Mercado Shops is an all-in-one ecommerce platform.",
@@ -1570,7 +1572,7 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "frontend-assets/mshops-web-home/vendor",
+    "scriptSrc": "frontend-assets/mshops-web-home/",
     "website": "https://www.mercadoshops.com"
   },
   "Mermaid": {

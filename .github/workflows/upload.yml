@@ -74,12 +74,12 @@ jobs:
             fi
           done
 
-      - uses: 'google-github-actions/auth@v2'
+      - uses: 'google-github-actions/auth@v3'
         if: env.CHANGED_ICONS != ''
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - uses: 'google-github-actions/setup-gcloud@v2'
+      - uses: 'google-github-actions/setup-gcloud@v3'
         if: env.CHANGED_ICONS != ''
 
       - name: Sync new PNGs to Cloud Storage

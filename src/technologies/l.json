@@ -262,6 +262,19 @@
     ],
     "website": "https://www.laybuy.com"
   },
+  "Layers": {
+    "cats": [
+      29
+    ],
+    "description": "Layers a site search and merchandising platform designed to help ecommerce.",
+    "icon": "Layers.png",
+    "implies": "Shopify",
+    "js": {
+      "Layers": ""
+    },
+    "saas": true,
+    "website": "https://www.uselayers.com/"
+  },
   "LayoutHub": {
     "cats": [
       100,
@@ -1731,7 +1744,7 @@
       102
     ],
     "description": "Loop Returns is a return portal that automated all the returns and refunds of products.",
-    "dom": "a[href*='.loopreturns.com/']",
+    "dom": "link[href*='/loop-shopify-app']",
     "icon": "Loop.svg",
     "js": {
       "Loop.config.variantParam": "",
@@ -1834,6 +1847,18 @@
       "/dist/tgs-player\\.js"
     ],
     "website": "https://lottiefiles.com"
+  },
+  "Lovable": {
+    "cats": [
+      1
+    ],
+    "description": "Lovable is an AI-powered, no-code platform that lets users build functional web apps from natural language prompts instead of writing code.",
+    "dom": "link[href*='/lovable-uploads/']",
+    "icon": "Lovable.png",
+    "meta": {
+      "author": "Lovable"
+    },
+    "website": "https://lovable.dev/"
   },
   "LoyaltyLion": {
     "cats": [

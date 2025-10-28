@@ -323,6 +323,17 @@
     "scriptSrc": "thebase\\.in/js",
     "website": "https://thebase.in"
   },
+  "Base44": {
+    "cats": [
+      1
+    ],
+    "description": "Base44 is an AI-powered, no-code platform that lets users build functional web apps from natural language prompts instead of writing code.",
+    "icon": "Base44.png",
+    "meta": {
+      "apple-mobile-web-app-title": "Base44"
+    },
+    "website": "https://base44.com/"
+  },
   "Basic": {
     "cats": [
       16

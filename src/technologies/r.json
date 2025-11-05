@@ -2487,6 +2487,17 @@
     },
     "website": "https://rumble.com"
   },
+  "Rumvision": {
+    "cats": [
+      78
+    ],
+    "description": "Rumvision is a front-end performance monitoring service",
+    "icon": "Rumvision.png",
+    "js": {
+      "rumv_config": ""
+    },
+    "website": "https://www.rumvision.com/"
+  },
   "Rust": {
     "cats": [
       27

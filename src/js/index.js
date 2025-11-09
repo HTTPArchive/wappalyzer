@@ -398,13 +398,20 @@ const Driver = {
       request.initiator || request.documentUrl || request.url;
 
     if (
+      !initiatorUrl ||
       (await Driver.isDisabledDomain(initiatorUrl)) ||
       (await Driver.isDisabledDomain(request.url))
     ) {
       return;
     }
 
-    const { hostname } = new URL(initiatorUrl);
+    let hostname;
+
+    try {
+      ({ hostname } = new URL(initiatorUrl));
+    } catch (error) {
+      return;
+    }
 
     if (!Driver.cache.hostnames[hostname]) {
       Driver.cache.hostnames[hostname] = {};

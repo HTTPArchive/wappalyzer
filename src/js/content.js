@@ -201,7 +201,9 @@ const Content = {
       port.onDisconnect.addListener(() => {
         Content.isContextValid = false;
         // Clean up when extension context is invalidated
-        console.log('Wappalyzer: Extension context invalidated, content script disconnected');
+        console.log(
+          'Wappalyzer: Extension context invalidated, content script disconnected'
+        );
       });
     } catch (error) {
       Content.isContextValid = false;
@@ -433,7 +435,11 @@ const Content = {
           (response) => {
             if (chrome.runtime.lastError) {
               // Check if extension context was invalidated
-              if (chrome.runtime.lastError.message.includes('Extension context invalidated')) {
+              if (
+                chrome.runtime.lastError.message.includes(
+                  'Extension context invalidated'
+                )
+              ) {
                 Content.isContextValid = false;
                 resolve();
                 return;

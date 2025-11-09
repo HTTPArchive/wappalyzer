@@ -189,11 +189,27 @@ const Content = {
   language: '',
 
   analyzedRequires: [],
+  isContextValid: true,
 
   /**
    * Initialise content script
    */
   async init() {
+    // Monitor extension context validity
+    try {
+      const port = chrome.runtime.connect({ name: 'content-script' });
+      port.onDisconnect.addListener(() => {
+        Content.isContextValid = false;
+        // Clean up when extension context is invalidated
+        console.log(
+          'Wappalyzer: Extension context invalidated, content script disconnected'
+        );
+      });
+    } catch (error) {
+      Content.isContextValid = false;
+      return;
+    }
+
     const url = location.href;
 
     if (await Content.driver('isDisabledDomain', url)) {
@@ -246,9 +262,9 @@ const Content = {
 
       // Text
 
-      const text = document.body.textContent
-        .replace(/\s+/g, ' ')
-        .slice(0, 25000);
+      const text = document.body
+        ? document.body.textContent.replace(/\s+/g, ' ').slice(0, 25000)
+        : '';
 
       // CSS rules
       let css = [];
@@ -396,34 +412,61 @@ const Content = {
 
   driver(func, args) {
     return new Promise((resolve) => {
-      chrome.runtime.sendMessage(
-        {
-          source: 'content.js',
-          func,
-          args:
-            args instanceof Error
-              ? [args.toString()]
-              : args
-                ? Array.isArray(args)
-                  ? args
-                  : [args]
-                : []
-        },
-        (response) => {
-          chrome.runtime.lastError
-            ? func === 'error'
-              ? resolve()
-              : Content.driver(
+      // Check if extension context is still valid
+      if (!Content.isContextValid) {
+        resolve();
+        return;
+      }
+
+      try {
+        chrome.runtime.sendMessage(
+          {
+            source: 'content.js',
+            func,
+            args:
+              args instanceof Error
+                ? [args.toString()]
+                : args
+                  ? Array.isArray(args)
+                    ? args
+                    : [args]
+                  : []
+          },
+          (response) => {
+            if (chrome.runtime.lastError) {
+              // Check if extension context was invalidated
+              if (
+                chrome.runtime.lastError.message.includes(
+                  'Extension context invalidated'
+                )
+              ) {
+                Content.isContextValid = false;
+                resolve();
+                return;
+              }
+
+              if (func === 'error') {
+                resolve();
+              } else {
+                Content.driver(
                   'error',
                   new Error(
                     `${
                       chrome.runtime.lastError.message
                     }: Driver.${func}(${JSON.stringify(args)})`
                   )
-                )
-            : resolve(response);
-        }
-      );
+                );
+              }
+            } else {
+              resolve(response);
+            }
+          }
+        );
+      } catch (error) {
+        // Handle case where chrome.runtime is not available
+        Content.isContextValid = false;
+        resolve();
+      }
     });
   },
 

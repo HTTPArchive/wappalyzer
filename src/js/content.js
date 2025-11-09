@@ -260,9 +260,9 @@ const Content = {
 
       // Text
 
-      const text = document.body.textContent
-        .replace(/\s+/g, ' ')
-        .slice(0, 25000);
+      const text = document.body
+        ? document.body.textContent.replace(/\s+/g, ' ').slice(0, 25000)
+        : '';
 
       // CSS rules
       let css = [];

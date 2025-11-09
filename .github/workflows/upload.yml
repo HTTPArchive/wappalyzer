@@ -50,38 +50,54 @@ jobs:
         run: npm run tech_upload
 
       - name: Get changed icons
+        id: changed_icons
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            changed_icons=$(find src/images/icons -name "*.svg" -o -name "*.png" -print0 | xargs -0)
+            icon_count=$(find src/images/icons -maxdepth 1 \( -name "*.svg" -o -name "*.png" \) | wc -l)
+            echo "count=$icon_count" >> $GITHUB_OUTPUT
+            echo "Processing all $icon_count icons (manual dispatch)"
           else
             git fetch origin main --depth=2
-            changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png' -print0 | xargs -0)
-            echo "Detected changed icons: $files_changed"
+            changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png')
+            icon_count=$(echo "$changed_icons" | grep -c . || echo "0")
+            echo "count=$icon_count" >> $GITHUB_OUTPUT
+            echo "Detected $icon_count changed icons"
+            # Save to file for next step
+            echo "$changed_icons" > /tmp/changed_icons.txt
           fi
-          echo "CHANGED_ICONS=$changed_icons" >> $GITHUB_ENV
 
       # PNG are generally smaller, and we have some SVG that are 1Mb, so conversion to PNG is necessary.
       - name: Installing Image Conversion Package
-        if: env.CHANGED_ICONS != ''
+        if: steps.changed_icons.outputs.count != '0'
         run: sudo apt-get install -y librsvg2-bin
 
       - name: Convert changed SVGs to PNGs
-        if: env.CHANGED_ICONS != ''
+        if: steps.changed_icons.outputs.count != '0'
         run: |
-          for file in $CHANGED_ICONS; do
-            if [[ "$file" == *.svg ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            # Process all SVG files
+            find src/images/icons -maxdepth 1 -name "*.svg" | while read file; do
+              echo "Converting $file"
               rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
-            fi
-          done
+            done
+          else
+            # Process only changed files
+            while IFS= read -r file; do
+              if [[ "$file" == *.svg ]]; then
+                echo "Converting $file"
+                rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+              fi
+            done < /tmp/changed_icons.txt
+          fi
 
       - uses: 'google-github-actions/auth@v3'
-        if: env.CHANGED_ICONS != ''
+        if: steps.changed_icons.outputs.count != '0'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - uses: 'google-github-actions/setup-gcloud@v3'
-        if: env.CHANGED_ICONS != ''
+        if: steps.changed_icons.outputs.count != '0'
 
       - name: Sync new PNGs to Cloud Storage
-        if: env.CHANGED_ICONS != ''
+        if: steps.changed_icons.outputs.count != '0'
         run: gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

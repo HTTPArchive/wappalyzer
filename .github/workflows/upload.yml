@@ -100,4 +100,4 @@ jobs:
 
       - name: Sync new PNGs to Cloud Storage
         if: steps.changed_icons.outputs.count != '0'
-        run: gcloud storage rsync src/images/icons/ gs://httparchive/static/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"
+        run: gcloud storage rsync src/images/icons/ gs://httparchive/icons/ --exclude=".*.svg$" --cache-control="public, max-age=31536000, immutable"

@@ -2608,17 +2608,6 @@
     "scriptSrc": "/wp-content/plugins/google-language-translator/.+scripts\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://gtranslate.io"
   },
-  "Transmart": {
-    "cats": [
-      99
-    ],
-    "description": "Transmart is a shipping company in Turkey.",
-    "requiresCategory": 6,
-    "text": [
-      "\\bTransmart\\b"
-    ],
-    "website": "https://transmartshipping.com"
-  },
   "Tray": {
     "cats": [
       6

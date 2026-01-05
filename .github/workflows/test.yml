@@ -15,7 +15,7 @@ on:
 jobs:
   test:
     name: WebPageTest Test Cases
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     if: |
       ${{ github.repository == 'HTTPArchive/wappalyzer' ||
           github.event.pull_request.base.repo.full_name == 'HTTPArchive/wappalyzer' }}

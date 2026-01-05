@@ -2052,7 +2052,8 @@
       "link": "rel=\"https://api\\.w\\.org/\""
     },
     "html": [
-      "<link rel=[\"']stylesheet[\"'] [^>]+/wp-(?:content|includes)/",
+      "<link [^>]+rel=[\"']stylesheet[\"'] [^>]+/wp-(?:content|includes)/",
+      "<link [^>]+/wp-(?:content|includes)/[^>]+ rel=[\"']stylesheet[\"']",
       "<link[^>]+s\\d+\\.wp\\.com"
     ],
     "icon": "WordPress.svg",

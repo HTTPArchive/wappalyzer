@@ -15,6 +15,7 @@ jobs:
   test:
     name: Test and upload to GCP
     runs-on: ubuntu-slim
+    environment: GCP_ACCESS
     # Only run on main repo on and PRs that match the main repo
     if: ${{ github.repository == 'HTTPArchive/wappalyzer' }}
     steps:
@@ -46,7 +47,7 @@ jobs:
       - name: Upload technology rules to BigQuery
         if: env.TECH_FILES_CHANGED != '0'
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GCP_SA_ENV_KEY: ${{ secrets.GCP_SA_ENV_KEY }}
         run: npm run tech_upload
 
       - name: Get changed icons
@@ -93,7 +94,7 @@ jobs:
       - uses: 'google-github-actions/auth@v3'
         if: steps.changed_icons.outputs.count != '0'
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_ENV_KEY }}
 
       - uses: 'google-github-actions/setup-gcloud@v3'
         if: steps.changed_icons.outputs.count != '0'

@@ -334,6 +334,17 @@
     },
     "website": "https://base44.com/"
   },
+  "Base UI": {
+    "cats": [
+      66
+    ],
+    "description": "Unstyled UI components for building accessible web apps and design systems.",
+    "dom": "[id^='base-ui-']",
+    "implies": "React",
+    "oss": true,
+    "scripts": ["base-ui\\.com/"],
+    "website": "https://base-ui.com/"
+  },
   "Basic": {
     "cats": [
       16

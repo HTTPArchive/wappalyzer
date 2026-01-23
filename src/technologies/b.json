@@ -328,7 +328,7 @@
       66
     ],
     "description": "Unstyled UI components for building accessible web apps and design systems.",
-    "dom": "[id^='base-ui-']",
+    "dom": "[id^='base-ui-'], [data-base-ui-]",
     "implies": "React",
     "oss": true,
     "scripts": ["base-ui\\.com/"],

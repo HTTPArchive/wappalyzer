@@ -329,7 +329,7 @@
     ],
     "description": "Unstyled UI components for building accessible web apps and design systems.",
     "dom": "[id^='base-ui-'], [data-base-ui-navigation-menu-trigger]",
-    "icon": "Base UI.svg",
+    "icon": "base-ui.svg",
     "implies": "React",
     "oss": true,
     "scripts": [

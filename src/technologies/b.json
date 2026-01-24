@@ -323,6 +323,20 @@
     "scriptSrc": "thebase\\.in/js",
     "website": "https://thebase.in"
   },
+  "Base UI": {
+    "cats": [
+      66
+    ],
+    "description": "Unstyled UI components for building accessible web apps and design systems.",
+    "dom": "[id^='base-ui-'], [data-base-ui-]",
+    "icon": "Base UI.svg",
+    "implies": "React",
+    "oss": true,
+    "scripts": [
+      "base-ui\\.com/"
+    ],
+    "website": "https://base-ui.com/"
+  },
   "Base44": {
     "cats": [
       1

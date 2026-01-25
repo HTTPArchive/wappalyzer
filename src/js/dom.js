@@ -1,5 +1,3 @@
-/* eslint-env browser */
-
 (function () {
   try {
     const onMessage = ({ data }) => {

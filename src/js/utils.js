@@ -1,6 +1,4 @@
 'use strict';
-/* eslint-env browser */
-/* globals chrome */
 
 const Utils = {
   agent: 'chrome',

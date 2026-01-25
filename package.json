@@ -2,7 +2,7 @@
   "devDependencies": {
     "@google-cloud/bigquery": "8.1.1",
     "@google-cloud/storage": "7.18.0",
-    "@prantlf/jsonlint": "17.0.0",
+    "@prantlf/jsonlint": "17.0.1",
     "eslint": "9.39.2",
     "eslint-plugin-jsonc": "2.21.0",
     "eslint-plugin-prettier": "5.5.5",
@@ -11,6 +11,9 @@
     "puppeteer": "24.35.0",
     "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
+  },
+  "engines": {
+    "node": ">=22.2"
   },
   "scripts": {
     "lint": "eslint --exit-on-fatal-error --max-warnings 0 && jsonlint -jksV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",

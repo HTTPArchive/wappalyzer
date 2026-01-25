@@ -14,7 +14,7 @@ on:
 jobs:
   test:
     name: Test and upload to GCP
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     environment: GCP_ACCESS
     # Only run on main repo on and PRs that match the main repo
     if: ${{ github.repository == 'HTTPArchive/wappalyzer' }}

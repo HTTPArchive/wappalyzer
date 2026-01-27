@@ -323,9 +323,6 @@
     "icon": "Mage-OS.svg",
     "implies": "Magento",
     "oss": true,
-    "probe": {
-      "/magento_version": "Mage-OS/([\\d.]+)\\;version:\\1"
-    },
     "website": "https://mage-os.org"
   },
   "MageWorx Search Autocomplete": {

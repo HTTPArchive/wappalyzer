@@ -316,7 +316,7 @@
       1
     ],
     "cpe": "cpe:2.3:a:adobe:magento:*:*:*:*:*:*:*:*",
-    "description": "Mage-OS is a community-driven, open-source fork of Magento.",
+    "description": "Mage-OS is an independent, community-driven ecommerce platform built on Magento Open Source.",
     "headers": {
       "X-Dist": "^Mage-OS$"
     },

@@ -7,6 +7,17 @@ const isDirectRun = require.main === module;
 const wptServer = process.env.WPT_SERVER;
 const wptApiKey = process.env.WPT_API_KEY;
 const prNumber = parseInt(process.env.PR_NUMBER);
+
+if (!wptServer || !wptApiKey || isNaN(prNumber)) {
+  const error =
+    'Missing required environment variables: WPT_SERVER, WPT_API_KEY, and PR_NUMBER';
+  if (isDirectRun) {
+    console.error(error);
+    process.exit(1);
+  }
+  throw new Error(error);
+}
+
 const wpt = new WebPageTest(wptServer, wptApiKey);
 
 /**

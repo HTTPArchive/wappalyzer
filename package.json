@@ -1,14 +1,15 @@
 {
   "devDependencies": {
     "@google-cloud/bigquery": "8.1.1",
-    "@google-cloud/storage": "7.18.0",
+    "@google-cloud/storage": "7.19.0",
     "@prantlf/jsonlint": "17.0.1",
-    "eslint": "9.39.2",
-    "eslint-plugin-jsonc": "2.21.0",
+    "eslint": "10.0.0",
+    "eslint-plugin-jsonc": "2.21.1",
     "eslint-plugin-prettier": "5.5.5",
+    "globals": "^17.3.0",
     "jest": "30.2.0",
     "prettier": "3.8.1",
-    "puppeteer": "24.36.0",
+    "puppeteer": "24.37.2",
     "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
@@ -23,6 +24,11 @@
     "tech_upload": "node ./scripts/tech_upload.js",
     "convert": "node ./scripts/convert.js",
     "build": "npm run lint && npm run validate && npm run convert"
+  },
+  "overrides": {
+    "glob": "^13.0.0",
+    "rimraf": "^6.0.0",
+    "test-exclude": "^7.0.1"
   },
   "jest": {
     "reporters": [

@@ -310,6 +310,20 @@
     "saas": true,
     "website": "https://www.magazord.com.br"
   },
+  "Mage-OS": {
+    "cats": [
+      6,
+      1
+    ],
+    "description": "Mage-OS is an independent, community-driven ecommerce platform built on Magento Open Source.",
+    "headers": {
+      "X-Dist": "^Mage-OS$"
+    },
+    "icon": "Mage-OS.svg",
+    "implies": "Magento",
+    "oss": true,
+    "website": "https://mage-os.org"
+  },
   "MageWorx Search Autocomplete": {
     "cats": [
       29

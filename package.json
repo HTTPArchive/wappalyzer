@@ -3,7 +3,7 @@
     "@google-cloud/bigquery": "8.1.1",
     "@google-cloud/storage": "7.19.0",
     "@prantlf/jsonlint": "17.0.1",
-    "eslint": "10.0.0",
+    "eslint": "10.0.1",
     "eslint-plugin-jsonc": "2.21.1",
     "eslint-plugin-prettier": "5.5.5",
     "globals": "^17.3.0",

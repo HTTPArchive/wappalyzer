@@ -2820,14 +2820,18 @@
     },
     "cpe": "cpe:2.3:a:prestashop:prestashop:*:*:*:*:*:*:*:*",
     "description": "PrestaShop is a freemium, open-source ecommerce solution, written in the PHP programming language with support for the MySQL database management system.",
-    "dom": "img[src*='/modules/prestablog/themes/'], img[data-src*='/modules/prestablog/themes/']",
+    "dom": [
+      "img[src*='/modules/prestablog/themes/'], img[data-src*='/modules/prestablog/themes/']",
+      "link[href*='/modules/ps_']"
+    ],
     "headers": {
       "Powered-By": "^Prestashop$"
     },
     "html": [
       "Powered by <a\\s+[^>]+>PrestaShop",
       "<!-- /Block [a-z ]+ module (?:HEADER|TOP)?\\s?-->",
-      "<!-- /Module Block [a-z ]+ -->"
+      "<!-- /Module Block [a-z ]+ -->",
+      "<!-- (?:/)?MODULE [^|]+ \\|\\| Presta-Module\\.com -->"
     ],
     "icon": "PrestaShop.svg",
     "implies": [
@@ -2845,6 +2849,7 @@
       "generator": "PrestaShop"
     },
     "oss": true,
+    "scriptSrc": "/modules/ps_[a-z]+/",
     "website": "https://www.prestashop.com"
   },
   "Pretty Damn Quick": {

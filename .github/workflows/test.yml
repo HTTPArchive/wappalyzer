@@ -71,7 +71,7 @@ jobs:
           if [ $start_index -gt -1 ]; then
             # Initialize an array for URLs
             URLS=()
-            url_pattern="((http|https|ftp):\/\/[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,4})(\/[a-zA-Z0-9_.-]+)*(\/?)(\?[a-zA-Z0-9_.-]+=[a-zA-Z0-9%_.-]+)*(\#?)([a-zA-Z0-9%_.-=]+)*)"
+            url_pattern="(https:\/\/[^[:space:]]+)"
 
             for ((i=start_index; i<${#lines[@]}; i++)); do
               if [[ ${lines[$i]} =~ $url_pattern ]]; then

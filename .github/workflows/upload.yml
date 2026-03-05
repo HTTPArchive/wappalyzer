@@ -65,7 +65,7 @@ jobs:
           else
             git fetch origin main --depth=2
             changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png')
-            icon_count=$(echo "$changed_icons" | grep -c . || echo "0")
+            icon_count=$(echo "$changed_icons" | grep -c . || true)
             echo "count=$icon_count" >> $GITHUB_OUTPUT
             echo "Detected $icon_count changed icons"
             # Save to file for next step

@@ -90,7 +90,7 @@ jobs:
           fi
 
       - name: Add comment with results
-        uses: mshick/add-pr-comment@v2
+        uses: mshick/add-pr-comment@v3
         if: steps.unit-test.outcome == 'success' || steps.wpt-test.outcome == 'success'
         with:
           refresh-message-position: true

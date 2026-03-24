@@ -84,14 +84,14 @@ jobs:
             # Process all SVG files
             find src/images/icons -maxdepth 1 -name "*.svg" | while read file; do
               echo "Converting $file"
-              rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+              rsvg-convert "$file" -o "${file%.svg}.png" -w 128 -h 128
             done
           else
             # Process only changed files
             while IFS= read -r file; do
               if [[ "$file" == *.svg ]]; then
                 echo "Converting $file"
-                rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+                rsvg-convert "$file" -o "${file%.svg}.png" -w 128 -h 128
               fi
             done < /tmp/changed_icons.txt
           fi

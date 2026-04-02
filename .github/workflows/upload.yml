@@ -16,7 +16,7 @@ jobs:
     name: Test and upload to GCP
     runs-on: ubuntu-latest
     environment: GCP_ACCESS
-    # Only run on main repo on and PRs that match the main repo
+    # Only run on main repo
     if: ${{ github.repository == 'HTTPArchive/wappalyzer' }}
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Install dependencies
         run: npm install

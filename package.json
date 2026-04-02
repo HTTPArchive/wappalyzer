@@ -14,7 +14,7 @@
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "engines": {
-    "node": ">=22.2"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "lint": "eslint --exit-on-fatal-error --max-warnings 0 && jsonlint -jksV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",

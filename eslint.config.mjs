@@ -1,3 +1,4 @@
+import globals from 'globals';
 import prettierPlugin from 'eslint-plugin-prettier';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslintPluginJsonc from 'eslint-plugin-jsonc';
@@ -7,7 +8,11 @@ export default defineConfig([
     files: ['**/*.{js,mjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'module'
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.webextensions
+      }
     },
     plugins: {
       prettier: prettierPlugin

@@ -1,6 +1,4 @@
 'use strict';
-/* eslint-env browser */
-/* globals Utils, chrome */
 
 const { i18n, getOption, setOption } = Utils;
 

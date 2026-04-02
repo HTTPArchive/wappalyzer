@@ -15,13 +15,19 @@ jobs:
   test:
     name: Test and upload to GCP
     runs-on: ubuntu-latest
-    # Only run on main repo on and PRs that match the main repo
+    environment: GCP_ACCESS
+    # Only run on main repo
     if: ${{ github.repository == 'HTTPArchive/wappalyzer' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
 
       - name: Install dependencies
         run: npm install
@@ -46,7 +52,7 @@ jobs:
       - name: Upload technology rules to BigQuery
         if: env.TECH_FILES_CHANGED != '0'
         env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GCP_SA_ENV_KEY: ${{ secrets.GCP_SA_ENV_KEY }}
         run: npm run tech_upload
 
       - name: Get changed icons
@@ -59,7 +65,7 @@ jobs:
           else
             git fetch origin main --depth=2
             changed_icons=$(git diff --name-only HEAD^ ${{ github.sha }} -- 'src/images/icons/*.svg' 'src/images/icons/*.png')
-            icon_count=$(echo "$changed_icons" | grep -c . || echo "0")
+            icon_count=$(echo "$changed_icons" | grep -c . || true)
             echo "count=$icon_count" >> $GITHUB_OUTPUT
             echo "Detected $icon_count changed icons"
             # Save to file for next step
@@ -78,14 +84,14 @@ jobs:
             # Process all SVG files
             find src/images/icons -maxdepth 1 -name "*.svg" | while read file; do
               echo "Converting $file"
-              rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+              rsvg-convert "$file" -o "${file%.svg}.png" -w 128 -h 128
             done
           else
             # Process only changed files
             while IFS= read -r file; do
               if [[ "$file" == *.svg ]]; then
                 echo "Converting $file"
-                rsvg-convert "$file" -o "${file%.svg}.png" -w 16 -h 16
+                rsvg-convert "$file" -o "${file%.svg}.png" -w 128 -h 128
               fi
             done < /tmp/changed_icons.txt
           fi
@@ -93,7 +99,7 @@ jobs:
       - uses: 'google-github-actions/auth@v3'
         if: steps.changed_icons.outputs.count != '0'
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_ENV_KEY }}
 
       - uses: 'google-github-actions/setup-gcloud@v3'
         if: steps.changed_icons.outputs.count != '0'

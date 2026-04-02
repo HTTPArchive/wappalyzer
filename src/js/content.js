@@ -1,6 +1,4 @@
 'use strict';
-/* eslint-env browser */
-/* globals chrome */
 
 function inject(src, id, message) {
   return new Promise((resolve) => {

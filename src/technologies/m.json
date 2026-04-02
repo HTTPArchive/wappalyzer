@@ -310,6 +310,20 @@
     "saas": true,
     "website": "https://www.magazord.com.br"
   },
+  "Mage-OS": {
+    "cats": [
+      6,
+      1
+    ],
+    "description": "Mage-OS is an independent, community-driven ecommerce platform built on Magento Open Source.",
+    "headers": {
+      "X-Dist": "^Mage-OS$"
+    },
+    "icon": "Mage-OS.svg",
+    "implies": "Magento",
+    "oss": true,
+    "website": "https://mage-os.org"
+  },
   "MageWorx Search Autocomplete": {
     "cats": [
       29
@@ -1012,7 +1026,7 @@
       66
     ],
     "description": "Marko is HTML re-imagined as a language for building dynamic and reactive user interfaces.",
-    "dom": "#data-marko-key, html[data-framework='marko']",
+    "dom": "#data-marko-key, [data-marko-key], html[data-framework='marko']",
     "icon": "Marko.svg",
     "implies": "Node.js",
     "js": {

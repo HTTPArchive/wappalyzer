@@ -130,7 +130,9 @@ Object.keys(technologies).forEach((name) => {
     console.warn(`Missing icon attribute (${name})`);
   } else {
     if (!/\.(png|svg)$/i.test(technology.icon)) {
-      throw new Error(`Icon must be a PNG or SVG file: ${technology.icon} (${name})`);
+      throw new Error(
+        `Icon must be a PNG or SVG file: ${technology.icon} (${name})`
+      );
     }
 
     if (!fs.existsSync(`${iconPath}/${technology.icon}`)) {

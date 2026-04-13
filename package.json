@@ -8,7 +8,7 @@
     "eslint-plugin-prettier": "5.5.5",
     "globals": "^17.4.0",
     "jest": "30.3.0",
-    "prettier": "3.8.1",
+    "prettier": "3.8.2",
     "puppeteer": "24.40.0",
     "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"

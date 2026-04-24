@@ -7499,5 +7499,16 @@
       "styled": ""
     },
     "website": "https://styled-components.com"
+  },
+  "Snyk Advisor": {
+    "cats": [
+      47
+    ],
+    "description": "Snyk Advisor is a free tool for checking package health and security.",
+    "headers": {
+      "X-Snyk-Advisor": ""
+    },
+    "icon": "Snyk.svg",
+    "website": "https://snyk.io/advisor/"
   }
 }

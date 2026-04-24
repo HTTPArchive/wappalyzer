@@ -7508,7 +7508,6 @@
     "headers": {
       "X-Snyk-Advisor": ""
     },
-    "icon": "Snyk.svg",
     "website": "https://snyk.io/advisor/"
   }
 }

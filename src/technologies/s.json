@@ -6870,6 +6870,26 @@
     "saas": true,
     "website": "https://super.so"
   },
+  "Super Page Cache": {
+    "cats": [
+      23,
+      87
+    ],
+    "description": "Super Page Cache is a static caching plugin for WordPress.",
+    "headers": {
+      "x-wp-cf-super-cache-active": "",
+      "x-wp-spc-disk-cache": ""
+    },
+    "icon": "super-page-cache.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/(?:wp-cloudflare-page-cache|wp-super-page-cache-pro)/",
+    "website": "https://themeisle.com/plugins/super-page-cache-pro/"
+  },
   "Super Socializer": {
     "cats": [
       69,

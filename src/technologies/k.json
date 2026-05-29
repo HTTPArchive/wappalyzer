@@ -67,6 +67,18 @@
     "saas": true,
     "website": "https://www.kmk.net.tr"
   },
+  "KOMERO": {
+    "description": "Multi-tenant SaaS e-commerce platform.",
+    "cats": [
+      6
+    ],
+    "html": "<meta[^>]+name=\"generator\"[^>]+content=\"KOMERO\"",
+    "js": {
+      "KOMERO": ""
+    },
+    "website": "https://www.komero.ge",
+    "icon": "Komero.png"
+  },
   "KPHP": {
     "cats": [
       27
@@ -1354,17 +1366,5 @@
       "poa"
     ],
     "website": "https://www.keep.pt/en/produts/archeevo-archival-management-software"
-  },
-  "KOMERO": {
-    "description": "Multi-tenant SaaS e-commerce platform.",
-    "cats": [
-      6
-    ],
-    "html": "<meta[^>]+name=\"generator\"[^>]+content=\"KOMERO\"",
-    "js": {
-      "KOMERO": ""
-    },
-    "website": "https://www.komero.ge",
-    "icon": "Komero.png"
   }
 }

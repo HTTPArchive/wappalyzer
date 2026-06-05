@@ -1688,9 +1688,6 @@
     ],
     "description": "Google Analytics for WooCommerce.",
     "icon": "WooCommerceGA.png",
-    "js": {
-      "wc_google_analytics_params": ""
-    },
     "requires": [
       "WordPress",
       "WooCommerce"

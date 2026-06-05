@@ -1686,8 +1686,13 @@
       10,
       87
     ],
-    "description": "Google Analytics for WooCommerce.",
+    "description": "Google Analytics for WooCommerce connects your store to your Google Analytics account for ecommerce and site analytics, providing valuable metrics on your store’s performance.",
     "icon": "WooCommerceGA.png",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
     "requires": [
       "WordPress",
       "WooCommerce"

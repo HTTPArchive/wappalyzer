@@ -72,12 +72,12 @@
       6
     ],
     "description": "Multi-tenant SaaS e-commerce platform.",
-    "meta": {
-      "generator": "^KOMERO"
-    },
     "icon": "Komero.png",
     "js": {
       "KOMERO": ""
+    },
+    "meta": {
+      "generator": "^KOMERO"
     },
     "website": "https://www.komero.ge"
   },

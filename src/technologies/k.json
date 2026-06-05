@@ -67,6 +67,20 @@
     "saas": true,
     "website": "https://www.kmk.net.tr"
   },
+  "KOMERO": {
+    "cats": [
+      6
+    ],
+    "description": "Multi-tenant SaaS e-commerce platform.",
+    "icon": "Komero.png",
+    "js": {
+      "KOMERO": ""
+    },
+    "meta": {
+      "generator": "^KOMERO"
+    },
+    "website": "https://www.komero.ge"
+  },
   "KPHP": {
     "cats": [
       27

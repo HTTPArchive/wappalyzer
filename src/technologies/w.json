@@ -813,10 +813,10 @@
     "cats": [
       1
     ],
+    "description": "WebAdministrator CMS is a content management system used heavily by Polish public institutions.",
     "html": [
       "<!-- [\\d\\.]+ / WebAdministrator \\(\\d{2}.\\d{2}\\.\\d{4} \\d{2}:\\d{2}\\) //-->"
     ],
-    "description": "WebAdministrator CMS is a content management system used heavily by Polish public institutions.",
     "website": "https://www.jskinternet.pl/jsk/oferta/webadministrator-cms/"
   },
   "WebAssembly": {

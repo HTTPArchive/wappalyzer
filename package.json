@@ -14,13 +14,14 @@
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "lint": "eslint --exit-on-fatal-error --max-warnings 0 && jsonlint -jksV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -js --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "lint:fix": "eslint --exit-on-fatal-error --fix && jsonlint -isV ./schema.json --trim-trailing-commas --enforce-double-quotes ./src/technologies/ && jsonlint -is --trim-trailing-commas --enforce-double-quotes ./src/categories.json",
     "validate": "node ./scripts/validate.js",
     "test": "jest",
+    "test:unit": "jest tests/wappalyzer/",
     "tech_upload": "node ./scripts/tech_upload.js",
     "convert": "node ./scripts/convert.js",
     "build": "npm run lint && npm run validate && npm run convert"

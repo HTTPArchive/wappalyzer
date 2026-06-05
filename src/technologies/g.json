@@ -1692,7 +1692,7 @@
       "WordPress",
       "WooCommerce"
     ],
-    "scriptSrc": "/wp-content/plugins/woocommerce-google-analytics-integration/",
+    "scriptSrc": "/wp-content/plugins/woocommerce-google-analytics-integration/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://woocommerce.com/products/woocommerce-google-analytics/"
   },
   "Google App Engine": {

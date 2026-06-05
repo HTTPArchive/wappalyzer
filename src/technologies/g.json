@@ -1681,6 +1681,23 @@
     "scriptSrc": "google-analytics\\.com\\/plugins\\/ua\\/(?:ec|ecommerce)\\.js",
     "website": "https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce"
   },
+  "Google Analytics for WooCommerce": {
+    "cats": [
+      10,
+      87
+    ],
+    "description": "Google Analytics for WooCommerce.",
+    "icon": "WooCommerceGA.png",
+    "js": {
+      "wc_google_analytics_params": ""
+    },
+    "requires": [
+      "WordPress",
+      "WooCommerce"
+    ],
+    "scriptSrc": "/wp-content/plugins/woocommerce-google-analytics-integration/",
+    "website": "https://woocommerce.com/products/woocommerce-google-analytics/"
+  },
   "Google App Engine": {
     "cats": [
       22

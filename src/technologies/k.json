@@ -72,7 +72,9 @@
       6
     ],
     "description": "Multi-tenant SaaS e-commerce platform.",
-    "html": "<meta[^>]+name=\"generator\"[^>]+content=\"KOMERO\"",
+    "meta": {
+      "generator": "^KOMERO"
+    },
     "icon": "Komero.png",
     "js": {
       "KOMERO": ""

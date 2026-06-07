@@ -4,9 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { BigQuery } = require('@google-cloud/bigquery');
 
-const bigquery = new BigQuery({
-  credentials: JSON.parse(process.env.GCP_SA_ENV_KEY)
-});
+const bigquery = new BigQuery();
 
 const schemas = {
   technologies: {

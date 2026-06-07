@@ -9,8 +9,6 @@
     "globals": "^17.4.0",
     "jest": "30.3.0",
     "prettier": "3.8.1",
-    "puppeteer": "24.40.0",
-    "terminal-overwrite": "2.0.1",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"
   },
   "engines": {
@@ -22,8 +20,9 @@
     "validate": "node ./scripts/validate.js",
     "test": "jest",
     "tech_upload": "node ./scripts/tech_upload.js",
-    "convert": "node ./scripts/convert.js",
-    "build": "npm run lint && npm run validate && npm run convert"
+    "sync_icons": "node ./scripts/sync_icons.js",
+    "sync_icons:all": "node ./scripts/sync_icons.js --all",
+    "build": "npm run lint && npm run validate"
   },
   "overrides": {
     "glob": "^13.0.0",

@@ -3997,6 +3997,19 @@
     "saas": true,
     "website": "https://sky-shop.pl"
   },
+  "SkyCMS by Netkoncept": {
+    "cats": [
+      1
+    ],
+    "cookies": {
+      "skycms_LanguageId": "",
+      "skycms_PageCounter": ""
+    },
+    "description": "Polish SaaS content-management platform developed by NETKONCEPT, primarily used by public administration websites and Public Information Bulletin (BIP) portals.",
+    "icon": "SkyCMS_by_netkoncept.svg",
+    "saas": true,
+    "website": "https://www.netkoncept.com/86/63/technologia-skycms.html"
+  },
   "SkyVerge": {
     "cats": [
       41
@@ -6869,6 +6882,26 @@
     ],
     "saas": true,
     "website": "https://super.so"
+  },
+  "Super Page Cache": {
+    "cats": [
+      23,
+      87
+    ],
+    "description": "Super Page Cache is a static caching plugin for WordPress.",
+    "headers": {
+      "x-wp-cf-super-cache-active": "",
+      "x-wp-spc-disk-cache": ""
+    },
+    "icon": "super-page-cache.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/(?:wp-cloudflare-page-cache|wp-super-page-cache-pro)/",
+    "website": "https://themeisle.com/plugins/super-page-cache-pro/"
   },
   "Super Socializer": {
     "cats": [

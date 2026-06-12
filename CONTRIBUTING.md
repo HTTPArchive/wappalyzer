@@ -18,7 +18,9 @@ To get started, see the [README](https://github.com/HTTPArchive/wappalyzer/blob/
 Wappalyzer uses [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) to fingerprint technologies. Refer to the [specification](https://github.com/HTTPArchive/wappalyzer/blob/main/README.md#specification) for detail.
 
 - Add a new block to [`src/technologies/*.json`](https://github.com/HTTPArchive/wappalyzer/blob/main/src/technologies). The filename should match the first letter of the technology name (a-z). Use `_.json` if the first character is a number or symbol.
-- Add an icon to [`src/images/icons`](https://github.com/HTTPArchive/wappalyzer/tree/master/src/images/icons). The image must be square, either SVG or PNG (32 x 32 pixels).
+- Add an icon to [`src/images/icons`](https://github.com/HTTPArchive/wappalyzer/tree/master/src/images/icons). The image must be square, either SVG or PNG (32 x 32 pixels). Note that local execution of the icon sync script (`npm run sync_icons`) requires the `rsvg-convert` utility to convert SVG files to PNG:
+  - **macOS**: Install via Homebrew: `brew install librsvg`
+  - **Linux**: Install via apt: `sudo apt-get install librsvg2-bin`
 
 Only widely used technologies are accepted. When creating a pull request, include ten or more links to websites that use the application, a GitHub page with at least 1,000 stars or anything that will help establish the size of the user base.
 

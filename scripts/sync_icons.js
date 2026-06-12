@@ -97,8 +97,17 @@ async function main() {
   let uploaded = 0;
   let skipped = 0;
   let failed = 0;
+  let consecutiveFailures = 0;
+  let processed = 0;
 
   for (const file of iconFiles) {
+    processed++;
+    if (processed % 100 === 0) {
+      console.log(
+        `[Progress] Processed ${processed}/${iconFiles.length} files (uploaded: ${uploaded}, skipped: ${skipped}, failed: ${failed})`
+      );
+    }
+
     const filePath = path.join(ICONS_DIR, file);
     const basename = path.basename(file, path.extname(file));
     const gcsPath = `${GCS_PREFIX}/${basename}.png`;
@@ -113,6 +122,7 @@ async function main() {
         const gcsHash = await getGcsHash(gcsPath);
         if (gcsHash === localHash) {
           skipped++;
+          consecutiveFailures = 0;
           continue;
         }
       }
@@ -128,9 +138,17 @@ async function main() {
       await uploadToGcs(pngPath, gcsPath, localHash);
       console.log(`  ✓ ${file} → gs://${GCS_BUCKET}/${gcsPath}`);
       uploaded++;
+      consecutiveFailures = 0;
     } catch (e) {
       console.error(`  ✗ ${file}: ${e.message}`);
       failed++;
+      consecutiveFailures++;
+      if (consecutiveFailures >= 10) {
+        console.error(
+          `\n[Abort] Encountered ${consecutiveFailures} consecutive failures. Aborting sync to prevent endless retries.`
+        );
+        break;
+      }
     } finally {
       if (tmpPng && fs.existsSync(tmpPng)) {
         fs.unlinkSync(tmpPng);

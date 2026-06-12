@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { BigQuery } = require('@google-cloud/bigquery');
 
-const bigquery = new BigQuery();
+const bigquery = new BigQuery({ projectId: 'httparchive' });
 
 const schemas = {
   technologies: {

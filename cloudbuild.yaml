@@ -1,0 +1,66 @@
+steps:
+  # Step 1: Detect changed technology files using Git
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'check-changes'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Fetch parent history to diff against
+        git fetch origin main --depth=2 || true
+
+        if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+          files_changed=$(git diff --name-only HEAD^ HEAD -- 'src/technologies/*.json' 'src/categories.json' 'src/groups.json' | wc -l)
+          echo "Detected $files_changed changed technology files"
+          echo "$files_changed" > /workspace/tech_files_changed.txt
+        else
+          echo "Parent commit (HEAD^) not found (shallow clone or first build). Processing all files."
+          echo "1" > /workspace/tech_files_changed.txt
+        fi
+
+  # Step 2: Install dependencies
+  - name: 'node:24'
+    id: 'install-deps'
+    entrypoint: 'npm'
+    args: ['ci']
+
+  # Step 3: Lint and validate JSON/JS files
+  - name: 'node:24'
+    id: 'lint-and-validate'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        npm run lint
+        npm run validate
+
+  # Step 4: Upload technology rules to BigQuery (if changed)
+  - name: 'node:24'
+    id: 'upload-to-bq'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [ "$(cat /workspace/tech_files_changed.txt)" != "0" ]; then
+          echo "Technology files changed. Uploading to BigQuery..."
+          npm run tech_upload
+        else
+          echo "No technology files changed. Skipping BigQuery upload."
+        fi
+
+  # Step 5: Incrementally sync icons to Cloud Storage.
+  # Each SVG is converted to PNG via rsvg-convert (128x128) and uploaded with
+  # its source file SHA-256 stored as GCS object metadata. On subsequent runs,
+  # files whose hash hasn't changed are skipped automatically.
+  # Run `npm run sync_icons -- --all` locally to force re-sync everything.
+  - name: 'node:24'
+    id: 'sync-icons'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        apt-get update -qq && apt-get install -y --no-install-recommends librsvg2-bin
+        npm run sync_icons
+
+options:
+  logging: CLOUD_LOGGING_ONLY

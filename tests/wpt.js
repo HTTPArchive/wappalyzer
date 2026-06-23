@@ -10,15 +10,18 @@ const prNumber = parseInt(process.env.PR_NUMBER);
 
 if (!wptServer || !wptApiKey || isNaN(prNumber)) {
   const error =
-    'Missing required environment variables: WPT_SERVER, WPT_API_KEY, and PR_NUMBER';
+    'Skipping WebPageTest integration: Missing environment variables (WPT_SERVER, WPT_API_KEY, and PR_NUMBER)';
   if (isDirectRun) {
-    console.error(error);
-    process.exit(1);
+    console.warn(error);
+    process.exit(0);
   }
-  throw new Error(error);
+  console.warn(error);
 }
 
-const wpt = new WebPageTest(wptServer, wptApiKey);
+const wpt =
+  wptServer && wptApiKey && !isNaN(prNumber)
+    ? new WebPageTest(wptServer, wptApiKey)
+    : null;
 
 /**
  * Runs a WebPageTest (WPT) test for a given URL.
@@ -28,6 +31,9 @@ const wpt = new WebPageTest(wptServer, wptApiKey);
  * @throws {Error} If the test run fails or the response status code is not 200.
  */
 function runWPTTest(url) {
+  if (!wpt) {
+    return null;
+  }
   const options = { key: wptApiKey, wappalyzerPR: prNumber };
 
   return new Promise((resolve, reject) => {

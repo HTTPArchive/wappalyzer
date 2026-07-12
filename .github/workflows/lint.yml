@@ -23,6 +23,62 @@ jobs:
       - name: Validate
         run: npm run validate
 
+      - name: Check path filters
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            wpt:
+              - 'src/technologies/*.json'
+              - 'src/categories.json'
+              - 'src/groups.json'
+              - 'tests/*.js'
+              - '.github/workflows/wpt.yml'
+
+      - name: Parse WebPageTest URLs
+        if: steps.filter.outputs.wpt == 'true'
+        id: wpt-urls
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          lines=()
+          while IFS= read -r line; do
+            lines+=("${line//[$'\r\n']}")
+          done <<< "$PR_BODY"
+
+          start_index=-1
+          for ((i=0; i<${#lines[@]}; i++)); do
+            if [[ "${lines[$i]}" == *"**Test websites**:"* ]]; then
+              start_index=$((i + 1))
+              break
+            fi
+          done
+
+          URLS=""
+          if [ $start_index -gt -1 ]; then
+            url_pattern="(https:\/\/[^[:space:]]+)"
+            for ((i=start_index; i<${#lines[@]}; i++)); do
+              if [[ ${lines[$i]} =~ $url_pattern ]]; then
+                URLS+="${BASH_REMATCH[1]} "
+              fi
+            done
+          fi
+          echo "urls=$URLS" >> $GITHUB_OUTPUT
+
+      - name: Save PR info
+        if: steps.filter.outputs.wpt == 'true'
+        run: |
+          mkdir -p pr-metadata
+          echo "${{ github.event.pull_request.number }}" > pr-metadata/pr_number
+          echo "${{ steps.wpt-urls.outputs.urls }}" > pr-metadata/urls
+
+      - name: Upload PR Metadata
+        if: steps.filter.outputs.wpt == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-metadata
+          path: pr-metadata/
+
   dependabot:
     name: Dependabot auto-merge
     runs-on: ubuntu-slim

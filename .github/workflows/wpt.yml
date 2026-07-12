@@ -26,13 +26,13 @@ jobs:
           name: pr-metadata
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: pr-metadata
+          path: ${{ runner.temp }}/pr-metadata
 
       - name: Check if WPT run is needed
         id: check-run
         run: |
-          if [ "${{ steps.download-artifact.outcome }}" = "success" ] && [ -f pr-metadata/pr_number ]; then
-            PR_NUMBER_RAW="$(cat pr-metadata/pr_number)"
+          if [ "${{ steps.download-artifact.outcome }}" = "success" ] && [ -f "${{ runner.temp }}/pr-metadata/pr_number" ]; then
+            PR_NUMBER_RAW="$(cat "${{ runner.temp }}/pr-metadata/pr_number")"
             if ! printf '%s' "$PR_NUMBER_RAW" | grep -Eq '^[0-9]+$'; then
               echo "run_wpt=false" >> "$GITHUB_OUTPUT"
               echo "Invalid PR number metadata."
@@ -40,8 +40,8 @@ jobs:
             fi
 
             WPT_URLS_RAW=""
-            if [ -f pr-metadata/urls ]; then
-              WPT_URLS_RAW="$(cat pr-metadata/urls)"
+            if [ -f "${{ runner.temp }}/pr-metadata/urls" ]; then
+              WPT_URLS_RAW="$(cat "${{ runner.temp }}/pr-metadata/urls")"
             fi
 
             # Prevent environment-file injection by stripping CR/LF from untrusted artifact content.

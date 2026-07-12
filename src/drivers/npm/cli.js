@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const Wappalyzer = require('./driver')
+const Wappalyzer = require('./driver');
 
-const args = process.argv.slice(2)
+const args = process.argv.slice(2);
 
-const options = {}
+const options = {};
 
-let url
-let arg
+let url;
+let arg;
 
 const aliases = {
   a: 'userAgent',
@@ -25,41 +25,40 @@ const aliases = {
   w: 'maxWait',
   n: 'noScripts',
   N: 'noRedirect',
-  e: 'extended',
-}
+  e: 'extended'
+};
 
 while (true) {
-  // eslint-disable-line no-constant-condition
-  arg = args.shift()
+  arg = args.shift();
 
   if (!arg) {
-    break
+    break;
   }
 
-  const matches = /^-?-([^=]+)(?:=(.+)?)?/.exec(arg)
+  const matches = /^-?-([^=]+)(?:=(.+)?)?/.exec(arg);
 
   if (matches) {
     const key =
       aliases[matches[1]] ||
-      matches[1].replace(/-\w/g, (_matches) => _matches[1].toUpperCase())
-    // eslint-disable-next-line no-nested-ternary
+      matches[1].replace(/-\w/g, (_matches) => _matches[1].toUpperCase());
+
     const value = matches[2]
       ? matches[2]
       : args[0] && !args[0].startsWith('-')
-      ? args.shift()
-      : true
+        ? args.shift()
+        : true;
 
     if (options[key]) {
       if (!Array.isArray(options[key])) {
-        options[key] = [options[key]]
+        options[key] = [options[key]];
       }
 
-      options[key].push(value)
+      options[key].push(value);
     } else {
-      options[key] = value
+      options[key] = value;
     }
   } else {
-    url = arg
+    url = arg;
   }
 }
 
@@ -95,81 +94,79 @@ Options:
   --local-storage=...        JSON object to use as local storage
   --session-storage=...      JSON object to use as session storage
   --defer=ms                 Defer scan for ms milliseconds after page load
-`)
-  process.exit(options.help ? 0 : 1)
+`);
+  process.exit(options.help ? 0 : 1);
 }
 
 try {
-  const { hostname } = new URL(url)
+  const { hostname } = new URL(url);
 
   if (!hostname) {
-    throw new Error('Invalid URL')
+    throw new Error('Invalid URL');
   }
 } catch (error) {
-  // eslint-disable-next-line no-console
-  console.log(error.message || error.toString())
+  console.log(error.message || error.toString());
 
-  process.exit(1)
+  process.exit(1);
 }
 
-const headers = {}
+const headers = {};
 
 if (options.header) {
-  ;(Array.isArray(options.header) ? options.header : [options.header]).forEach(
+  (Array.isArray(options.header) ? options.header : [options.header]).forEach(
     (header) => {
-      const [key, value] = header.split(':')
+      const [key, value] = header.split(':');
 
-      headers[key.trim()] = (value || '').trim()
+      headers[key.trim()] = (value || '').trim();
     }
-  )
+  );
 }
 
 const storage = {
   local: {},
-  session: {},
-}
+  session: {}
+};
 
 for (const type of Object.keys(storage)) {
   if (options[`${type}Storage`]) {
     try {
-      storage[type] = JSON.parse(options[`${type}Storage`])
+      storage[type] = JSON.parse(options[`${type}Storage`]);
 
       if (
         !options[`${type}Storage`] ||
         !Object.keys(options[`${type}Storage`]).length
       ) {
-        throw new Error('Object has no properties')
+        throw new Error('Object has no properties');
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(`${type}Storage error: ${error.message || error}`)
+      console.log(`${type}Storage error: ${error.message || error}`);
 
-      process.exit(1)
+      process.exit(1);
     }
   }
 }
 
-;(async function () {
-  const wappalyzer = new Wappalyzer(options)
+(async function () {
+  const wappalyzer = new Wappalyzer(options);
 
   try {
-    await wappalyzer.init()
+    await wappalyzer.init();
 
-    const site = await wappalyzer.open(url, headers, storage)
+    const site = await wappalyzer.open(url, headers, storage);
 
     await new Promise((resolve) =>
       setTimeout(resolve, parseInt(options.defer || 0, 10))
-    )
+    );
 
-    const results = await site.analyze()
+    const results = await site.analyze();
 
     process.stdout.write(
       `${JSON.stringify(results, null, options.pretty ? 2 : null)}\n`
-    )
+    );
 
-    await wappalyzer.destroy()
+    await wappalyzer.destroy();
 
-    process.exit(0)
+    process.exit(0);
   } catch (error) {
     try {
       await Promise.race([
@@ -179,16 +176,14 @@ for (const type of Object.keys(storage)) {
             () => reject(new Error('Attempt to close the browser timed out')),
             3000
           )
-        ),
-      ])
+        )
+      ]);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error.message || String(error))
+      console.error(error.message || String(error));
     }
 
-    // eslint-disable-next-line no-console
-    console.error(error.message || String(error))
+    console.error(error.message || String(error));
 
-    process.exit(1)
+    process.exit(1);
   }
-})()
+})();

@@ -1,16 +1,16 @@
-const fs = require('fs')
-const dns = require('dns').promises
-const path = require('path')
-const http = require('http')
-const https = require('https')
-const puppeteer = require('puppeteer')
-const Wappalyzer = require('./wappalyzer')
+const fs = require('fs');
+const dns = require('dns').promises;
+const path = require('path');
+const http = require('http');
+const https = require('https');
+const puppeteer = require('puppeteer');
+const Wappalyzer = require('./wappalyzer');
 
 const { setTechnologies, setCategories, analyze, analyzeManyToMany, resolve } =
-  Wappalyzer
+  Wappalyzer;
 
 const { CHROMIUM_BIN, CHROMIUM_DATA_DIR, CHROMIUM_WEBSOCKET, CHROMIUM_ARGS } =
-  process.env
+  process.env;
 
 const chromiumArgs = CHROMIUM_ARGS
   ? CHROMIUM_ARGS.split(' ')
@@ -23,19 +23,19 @@ const chromiumArgs = CHROMIUM_ARGS
       '--ignore-certificate-errors',
       '--allow-running-insecure-content',
       '--disable-web-security',
-      `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`,
-    ]
+      `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`
+    ];
 
-const extensions = /^([^.]+$|\.(asp|aspx|cgi|htm|html|jsp|php)$)/
+const extensions = /^([^.]+$|\.(asp|aspx|cgi|htm|html|jsp|php)$)/;
 
 const categories = JSON.parse(
   fs.readFileSync(path.resolve(`${__dirname}/categories.json`))
-)
+);
 
-let technologies = {}
+let technologies = {};
 
 for (const index of Array(27).keys()) {
-  const character = index ? String.fromCharCode(index + 96) : '_'
+  const character = index ? String.fromCharCode(index + 96) : '_';
 
   technologies = {
     ...technologies,
@@ -43,17 +43,17 @@ for (const index of Array(27).keys()) {
       fs.readFileSync(
         path.resolve(`${__dirname}/technologies/${character}.json`)
       )
-    ),
-  }
+    )
+  };
 }
 
-setTechnologies(technologies)
-setCategories(categories)
+setTechnologies(technologies);
+setCategories(categories);
 
-const xhrDebounce = []
+const xhrDebounce = [];
 
 function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function getJs(page, technologies = Wappalyzer.technologies) {
@@ -63,18 +63,17 @@ function getJs(page, technologies = Wappalyzer.technologies) {
       .map(({ name, js }) => ({ name, chains: Object.keys(js) }))
       .reduce((technologies, { name, chains }) => {
         chains.forEach((chain) => {
-          chain = chain.replace(/\[([^\]]+)\]/g, '.$1')
+          chain = chain.replace(/\[([^\]]+)\]/g, '.$1');
 
-          const parts = chain.split('.')
+          const parts = chain.split('.');
 
           const root = /^[a-z_$][a-z0-9_$]*$/i.test(parts[0])
-            ? // eslint-disable-next-line no-new-func
-              new Function(
+            ? new Function(
                 `return typeof ${
                   parts[0]
                 } === 'undefined' ? undefined : ${parts.shift()}`
               )()
-            : window
+            : window;
 
           const value = parts.reduce(
             (value, method) =>
@@ -84,7 +83,7 @@ function getJs(page, technologies = Wappalyzer.technologies) {
                 ? value[method]
                 : '__UNDEFINED__',
             root || '__UNDEFINED__'
-          )
+          );
 
           if (value !== '__UNDEFINED__') {
             technologies.push({
@@ -93,14 +92,14 @@ function getJs(page, technologies = Wappalyzer.technologies) {
               value:
                 typeof value === 'string' || typeof value === 'number'
                   ? value
-                  : !!value,
-            })
+                  : !!value
+            });
           }
-        })
+        });
 
-        return technologies
-      }, [])
-  }, technologies)
+        return technologies;
+      }, []);
+  }, technologies);
 }
 
 function analyzeJs(js, technologies = Wappalyzer.technologies) {
@@ -110,9 +109,9 @@ function analyzeJs(js, technologies = Wappalyzer.technologies) {
         technologies.find(({ name: _name }) => name === _name),
         'js',
         { [chain]: [value] }
-      )
+      );
     })
-    .flat()
+    .flat();
 }
 
 function getDom(page, technologies = Wappalyzer.technologies) {
@@ -123,19 +122,19 @@ function getDom(page, technologies = Wappalyzer.technologies) {
         const toScalar = (value) =>
           typeof value === 'string' || typeof value === 'number'
             ? value
-            : !!value
+            : !!value;
 
         Object.keys(dom).forEach((selector) => {
-          let nodes = []
+          let nodes = [];
 
           try {
-            nodes = document.querySelectorAll(selector)
+            nodes = document.querySelectorAll(selector);
           } catch (error) {
             // Continue
           }
 
           if (!nodes.length) {
-            return
+            return;
           }
 
           dom[selector].forEach(({ exists, text, properties, attributes }) => {
@@ -144,7 +143,7 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                 technologies.filter(({ name: _name }) => _name === name)
                   .length >= 50
               ) {
-                return
+                return;
               }
 
               if (
@@ -157,15 +156,14 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                 technologies.push({
                   name,
                   selector,
-                  exists: '',
-                })
+                  exists: ''
+                });
               }
 
               if (text) {
-                // eslint-disable-next-line unicorn/prefer-text-content
                 const value = (
                   node.textContent ? node.textContent.trim() : ''
-                ).slice(0, 1000000)
+                ).slice(0, 1000000);
 
                 if (
                   value &&
@@ -177,8 +175,8 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                   technologies.push({
                     name,
                     selector,
-                    text: value,
-                  })
+                    text: value
+                  });
                 }
               }
 
@@ -191,7 +189,7 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                         name: _name,
                         selector: _selector,
                         property: _property,
-                        value,
+                        value
                       }) =>
                         name === _name &&
                         selector === _selector &&
@@ -199,18 +197,18 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                         value === toScalar(value)
                     ) === -1
                   ) {
-                    const value = node[property]
+                    const value = node[property];
 
                     if (typeof value !== 'undefined') {
                       technologies.push({
                         name,
                         selector,
                         property,
-                        value: toScalar(value),
-                      })
+                        value: toScalar(value)
+                      });
                     }
                   }
-                })
+                });
               }
 
               if (attributes) {
@@ -222,7 +220,7 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                         name: _name,
                         selector: _selector,
                         attribute: _atrribute,
-                        value,
+                        value
                       }) =>
                         name === _name &&
                         selector === _selector &&
@@ -230,56 +228,56 @@ function getDom(page, technologies = Wappalyzer.technologies) {
                         value === toScalar(value)
                     ) === -1
                   ) {
-                    const value = node.getAttribute(attribute)
+                    const value = node.getAttribute(attribute);
 
                     technologies.push({
                       name,
                       selector,
                       attribute,
-                      value: toScalar(value),
-                    })
+                      value: toScalar(value)
+                    });
                   }
-                })
+                });
               }
-            })
-          })
-        })
+            });
+          });
+        });
 
-        return technologies
-      }, [])
-  }, technologies)
+        return technologies;
+      }, []);
+  }, technologies);
 }
 
 function analyzeDom(dom, technologies = Wappalyzer.technologies) {
   return dom
     .map(({ name, selector, exists, text, property, attribute, value }) => {
-      const technology = technologies.find(({ name: _name }) => name === _name)
+      const technology = technologies.find(({ name: _name }) => name === _name);
 
       if (typeof exists !== 'undefined') {
         return analyzeManyToMany(technology, 'dom.exists', {
-          [selector]: [''],
-        })
+          [selector]: ['']
+        });
       }
 
       if (typeof text !== 'undefined') {
         return analyzeManyToMany(technology, 'dom.text', {
-          [selector]: [text],
-        })
+          [selector]: [text]
+        });
       }
 
       if (typeof property !== 'undefined') {
         return analyzeManyToMany(technology, `dom.properties.${property}`, {
-          [selector]: [value],
-        })
+          [selector]: [value]
+        });
       }
 
       if (typeof attribute !== 'undefined') {
         return analyzeManyToMany(technology, `dom.attributes.${attribute}`, {
-          [selector]: [value],
-        })
+          [selector]: [value]
+        });
       }
     })
-    .flat()
+    .flat();
 }
 
 function get(url, options = {}) {
@@ -287,10 +285,10 @@ function get(url, options = {}) {
     options.timeout ||
     (this.options.fast
       ? this.Math.min(this.options.maxWait, 3000)
-      : this.options.maxWait)
+      : this.options.maxWait);
 
   if (['http:', 'https:'].includes(url.protocol)) {
-    const { get } = url.protocol === 'http:' ? http : https
+    const { get } = url.protocol === 'http:' ? http : https;
 
     return new Promise((resolve, reject) =>
       get(
@@ -298,32 +296,32 @@ function get(url, options = {}) {
         {
           rejectUnauthorized: false,
           headers: {
-            'User-Agent': options.userAgent,
-          },
+            'User-Agent': options.userAgent
+          }
         },
         (response) => {
           if (response.statusCode >= 300) {
             return reject(
               new Error(`${response.statusCode} ${response.statusMessage}`)
-            )
+            );
           }
 
-          response.setEncoding('utf8')
+          response.setEncoding('utf8');
 
-          let body = ''
+          let body = '';
 
-          response.on('data', (data) => (body += data))
-          response.on('error', (error) => reject(new Error(error.message)))
-          response.on('end', () => resolve(body))
+          response.on('data', (data) => (body += data));
+          response.on('error', (error) => reject(new Error(error.message)));
+          response.on('end', () => resolve(body));
         }
       )
         .setTimeout(timeout, () =>
           reject(new Error(`Timeout (${url}, ${timeout}ms)`))
         )
         .on('error', (error) => reject(new Error(error.message)))
-    )
+    );
   } else {
-    throw new Error(`Invalid protocol: ${url.protocol}`)
+    throw new Error(`Invalid protocol: ${url.protocol}`);
   }
 }
 
@@ -345,45 +343,45 @@ class Driver {
       userAgent:
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
       extended: false,
-      ...options,
-    }
+      ...options
+    };
 
-    this.options.debug = Boolean(+this.options.debug)
-    this.options.fast = Boolean(+this.options.fast)
-    this.options.recursive = Boolean(+this.options.recursive)
+    this.options.debug = Boolean(+this.options.debug);
+    this.options.fast = Boolean(+this.options.fast);
+    this.options.recursive = Boolean(+this.options.recursive);
     this.options.probe =
       String(this.options.probe || '').toLowerCase() === 'basic'
         ? 'basic'
         : String(this.options.probe || '').toLowerCase() === 'full'
-        ? 'full'
-        : Boolean(+this.options.probe) && 'full'
-    this.options.delay = parseInt(this.options.delay, 10)
-    this.options.maxDepth = parseInt(this.options.maxDepth, 10)
-    this.options.maxUrls = parseInt(this.options.maxUrls, 10)
-    this.options.maxWait = parseInt(this.options.maxWait, 10)
-    this.options.htmlMaxCols = parseInt(this.options.htmlMaxCols, 10)
-    this.options.htmlMaxRows = parseInt(this.options.htmlMaxRows, 10)
-    this.options.noScripts = Boolean(+this.options.noScripts)
-    this.options.extended = Boolean(+this.options.extended)
+          ? 'full'
+          : Boolean(+this.options.probe) && 'full';
+    this.options.delay = parseInt(this.options.delay, 10);
+    this.options.maxDepth = parseInt(this.options.maxDepth, 10);
+    this.options.maxUrls = parseInt(this.options.maxUrls, 10);
+    this.options.maxWait = parseInt(this.options.maxWait, 10);
+    this.options.htmlMaxCols = parseInt(this.options.htmlMaxCols, 10);
+    this.options.htmlMaxRows = parseInt(this.options.htmlMaxRows, 10);
+    this.options.noScripts = Boolean(+this.options.noScripts);
+    this.options.extended = Boolean(+this.options.extended);
 
     if (this.options.proxy) {
-      chromiumArgs.push(`--proxy-server=${this.options.proxy}`)
+      chromiumArgs.push(`--proxy-server=${this.options.proxy}`);
     }
 
-    this.destroyed = false
+    this.destroyed = false;
   }
 
   async init() {
     for (let attempt = 1; attempt <= 2; attempt++) {
-      this.log(`Launching browser (attempt ${attempt})...`)
+      this.log(`Launching browser (attempt ${attempt})...`);
 
       try {
         if (CHROMIUM_WEBSOCKET) {
           this.browser = await puppeteer.connect({
             ignoreHTTPSErrors: true,
             acceptInsecureCerts: true,
-            browserWSEndpoint: CHROMIUM_WEBSOCKET,
-          })
+            browserWSEndpoint: CHROMIUM_WEBSOCKET
+          });
         } else {
           this.browser = await puppeteer.launch({
             ignoreHTTPSErrors: true,
@@ -392,148 +390,146 @@ class Driver {
             executablePath: CHROMIUM_BIN,
             timeout: this.options.fast
               ? Math.min(this.options.maxWait, 10000)
-              : this.options.maxWait,
-          })
+              : this.options.maxWait
+          });
         }
 
-        break
+        break;
       } catch (error) {
-        this.log(error)
+        this.log(error);
 
         if (attempt >= 2) {
-          throw new Error(error.message || error.toString())
+          throw new Error(error.message || error.toString());
         }
       }
     }
 
     this.browser.on('disconnected', () => {
-      this.browser = undefined
+      this.browser = undefined;
 
-      this.log('Browser disconnected')
-    })
+      this.log('Browser disconnected');
+    });
   }
 
   async destroy() {
     if (this.browser) {
       try {
-        await sleep(1)
+        await sleep(1);
 
-        await this.browser.close()
+        await this.browser.close();
 
-        this.log('Browser closed')
+        this.log('Browser closed');
       } catch (error) {
-        throw new Error(error.toString())
+        throw new Error(error.toString());
       }
     }
   }
 
   async open(url, headers = {}, storage = {}) {
-    const site = new Site(url.split('#')[0], headers, this)
+    const site = new Site(url.split('#')[0], headers, this);
 
     if (storage.local || storage.session) {
-      this.log('Setting storage...')
+      this.log('Setting storage...');
 
-      const page = await site.newPage(site.originalUrl)
+      const page = await site.newPage(site.originalUrl);
 
-      await page.setRequestInterception(true)
+      await page.setRequestInterception(true);
 
       page.on('request', (request) =>
         request.respond({
           status: 200,
           contentType: 'text/plain',
-          body: 'ok',
+          body: 'ok'
         })
-      )
+      );
 
-      await page.goto(url)
+      await page.goto(url);
 
       await page.evaluate((storage) => {
-        ;['local', 'session'].forEach((type) => {
+        ['local', 'session'].forEach((type) => {
           Object.keys(storage[type] || {}).forEach((key) => {
-            window[`${type}Storage`].setItem(key, storage[type][key])
-          })
-        })
-      }, storage)
+            window[`${type}Storage`].setItem(key, storage[type][key]);
+          });
+        });
+      }, storage);
 
       try {
-        await page.close()
+        await page.close();
       } catch {
         // Continue
       }
     }
 
-    return site
+    return site;
   }
 
   log(message, source = 'driver') {
     if (this.options.debug) {
-      // eslint-disable-next-line no-console
-      console.log(`log | ${source} |`, message)
+      console.log(`log | ${source} |`, message);
     }
   }
 }
 
 class Site {
   constructor(url, headers = {}, driver) {
-    ;({
+    ({
       options: this.options,
       browser: this.browser,
-      init: this.initDriver,
-    } = driver)
+      init: this.initDriver
+    } = driver);
 
     this.options.headers = {
       ...this.options.headers,
-      ...headers,
-    }
+      ...headers
+    };
 
-    this.driver = driver
+    this.driver = driver;
 
     try {
-      this.originalUrl = new URL(url)
+      this.originalUrl = new URL(url);
     } catch (error) {
-      throw new Error(error.toString())
+      throw new Error(error.toString());
     }
 
-    this.analyzedUrls = {}
-    this.analyzedXhr = {}
-    this.analyzedRequires = {}
-    this.detections = []
+    this.analyzedUrls = {};
+    this.analyzedXhr = {};
+    this.analyzedRequires = {};
+    this.detections = [];
 
-    this.listeners = {}
+    this.listeners = {};
 
-    this.pages = []
+    this.pages = [];
 
-    this.cache = {}
+    this.cache = {};
 
-    this.probed = false
+    this.probed = false;
   }
 
   log(message, source = 'driver', type = 'log') {
     if (this.options.debug) {
-      // eslint-disable-next-line no-console
-      console[type](`${type} | ${source} |`, message)
+      console[type](`${type} | ${source} |`, message);
     }
 
-    this.emit(type, { message, source })
+    this.emit(type, { message, source });
   }
 
   error(error, source = 'driver') {
-    this.log(error, source, 'error')
+    this.log(error, source, 'error');
   }
 
   on(event, callback) {
     if (!this.listeners[event]) {
-      this.listeners[event] = []
+      this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback)
+    this.listeners[event].push(callback);
   }
 
   emit(event, params) {
     if (this.listeners[event]) {
       return Promise.allSettled(
         this.listeners[event].map((listener) => listener(params))
-      )
+      );
     }
   }
 
@@ -545,84 +541,84 @@ class Site {
       ? Math.min(this.options.maxWait, 2000)
       : this.options.maxWait
   ) {
-    let timeout = null
+    let timeout = null;
 
     if (!(promise instanceof Promise)) {
-      return Promise.resolve(promise)
+      return Promise.resolve(promise);
     }
 
     return Promise.race([
       new Promise((resolve, reject) => {
         timeout = setTimeout(() => {
-          clearTimeout(timeout)
+          clearTimeout(timeout);
 
-          const error = new Error(errorMessage)
+          const error = new Error(errorMessage);
 
-          error.code = 'PROMISE_TIMEOUT_ERROR'
+          error.code = 'PROMISE_TIMEOUT_ERROR';
 
           if (fallback !== undefined) {
-            this.error(error)
+            this.error(error);
 
-            resolve(fallback)
+            resolve(fallback);
           } else {
-            reject(error)
+            reject(error);
           }
-        }, maxWait)
+        }, maxWait);
       }),
       promise.then((value) => {
-        clearTimeout(timeout)
+        clearTimeout(timeout);
 
-        return value
-      }),
-    ])
+        return value;
+      })
+    ]);
   }
 
   async goto(url) {
     // Return when the URL is a duplicate or maxUrls has been reached
     if (this.analyzedUrls[url.href]) {
-      return []
+      return [];
     }
 
-    this.log(`Navigate to ${url}`)
+    this.log(`Navigate to ${url}`);
 
     this.analyzedUrls[url.href] = {
-      status: 0,
-    }
+      status: 0
+    };
 
-    const page = await this.newPage(url)
+    const page = await this.newPage(url);
 
-    await page.setRequestInterception(true)
+    await page.setRequestInterception(true);
 
-    let responseReceived = false
+    let responseReceived = false;
 
     page.on('request', async (request) => {
       try {
         if (request.resourceType() === 'xhr') {
-          let hostname
+          let hostname;
 
           try {
-            ;({ hostname } = new URL(request.url()))
+            ({ hostname } = new URL(request.url()));
           } catch (error) {
-            request.abort('blockedbyclient')
+            request.abort('blockedbyclient');
 
-            return
+            return;
           }
 
           if (!xhrDebounce.includes(hostname)) {
-            xhrDebounce.push(hostname)
+            xhrDebounce.push(hostname);
 
             setTimeout(async () => {
-              xhrDebounce.splice(xhrDebounce.indexOf(hostname), 1)
+              xhrDebounce.splice(xhrDebounce.indexOf(hostname), 1);
 
               this.analyzedXhr[url.hostname] =
-                this.analyzedXhr[url.hostname] || []
+                this.analyzedXhr[url.hostname] || [];
 
               if (!this.analyzedXhr[url.hostname].includes(hostname)) {
-                this.analyzedXhr[url.hostname].push(hostname)
+                this.analyzedXhr[url.hostname].push(hostname);
 
-                await this.onDetect(url, analyze({ xhr: hostname }))
+                await this.onDetect(url, analyze({ xhr: hostname }));
               }
-            }, 1000)
+            }, 1000);
           }
         }
 
@@ -633,31 +629,31 @@ class Site {
             request.resourceType()
           )
         ) {
-          request.abort('blockedbyclient')
+          request.abort('blockedbyclient');
         } else {
-          await this.emit('request', { page, request })
+          await this.emit('request', { page, request });
 
           if (Object.keys(this.options.headers).length) {
             const headers = {
               ...request.headers(),
-              ...this.options.headers,
-            }
+              ...this.options.headers
+            };
 
-            request.continue({ headers })
+            request.continue({ headers });
           } else {
-            request.continue()
+            request.continue();
           }
         }
       } catch (error) {
-        error.message += ` (${url})`
+        error.message += ` (${url})`;
 
-        this.error(error)
+        this.error(error);
       }
-    })
+    });
 
     page.on('response', async (response) => {
       if (!page || page.__closed || page.isClosed()) {
-        return
+        return;
       }
 
       try {
@@ -666,121 +662,125 @@ class Site {
           response.frame().url() === url.href &&
           response.request().resourceType() === 'script'
         ) {
-          const scripts = await response.text()
+          const scripts = await response.text();
 
-          await this.onDetect(response.url(), analyze({ scripts }))
+          await this.onDetect(response.url(), analyze({ scripts }));
         }
       } catch (error) {
         if (error.constructor.name !== 'ProtocolError') {
-          error.message += ` (${url})`
+          error.message += ` (${url})`;
 
-          this.error(error)
+          this.error(error);
         }
       }
 
       try {
         if (response.url() === url.href) {
           this.analyzedUrls[url.href] = {
-            status: response.status(),
-          }
+            status: response.status()
+          };
 
-          const rawHeaders = response.headers()
-          const headers = {}
+          const rawHeaders = response.headers();
+          const headers = {};
 
           Object.keys(rawHeaders).forEach((key) => {
             headers[key] = [
               ...(headers[key] || []),
               ...(Array.isArray(rawHeaders[key])
                 ? rawHeaders[key]
-                : [rawHeaders[key]]),
-            ]
-          })
+                : [rawHeaders[key]])
+            ];
+          });
 
           // Prevent cross-domain redirects
           if (response.status() >= 300 && response.status() < 400) {
             if (headers.location) {
-              const _url = new URL(headers.location.slice(-1), url)
+              const _url = new URL(headers.location.slice(-1), url);
 
-              const redirects = Object.keys(this.analyzedUrls).length - 1
+              const redirects = Object.keys(this.analyzedUrls).length - 1;
 
               if (
                 _url.hostname.replace(/^www\./, '') ===
                   this.originalUrl.hostname.replace(/^www\./, '') ||
                 (redirects < 3 && !this.options.noRedirect)
               ) {
-                url = _url
+                url = _url;
 
-                return
+                return;
               }
             }
           }
 
-          responseReceived = true
+          responseReceived = true;
 
           const certIssuer = response.securityDetails()
             ? response.securityDetails().issuer()
-            : ''
+            : '';
 
-          await this.onDetect(url, analyze({ headers, certIssuer }))
+          await this.onDetect(url, analyze({ headers, certIssuer }));
 
-          await this.emit('response', { page, response, headers, certIssuer })
+          await this.emit('response', { page, response, headers, certIssuer });
         }
       } catch (error) {
-        error.message += ` (${url})`
+        error.message += ` (${url})`;
 
-        this.error(error)
+        this.error(error);
       }
-    })
+    });
 
     try {
-      await page.goto(url.href)
+      await page.goto(url.href);
 
       if (page.url() === 'about:blank') {
-        const error = new Error(`The page failed to load (${url})`)
+        const error = new Error(`The page failed to load (${url})`);
 
-        error.code = 'WAPPALYZER_PAGE_EMPTY'
+        error.code = 'WAPPALYZER_PAGE_EMPTY';
 
-        throw error
+        throw error;
       }
 
       if (!this.options.noScripts) {
-        await sleep(this.options.fast ? 1000 : 3000)
+        await sleep(this.options.fast ? 1000 : 3000);
       }
 
       // page.on('console', (message) => this.log(message.text()))
 
       // Cookies
-      let cookies = []
+      let cookies = [];
 
       try {
         cookies = (await page.cookies()).reduce(
           (cookies, { name, value }) => ({
             ...cookies,
-            [name.toLowerCase()]: [value],
+            [name.toLowerCase()]: [value]
           }),
           {}
-        )
+        );
 
         // Change Google Analytics 4 cookie from _ga_XXXXXXXXXX to _ga_*
         Object.keys(cookies).forEach((name) => {
           if (/_ga_[A-Z0-9]+/.test(name)) {
-            cookies['_ga_*'] = cookies[name]
+            cookies['_ga_*'] = cookies[name];
 
-            delete cookies[name]
+            delete cookies[name];
           }
-        })
+        });
       } catch (error) {
-        error.message += ` (${url})`
+        error.message += ` (${url})`;
 
-        this.error(error)
+        this.error(error);
       }
 
       // HTML
-      let html = await this.promiseTimeout(page.content(), '', 'Timeout (html)')
+      let html = await this.promiseTimeout(
+        page.content(),
+        '',
+        'Timeout (html)'
+      );
 
       if (this.options.htmlMaxCols && this.options.htmlMaxRows) {
-        const batches = []
-        const rows = html.length / this.options.htmlMaxCols
+        const batches = [];
+        const rows = html.length / this.options.htmlMaxCols;
 
         for (let i = 0; i < rows; i += 1) {
           if (
@@ -792,21 +792,21 @@ class Site {
                 i * this.options.htmlMaxCols,
                 (i + 1) * this.options.htmlMaxCols
               )
-            )
+            );
           }
         }
 
-        html = batches.join('\n')
+        html = batches.join('\n');
       }
 
-      let links = []
-      let text = ''
-      let css = ''
-      let scriptSrc = []
-      let scripts = []
-      let meta = []
-      let js = []
-      let dom = []
+      let links = [];
+      let text = '';
+      let css = '';
+      let scriptSrc = [];
+      let scripts = [];
+      let meta = [];
+      let js = [];
+      let dom = [];
 
       if (html) {
         await Promise.all([
@@ -825,14 +825,14 @@ class Site {
                             href,
                             pathname,
                             protocol,
-                            rel,
+                            rel
                           }) => ({
                             hash,
                             hostname,
                             href,
                             pathname,
                             protocol,
-                            rel,
+                            rel
                           })
                         )
                       ),
@@ -842,7 +842,7 @@ class Site {
                   ).jsonValue(),
                   [],
                   'Timeout (links)'
-                )
+                );
           })(),
           (async () => {
             // Text
@@ -850,9 +850,7 @@ class Site {
               (
                 await this.promiseTimeout(
                   page.evaluateHandle(
-                    () =>
-                      // eslint-disable-next-line unicorn/prefer-text-content
-                      document.body && document.body.innerText
+                    () => document.body && document.body.innerText
                   ),
                   { jsonValue: () => '' },
                   'Timeout (text)'
@@ -860,7 +858,7 @@ class Site {
               ).jsonValue(),
               '',
               'Timeout (text)'
-            )
+            );
           })(),
           (async () => {
             // CSS
@@ -868,27 +866,27 @@ class Site {
               (
                 await this.promiseTimeout(
                   page.evaluateHandle((maxRows) => {
-                    const css = []
+                    const css = [];
 
                     try {
                       if (!document.styleSheets.length) {
-                        return ''
+                        return '';
                       }
 
                       for (const sheet of Array.from(document.styleSheets)) {
                         for (const rules of Array.from(sheet.cssRules)) {
-                          css.push(rules.cssText)
+                          css.push(rules.cssText);
 
                           if (css.length >= maxRows) {
-                            break
+                            break;
                           }
                         }
                       }
                     } catch (error) {
-                      return ''
+                      return '';
                     }
 
-                    return css.join('\n')
+                    return css.join('\n');
                   }, this.options.htmlMaxRows),
                   { jsonValue: () => '' },
                   'Timeout (css)'
@@ -896,17 +894,17 @@ class Site {
               ).jsonValue(),
               '',
               'Timeout (css)'
-            )
+            );
           })(),
           (async () => {
             // Script tags
-            ;[scriptSrc, scripts] = await this.promiseTimeout(
+            [scriptSrc, scripts] = await this.promiseTimeout(
               (
                 await this.promiseTimeout(
                   page.evaluateHandle(() => {
                     const nodes = Array.from(
                       document.getElementsByTagName('script')
-                    )
+                    );
 
                     return [
                       nodes
@@ -917,8 +915,8 @@ class Site {
                         .map(({ src }) => src),
                       nodes
                         .map((node) => node.textContent)
-                        .filter((script) => script),
-                    ]
+                        .filter((script) => script)
+                    ];
                   }),
                   { jsonValue: () => [] },
                   'Timeout (scripts)'
@@ -926,7 +924,7 @@ class Site {
               ).jsonValue(),
               [],
               'Timeout (scripts)'
-            )
+            );
           })(),
           (async () => {
             // Meta tags
@@ -938,18 +936,18 @@ class Site {
                       (metas, meta) => {
                         const key =
                           meta.getAttribute('name') ||
-                          meta.getAttribute('property')
+                          meta.getAttribute('property');
 
                         if (key) {
                           metas[key.toLowerCase()] =
-                            metas[key.toLowerCase()] || []
+                            metas[key.toLowerCase()] || [];
 
                           metas[key.toLowerCase()].push(
                             meta.getAttribute('content')
-                          )
+                          );
                         }
 
-                        return metas
+                        return metas;
                       },
                       {}
                     )
@@ -960,19 +958,19 @@ class Site {
               ).jsonValue(),
               [],
               'Timeout (meta)'
-            )
+            );
           })(),
           (async () => {
             // JavaScript
             js = this.options.noScripts
               ? []
-              : await this.promiseTimeout(getJs(page), [], 'Timeout (js)')
+              : await this.promiseTimeout(getJs(page), [], 'Timeout (js)');
           })(),
           (async () => {
             // DOM
-            dom = await this.promiseTimeout(getDom(page), [], 'Timeout (dom)')
-          })(),
-        ])
+            dom = await this.promiseTimeout(getDom(page), [], 'Timeout (dom)');
+          })()
+        ]);
       }
 
       this.cache[url.href] = {
@@ -982,8 +980,8 @@ class Site {
         cookies,
         scripts,
         scriptSrc,
-        meta,
-      }
+        meta
+      };
 
       await this.onDetect(
         url,
@@ -998,10 +996,10 @@ class Site {
             css,
             scripts,
             scriptSrc,
-            meta,
-          }),
+            meta
+          })
         ].flat()
-      )
+      );
 
       const reducedLinks = Array.prototype.reduce.call(
         links,
@@ -1017,39 +1015,39 @@ class Site {
             link.hostname === url.hostname &&
             extensions.test(link.pathname.slice(-5))
           ) {
-            results.push(new URL(link.href.split('#')[0]))
+            results.push(new URL(link.href.split('#')[0]));
           }
 
-          return results
+          return results;
         },
         []
-      )
+      );
 
       await this.emit('goto', {
         page,
         url,
         links: reducedLinks,
-        ...this.cache[url.href],
-      })
+        ...this.cache[url.href]
+      });
 
-      page.__closed = true
+      page.__closed = true;
 
       try {
-        await page.close()
+        await page.close();
 
-        this.log(`Page closed (${url})`)
+        this.log(`Page closed (${url})`);
       } catch (error) {
         // Continue
       }
 
-      return reducedLinks
+      return reducedLinks;
     } catch (error) {
-      page.__closed = true
+      page.__closed = true;
 
       try {
-        await page.close()
+        await page.close();
 
-        this.log(`Page closed (${url})`)
+        this.log(`Page closed (${url})`);
       } catch (error) {
         // Continue
       }
@@ -1057,75 +1055,75 @@ class Site {
       if (error.message.includes('net::ERR_NAME_NOT_RESOLVED')) {
         const newError = new Error(
           `Hostname could not be resolved (${url.hostname})`
-        )
+        );
 
-        newError.code = 'WAPPALYZER_DNS_ERROR'
+        newError.code = 'WAPPALYZER_DNS_ERROR';
 
-        throw newError
+        throw newError;
       }
 
       if (
         error.constructor.name === 'TimeoutError' ||
         error.code === 'PROMISE_TIMEOUT_ERROR'
       ) {
-        error.code = 'WAPPALYZER_TIMEOUT_ERROR'
+        error.code = 'WAPPALYZER_TIMEOUT_ERROR';
       }
 
-      error.message += ` (${url})`
+      error.message += ` (${url})`;
 
-      throw error
+      throw error;
     }
   }
 
   async newPage(url) {
     if (!this.browser) {
-      await this.initDriver()
+      await this.initDriver();
 
       if (!this.browser) {
-        throw new Error('Browser closed')
+        throw new Error('Browser closed');
       }
     }
 
-    let page
+    let page;
 
     try {
-      page = await this.browser.newPage()
+      page = await this.browser.newPage();
 
       if (!page || page.isClosed()) {
-        throw new Error('Page did not open')
+        throw new Error('Page did not open');
       }
     } catch (error) {
-      error.message += ` (${url})`
+      error.message += ` (${url})`;
 
-      this.error(error)
+      this.error(error);
 
-      await this.initDriver()
+      await this.initDriver();
 
-      page = await this.browser.newPage()
+      page = await this.browser.newPage();
     }
 
-    this.pages.push(page)
+    this.pages.push(page);
 
-    page.setJavaScriptEnabled(!this.options.noScripts)
+    page.setJavaScriptEnabled(!this.options.noScripts);
 
-    page.setDefaultTimeout(this.options.maxWait)
+    page.setDefaultTimeout(this.options.maxWait);
 
-    await page.setUserAgent(this.options.userAgent)
+    await page.setUserAgent(this.options.userAgent);
 
-    page.on('dialog', (dialog) => dialog.dismiss())
+    page.on('dialog', (dialog) => dialog.dismiss());
 
     page.on('error', (error) => {
-      error.message += ` (${url})`
+      error.message += ` (${url})`;
 
-      this.error(error)
-    })
+      this.error(error);
+    });
 
-    return page
+    return page;
   }
 
   async analyze(url = this.originalUrl, index = 1, depth = 1) {
     if (this.options.recursive) {
-      await sleep(this.options.delay * index)
+      await sleep(this.options.delay * index);
     }
 
     await Promise.allSettled([
@@ -1133,7 +1131,7 @@ class Site {
         try {
           const links = ((await this.goto(url)) || []).filter(
             ({ href }) => !this.analyzedUrls[href]
-          )
+          );
 
           if (
             links.length &&
@@ -1147,27 +1145,27 @@ class Site {
                 this.options.maxUrls - Object.keys(this.analyzedUrls).length
               ),
               depth + 1
-            )
+            );
           }
         } catch (error) {
           this.analyzedUrls[url.href] = {
             status: this.analyzedUrls[url.href]?.status || 0,
-            error: error.message || error.toString(),
-          }
+            error: error.message || error.toString()
+          };
 
-          error.message += ` (${url})`
+          error.message += ` (${url})`;
 
-          this.error(error)
+          this.error(error);
         }
       })(),
       (async () => {
         if (this.options.probe && !this.probed) {
-          this.probed = true
+          this.probed = true;
 
-          await this.probe(url)
+          await this.probe(url);
         }
-      })(),
-    ])
+      })()
+    ]);
 
     const patterns = this.options.extended
       ? this.detections.reduce(
@@ -1175,10 +1173,10 @@ class Site {
             patterns,
             {
               technology: { name, implies, excludes },
-              pattern: { regex, value, match, confidence, type, version },
+              pattern: { regex, value, match, confidence, type, version }
             }
           ) => {
-            patterns[name] = patterns[name] || []
+            patterns[name] = patterns[name] || [];
 
             patterns[name].push({
               type,
@@ -1188,14 +1186,14 @@ class Site {
               confidence,
               version,
               implies: implies.map(({ name }) => name),
-              excludes: excludes.map(({ name }) => name),
-            })
+              excludes: excludes.map(({ name }) => name)
+            });
 
-            return patterns
+            return patterns;
           },
           {}
         )
-      : undefined
+      : undefined;
 
     const results = {
       urls: this.analyzedUrls,
@@ -1210,7 +1208,7 @@ class Site {
           website,
           cpe,
           categories,
-          rootPath,
+          rootPath
         }) => ({
           slug,
           name,
@@ -1223,26 +1221,26 @@ class Site {
           categories: categories.map(({ id, slug, name }) => ({
             id,
             slug,
-            name,
+            name
           })),
-          rootPath,
+          rootPath
         })
       ),
-      patterns,
-    }
+      patterns
+    };
 
-    await this.emit('analyze', results)
+    await this.emit('analyze', results);
 
-    return results
+    return results;
   }
 
   async probe(url) {
     const paths = [
       {
         type: 'robots',
-        path: '/robots.txt',
-      },
-    ]
+        path: '/robots.txt'
+      }
+    ];
 
     if (this.options.probe === 'full') {
       Wappalyzer.technologies
@@ -1252,77 +1250,77 @@ class Site {
             ...Object.keys(technology.probe).map((path) => ({
               type: 'probe',
               path,
-              technology,
+              technology
             }))
-          )
-        })
+          );
+        });
     }
 
     // DNS
-    const records = {}
+    const records = {};
     const resolveDns = (func, hostname) => {
       return this.promiseTimeout(
         func(hostname).catch((error) => {
           if (error.code !== 'ENODATA') {
-            error.message += ` (${url})`
+            error.message += ` (${url})`;
 
-            this.error(error)
+            this.error(error);
           }
 
-          return []
+          return [];
         }),
         [],
         'Timeout (dns)',
         this.options.fast
           ? Math.min(this.options.maxWait, 15000)
           : this.options.maxWait
-      )
-    }
+      );
+    };
 
-    const domain = url.hostname.replace(/^www\./, '')
+    const domain = url.hostname.replace(/^www\./, '');
 
     await Promise.allSettled([
       // Static files
       ...paths.map(async ({ type, path, technology }, index) => {
         try {
-          await sleep(this.options.delay * index)
+          await sleep(this.options.delay * index);
 
           const body = await get(new URL(path, url.href), {
             userAgent: this.options.userAgent,
-            timeout: Math.min(this.options.maxWait, 3000),
-          })
+            timeout: Math.min(this.options.maxWait, 3000)
+          });
 
-          this.log(`Probe ok (${path})`)
+          this.log(`Probe ok (${path})`);
 
-          const text = body.slice(0, 100000)
+          const text = body.slice(0, 100000);
 
           await this.onDetect(
             url,
             analyze(
               {
-                [type]: path ? { [path]: [text] } : text,
+                [type]: path ? { [path]: [text] } : text
               },
               technology && [technology]
             )
-          )
+          );
         } catch (error) {
-          this.error(`Probe failed (${path}): ${error.message || error}`)
+          this.error(`Probe failed (${path}): ${error.message || error}`);
         }
       }),
       // DNS
-      // eslint-disable-next-line no-async-promise-executor
+
       new Promise(async (resolve, reject) => {
-        ;[records.cname, records.ns, records.mx, records.txt, records.soa] =
+        [records.cname, records.ns, records.mx, records.txt, records.soa] =
           await Promise.all([
             resolveDns(dns.resolveCname, url.hostname),
             resolveDns(dns.resolveNs, domain),
             resolveDns(dns.resolveMx, domain),
             resolveDns(dns.resolveTxt, domain),
-            resolveDns(dns.resolveSoa, domain),
-          ])
+            resolveDns(dns.resolveSoa, domain)
+          ]);
 
         const dnsRecords = Object.keys(records).reduce((dns, type) => {
-          dns[type] = dns[type] || []
+          dns[type] = dns[type] || [];
 
           Array.prototype.push.apply(
             dns[type],
@@ -1330,37 +1328,37 @@ class Site {
               ? records[type].map((value) => {
                   return typeof value === 'object'
                     ? Object.values(value).join(' ')
-                    : value
+                    : value;
                 })
               : [Object.values(records[type]).join(' ')]
-          )
+          );
 
-          return dns
-        }, {})
+          return dns;
+        }, {});
 
         this.log(
           `Probe DNS ok: (${Object.values(dnsRecords).flat().length} records)`
-        )
+        );
 
-        await this.onDetect(url, analyze({ dns: dnsRecords }))
+        await this.onDetect(url, analyze({ dns: dnsRecords }));
 
-        resolve()
-      }),
-    ])
+        resolve();
+      })
+    ]);
   }
 
   async batch(links, depth, batch = 0) {
     if (links.length === 0) {
-      return
+      return;
     }
 
-    const batched = links.splice(0, this.options.batchSize)
+    const batched = links.splice(0, this.options.batchSize);
 
     await Promise.allSettled(
       batched.map((link, index) => this.analyze(link, index, depth))
-    )
+    );
 
-    await this.batch(links, depth, batch + 1)
+    await this.batch(links, depth, batch + 1);
   }
 
   async onDetect(url, detections = []) {
@@ -1376,25 +1374,25 @@ class Site {
             ({
               technology: { name: _name },
               pattern: { regex: _regex },
-              version: _version,
+              version: _version
             }) =>
               name === _name &&
               version === _version &&
               (!regex || regex.toString() === _regex.toString())
           ) === index
-      )
+      );
 
     // Track if technology was identified on website's root path
     detections.forEach(({ technology: { name } }) => {
       const detection = this.detections.find(
         ({ technology: { name: _name } }) => name === _name
-      )
+      );
 
-      detection.rootPath = detection.rootPath || url.pathname === '/'
-    })
+      detection.rootPath = detection.rootPath || url.pathname === '/';
+    });
 
     if (this.cache[url.href]) {
-      const resolved = resolve(this.detections)
+      const resolved = resolve(this.detections);
 
       const requires = [
         ...Wappalyzer.requires.filter(({ name }) =>
@@ -1404,34 +1402,34 @@ class Site {
           resolved.some(({ categories }) =>
             categories.some(({ id }) => id === categoryId)
           )
-        ),
-      ]
+        )
+      ];
 
       await Promise.allSettled(
         requires.map(async ({ name, categoryId, technologies }) => {
           const id = categoryId
             ? `category:${categoryId}`
-            : `technology:${name}`
+            : `technology:${name}`;
 
           this.analyzedRequires[url.href] =
-            this.analyzedRequires[url.href] || []
+            this.analyzedRequires[url.href] || [];
 
           if (!this.analyzedRequires[url.href].includes(id)) {
-            this.analyzedRequires[url.href].push(id)
+            this.analyzedRequires[url.href].push(id);
 
             const { page, cookies, html, text, css, scripts, scriptSrc, meta } =
-              this.cache[url.href]
+              this.cache[url.href];
 
             const js = await this.promiseTimeout(
               getJs(page, technologies),
               [],
               'Timeout (js)'
-            )
+            );
             const dom = await this.promiseTimeout(
               getDom(page, technologies),
               [],
               'Timeout (dom)'
-            )
+            );
 
             await this.onDetect(
               url,
@@ -1447,15 +1445,15 @@ class Site {
                     css,
                     scripts,
                     scriptSrc,
-                    meta,
+                    meta
                   },
                   technologies
-                ),
+                )
               ].flat()
-            )
+            );
           }
         })
-      )
+      );
     }
   }
 
@@ -1463,19 +1461,19 @@ class Site {
     await Promise.allSettled(
       this.pages.map(async (page) => {
         if (page) {
-          page.__closed = true
+          page.__closed = true;
 
           try {
-            await page.close()
+            await page.close();
           } catch (error) {
             // Continue
           }
         }
       })
-    )
+    );
 
-    this.log('Site closed')
+    this.log('Site closed');
   }
 }
 
-module.exports = Driver
+module.exports = Driver;

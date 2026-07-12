@@ -32,12 +32,27 @@ jobs:
         id: check-run
         run: |
           if [ "${{ steps.download-artifact.outcome }}" = "success" ] && [ -f pr-metadata/pr_number ]; then
-            echo "run_wpt=true" >> $GITHUB_OUTPUT
-            echo "PR_NUMBER=$(cat pr-metadata/pr_number)" >> $GITHUB_ENV
-            echo "WPT_URLS=$(cat pr-metadata/urls)" >> $GITHUB_ENV
+            PR_NUMBER_RAW="$(cat pr-metadata/pr_number)"
+            if ! printf '%s' "$PR_NUMBER_RAW" | grep -Eq '^[0-9]+$'; then
+              echo "run_wpt=false" >> "$GITHUB_OUTPUT"
+              echo "Invalid PR number metadata."
+              exit 0
+            fi
+
+            WPT_URLS_RAW=""
+            if [ -f pr-metadata/urls ]; then
+              WPT_URLS_RAW="$(cat pr-metadata/urls)"
+            fi
+
+            # Prevent environment-file injection by stripping CR/LF from untrusted artifact content.
+            WPT_URLS_SAFE="$(printf '%s' "$WPT_URLS_RAW" | tr '\r\n' '  ')"
+
+            echo "run_wpt=true" >> "$GITHUB_OUTPUT"
+            printf 'PR_NUMBER=%s\n' "$PR_NUMBER_RAW" >> "$GITHUB_ENV"
+            printf 'WPT_URLS=%s\n' "$WPT_URLS_SAFE" >> "$GITHUB_ENV"
             echo "Starting WPT run."
           else
-            echo "run_wpt=false" >> $GITHUB_OUTPUT
+            echo "run_wpt=false" >> "$GITHUB_OUTPUT"
             echo "No WPT run needed."
           fi
 

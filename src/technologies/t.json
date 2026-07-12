@@ -73,6 +73,21 @@
     "saas": true,
     "website": "https://www.t1pagos.com"
   },
+  "TanStack Start": {
+    "cats": [
+      18
+    ],
+    "description": "TanStack Start takes TanStack Router's typed route tree, URL state, loaders, and prefetching, then adds the server pieces: full-document SSR, streaming, server functions, server routes, and build output for the runtime you choose.",
+    "icon": "TanStack.svg",
+    "implies": [
+      "React"
+    ],
+    "js": {
+      "__TSS_START_OPTIONS__": ""
+    },
+    "oss": true,
+    "website": "https://tanstack.com/start"
+  },
   "TCAdmin": {
     "cats": [
       9

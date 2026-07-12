@@ -76,9 +76,10 @@ jobs:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
+          WPT_URLS: ${{ env.WPT_URLS }}
         run: |
-          if [ -n "${{ env.WPT_URLS }}" ]; then
-            for TEST_WEBSITE in ${{ env.WPT_URLS }}; do
+          if [ -n "$WPT_URLS" ]; then
+            for TEST_WEBSITE in $WPT_URLS; do
               echo "::group::Running WPT test for $TEST_WEBSITE"
               node tests/wpt.js "$TEST_WEBSITE"
               echo "::endgroup::"

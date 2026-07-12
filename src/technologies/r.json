@@ -632,10 +632,10 @@
     "description": "React Router provides declarative routing for React.",
     "icon": "React Router.svg",
     "implies": "React",
+    "js": {
+      "__reactRouterVersion": "([\\d\\.]+)\\;version:\\1"
+    },
     "oss": true,
-    "scriptSrc": [
-      "(?:/react-router(@|/)([\\d.]+)(?:/[a-z]+)?)?/react-router(?:\\.min)?\\.js\\;version:\\2"
-    ],
     "website": "https://reactrouter.com"
   },
   "Reactive": {
@@ -734,6 +734,21 @@
     "oss": true,
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/really-simple-captcha"
+  },
+  "Really Simple SSL & Security": {
+    "cats": [
+      16
+    ],
+    "description": "Really Simple SSL & Security is an easy to install and performant security solution for WordPress.",
+    "dom": "body[data-rsssl]",
+    "icon": "really-simple-ssl.png",
+    "pricing": [
+      "freemium",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "saas": true,
+    "website": "https://really-simple-ssl.com"
   },
   "RebelMouse": {
     "cats": [
@@ -1322,7 +1337,8 @@
     "description": "Remix is a React framework used for server-side rendering (SSR).",
     "icon": "Remix.svg",
     "implies": [
-      "React"
+      "React",
+      "React Router"
     ],
     "js": {
       "__remixContext": ""
@@ -2328,9 +2344,13 @@
     "description": "Route is a delivery and shipping tracking app",
     "icon": "route.png",
     "js": {
-      "Routeapp": ""
+      "Routeapp": "",
+      "routeWidgetInitialized": ""
     },
-    "scriptSrc": "//cdn.routeapp.io/",
+    "scriptSrc": [
+      "cdn\\.routeapp\\.io",
+      "shopify-widget\\.route\\.com"
+    ],
     "website": "https://route.com/"
   },
   "Royal Mail": {
@@ -2466,6 +2486,17 @@
       "Rumble.resize": ""
     },
     "website": "https://rumble.com"
+  },
+  "Rumvision": {
+    "cats": [
+      78
+    ],
+    "description": "Rumvision is a front-end performance monitoring service",
+    "icon": "Rumvision.png",
+    "js": {
+      "rumv_config": ""
+    },
+    "website": "https://www.rumvision.com/"
   },
   "Rust": {
     "cats": [

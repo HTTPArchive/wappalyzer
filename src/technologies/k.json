@@ -67,6 +67,20 @@
     "saas": true,
     "website": "https://www.kmk.net.tr"
   },
+  "KOMERO": {
+    "cats": [
+      6
+    ],
+    "description": "Multi-tenant SaaS e-commerce platform.",
+    "icon": "Komero.png",
+    "js": {
+      "KOMERO": ""
+    },
+    "meta": {
+      "generator": "^KOMERO"
+    },
+    "website": "https://www.komero.ge"
+  },
   "KPHP": {
     "cats": [
       27
@@ -126,10 +140,11 @@
     "cats": [
       87
     ],
-    "description": "Kadence WP Blocks is a plugin for WordPress that provides a collection of custom blocks for the Gutenberg editor, allowing users to create custom layouts and designs for their website without needing to know how to code.",
+    "description": "Kadence Blocks is a plugin for WordPress that provides a collection of custom blocks for the WordPress Block Editor, allowing users to create custom layouts and designs for their website without needing to know how to code.",
     "dom": "link[href*='/wp-content/plugins/kadence-blocks/']",
+    "html": "<style[^>]* id=[^>]+kadence-blocks-",
     "icon": "Kadence WP.svg",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "freemium",
       "low",
@@ -708,6 +723,7 @@
       62,
       88
     ],
+    "description": "Kinsta is a leading managed WordPress hosting provider, prioritizing speed and security.",
     "headers": {
       "x-kinsta-cache": ""
     },
@@ -829,7 +845,7 @@
     "cats": [
       32
     ],
-    "description": "Klaviyo is an email marketing platform for online businesses.",
+    "description": "Klaviyo is an email and SMS marketing platform for online businesses.",
     "icon": "Klaviyo.svg",
     "js": {
       "KlaviyoSubscribe": "",
@@ -837,6 +853,46 @@
     },
     "scriptSrc": "klaviyo\\.com",
     "website": "https://www.klaviyo.com/"
+  },
+  "Klaviyo Customer Hub": {
+    "cats": [
+      19
+    ],
+    "description": "Klaviyo Customer Hub gives customers a unified signed-in experience to track orders, manage returns, and get help",
+    "dom": "div#k-hub",
+    "icon": "Klaviyo.svg",
+    "js": {
+      "customerHub": ""
+    },
+    "website": "https://www.klaviyo.com/products/customer-experience-hub"
+  },
+  "Klaviyo Data Platform": {
+    "cats": [
+      97
+    ],
+    "description": "Klaviyo Data Platform is Klaviyo's CDP offering.",
+    "icon": "Klaviyo.svg",
+    "scriptSrc": "static-tracking\\.klaviyo\\.com/onsite/js/web_personalization",
+    "website": "https://www.klaviyo.com/solutions/customer-data-platform"
+  },
+  "Klaviyo Forms": {
+    "cats": [
+      110
+    ],
+    "description": "Klaviyo Forms are used to capture Email and SMS sign-ups",
+    "dom": "div.klaviyo-form",
+    "icon": "Klaviyo.svg",
+    "website": "https://www.klaviyo.com/features/web-forms"
+  },
+  "Klaviyo Reviews": {
+    "cats": [
+      90
+    ],
+    "description": "Klaviyo reviews is Klaviyo's customer reivews offering for Shopify and WooCommerce platforms",
+    "dom": "div#klaviyo-product-reviews-wrapper",
+    "icon": "Klaviyo.svg",
+    "scriptSrc": "static\\.klaviyo\\.com/onsite/js/vendors~reviews",
+    "website": "https://www.klaviyo.com/product-reviews"
   },
   "Klevu": {
     "cats": [

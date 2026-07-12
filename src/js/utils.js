@@ -1,19 +1,7 @@
-'use strict'
-/* eslint-env browser */
-/* globals chrome */
+'use strict';
 
-// Manifest v2 polyfill
-if (chrome.runtime.getManifest().manifest_version === 2) {
-  chrome.action = chrome.browserAction
-}
-
-// eslint-disable-next-line no-unused-vars
 const Utils = {
-  agent: chrome.runtime.getURL('/').startsWith('moz-')
-    ? 'firefox'
-    : chrome.runtime.getURL('/').startsWith('safari-')
-    ? 'safari'
-    : 'chrome',
+  agent: 'chrome',
 
   /**
    * Use promises instead of callbacks
@@ -25,12 +13,12 @@ const Utils = {
     return new Promise((resolve, reject) => {
       context[method](...args, (...args) => {
         if (chrome.runtime.lastError) {
-          return reject(chrome.runtime.lastError)
+          return reject(chrome.runtime.lastError);
         }
 
-        resolve(...args)
-      })
-    })
+        resolve(...args);
+      });
+    });
   },
 
   /**
@@ -39,7 +27,7 @@ const Utils = {
    * @param {Boolean} active
    */
   open(url, active = true) {
-    chrome.tabs.create({ url, active })
+    chrome.tabs.create({ url, active });
   },
 
   /**
@@ -54,26 +42,28 @@ const Utils = {
           chrome.storage.managed,
           'get',
           name
-        )
+        );
 
         if (managed[name] !== undefined) {
-          return managed[name]
+          return managed[name];
         }
-      } catch {
-        // Continue
+      } catch (error) {
+        console.error(
+          'wappalyzer | utils | managed storage not available',
+          error
+        );
       }
 
-      const option = await Utils.promisify(chrome.storage.local, 'get', name)
+      const option = await Utils.promisify(chrome.storage.local, 'get', name);
 
       if (option[name] !== undefined) {
-        return option[name]
+        return option[name];
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('wappalyzer | utils |', error)
+      console.error('wappalyzer | utils |', error);
     }
 
-    return defaultValue
+    return defaultValue;
   },
 
   /**
@@ -84,11 +74,10 @@ const Utils = {
   async setOption(name, value) {
     try {
       await Utils.promisify(chrome.storage.local, 'set', {
-        [name]: value,
-      })
+        [name]: value
+      });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('wappalyzer | utils |', error)
+      console.error('wappalyzer | utils |', error);
     }
   },
 
@@ -98,7 +87,7 @@ const Utils = {
   i18n() {
     Array.from(document.querySelectorAll('[data-i18n]')).forEach(
       (node) => (node.innerHTML = chrome.i18n.getMessage(node.dataset.i18n))
-    )
+    );
   },
 
   sendMessage(source, func, args) {
@@ -107,18 +96,18 @@ const Utils = {
         {
           source,
           func,
-          args: args ? (Array.isArray(args) ? args : [args]) : [],
+          args: args ? (Array.isArray(args) ? args : [args]) : []
         },
         (response) => {
           chrome.runtime.lastError
             ? reject(chrome.runtime.lastError)
-            : resolve(response)
+            : resolve(response);
         }
-      )
-    })
+      );
+    });
   },
 
   globEscape(string) {
-    return string.replace(/\*/g, '\\*')
-  },
-}
+    return string.replace(/\*/g, '\\*');
+  }
+};

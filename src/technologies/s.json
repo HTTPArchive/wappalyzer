@@ -1767,6 +1767,19 @@
     "scriptSrc": "sib(?:automation|forms)\\.com/",
     "website": "https://www.sendinblue.com"
   },
+  "Sendlane": {
+    "cats": [
+      32
+    ],
+    "description": "Sendlane is an email and sms marketing platform for online businesses",
+    "icon": "Sendland.png",
+    "js": {
+      "_Sendlane": ""
+    },
+    "saas": true,
+    "scriptSrc": "sendlane\\.com/scripts/pusher\\.js",
+    "website": "https://www.sendlane.com/"
+  },
   "Sensors Data": {
     "cats": [
       10
@@ -2308,11 +2321,12 @@
     },
     "icon": "Shop Pay.svg",
     "js": {
+      "ShopPay": "",
       "ShopifyPay.apiHost": ""
     },
-    "requires": "Shopify",
     "scriptSrc": [
-      "cdn\\.shopify\\.com/shopifycloud/shopify_pay/"
+      "cdn\\.shopify\\.com/shopifycloud/shopify_pay/",
+      "cdn\\.shopify\\.com/shopifycloud/shopify-js/shop-pay-payment-request\\.js"
     ],
     "website": "https://shop.app"
   },
@@ -2327,7 +2341,6 @@
       "Affirm",
       "Shop Pay"
     ],
-    "requires": "Shopify",
     "website": "https://shoppay.affirm.com"
   },
   "ShopBase": {
@@ -2521,7 +2534,8 @@
   },
   "Shopify": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "_shopify_s": "",
@@ -2536,6 +2550,7 @@
       }
     },
     "headers": {
+      "powered-by": "Shopify",
       "x-shopid": "\\;confidence:50",
       "x-shopify-stage": ""
     },
@@ -2555,10 +2570,6 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": [
-      "sdks\\.shopifycdn\\.com",
-      "cdn\\.shopify\\.com"
-    ],
     "scripts": "shopifyTag",
     "url": "^https?//.+\\.myshopify\\.com",
     "website": "https://shopify.com",
@@ -2577,7 +2588,8 @@
       "freemium"
     ],
     "scriptSrc": [
-      "sdk\\. shopifycdn\\.com/buy-button/latest/"
+      "sdks\\.shopifycdn\\.com/buy-button/",
+      "sdks\\.shopifycdn\\.com/js-buy-sdk/"
     ],
     "website": "https://apps.shopify.com/buy-button"
   },
@@ -2587,11 +2599,9 @@
       100
     ],
     "description": "Shopify Chat is Shopify's native live chat function that allows you to have real-time conversations with customers visiting your Shopify store.",
+    "dom": "div#shopify-chat",
     "icon": "Shopify.svg",
     "implies": "Shopify",
-    "scriptSrc": [
-      "cdn\\.shopify\\.com/shopifycloud/shopify_chat/"
-    ],
     "website": "https://www.shopify.com/inbox"
   },
   "Shopify Consent Management": {
@@ -2633,6 +2643,17 @@
       "productreviews\\.shopifycdn\\.com"
     ],
     "website": "https://apps.shopify.com/product-reviews"
+  },
+  "Shopify Web Components": {
+    "cats": [
+      18
+    ],
+    "description": "Storefront Web Components let you bring Shopify-powered commerce capabilities to any website.",
+    "icon": "Shopify.svg",
+    "scriptSrc": [
+      "cdn\\.shopify\\.com/storefront/web-components\\.js"
+    ],
+    "website": "https://shopify.dev/docs/api/storefront-web-components"
   },
   "Shopistry": {
     "cats": [
@@ -3976,6 +3997,19 @@
     "saas": true,
     "website": "https://sky-shop.pl"
   },
+  "SkyCMS by Netkoncept": {
+    "cats": [
+      1
+    ],
+    "cookies": {
+      "skycms_LanguageId": "",
+      "skycms_PageCounter": ""
+    },
+    "description": "Polish SaaS content-management platform developed by NETKONCEPT, primarily used by public administration websites and Public Information Bulletin (BIP) portals.",
+    "icon": "SkyCMS_by_netkoncept.svg",
+    "saas": true,
+    "website": "https://www.netkoncept.com/86/63/technologia-skycms.html"
+  },
   "SkyVerge": {
     "cats": [
       41
@@ -4122,6 +4156,7 @@
     "icon": "Slider Revolution.svg",
     "js": {
       "RS_MODULES.main.version": "^Slider Revolution\\s([\\d\\.]+)$\\;version:\\1",
+      "SR7.version": "^Slider Revolution\\s([\\d\\.]+)$\\;version:\\1",
       "revapi1": "",
       "revapi2": "",
       "revapi3": "",
@@ -4140,6 +4175,23 @@
     "saas": true,
     "scriptSrc": "/wp-content/plugins/revslider/",
     "website": "https://www.sliderrevolution.com"
+  },
+  "Slim SEO": {
+    "cats": [
+      87
+    ],
+    "description": "Slim SEO is a full-featured SEO plugin for WordPress that's lightweight, blazing fast with minimum configuration.",
+    "dom": "#slim-seo-schema",
+    "icon": "Slim-SEO.svg",
+    "oss": true,
+    "pricing": [
+      "low",
+      "freemium",
+      "onetime",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "website": "https://wpslimseo.com"
   },
   "Slimbox": {
     "cats": [
@@ -5113,10 +5165,10 @@
     "cats": [
       87
     ],
-    "description": "Spectra is a WordPress plugin that provides a collection of new and enhanced blocks for the Gutenberg editor.",
+    "description": "Spectra is a WordPress plugin that provides a collection of new and enhanced blocks for the WordPress Block editor.",
     "dom": "link[href*='/wp-content/plugins/ultimate-addons-for-gutenberg/']",
     "icon": "Spectra.svg",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "freemium",
       "low",
@@ -5125,6 +5177,19 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/plugins/ultimate-addons-for-gutenberg/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://wpspectra.com"
+  },
+  "Speculative Loading": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which adds support for the Speculation Rules API, by which certain URLs are dynamically prefetched or prerendered based on user interaction.",
+    "icon": "speculation-rules.svg",
+    "meta": {
+      "generator": "^speculation-rules ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/speculation-rules/"
   },
   "Speed Kit": {
     "cats": [
@@ -5891,8 +5956,7 @@
   },
   "Stackable": {
     "cats": [
-      87,
-      51
+      87
     ],
     "description": "Stackable is a plugin for WordPress that offers a collection of blocks, templates, and other design tools to help users create custom, professional-looking websites.",
     "dom": {
@@ -5903,7 +5967,7 @@
       }
     },
     "icon": "Stackable.svg",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "js": {
       "stackable.restUrl": "",
       "stackableAnimations": ""
@@ -6045,6 +6109,22 @@
     "icon": "Starlet.png",
     "implies": "Perl",
     "website": "https://metacpan.org/pod/Starlet"
+  },
+  "Starlight": {
+    "cats": [
+      4,
+      57
+    ],
+    "description": "Starlight is a documentation website builder for the Astro framework.",
+    "icon": "Starlight.svg",
+    "meta": {
+      "generator": "^Starlight\\sv([\\d\\.]+)$\\;version:\\1"
+    },
+    "oss": true,
+    "requires": [
+      "Astro"
+    ],
+    "website": "https://starlight.astro.build/"
   },
   "Statamic": {
     "cats": [
@@ -6803,6 +6883,26 @@
     "saas": true,
     "website": "https://super.so"
   },
+  "Super Page Cache": {
+    "cats": [
+      23,
+      87
+    ],
+    "description": "Super Page Cache is a static caching plugin for WordPress.",
+    "headers": {
+      "x-wp-cf-super-cache-active": "",
+      "x-wp-spc-disk-cache": ""
+    },
+    "icon": "super-page-cache.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/(?:wp-cloudflare-page-cache|wp-super-page-cache-pro)/",
+    "website": "https://themeisle.com/plugins/super-page-cache-pro/"
+  },
   "Super Socializer": {
     "cats": [
       69,
@@ -6928,6 +7028,9 @@
     "description": "Svelte is a free and open-source front end compiler created by Rich Harris and maintained by the Svelte core team members.",
     "dom": "[class*='svelte-']",
     "icon": "Svelte.svg",
+    "js": {
+      "__svelte": ""
+    },
     "oss": true,
     "website": "https://svelte.dev"
   },

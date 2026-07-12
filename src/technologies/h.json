@@ -1693,7 +1693,7 @@
     ],
     "description": "Hydrogen is a front-end web development framework used for building Shopify custom storefronts.",
     "headers": {
-      "powered-by": "^Shopify-Hydrogen$"
+      "powered-by": "^Hydrogen$|Shopify.+Hydrogen"
     },
     "icon": "Hydrogen.svg",
     "implies": [
@@ -1790,6 +1790,7 @@
   },
   "Hyva Themes": {
     "cats": [
+      6,
       108
     ],
     "description": "Hyva Themes is a performance-optimised theme for Magento 2 which eliminated the third-party libraries and having only two dependencies Alpine.js and Tailwind CSS.",
@@ -1802,10 +1803,14 @@
       "Tailwind CSS",
       "Alpine.js"
     ],
+    "js": {
+      "hyva": ""
+    },
     "pricing": [
-      "onetime"
+      "onetime",
+      "low"
     ],
-    "website": "https://hyva.io"
+    "website": "https://www.hyva.io/hyva-theme-license.html"
   },
   "h5ai": {
     "cats": [

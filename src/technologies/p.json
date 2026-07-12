@@ -403,6 +403,30 @@
     "oss": true,
     "website": "https://panda-css.com/"
   },
+  "Pandectes": {
+    "cats": [
+      67,
+      100
+    ],
+    "cookies": {
+      "_pandectes_gdpr": ""
+    },
+    "description": "Pandectes is a cloud-based data privacy management compliance platform for Shopify stores, ensuring compliance with GDPR, CCPA/CPRA, VCDPA, APPI, PIPEDA, and PDPA regulations.",
+    "icon": "pandectes.svg",
+    "implies": "Shopify",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "pandectes-core\\.js",
+      "s3\\.us-west-2\\.amazonaws\\.com/gdpr-privacy-policy-assets/",
+      "gdpr-privacy-policy-assets\\.s3-us-west-2\\.amazonaws\\.com/"
+    ],
+    "website": "https://pandectes.io"
+  },
   "Panelbear": {
     "cats": [
       10,
@@ -1096,13 +1120,26 @@
       87,
       92
     ],
-    "description": "Performance plugin from the WordPress Performance Group, which is a collection of standalone performance modules.",
+    "description": "Performance plugin from the WordPress Performance Team, which is a collection of standalone performance modules.",
     "icon": "Performance Lab.svg",
     "meta": {
-      "generator": "^Performance Lab ?([\\d.]+)?\\;version:\\1"
+      "generator": "^(Performance Lab|performance-lab) ?([\\d.]+)?\\;version:\\2"
     },
     "requires": "WordPress",
     "website": "https://wordpress.org/plugins/performance-lab/"
+  },
+  "Performant Translations": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which makes internationalization/localization in WordPress faster than ever before.",
+    "icon": "performant-translations.svg",
+    "meta": {
+      "generator": "^performant-translations ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/performant-translations/"
   },
   "PerimeterX": {
     "cats": [
@@ -2775,21 +2812,26 @@
   },
   "PrestaShop": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "PrestaShop": ""
     },
     "cpe": "cpe:2.3:a:prestashop:prestashop:*:*:*:*:*:*:*:*",
     "description": "PrestaShop is a freemium, open-source ecommerce solution, written in the PHP programming language with support for the MySQL database management system.",
-    "dom": "img[src*='/modules/prestablog/themes/'], img[data-src*='/modules/prestablog/themes/']",
+    "dom": [
+      "img[src*='/modules/prestablog/themes/'], img[data-src*='/modules/prestablog/themes/']",
+      "link[href*='/modules/ps_']"
+    ],
     "headers": {
       "Powered-By": "^Prestashop$"
     },
     "html": [
       "Powered by <a\\s+[^>]+>PrestaShop",
       "<!-- /Block [a-z ]+ module (?:HEADER|TOP)?\\s?-->",
-      "<!-- /Module Block [a-z ]+ -->"
+      "<!-- /Module Block [a-z ]+ -->",
+      "<!-- (?:/)?MODULE [^|]+ \\|\\| Presta-Module\\.com -->"
     ],
     "icon": "PrestaShop.svg",
     "implies": [
@@ -2807,7 +2849,21 @@
       "generator": "PrestaShop"
     },
     "oss": true,
+    "scriptSrc": "/modules/ps_[a-z]+/",
     "website": "https://www.prestashop.com"
+  },
+  "Pretty Damn Quick": {
+    "cats": [
+      74,
+      100
+    ],
+    "description": "Pretty Damn Quick is a Shopify app for eCommerce brands to deliver personalized checkout experiences.",
+    "icon": "PrettyDamnQuick.png",
+    "js": {
+      "initPDQscript": ""
+    },
+    "scriptSrc": "pdq-scripts\\.pdqprod\\.link",
+    "website": "https://www.prettydamnquick.com/"
   },
   "Pretty Links": {
     "cats": [
@@ -3407,6 +3463,17 @@
     "icon": "Public CMS.png",
     "implies": "Java",
     "website": "https://www.publiccms.com"
+  },
+  "PublishPress Blocks": {
+    "cats": [
+      87
+    ],
+    "description": "PublishPress Blocks is a Gutenberg Blocks page builder plugin that adds extra functionality to the WordPress Block Editor.",
+    "dom": "link[href*='/wp-content/plugins/advanced-gutenberg/assets/css/blocks.css?ver=([\\d\\.]+))?\\;version:\\1']",
+    "html": "<div[^>]+class=[\"']wp-block-advgb-*",
+    "icon": "publishpress-blocks.png",
+    "requires": "WordPress",
+    "website": "https://publishpress.com/blocks/"
   },
   "Pulse Secure": {
     "cats": [

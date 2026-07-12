@@ -1632,11 +1632,11 @@
     "cats": [
       66
     ],
-    "description": "CivicTheme is an open source, inclusive and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
+    "description": "CivicTheme is an open source, inclusive, and component-based design system. It was created so governments and corporations can rapidly assemble modern, consistent and compliant digital experiences.",
     "dom": [
-      "img[class*='civictheme-image']",
-      "img[class*='civic-image']",
-      "img[class*='ct-image']"
+      "img[class~='civictheme-image']",
+      "img[class~='civic-image']",
+      "img[class~='ct-image']"
     ],
     "icon": "civictheme.png",
     "oss": true,
@@ -1997,8 +1997,8 @@
     },
     "oss": true,
     "scriptSrc": [
-      "/clientjs@(\\d.*?)/\\;version:\\1",
-      "/ClientJS/(?:(\\d.*?)/)?\\;version:\\1"
+      "/clientjs@([\\d.]+)\\;version:\\1",
+      "/ClientJS/([\\d.]+)/\\;version:\\1"
     ],
     "website": "https://clientjs.org"
   },
@@ -2959,11 +2959,12 @@
       "complianz.version": "([\\d.]+)\\;version:\\1"
     },
     "pricing": [
-      "onetime"
+      "freemium",
+      "recurring"
     ],
     "requires": "WordPress",
     "saas": true,
-    "scriptSrc": "wp-content/plugins/complianz-gdpr-premium",
+    "scriptSrc": "wp-content/plugins/complianz-gdpr",
     "website": "https://complianz.io"
   },
   "Concrete CMS": {
@@ -3104,6 +3105,24 @@
     "saas": true,
     "scriptSrc": "\\.ctctcdn\\.com/",
     "website": "https://www.constantcontact.com"
+  },
+  "Constructor.io": {
+    "cats": [
+      29
+    ],
+    "description": "Constructor.io is a site search and merchandising platform designed to help ecommerce.",
+    "icon": "ConstructorIO.png",
+    "js": {
+      "ConstructorioClient": "",
+      "constructorio": ""
+    },
+    "pricing": [
+      "high",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": "\\.cnstrc\\.com/",
+    "website": "https://constructor.io/"
   },
   "Contabo": {
     "cats": [
@@ -4344,7 +4363,7 @@
     "description": "Cwicly is an advanced professional design and block toolkit that integrates directly with the WordPress editor.",
     "dom": "link[href*='/wp-content/uploads/cwicly/']",
     "icon": "Cwicly.png",
-    "implies": "Gutenberg",
+    "implies": "WordPress Block Editor",
     "pricing": [
       "low",
       "recurring"

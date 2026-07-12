@@ -310,6 +310,20 @@
     "saas": true,
     "website": "https://www.magazord.com.br"
   },
+  "Mage-OS": {
+    "cats": [
+      6,
+      1
+    ],
+    "description": "Mage-OS is an independent, community-driven ecommerce platform built on Magento Open Source.",
+    "headers": {
+      "X-Dist": "^Mage-OS$"
+    },
+    "icon": "Mage-OS.svg",
+    "implies": "Magento",
+    "oss": true,
+    "website": "https://mage-os.org"
+  },
   "MageWorx Search Autocomplete": {
     "cats": [
       29
@@ -324,7 +338,8 @@
   },
   "Magento": {
     "cats": [
-      6
+      6,
+      1
     ],
     "cookies": {
       "X-Magento-Vary": "",
@@ -412,6 +427,31 @@
     "saas": true,
     "scriptSrc": "acc\\.magixite\\.com/",
     "website": "https://acc.magixite.com"
+  },
+  "Maho": {
+    "cats": [
+      6,
+      1
+    ],
+    "cookies": {
+      "maho_session": ""
+    },
+    "description": "Maho is a modern, open-source ecommerce platform forked from OpenMage, offering enhanced developer experience while maintaining Magento 1 compatibility.",
+    "icon": "Maho.svg",
+    "implies": [
+      "PHP",
+      "MySQL"
+    ],
+    "oss": true,
+    "scriptSrc": [
+      "js/maho-autocomplete\\.js",
+      "js/maho-captcha\\.js",
+      "js/maho-dialog\\.js",
+      "js/maho-load-on-intent\\.js",
+      "js/maho-passkey-tools\\.js",
+      "js/maho-tree\\.js"
+    ],
+    "website": "https://mahocommerce.com"
   },
   "MailChimp": {
     "cats": [
@@ -986,7 +1026,7 @@
       66
     ],
     "description": "Marko is HTML re-imagined as a language for building dynamic and reactive user interfaces.",
-    "dom": "#data-marko-key, html[data-framework='marko']",
+    "dom": "#data-marko-key, [data-marko-key], html[data-framework='marko']",
     "icon": "Marko.svg",
     "implies": "Node.js",
     "js": {
@@ -1536,6 +1576,8 @@
       6
     ],
     "cookies": {
+      "_mshops_ga": "",
+      "_mshops_ga_cid": "",
       "_mshops_ga_gid": ""
     },
     "description": "Mercado Shops is an all-in-one ecommerce platform.",
@@ -1544,7 +1586,7 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": "frontend-assets/mshops-web-home/vendor",
+    "scriptSrc": "frontend-assets/mshops-web-home/",
     "website": "https://www.mercadoshops.com"
   },
   "Mermaid": {
@@ -2322,6 +2364,19 @@
     },
     "website": "https://github.com/mochi/mochiweb"
   },
+  "Modern Image Formats": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which adds support for outputting images in WebP or AVIF format and supports the `picture` element to enable format fallbacks.",
+    "icon": "modern-image-formats.svg",
+    "meta": {
+      "generator": "^webp-uploads ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/webp-uploads/"
+  },
   "Modernizr": {
     "cats": [
       59
@@ -2588,6 +2643,17 @@
     "icon": "Mongrel.png",
     "implies": "Ruby",
     "website": "https://mongrel2.org"
+  },
+  "Monkcommerce": {
+    "cats": [
+      6
+    ],
+    "description": "Monk Commerce is a software-as-a-service that aims to increase income for small e-commerce businesses by deploying AOV boosting techniques like cart and post-purchase offers",
+    "icon": "Monk.svg",
+    "scriptSrc": [
+      "js\\.monkcommerce\\.app"
+    ],
+    "website": "https://monkcommerce.com/"
   },
   "Monkey HTTP Server": {
     "cats": [

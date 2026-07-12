@@ -323,6 +323,31 @@
     "scriptSrc": "thebase\\.in/js",
     "website": "https://thebase.in"
   },
+  "Base UI": {
+    "cats": [
+      66
+    ],
+    "description": "Unstyled UI components for building accessible web apps and design systems.",
+    "dom": "[id^='base-ui-'], [data-base-ui-navigation-menu-trigger]",
+    "icon": "base-ui.svg",
+    "implies": "React",
+    "oss": true,
+    "scripts": [
+      "base-ui\\.com/"
+    ],
+    "website": "https://base-ui.com/"
+  },
+  "Base44": {
+    "cats": [
+      1
+    ],
+    "description": "Base44 is an AI-powered, no-code platform that lets users build functional web apps from natural language prompts instead of writing code.",
+    "icon": "Base44.png",
+    "meta": {
+      "apple-mobile-web-app-title": "Base44"
+    },
+    "website": "https://base44.com/"
+  },
   "Basic": {
     "cats": [
       16
@@ -474,6 +499,20 @@
     "scriptSrc": "cdn\\.trybeans\\.com",
     "website": "https://www.trybeans.com/"
   },
+  "Beaver Builder": {
+    "cats": [
+      51,
+      87
+    ],
+    "description": "Beaver Builder is a drag and drop page builder for WordPress.",
+    "dom": "body[class*='fl-builder'], link[id*='fl-builder']",
+    "html": [
+      "<body[^>]+fl-builder"
+    ],
+    "icon": "beaver-builder-icon.png",
+    "implies": "WordPress",
+    "website": "https://www.wpbeaverbuilder.com/"
+  },
   "Beehiiv": {
     "cats": [
       11
@@ -548,6 +587,16 @@
     "saas": true,
     "scriptSrc": "\\.getbento\\.com/",
     "website": "https://getbento.com"
+  },
+  "BerqWP": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "BerqWP is a All-in-One speed optimization plugin for WordPress.",
+    "dom": "html.berqwp-premium",
+    "icon": "BerqWP.png",
+    "website": "https://berqwp.com/"
   },
   "Better Price": {
     "cats": [
@@ -2349,6 +2398,34 @@
     ],
     "website": "https://brimble.io"
   },
+  "Brizy Cloud": {
+    "cats": [
+      1,
+      51
+    ],
+    "description": "Brizy Cloud is a platform for creating and managing websites using an intuitive drag-and-drop editor, allowing users to design and publish sites without any coding knowledge. ",
+    "html": "<div[^>]+class=[\"']brz-root__container",
+    "icon": "brizy.svg",
+    "saas": true,
+    "scriptSrc": "b-cloud\\.b-cdn\\.net/builds/(?:free|pro)/\\d+-cloud",
+    "website": "https://brizy.io"
+  },
+  "Brizy WordPress": {
+    "cats": [
+      51,
+      87
+    ],
+    "description": "Brizy WordPress is a plugin that enables users to build and design WordPress websites with an easy-to-use drag-and-drop editor and a wide range of customizable templates.",
+    "dom": "link[href*='/wp-content/plugins/brizy/']",
+    "excludes": "Brizy Cloud",
+    "html": "<div[^>]+class=[\"']brz-root__container",
+    "icon": "brizy.svg",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "website": "https://brizy.io"
+  },
   "Broadstreet": {
     "cats": [
       36
@@ -2673,6 +2750,23 @@
     "implies": "Bunny",
     "oss": true,
     "website": "https://fonts.bunny.net"
+  },
+  "Burst": {
+    "cats": [
+      10
+    ],
+    "description": "Burst Statistics keeps all data on your server, making it fully compliant with privacy laws. Our dashboards offer clear and concise insights, allowing you to make informed decisions without feeling overwhelmed by abundant data. Choose Burst Statistics for seamless and reliable analytics trusted by over 100,000 users.",
+    "icon": "Burst.svg",
+    "js": {
+      "burst.url": ""
+    },
+    "pricing": [
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "saas": true,
+    "scriptSrc": "assets/js/build/burst",
+    "website": "https://burst-statistics.com"
   },
   "Business Catalyst": {
     "cats": [

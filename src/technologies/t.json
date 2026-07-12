@@ -651,6 +651,8 @@
     "dom": "a[href*='tapcart.app'][target='_blank']",
     "icon": "Tapcart.svg",
     "js": {
+      "Tapcart": "",
+      "tapcartParams": "",
       "tapcartwebBanner": ""
     },
     "pricing": [
@@ -659,7 +661,7 @@
     ],
     "requires": "Shopify",
     "saas": true,
-    "scriptSrc": "cdn\\.tapcart\\.com/",
+    "scriptSrc": "\\.tapcart\\.com/",
     "website": "https://tapcart.com"
   },
   "Tapfiliate": {
@@ -1572,7 +1574,7 @@
     "cats": [
       80
     ],
-    "description": "Themegraphy Graphy is now compatible with WordPress 5.0 and Gutenberg blog-oriented WordPress theme.",
+    "description": "Themegraphy Graphy is now compatible with WordPress 5.0 and WordPress Block Editor blog-oriented WordPress theme.",
     "icon": "Themegraphy.png",
     "pricing": [
       "freemium",
@@ -1623,6 +1625,20 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/themes/hitmag(?:-pro)?/",
     "website": "https://themezhut.com/themes/hitmag"
+  },
+  "Themify Builder": {
+    "cats": [
+      51,
+      87
+    ],
+    "description": "Themify Builder is a plugin that allows users to create complex layouts and designs by dragging and dropping elements onto their pages.",
+    "html": "<div[^>]+class=[\"']themify_builder_*",
+    "icon": "themify-builder.png",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "website": "https://themify.me/builder"
   },
   "Themonic Iconic One": {
     "cats": [
@@ -2490,6 +2506,23 @@
     "saas": true,
     "website": "https://www.traek.io"
   },
+  "TrafficGuard": {
+    "cats": [
+      16
+    ],
+    "description": "TrafficGuard is an ad fraud and click-fraud detection software.",
+    "icon": "TrafficGuard.png",
+    "pricing": [
+      "payg",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "\\.tgtag\\.io",
+      "trafficguard\\.ai"
+    ],
+    "website": "https://www.trafficguard.ai/"
+  },
   "TrafficStars": {
     "cats": [
       36
@@ -2574,17 +2607,6 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/plugins/google-language-translator/.+scripts\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://gtranslate.io"
-  },
-  "Transmart": {
-    "cats": [
-      99
-    ],
-    "description": "Transmart is a shipping company in Turkey.",
-    "requiresCategory": 6,
-    "text": [
-      "\\bTransmart\\b"
-    ],
-    "website": "https://transmartshipping.com"
   },
   "Tray": {
     "cats": [
@@ -2778,7 +2800,17 @@
       "x-yerdle-app-name": ""
     },
     "icon": "trove.png",
+    "js": {
+      "troveDataLayer": "",
+      "troveGlobal": ""
+    },
     "saas": true,
+    "scriptSrc": [
+      "recurate-slider\\.js",
+      "recurate-core\\.js",
+      "recurate-pdp\\.js",
+      "recurate-page\\.js"
+    ],
     "website": "https://trove.co",
     "xhr": "reware-production\\.yerdlesite\\.com"
   },
@@ -3026,6 +3058,18 @@
     "scriptSrc": "turolinks\\.js",
     "website": "https://github.com/turbolinks/turbolinks"
   },
+  "Turbopack": {
+    "cats": [
+      47
+    ],
+    "description": "Turbopack is an open-source JavaScript module bundler.",
+    "icon": "Turbopack.svg",
+    "js": {
+      "TURBOPACK": ""
+    },
+    "oss": true,
+    "website": "https://nextjs.org/docs/app/api-reference/turbopack"
+  },
   "TurfJS": {
     "cats": [
       59
@@ -3184,6 +3228,34 @@
     "requires": "WordPress",
     "scriptSrc": "/wp-content/themes/twentytwenty/",
     "website": "https://wordpress.org/themes/twentytwenty"
+  },
+  "Twenty Twenty-Five": {
+    "cats": [
+      80
+    ],
+    "description": "Twenty Twenty-Five is the default WordPress theme for 2025.",
+    "dom": "link[href*='/wp-content/themes/twentytwentyfive/']",
+    "icon": "WordPress.svg",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/themes/twentytwentyfive/",
+    "website": "https://wordpress.org/themes/twentytwentyfive"
+  },
+  "Twenty Twenty-Four": {
+    "cats": [
+      80
+    ],
+    "description": "Twenty Twenty-Four is the default WordPress theme for 2024.",
+    "dom": "link[href*='/wp-content/themes/twentytwentyfour/']",
+    "icon": "WordPress.svg",
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/themes/twentytwentyfour/",
+    "website": "https://wordpress.org/themes/twentytwentyfour"
   },
   "Twenty Twenty-One": {
     "cats": [

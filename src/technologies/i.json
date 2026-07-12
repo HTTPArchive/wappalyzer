@@ -301,6 +301,32 @@
     "scriptSrc": "template-assets\\.iluria\\.com/commons/",
     "website": "https://www.iluria.com.br"
   },
+  "Image Placeholders": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which determines and stores the dominant color for newly uploaded images in the media library, then uses that as a placeholder background during front end image loads.",
+    "icon": "dominant-color-images.svg",
+    "meta": {
+      "generator": "^dominant-color-images ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/dominant-color-images/"
+  },
+  "Image Prioritizer": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which optimizes the loading of images which are the LCP (Largest Contentful Paint) element, including both img elements and elements with CSS background images.",
+    "icon": "image-prioritizer.svg",
+    "meta": {
+      "generator": "^image-prioritizer ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/image-prioritizer/"
+  },
   "Image Relay": {
     "cats": [
       95
@@ -332,6 +358,28 @@
     ],
     "saas": true,
     "website": "https://imageengine.io"
+  },
+  "ImageKit": {
+    "cats": [
+      31,
+      95
+    ],
+    "description": "ImageKit is a real-time image and video transformation, optimization, and delivery service with built-in digital asset management, powered by a global CDN.",
+    "dns": {
+      "SOA": "\\.imgkit\\.net"
+    },
+    "dom": "img[src*='.imagekit.io/'], img[data-src*='.imagekit.io/'], source[src*='.imagekit.io/'], source[data-src*='.imagekit.io/']",
+    "headers": {
+      "x-server": "ImageKit\\.io"
+    },
+    "icon": "ImageKit.svg",
+    "pricing": [
+      "freemium",
+      "payg",
+      "recurring"
+    ],
+    "saas": true,
+    "website": "https://imagekit.io/"
   },
   "Imagely NextGEN Gallery": {
     "cats": [
@@ -975,6 +1023,22 @@
     },
     "icon": "Intel Active Management Technology.png",
     "website": "https://intel.com"
+  },
+  "Intelligems": {
+    "cats": [
+      74,
+      76,
+      100
+    ],
+    "cookies": {
+      "ig-location": ""
+    },
+    "description": "Intelligems is an experimentation platform that helps developers build and run A/B tests on websites.",
+    "icon": "Intelligems.png",
+    "implies": "Shopify",
+    "saas": true,
+    "scriptSrc": "cdn\\.intelligems\\.io",
+    "website": "https://www.intelligems.io/"
   },
   "IntenseDebate": {
     "cats": [

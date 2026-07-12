@@ -565,6 +565,18 @@
     "scriptSrc": "rum\\.wakav\\.ir/",
     "website": "https://www.wakav.ir"
   },
+  "Wake": {
+    "cats": [
+      6
+    ],
+    "description": "Wake is an ecommerce software with integrated digital solutions to manage online stores.",
+    "headers": {
+      "X-Powered-By": "Wake"
+    },
+    "icon": "wakecommerce.svg",
+    "saas": true,
+    "website": "https://wake.tech/"
+  },
   "WalkMe": {
     "cats": [
       58
@@ -642,7 +654,7 @@
     "dom": "link[href*='/wp-content/themes/waveme/']",
     "icon": "Waveme.svg",
     "implies": [
-      "Gutenberg",
+      "WordPress Block Editor",
       "Waveform"
     ],
     "pricing": [
@@ -766,6 +778,19 @@
     },
     "website": "https://www.webwizforums.com"
   },
+  "Web Worker Offloading": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "Performance plugin from the WordPress Performance Team, which offloads JavaScript execution to a Web Worker, improving performance by freeing up the main thread.",
+    "icon": "web-worker-offloading.svg",
+    "meta": {
+      "generator": "^web-worker-offloading ([\\d.]+)?\\;version:\\1"
+    },
+    "requires": "WordPress",
+    "website": "https://wordpress.org/plugins/web-worker-offloading/"
+  },
   "Web2py": {
     "cats": [
       18
@@ -783,6 +808,16 @@
     },
     "scriptSrc": "web2py\\.js",
     "website": "https://web2py.com"
+  },
+  "WebAdministrator CMS": {
+    "cats": [
+      1
+    ],
+    "description": "WebAdministrator CMS is a content management system used heavily by Polish public institutions.",
+    "html": [
+      "<!-- [\\d\\.]+ / WebAdministrator \\(\\d{2}.\\d{2}\\.\\d{4} \\d{2}:\\d{2}\\) //-->"
+    ],
+    "website": "https://www.jskinternet.pl/jsk/oferta/webadministrator-cms/"
   },
   "WebAssembly": {
     "cats": [
@@ -1013,7 +1048,8 @@
   },
   "Webflow": {
     "cats": [
-      51
+      51,
+      1
     ],
     "description": "Webflow is Software-as-a-Service (SaaS) for website building and hosting.",
     "dom": "html[data-wf-site]",
@@ -1865,7 +1901,7 @@
     "cats": [
       87
     ],
-    "description": "WooCommerce Blocks offers a range of Gutenberg blocks you can use to build and customise your site.",
+    "description": "WooCommerce Blocks offers a range of blocks for the WordPress Block Editor you can use to build and customise your site.",
     "dom": {
       "link[href*='/wp-content/plugins/woo-gutenberg-products-block/']": {
         "attributes": {
@@ -1874,6 +1910,7 @@
       }
     },
     "icon": "WooCommerce Blocks.png",
+    "implies": "WordPress Block Editor",
     "oss": true,
     "requires": [
       "WordPress",
@@ -2025,7 +2062,8 @@
       "link": "rel=\"https://api\\.w\\.org/\""
     },
     "html": [
-      "<link rel=[\"']stylesheet[\"'] [^>]+/wp-(?:content|includes)/",
+      "<link [^>]+rel=[\"']stylesheet[\"'] [^>]+/wp-(?:content|includes)/",
+      "<link [^>]+/wp-(?:content|includes)/[^>]+ rel=[\"']stylesheet[\"']",
       "<link[^>]+s\\d+\\.wp\\.com"
     ],
     "icon": "WordPress.svg",
@@ -2052,6 +2090,16 @@
       "wp-embed\\.min\\.js"
     ],
     "website": "https://wordpress.org"
+  },
+  "WordPress Block Editor": {
+    "cats": [
+      51
+    ],
+    "description": "Sites using the WordPress Block Editor, also known as Gutenberg.",
+    "html": "<div[^>]+class=[\"']wp-block-*",
+    "icon": "WordPress.svg",
+    "requires": "WordPress",
+    "website": "https://wordpress.org/gutenberg/"
   },
   "WordPress Default": {
     "cats": [
@@ -2092,6 +2140,17 @@
     "oss": true,
     "requires": "WordPress",
     "website": "https://wordpress.org/documentation/article/create-a-network/"
+  },
+  "WordPress Site Editor": {
+    "cats": [
+      51
+    ],
+    "description": "Full Site Editing enables users to design and customize their entire WordPress website with a block-based editor.",
+    "excludes": "WordPress Block Editor",
+    "html": "<div class=\"wp-site-blocks\">",
+    "icon": "WordPress.svg",
+    "requires": "WordPress",
+    "website": "https://wordpress.org/documentation/article/site-editor/"
   },
   "WordPress Super Cache": {
     "cats": [
@@ -2430,6 +2489,21 @@
       "generator": "^wisy CMS[ v]{0,3}([0-9.,]*)\\;version:\\1"
     },
     "website": "https://wisy.3we.de"
+  },
+  "wp.cloud": {
+    "cats": [
+      62,
+      88
+    ],
+    "description": "WordPress-first cloud hosting.",
+    "headers": {
+      "host-header": "wpcloud"
+    },
+    "icon": "wp-cloud.png",
+    "implies": [
+      "WordPress"
+    ],
+    "website": "https://wp.cloud/"
   },
   "wpBakery": {
     "cats": [

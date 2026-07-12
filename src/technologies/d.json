@@ -774,6 +774,17 @@
     "icon": "DigiCert.svg",
     "website": "https://www.digicert.com/"
   },
+  "Digioh": {
+    "cats": [
+      110
+    ],
+    "description": "Digioh is a lead generation and marketing company helping to convert clicks to customers known for it's email/sms sign-up units",
+    "icon": "Digioh.png",
+    "js": {
+      "DIGIOH_API": ""
+    },
+    "website": "https://www.digioh.com/"
+  },
   "Digismoothie Candy Rack": {
     "cats": [
       100
@@ -1882,7 +1893,7 @@
     "description": "Duda is a user-friendly website builder and CMS platform that enables businesses and individuals to create responsive, mobile-friendly websites without extensive coding knowledge.",
     "icon": "Duda.svg",
     "js": {
-      "SystemID": "^.*DIRECT.*$",
+      "SystemID": "^.*(?:DIRECT|EU_PRODUCTION).*$",
       "d_version": "^(.*)$\\;version:\\1\\;confidence:0"
     },
     "pricing": [

@@ -170,6 +170,22 @@
     "website": "https://www.jwplayer.com",
     "xhr": "\\.jwpsrv\\.com"
   },
+  "Jadu": {
+    "cats": [
+      1
+    ],
+    "description": "Jadu is a commercial Digital Experience Platform focused on customer self-service with accessibility at the core. Websites, Forms, CRM and Case Management written in PHP with integrations to many enterprise systems.",
+    "dom": {
+      "footer.site-footer": {
+        "text": "Designed and powered by Jadu"
+      }
+    },
+    "headers": {
+      "node": "^jadu-web-."
+    },
+    "icon": "Jadu.png",
+    "website": "https://www.jadu.net"
+  },
   "Jahia DX": {
     "cats": [
       1,
@@ -630,6 +646,7 @@
     "description": "Judge.me is a reviews app that helps you collect and display product reviews and site reviews with photos, videos and Q&A.",
     "icon": "Judge.svg",
     "js": {
+      "jdgm": "",
       "judgeme": ""
     },
     "pricing": [
@@ -638,7 +655,7 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.judge\\.me",
+    "scriptSrc": "\\.judge\\.me",
     "website": "https://judge.me"
   },
   "JuicyAds": {

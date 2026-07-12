@@ -1040,6 +1040,22 @@
     "scriptSrc": "cdn\\.intelligems\\.io",
     "website": "https://www.intelligems.io/"
   },
+  "IntelligentReach": {
+    "cats": [
+      10
+    ],
+    "description": "IntelligentReach is a product data management and e-commerce marketing platform.",
+    "pricing": [
+      "poa",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": [
+      "ist-track\\.com/ProcessClickJavaScript\\.ashx",
+      "cdn\\.intelligentreach\\.com"
+    ],
+    "website": "https://www.intelligentreach.com"
+  },
   "IntenseDebate": {
     "cats": [
       15

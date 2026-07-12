@@ -3439,6 +3439,24 @@
     "scriptSrc": "cdn\\.convertcart\\.com",
     "website": "https://www.convertcart.com/"
   },
+  "Convertize": {
+    "cats": [
+      74
+    ],
+    "description": "Convertize is an A/B testing and conversion rate optimization platform.",
+    "icon": "Convertize.svg",
+    "js": {
+      "convertize": ""
+    },
+    "pricing": [
+      "low",
+      "freemium",
+      "recurring"
+    ],
+    "saas": true,
+    "scriptSrc": "pixel\\.convertize\\.(?:io|com)",
+    "website": "https://www.convertize.com"
+  },
   "Convertr": {
     "cats": [
       6

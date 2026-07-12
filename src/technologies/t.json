@@ -2537,6 +2537,18 @@
     "scriptSrc": "\\.tsyndicate\\.com/",
     "website": "https://trafficstars.com"
   },
+  "Trakken Connector": {
+    "cats": [
+      10
+    ],
+    "description": "Trakken Connector is a digital analytics and marketing tag connector.",
+    "js": {
+      "tkrc": ""
+    },
+    "saas": true,
+    "scriptSrc": "cdn\\.tkrconnector\\.com",
+    "website": "https://trakken.de/"
+  },
   "Transcend": {
     "cats": [
       67

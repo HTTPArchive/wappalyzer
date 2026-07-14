@@ -1,17 +1,7 @@
 {
-  "options":                         { "message": "Options" },
-  "optionsSave":                     { "message": "Save options" },
-  "optionsSaved":                    { "message": "Saved" },
-  "optionDynamicIcon":               { "message": "Use technology icon instead of Wappalyzer logo" },
-  "optionBadge":                     { "message": "Show the number of identified technologies on the icon" },
-  "optionShowCached":                { "message": "Include cached detections in results" },
-  "disableOnDomain":                 { "message": "Disable on this website" },
-  "clearCache":                      { "message": "Clear cached detections" },
-  "nothingToDo":                     { "message": "Nothing to do here." },
   "noAppsDetected":                  { "message": "No technologies detected." },
   "reloadPage":                      { "message": "Reload" },
   "categoryPin":                     { "message": "Always show icon" },
-  "tabTechnologies":                 { "message": "Technologies" },
   "issue":                           { "message": "Something wrong or missing?" },
 
   "categoryName1":                   { "message": "CMS" },

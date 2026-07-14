@@ -15,24 +15,22 @@ const { CHROMIUM_BIN, CHROMIUM_DATA_DIR, CHROMIUM_WEBSOCKET, CHROMIUM_ARGS } =
 const chromiumArgs = CHROMIUM_ARGS
   ? CHROMIUM_ARGS.split(' ')
   : [
-    '--headless',
-    '--single-process',
-    '--no-sandbox',
-    '--no-zygote',
-    '--disable-gpu',
-    '--ignore-certificate-errors',
-    '--allow-running-insecure-content',
-    '--disable-web-security',
-    `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`
-  ];
+      '--headless',
+      '--single-process',
+      '--no-sandbox',
+      '--no-zygote',
+      '--disable-gpu',
+      '--ignore-certificate-errors',
+      '--allow-running-insecure-content',
+      '--disable-web-security',
+      `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`
+    ];
 
 const extensions = /^([^.]+$|\.(asp|aspx|cgi|htm|html|jsp|php)$)/;
 
 const categoriesPath = path.resolve(`${__dirname}/../categories.json`);
 
-const categories = JSON.parse(
-  fs.readFileSync(categoriesPath)
-);
+const categories = JSON.parse(fs.readFileSync(categoriesPath));
 
 let technologies = {};
 
@@ -44,9 +42,7 @@ for (const index of Array(27).keys()) {
   technologies = {
     ...technologies,
     ...JSON.parse(
-      fs.readFileSync(
-        path.resolve(`${technologiesDir}/${character}.json`)
-      )
+      fs.readFileSync(path.resolve(`${technologiesDir}/${character}.json`))
     )
   };
 }
@@ -73,16 +69,17 @@ function getJs(page, technologies = Wappalyzer.technologies) {
 
           const root = /^[a-z_$][a-z0-9_$]*$/i.test(parts[0])
             ? new Function(
-              `return typeof ${parts[0]
-              } === 'undefined' ? undefined : ${parts.shift()}`
-            )()
+                `return typeof ${
+                  parts[0]
+                } === 'undefined' ? undefined : ${parts.shift()}`
+              )()
             : window;
 
           const value = parts.reduce(
             (value, method) =>
               value &&
-                value instanceof Object &&
-                Object.prototype.hasOwnProperty.call(value, method)
+              value instanceof Object &&
+              Object.prototype.hasOwnProperty.call(value, method)
                 ? value[method]
                 : '__UNDEFINED__',
             root || '__UNDEFINED__'
@@ -704,7 +701,7 @@ class Site {
 
               if (
                 _url.hostname.replace(/^www\./, '') ===
-                this.originalUrl.hostname.replace(/^www\./, '') ||
+                  this.originalUrl.hostname.replace(/^www\./, '') ||
                 (redirects < 3 && !this.options.noRedirect)
               ) {
                 url = _url;
@@ -909,7 +906,7 @@ class Site {
             // Must be on the same domain
             if (
               _url.hostname.replace(/^www\./, '') ===
-              url.hostname.replace(/^www\./, '') &&
+                url.hostname.replace(/^www\./, '') &&
               _url.protocol.startsWith('http') &&
               extensions.test(_url.pathname)
             ) {
@@ -1063,10 +1060,11 @@ class Site {
         detection.rootPath =
           url.pathname === '/' ||
           url.pathname ===
-          (this.analyzedUrls[this.originalUrl.href] || {}).pathname;
+            (this.analyzedUrls[this.originalUrl.href] || {}).pathname;
 
         this.log(
-          `Detected ${detection.name}${detection.version ? ` ${detection.version}` : ''
+          `Detected ${detection.name}${
+            detection.version ? ` ${detection.version}` : ''
           } (confidence ${detection.confidence}%)`,
           'driver'
         );

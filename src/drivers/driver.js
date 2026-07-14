@@ -957,7 +957,7 @@ class Site {
           ({ name }) => name === resolved.name
         );
 
-        const { name, slug, description, confidence, version, icon, website } =
+        const { name, slug, description, confidence, icon, website } =
           technology;
 
         const categories = technology.categories.map((id) =>

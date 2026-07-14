@@ -4,7 +4,7 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const puppeteer = require('puppeteer');
-const Wappalyzer = require('./wappalyzer');
+const Wappalyzer = require('../js/wappalyzer');
 
 const { setTechnologies, setCategories, analyze, analyzeManyToMany, resolve } =
   Wappalyzer;
@@ -15,24 +15,28 @@ const { CHROMIUM_BIN, CHROMIUM_DATA_DIR, CHROMIUM_WEBSOCKET, CHROMIUM_ARGS } =
 const chromiumArgs = CHROMIUM_ARGS
   ? CHROMIUM_ARGS.split(' ')
   : [
-      '--headless',
-      '--single-process',
-      '--no-sandbox',
-      '--no-zygote',
-      '--disable-gpu',
-      '--ignore-certificate-errors',
-      '--allow-running-insecure-content',
-      '--disable-web-security',
-      `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`
-    ];
+    '--headless',
+    '--single-process',
+    '--no-sandbox',
+    '--no-zygote',
+    '--disable-gpu',
+    '--ignore-certificate-errors',
+    '--allow-running-insecure-content',
+    '--disable-web-security',
+    `--user-data-dir=${CHROMIUM_DATA_DIR || '/tmp/chromium'}`
+  ];
 
 const extensions = /^([^.]+$|\.(asp|aspx|cgi|htm|html|jsp|php)$)/;
 
+const categoriesPath = path.resolve(`${__dirname}/../categories.json`);
+
 const categories = JSON.parse(
-  fs.readFileSync(path.resolve(`${__dirname}/categories.json`))
+  fs.readFileSync(categoriesPath)
 );
 
 let technologies = {};
+
+const technologiesDir = path.resolve(`${__dirname}/../technologies`);
 
 for (const index of Array(27).keys()) {
   const character = index ? String.fromCharCode(index + 96) : '_';
@@ -41,7 +45,7 @@ for (const index of Array(27).keys()) {
     ...technologies,
     ...JSON.parse(
       fs.readFileSync(
-        path.resolve(`${__dirname}/technologies/${character}.json`)
+        path.resolve(`${technologiesDir}/${character}.json`)
       )
     )
   };
@@ -69,17 +73,16 @@ function getJs(page, technologies = Wappalyzer.technologies) {
 
           const root = /^[a-z_$][a-z0-9_$]*$/i.test(parts[0])
             ? new Function(
-                `return typeof ${
-                  parts[0]
-                } === 'undefined' ? undefined : ${parts.shift()}`
-              )()
+              `return typeof ${parts[0]
+              } === 'undefined' ? undefined : ${parts.shift()}`
+            )()
             : window;
 
           const value = parts.reduce(
             (value, method) =>
               value &&
-              value instanceof Object &&
-              Object.prototype.hasOwnProperty.call(value, method)
+                value instanceof Object &&
+                Object.prototype.hasOwnProperty.call(value, method)
                 ? value[method]
                 : '__UNDEFINED__',
             root || '__UNDEFINED__'
@@ -701,7 +704,7 @@ class Site {
 
               if (
                 _url.hostname.replace(/^www\./, '') ===
-                  this.originalUrl.hostname.replace(/^www\./, '') ||
+                this.originalUrl.hostname.replace(/^www\./, '') ||
                 (redirects < 3 && !this.options.noRedirect)
               ) {
                 url = _url;
@@ -783,696 +786,320 @@ class Site {
         const rows = html.length / this.options.htmlMaxCols;
 
         for (let i = 0; i < rows; i += 1) {
-          if (
-            i < this.options.htmlMaxRows / 2 ||
-            i > rows - this.options.htmlMaxRows / 2
-          ) {
-            batches.push(
-              html.slice(
-                i * this.options.htmlMaxCols,
-                (i + 1) * this.options.htmlMaxCols
-              )
-            );
+          if (batches.length >= this.options.htmlMaxRows) {
+            break;
           }
+
+          batches.push(
+            html.slice(
+              i * this.options.htmlMaxCols,
+              (i + 1) * this.options.htmlMaxCols
+            )
+          );
         }
 
         html = batches.join('\n');
       }
 
-      let links = [];
-      let text = '';
-      let css = '';
-      let scriptSrc = [];
-      let scripts = [];
-      let meta = [];
-      let js = [];
-      let dom = [];
-
-      if (html) {
-        await Promise.all([
-          (async () => {
-            // Links
-            links = !this.options.recursive
-              ? []
-              : await this.promiseTimeout(
-                  (
-                    await this.promiseTimeout(
-                      page.evaluateHandle(() =>
-                        Array.from(document.getElementsByTagName('a')).map(
-                          ({
-                            hash,
-                            hostname,
-                            href,
-                            pathname,
-                            protocol,
-                            rel
-                          }) => ({
-                            hash,
-                            hostname,
-                            href,
-                            pathname,
-                            protocol,
-                            rel
-                          })
-                        )
-                      ),
-                      { jsonValue: () => [] },
-                      'Timeout (links)'
-                    )
-                  ).jsonValue(),
-                  [],
-                  'Timeout (links)'
-                );
-          })(),
-          (async () => {
-            // Text
-            text = await this.promiseTimeout(
-              (
-                await this.promiseTimeout(
-                  page.evaluateHandle(
-                    () => document.body && document.body.innerText
-                  ),
-                  { jsonValue: () => '' },
-                  'Timeout (text)'
-                )
-              ).jsonValue(),
-              '',
-              'Timeout (text)'
-            );
-          })(),
-          (async () => {
-            // CSS
-            css = await this.promiseTimeout(
-              (
-                await this.promiseTimeout(
-                  page.evaluateHandle((maxRows) => {
-                    const css = [];
-
-                    try {
-                      if (!document.styleSheets.length) {
-                        return '';
-                      }
-
-                      for (const sheet of Array.from(document.styleSheets)) {
-                        for (const rules of Array.from(sheet.cssRules)) {
-                          css.push(rules.cssText);
-
-                          if (css.length >= maxRows) {
-                            break;
-                          }
-                        }
-                      }
-                    } catch (error) {
-                      return '';
-                    }
-
-                    return css.join('\n');
-                  }, this.options.htmlMaxRows),
-                  { jsonValue: () => '' },
-                  'Timeout (css)'
-                )
-              ).jsonValue(),
-              '',
-              'Timeout (css)'
-            );
-          })(),
-          (async () => {
-            // Script tags
-            [scriptSrc, scripts] = await this.promiseTimeout(
-              (
-                await this.promiseTimeout(
-                  page.evaluateHandle(() => {
-                    const nodes = Array.from(
-                      document.getElementsByTagName('script')
-                    );
-
-                    return [
-                      nodes
-                        .filter(
-                          ({ src }) =>
-                            src && !src.startsWith('data:text/javascript;')
-                        )
-                        .map(({ src }) => src),
-                      nodes
-                        .map((node) => node.textContent)
-                        .filter((script) => script)
-                    ];
-                  }),
-                  { jsonValue: () => [] },
-                  'Timeout (scripts)'
-                )
-              ).jsonValue(),
-              [],
-              'Timeout (scripts)'
-            );
-          })(),
-          (async () => {
-            // Meta tags
-            meta = await this.promiseTimeout(
-              (
-                await this.promiseTimeout(
-                  page.evaluateHandle(() =>
-                    Array.from(document.querySelectorAll('meta')).reduce(
-                      (metas, meta) => {
-                        const key =
-                          meta.getAttribute('name') ||
-                          meta.getAttribute('property');
-
-                        if (key) {
-                          metas[key.toLowerCase()] =
-                            metas[key.toLowerCase()] || [];
-
-                          metas[key.toLowerCase()].push(
-                            meta.getAttribute('content')
-                          );
-                        }
-
-                        return metas;
-                      },
-                      {}
-                    )
-                  ),
-                  { jsonValue: () => [] },
-                  'Timeout (meta)'
-                )
-              ).jsonValue(),
-              [],
-              'Timeout (meta)'
-            );
-          })(),
-          (async () => {
-            // JavaScript
-            js = this.options.noScripts
-              ? []
-              : await this.promiseTimeout(getJs(page), [], 'Timeout (js)');
-          })(),
-          (async () => {
-            // DOM
-            dom = await this.promiseTimeout(getDom(page), [], 'Timeout (dom)');
-          })()
-        ]);
-      }
-
-      this.cache[url.href] = {
-        page,
-        html,
-        text,
-        cookies,
-        scripts,
-        scriptSrc,
-        meta
-      };
-
-      await this.onDetect(
-        url,
-        [
-          analyzeDom(dom),
-          analyzeJs(js),
-          analyze({
-            url,
-            cookies,
-            html,
-            text,
-            css,
-            scripts,
-            scriptSrc,
-            meta
-          })
-        ].flat()
-      );
-
-      const reducedLinks = Array.prototype.reduce.call(
-        links,
-        (results, link) => {
-          if (
-            results &&
-            Object.prototype.hasOwnProperty.call(
-              Object.getPrototypeOf(results),
-              'push'
-            ) &&
-            link.protocol &&
-            link.protocol.match(/https?:/) &&
-            link.hostname === url.hostname &&
-            extensions.test(link.pathname.slice(-5))
-          ) {
-            results.push(new URL(link.href.split('#')[0]));
-          }
-
-          return results;
-        },
-        []
-      );
-
-      await this.emit('goto', {
-        page,
-        url,
-        links: reducedLinks,
-        ...this.cache[url.href]
-      });
-
-      page.__closed = true;
+      // CSS
+      let css = [];
 
       try {
-        await page.close();
-
-        this.log(`Page closed (${url})`);
-      } catch (error) {
-        // Continue
-      }
-
-      return reducedLinks;
-    } catch (error) {
-      page.__closed = true;
-
-      try {
-        await page.close();
-
-        this.log(`Page closed (${url})`);
-      } catch (error) {
-        // Continue
-      }
-
-      if (error.message.includes('net::ERR_NAME_NOT_RESOLVED')) {
-        const newError = new Error(
-          `Hostname could not be resolved (${url.hostname})`
+        const styles = await page.evaluate(() =>
+          Array.from(document.styleSheets)
+            .map((styleSheet) => {
+              try {
+                return Array.from(styleSheet.cssRules)
+                  .map(({ cssText }) => cssText)
+                  .join(' ');
+              } catch (error) {
+                // Continue
+              }
+            })
+            .filter(Boolean)
         );
 
-        newError.code = 'WAPPALYZER_DNS_ERROR';
+        css = styles.map((style) => style.slice(0, 1000000));
+      } catch (error) {
+        error.message += ` (${url})`;
 
-        throw newError;
+        this.error(error);
       }
 
-      if (
-        error.constructor.name === 'TimeoutError' ||
-        error.code === 'PROMISE_TIMEOUT_ERROR'
-      ) {
-        error.code = 'WAPPALYZER_TIMEOUT_ERROR';
+      // Script tags
+      let scriptSrc = [];
+
+      try {
+        scriptSrc = await page.evaluate(() =>
+          Array.from(document.scripts)
+            .map(({ src }) => src)
+            .filter(Boolean)
+        );
+      } catch (error) {
+        error.message += ` (${url})`;
+
+        this.error(error);
       }
 
-      error.message += ` (${url})`;
+      // Meta tags
+      let meta = {};
 
-      throw error;
+      try {
+        meta = await page.evaluate(() =>
+          Array.from(document.querySelectorAll('meta')).reduce((meta, node) => {
+            const name =
+              node.getAttribute('name') ||
+              node.getAttribute('property') ||
+              node.getAttribute('itemprop');
+            const content = node.getAttribute('content');
+
+            if (name && content) {
+              meta[name.toLowerCase()] = meta[name.toLowerCase()] || [];
+
+              meta[name.toLowerCase()].push(content.slice(0, 1000000));
+            }
+
+            return meta;
+          }, {})
+        );
+      } catch (error) {
+        error.message += ` (${url})`;
+
+        this.error(error);
+      }
+
+      const js = await this.promiseTimeout(
+        getJs(page),
+        [],
+        'Timeout (js evaluation)'
+      );
+
+      const dom = await this.promiseTimeout(
+        getDom(page),
+        [],
+        'Timeout (dom evaluation)'
+      );
+
+      await this.onDetect(url, analyze({ html, css, scriptSrc, meta }));
+
+      await this.onDetect(url, analyzeJs(js));
+
+      await this.onDetect(url, analyzeDom(dom));
+
+      await this.emit('goto', { page, url, html, cookies, js, dom });
+
+      // Crawler
+      if (this.options.recursive) {
+        const links = await page.evaluate(() =>
+          Array.from(document.querySelectorAll('a[href]')).map(
+            ({ href }) => href
+          )
+        );
+
+        await Promise.all(
+          links.map(async (link) => {
+            let _url;
+
+            try {
+              _url = new URL(link);
+            } catch (error) {
+              return;
+            }
+
+            // Must be on the same domain
+            if (
+              _url.hostname.replace(/^www\./, '') ===
+              url.hostname.replace(/^www\./, '') &&
+              _url.protocol.startsWith('http') &&
+              extensions.test(_url.pathname)
+            ) {
+              const redirects = Object.keys(this.analyzedUrls).length - 1;
+
+              if (redirects < this.options.maxUrls) {
+                const depth = url.pathname.split('/').length - 1;
+
+                if (depth < this.options.maxDepth) {
+                  await this.goto(_url);
+                }
+              }
+            }
+          })
+        );
+      }
+    } catch (error) {
+      if (error.code !== 'WAPPALYZER_PAGE_EMPTY') {
+        error.message += ` (${url})`;
+
+        this.error(error);
+      }
+    } finally {
+      try {
+        await page.close();
+      } catch {
+        // Continue
+      }
+    }
+  }
+
+  async analyze() {
+    await this.goto(this.originalUrl);
+
+    if (this.options.probe) {
+      await this.probe();
+    }
+
+    const resolved = resolve(this.detections);
+
+    return {
+      urls: this.analyzedUrls,
+      technologies: resolved.map((resolved) => {
+        const technology = Wappalyzer.technologies.find(
+          ({ name }) => name === resolved.name
+        );
+
+        const { name, slug, description, confidence, version, icon, website } =
+          technology;
+
+        const categories = technology.categories.map((id) =>
+          Wappalyzer.categories.find((category) => category.id === id)
+        );
+
+        return {
+          slug,
+          name,
+          description: description || null,
+          confidence,
+          version: resolved.version || null,
+          icon,
+          website,
+          cpe: technology.cpe || null,
+          categories: categories.map(({ id, slug, name }) => ({
+            id,
+            slug,
+            name
+          })),
+          rootPath: resolved.rootPath || undefined
+        };
+      })
+    };
+  }
+
+  async probe() {
+    this.log(`Probe ${this.originalUrl}`);
+
+    this.probed = true;
+
+    // DNS
+    const dnsResolvers = {
+      txt: dns.resolveTxt(this.originalUrl.hostname),
+      mx: dns.resolveMx(this.originalUrl.hostname)
+    };
+
+    const dnsResults = await Promise.allSettled(
+      Object.values(dnsResolvers)
+    ).then((results) =>
+      results.reduce(
+        (results, result, index) => ({
+          ...results,
+          [Object.keys(dnsResolvers)[index]]:
+            result.status === 'fulfilled' ? result.value : []
+        }),
+        {}
+      )
+    );
+
+    const dnsRecords = {
+      txt: dnsResults.txt.flat(),
+      mx: dnsResults.mx.map(({ exchange }) => exchange)
+    };
+
+    await this.onDetect(this.originalUrl, analyze({ dns: dnsRecords }));
+
+    await this.emit('probe', { dns: dnsRecords });
+
+    // Deeper paths
+    const paths = Wappalyzer.technologies
+      .filter(({ probe }) => probe)
+      .reduce((paths, { probe }) => {
+        probe.paths.forEach((path) => {
+          path = path.replace(/^\//, '');
+
+          if (!paths.includes(path)) {
+            paths.push(path);
+          }
+        });
+
+        return paths;
+      }, []);
+
+    const chunks = [];
+
+    for (let i = 0; i < paths.length; i += this.options.batchSize) {
+      chunks.push(paths.slice(i, i + this.options.batchSize));
+    }
+
+    for (const chunk of chunks) {
+      await Promise.all(
+        chunk.map(async (path) => {
+          const url = new URL(path, this.originalUrl);
+
+          try {
+            const body = await get.call(this, url, {
+              userAgent: this.options.userAgent
+            });
+
+            await this.onDetect(url, analyze({ probe: { [path]: body } }));
+          } catch (error) {
+            // Continue
+          }
+        })
+      );
+    }
+  }
+
+  async onDetect(url, detections) {
+    if (detections.length) {
+      detections.forEach((detection) => {
+        detection.rootPath =
+          url.pathname === '/' ||
+          url.pathname ===
+          (this.analyzedUrls[this.originalUrl.href] || {}).pathname;
+
+        this.log(
+          `Detected ${detection.name}${detection.version ? ` ${detection.version}` : ''
+          } (confidence ${detection.confidence}%)`,
+          'driver'
+        );
+
+        this.emit('detected', { detection });
+      });
+
+      this.detections = this.detections.concat(detections);
     }
   }
 
   async newPage(url) {
     if (!this.browser) {
       await this.initDriver();
-
-      if (!this.browser) {
-        throw new Error('Browser closed');
-      }
     }
 
-    let page;
-
-    try {
-      page = await this.browser.newPage();
-
-      if (!page || page.isClosed()) {
-        throw new Error('Page did not open');
-      }
-    } catch (error) {
-      error.message += ` (${url})`;
-
-      this.error(error);
-
-      await this.initDriver();
-
-      page = await this.browser.newPage();
-    }
+    const page = await this.browser.newPage();
 
     this.pages.push(page);
 
-    page.setJavaScriptEnabled(!this.options.noScripts);
+    page.on('close', () => {
+      page.__closed = true;
 
-    page.setDefaultTimeout(this.options.maxWait);
+      this.pages = this.pages.filter((_page) => _page !== page);
+    });
 
     await page.setUserAgent(this.options.userAgent);
 
-    page.on('dialog', (dialog) => dialog.dismiss());
-
-    page.on('error', (error) => {
-      error.message += ` (${url})`;
-
-      this.error(error);
-    });
+    if (this.options.noScripts) {
+      await page.setJavaScriptEnabled(false);
+    }
 
     return page;
-  }
-
-  async analyze(url = this.originalUrl, index = 1, depth = 1) {
-    if (this.options.recursive) {
-      await sleep(this.options.delay * index);
-    }
-
-    await Promise.allSettled([
-      (async () => {
-        try {
-          const links = ((await this.goto(url)) || []).filter(
-            ({ href }) => !this.analyzedUrls[href]
-          );
-
-          if (
-            links.length &&
-            this.options.recursive &&
-            Object.keys(this.analyzedUrls).length < this.options.maxUrls &&
-            depth < this.options.maxDepth
-          ) {
-            await this.batch(
-              links.slice(
-                0,
-                this.options.maxUrls - Object.keys(this.analyzedUrls).length
-              ),
-              depth + 1
-            );
-          }
-        } catch (error) {
-          this.analyzedUrls[url.href] = {
-            status: this.analyzedUrls[url.href]?.status || 0,
-            error: error.message || error.toString()
-          };
-
-          error.message += ` (${url})`;
-
-          this.error(error);
-        }
-      })(),
-      (async () => {
-        if (this.options.probe && !this.probed) {
-          this.probed = true;
-
-          await this.probe(url);
-        }
-      })()
-    ]);
-
-    const patterns = this.options.extended
-      ? this.detections.reduce(
-          (
-            patterns,
-            {
-              technology: { name, implies, excludes },
-              pattern: { regex, value, match, confidence, type, version }
-            }
-          ) => {
-            patterns[name] = patterns[name] || [];
-
-            patterns[name].push({
-              type,
-              regex: regex.source,
-              value: String(value).length <= 250 ? value : null,
-              match: match.length <= 250 ? match : null,
-              confidence,
-              version,
-              implies: implies.map(({ name }) => name),
-              excludes: excludes.map(({ name }) => name)
-            });
-
-            return patterns;
-          },
-          {}
-        )
-      : undefined;
-
-    const results = {
-      urls: this.analyzedUrls,
-      technologies: resolve(this.detections).map(
-        ({
-          slug,
-          name,
-          description,
-          confidence,
-          version,
-          icon,
-          website,
-          cpe,
-          categories,
-          rootPath
-        }) => ({
-          slug,
-          name,
-          description,
-          confidence,
-          version: version || null,
-          icon,
-          website,
-          cpe,
-          categories: categories.map(({ id, slug, name }) => ({
-            id,
-            slug,
-            name
-          })),
-          rootPath
-        })
-      ),
-      patterns
-    };
-
-    await this.emit('analyze', results);
-
-    return results;
-  }
-
-  async probe(url) {
-    const paths = [
-      {
-        type: 'robots',
-        path: '/robots.txt'
-      }
-    ];
-
-    if (this.options.probe === 'full') {
-      Wappalyzer.technologies
-        .filter(({ probe }) => Object.keys(probe).length)
-        .forEach((technology) => {
-          paths.push(
-            ...Object.keys(technology.probe).map((path) => ({
-              type: 'probe',
-              path,
-              technology
-            }))
-          );
-        });
-    }
-
-    // DNS
-    const records = {};
-    const resolveDns = (func, hostname) => {
-      return this.promiseTimeout(
-        func(hostname).catch((error) => {
-          if (error.code !== 'ENODATA') {
-            error.message += ` (${url})`;
-
-            this.error(error);
-          }
-
-          return [];
-        }),
-        [],
-        'Timeout (dns)',
-        this.options.fast
-          ? Math.min(this.options.maxWait, 15000)
-          : this.options.maxWait
-      );
-    };
-
-    const domain = url.hostname.replace(/^www\./, '');
-
-    await Promise.allSettled([
-      // Static files
-      ...paths.map(async ({ type, path, technology }, index) => {
-        try {
-          await sleep(this.options.delay * index);
-
-          const body = await get(new URL(path, url.href), {
-            userAgent: this.options.userAgent,
-            timeout: Math.min(this.options.maxWait, 3000)
-          });
-
-          this.log(`Probe ok (${path})`);
-
-          const text = body.slice(0, 100000);
-
-          await this.onDetect(
-            url,
-            analyze(
-              {
-                [type]: path ? { [path]: [text] } : text
-              },
-              technology && [technology]
-            )
-          );
-        } catch (error) {
-          this.error(`Probe failed (${path}): ${error.message || error}`);
-        }
-      }),
-      // DNS
-
-      new Promise(async (resolve, reject) => {
-        [records.cname, records.ns, records.mx, records.txt, records.soa] =
-          await Promise.all([
-            resolveDns(dns.resolveCname, url.hostname),
-            resolveDns(dns.resolveNs, domain),
-            resolveDns(dns.resolveMx, domain),
-            resolveDns(dns.resolveTxt, domain),
-            resolveDns(dns.resolveSoa, domain)
-          ]);
-
-        const dnsRecords = Object.keys(records).reduce((dns, type) => {
-          dns[type] = dns[type] || [];
-
-          Array.prototype.push.apply(
-            dns[type],
-            Array.isArray(records[type])
-              ? records[type].map((value) => {
-                  return typeof value === 'object'
-                    ? Object.values(value).join(' ')
-                    : value;
-                })
-              : [Object.values(records[type]).join(' ')]
-          );
-
-          return dns;
-        }, {});
-
-        this.log(
-          `Probe DNS ok: (${Object.values(dnsRecords).flat().length} records)`
-        );
-
-        await this.onDetect(url, analyze({ dns: dnsRecords }));
-
-        resolve();
-      })
-    ]);
-  }
-
-  async batch(links, depth, batch = 0) {
-    if (links.length === 0) {
-      return;
-    }
-
-    const batched = links.splice(0, this.options.batchSize);
-
-    await Promise.allSettled(
-      batched.map((link, index) => this.analyze(link, index, depth))
-    );
-
-    await this.batch(links, depth, batch + 1);
-  }
-
-  async onDetect(url, detections = []) {
-    this.detections = this.detections
-      .concat(detections)
-      .filter(
-        (
-          { technology: { name }, pattern: { regex }, version },
-          index,
-          detections
-        ) =>
-          detections.findIndex(
-            ({
-              technology: { name: _name },
-              pattern: { regex: _regex },
-              version: _version
-            }) =>
-              name === _name &&
-              version === _version &&
-              (!regex || regex.toString() === _regex.toString())
-          ) === index
-      );
-
-    // Track if technology was identified on website's root path
-    detections.forEach(({ technology: { name } }) => {
-      const detection = this.detections.find(
-        ({ technology: { name: _name } }) => name === _name
-      );
-
-      detection.rootPath = detection.rootPath || url.pathname === '/';
-    });
-
-    if (this.cache[url.href]) {
-      const resolved = resolve(this.detections);
-
-      const requires = [
-        ...Wappalyzer.requires.filter(({ name }) =>
-          resolved.some(({ name: _name }) => _name === name)
-        ),
-        ...Wappalyzer.categoryRequires.filter(({ categoryId }) =>
-          resolved.some(({ categories }) =>
-            categories.some(({ id }) => id === categoryId)
-          )
-        )
-      ];
-
-      await Promise.allSettled(
-        requires.map(async ({ name, categoryId, technologies }) => {
-          const id = categoryId
-            ? `category:${categoryId}`
-            : `technology:${name}`;
-
-          this.analyzedRequires[url.href] =
-            this.analyzedRequires[url.href] || [];
-
-          if (!this.analyzedRequires[url.href].includes(id)) {
-            this.analyzedRequires[url.href].push(id);
-
-            const { page, cookies, html, text, css, scripts, scriptSrc, meta } =
-              this.cache[url.href];
-
-            const js = await this.promiseTimeout(
-              getJs(page, technologies),
-              [],
-              'Timeout (js)'
-            );
-            const dom = await this.promiseTimeout(
-              getDom(page, technologies),
-              [],
-              'Timeout (dom)'
-            );
-
-            await this.onDetect(
-              url,
-              [
-                analyzeDom(dom, technologies),
-                analyzeJs(js, technologies),
-                await analyze(
-                  {
-                    url,
-                    cookies,
-                    html,
-                    text,
-                    css,
-                    scripts,
-                    scriptSrc,
-                    meta
-                  },
-                  technologies
-                )
-              ].flat()
-            );
-          }
-        })
-      );
-    }
-  }
-
-  async destroy() {
-    await Promise.allSettled(
-      this.pages.map(async (page) => {
-        if (page) {
-          page.__closed = true;
-
-          try {
-            await page.close();
-          } catch (error) {
-            // Continue
-          }
-        }
-      })
-    );
-
-    this.log('Site closed');
   }
 }
 

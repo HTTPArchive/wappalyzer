@@ -1,15 +1,15 @@
 # Wappalyzer
 
-[Wappalyzer](https://www.wappalyzer.com/) indentifies technologies on websites. 
+[Wappalyzer](https://www.wappalyzer.com/) indentifies technologies on websites.
 
 *Note:* The [wappalyzer-core](https://www.npmjs.com/package/wappalyzer-core) package provides a low-level API without dependencies.
 
 ## Command line
 
-### Installation
+To run the CLI command `wappalyzer` globally, link it from the repository root:
 
 ```shell
-$ npm i -g wappalyzer
+$ npm link
 ```
 
 ### Usage
@@ -45,19 +45,18 @@ wappalyzer <url> [options]
 
 ```
 
-
 ## Dependency
 
-### Installation
+To install this package in another local project, reference it by its local path:
 
 ```shell
-$ npm i wappalyzer
+$ npm install /path/to/wappalyzer
 ```
 
 ### Usage
 
 ```javascript
-const Wappalyzer = require('wappalyzer')
+const Wappalyzer = require('./driver')
 
 const url = 'https://www.wappalyzer.com'
 
@@ -112,7 +111,7 @@ const wappalyzer = new Wappalyzer(options)
 Multiple URLs can be processed in parallel:
 
 ```javascript
-const Wappalyzer = require('wappalyzer');
+const Wappalyzer = require('./driver');
 
 const urls = ['https://www.wappalyzer.com', 'https://www.example.com']
 

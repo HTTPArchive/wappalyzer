@@ -34,7 +34,7 @@ npm install
 ### Command line
 
 ```sh
-node src/drivers/npm/cli.js https://example.com
+node cli.js https://example.com
 ```
 
 ### Chrome extension

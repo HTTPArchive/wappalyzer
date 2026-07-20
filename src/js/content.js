@@ -5,24 +5,40 @@ function inject(src, id, message) {
     // Inject a script tag into the page to access methods of the window object
     const script = document.createElement('script');
 
+    // Timeout in case the script fails to load (e.g. blocked by CSP)
+    const timeout = setTimeout(() => {
+      window.removeEventListener('message', onMessage);
+      script.remove();
+      Content.driver('log', `[content] inject timeout for ${src}`);
+      resolve([]);
+    }, 3000);
+
+    const onMessage = ({ data }) => {
+      if (!data.wappalyzer || !data.wappalyzer[id]) {
+        return;
+      }
+
+      clearTimeout(timeout);
+      window.removeEventListener('message', onMessage);
+
+      resolve(data.wappalyzer[id]);
+
+      script.remove();
+    };
+
     script.onload = () => {
-      const onMessage = ({ data }) => {
-        if (!data.wappalyzer || !data.wappalyzer[id]) {
-          return;
-        }
-
-        window.removeEventListener('message', onMessage);
-
-        resolve(data.wappalyzer[id]);
-
-        script.remove();
-      };
-
       window.addEventListener('message', onMessage);
 
       window.postMessage({
         wappalyzer: message
       });
+    };
+
+    script.onerror = () => {
+      clearTimeout(timeout);
+      window.removeEventListener('message', onMessage);
+      Content.driver('log', `[content] inject script error for ${src}`);
+      resolve([]);
     };
 
     script.setAttribute('src', chrome.runtime.getURL(src));
@@ -34,7 +50,9 @@ function inject(src, id, message) {
 function getJs(technologies) {
   return inject('js/js.js', 'js', {
     technologies: technologies
-      .filter(({ js }) => Object.keys(js).length)
+      .filter(
+        ({ js }) => js && typeof js === 'object' && Object.keys(js).length
+      )
       .map(({ name, js }) => ({ name, chains: Object.keys(js) }))
   });
 }
@@ -193,21 +211,6 @@ const Content = {
    * Initialise content script
    */
   async init() {
-    // Monitor extension context validity
-    try {
-      const port = chrome.runtime.connect({ name: 'content-script' });
-      port.onDisconnect.addListener(() => {
-        Content.isContextValid = false;
-        // Clean up when extension context is invalidated
-        console.log(
-          'Wappalyzer: Extension context invalidated, content script disconnected'
-        );
-      });
-    } catch (error) {
-      Content.isContextValid = false;
-      return;
-    }
-
     const url = location.href;
 
     if (await Content.driver('isDisabledDomain', url)) {
@@ -374,11 +377,11 @@ const Content = {
       // Delayed second pass to capture async JS
       await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      const js = await getJs(technologies);
+      const js = await getJs(technologies || []);
 
-      await Content.driver('analyzeJs', [url, js]);
+      await Content.driver('analyzeJs', [url, js || [], null, null]);
     } catch (error) {
-      Content.driver('error', error);
+      Content.driver('error', `[content] init error: ${error}`);
     }
   },
 
@@ -505,7 +508,12 @@ const Content = {
     const dom = await getDom(technologies);
 
     await Promise.all([
-      Content.driver('analyzeJs', [url, js, requires, categoryRequires]),
+      Content.driver('analyzeJs', [
+        url,
+        js,
+        requires || null,
+        categoryRequires || null
+      ]),
       Content.driver('analyzeDom', [url, dom, requires, categoryRequires])
     ]);
   }

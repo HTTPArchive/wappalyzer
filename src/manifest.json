@@ -65,7 +65,8 @@
     "cookies",
     "storage",
     "tabs",
-    "webRequest"
+    "webRequest",
+    "scripting"
   ],
   "host_permissions": [
     "http://*/*",

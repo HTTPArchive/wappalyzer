@@ -127,7 +127,7 @@ Object.keys(technologies).forEach((name) => {
 
   // Validate icons
   if (!technology.icon) {
-    console.warn(`Missing icon attribute (${name})`);
+    // console.warn(`Missing icon attribute (${name})`);
   } else {
     if (!/\.(png|svg)$/i.test(technology.icon)) {
       throw new Error(

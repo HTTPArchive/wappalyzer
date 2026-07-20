@@ -1,0 +1,97 @@
+name: WPT Run & Comment
+
+on:
+  workflow_run:
+    workflows: ["Lint, validate & Dependabot auto-merge"]
+    types: [completed]
+
+jobs:
+  wpt:
+    name: Run WebPageTest
+    runs-on: ubuntu-slim
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+      pull-requests: write
+      actions: read
+    steps:
+      - name: Checkout Trusted Code
+        uses: actions/checkout@v7
+
+      - name: Download PR Metadata
+        uses: actions/download-artifact@v4
+        id: download-artifact
+        continue-on-error: true
+        with:
+          name: pr-metadata
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/pr-metadata
+
+      - name: Check if WPT run is needed
+        id: check-run
+        run: |
+          if [ "${{ steps.download-artifact.outcome }}" = "success" ] && [ -f "${{ runner.temp }}/pr-metadata/pr_number" ]; then
+            PR_NUMBER_RAW="$(cat "${{ runner.temp }}/pr-metadata/pr_number")"
+            if ! printf '%s' "$PR_NUMBER_RAW" | grep -Eq '^[0-9]+$'; then
+              echo "run_wpt=false" >> "$GITHUB_OUTPUT"
+              echo "Invalid PR number metadata."
+              exit 0
+            fi
+
+            WPT_URLS_RAW=""
+            if [ -f "${{ runner.temp }}/pr-metadata/urls" ]; then
+              WPT_URLS_RAW="$(cat "${{ runner.temp }}/pr-metadata/urls")"
+            fi
+
+            # Prevent output/env-file injection by stripping CR/LF from untrusted artifact content.
+            WPT_URLS_SAFE="$(printf '%s' "$WPT_URLS_RAW" | tr '\r\n' '  ')"
+
+            echo "run_wpt=true" >> "$GITHUB_OUTPUT"
+            printf 'pr_number=%s\n' "$PR_NUMBER_RAW" >> "$GITHUB_OUTPUT"
+            printf 'wpt_urls=%s\n' "$WPT_URLS_SAFE" >> "$GITHUB_OUTPUT"
+            echo "Starting WPT run."
+          else
+            echo "run_wpt=false" >> "$GITHUB_OUTPUT"
+            echo "No WPT run needed."
+          fi
+
+      - name: Install dependencies
+        if: steps.check-run.outputs.run_wpt == 'true'
+        run: npm install
+
+      - name: Run WebPageTest with unit tests
+        if: steps.check-run.outputs.run_wpt == 'true'
+        id: unit-test
+        env:
+          WPT_SERVER: "webpagetest.httparchive.org"
+          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
+          PR_NUMBER: ${{ steps.check-run.outputs.pr_number }}
+        run: npm run test
+
+      - name: Run WebPageTest for more websites
+        if: steps.check-run.outputs.run_wpt == 'true'
+        id: wpt-test
+        env:
+          WPT_SERVER: "webpagetest.httparchive.org"
+          WPT_API_KEY: ${{ secrets.HA_API_KEY }}
+          PR_NUMBER: ${{ steps.check-run.outputs.pr_number }}
+          WPT_URLS: ${{ steps.check-run.outputs.wpt_urls }}
+        run: |
+          if [ -n "$WPT_URLS" ]; then
+            for TEST_WEBSITE in $WPT_URLS; do
+              echo "::group::Running WPT test for $TEST_WEBSITE"
+              node tests/wpt.js "$TEST_WEBSITE"
+              echo "::endgroup::"
+            done
+          else
+            echo "No websites found."
+          fi
+
+      - name: Add comment with results
+        if: steps.check-run.outputs.run_wpt == 'true' && (steps.unit-test.outcome == 'success' || steps.wpt-test.outcome == 'success')
+        uses: mshick/add-pr-comment@v3
+        with:
+          refresh-message-position: true
+          message-path: test-results.md
+          issue: ${{ steps.check-run.outputs.pr_number }}

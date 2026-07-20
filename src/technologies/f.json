@@ -1087,6 +1087,29 @@
     "saas": true,
     "website": "https://flowplayer.com"
   },
+  "Fluent Forms": {
+    "cats": [
+      87,
+      110
+    ],
+    "description": "Fluent Forms is a drag-and-drop form builder plugin for WordPress.",
+    "dom": [
+      "form.frm-fluent-form",
+      "input[name='__fluent_form_embded_post_id']"
+    ],
+    "icon": "Fluent Forms.svg",
+    "js": {
+      "fluentFormVars": ""
+    },
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/fluentform/assets/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "website": "https://fluentforms.com"
+  },
   "Flutter": {
     "cats": [
       66

@@ -1681,6 +1681,25 @@
     "scriptSrc": "google-analytics\\.com\\/plugins\\/ua\\/(?:ec|ecommerce)\\.js",
     "website": "https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce"
   },
+  "Google Analytics for WooCommerce": {
+    "cats": [
+      10,
+      87
+    ],
+    "description": "Google Analytics for WooCommerce connects your store to your Google Analytics account for ecommerce and site analytics, providing valuable metrics on your store’s performance.",
+    "icon": "WooCommerceGA.png",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": [
+      "WordPress",
+      "WooCommerce"
+    ],
+    "scriptSrc": "/wp-content/plugins/woocommerce-google-analytics-integration/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
+    "website": "https://woocommerce.com/products/woocommerce-google-analytics/"
+  },
   "Google App Engine": {
     "cats": [
       22

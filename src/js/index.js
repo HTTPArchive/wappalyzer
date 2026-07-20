@@ -28,13 +28,16 @@ const initPromise = new Promise((resolve) => {
 });
 
 function getRequiredTechnologies(name, categoryId) {
-  return name
-    ? Wappalyzer.requires.find(({ name: _name }) => _name === name).technologies
-    : categoryId
-      ? Wappalyzer.categoryRequires.find(
-          ({ categoryId: _categoryId }) => _categoryId === categoryId
-        ).technologies
-      : undefined;
+  if (name) {
+    const req = Wappalyzer.requires.find(({ name: _name }) => _name === name);
+    return req ? req.technologies : undefined;
+  } else if (categoryId) {
+    const req = Wappalyzer.categoryRequires.find(
+      ({ categoryId: _categoryId }) => _categoryId === categoryId
+    );
+    return req ? req.technologies : undefined;
+  }
+  return undefined;
 }
 
 function isSimilarUrl(a, b) {
@@ -178,14 +181,70 @@ const Driver = {
    * @param {String} url
    * @param {Array} js
    */
-  analyzeJs(url, js, requires, categoryRequires) {
+  async analyzeJs(url, js, requires, categoryRequires, sender) {
     const technologies =
       getRequiredTechnologies(requires, categoryRequires) ||
       Wappalyzer.technologies;
 
+    let mainWorldJs = [];
+    try {
+      if (sender && sender.tab && sender.tab.id) {
+        // Only include technologies that actually have JS patterns
+        const jsTechs = technologies
+          .filter(
+            ({ js }) =>
+              js && typeof js === 'object' && Object.keys(js).length > 0
+          )
+          .map(({ name, js }) => ({
+            name,
+            chains: Object.keys(js)
+          }));
+
+        const [{ result }] = await chrome.scripting.executeScript({
+          target: { tabId: sender.tab.id },
+          world: 'MAIN',
+          args: [jsTechs],
+          func: (techs) => {
+            return techs.reduce((accumulated, { name, chains }) => {
+              chains.forEach((chain) => {
+                const parts = chain.split('.');
+                let value = window;
+                for (const part of parts) {
+                  if (value && typeof value === 'object' && part in value) {
+                    value = value[part];
+                  } else {
+                    value = undefined;
+                    break;
+                  }
+                }
+                if (value !== undefined) {
+                  accumulated.push({
+                    name,
+                    chain,
+                    value:
+                      typeof value === 'string' || typeof value === 'number'
+                        ? value
+                        : !!value
+                  });
+                }
+              });
+              return accumulated;
+            }, []);
+          }
+        });
+
+        mainWorldJs = result || [];
+      } else {
+        mainWorldJs = js || [];
+      }
+    } catch (error) {
+      Driver.error(error);
+      mainWorldJs = js || [];
+    }
+
     return Driver.onDetect(
       url,
-      js
+      mainWorldJs
         .map(({ name, chain, value }) => {
           const technology = technologies.find(
             ({ name: _name }) => name === _name
@@ -301,7 +360,7 @@ const Driver = {
     new Promise(async (resolve) => {
       await initPromise;
 
-      resolve(Driver[func].call(Driver[func], ...(args || [])));
+      resolve(Driver[func].call(Driver[func], ...(args || []), sender));
     })
       .then(callback)
       .catch(Driver.error);

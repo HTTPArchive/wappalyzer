@@ -74,7 +74,7 @@ jobs:
 
       - name: Upload PR Metadata
         if: steps.filter.outputs.wpt == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pr-metadata
           path: pr-metadata/

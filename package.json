@@ -1,4 +1,11 @@
 {
+  "main": "src/drivers/driver.js",
+  "bin": {
+    "wappalyzer": "./cli.js"
+  },
+  "dependencies": {
+    "puppeteer": "~19.7.0"
+  },
   "devDependencies": {
     "@google-cloud/bigquery": "8.3.1",
     "@google-cloud/storage": "7.21.0",

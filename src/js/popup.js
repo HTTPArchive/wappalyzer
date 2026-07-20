@@ -2,21 +2,6 @@
 
 const { open, i18n, getOption, setOption, promisify, sendMessage } = Utils;
 
-function setDisabledDomain(enabled) {
-  const el = {
-    headerSwitchEnabled: document.querySelector('.header__switch--enabled'),
-    headerSwitchDisabled: document.querySelector('.header__switch--disabled')
-  };
-
-  if (enabled) {
-    el.headerSwitchEnabled.classList.add('header__switch--hidden');
-    el.headerSwitchDisabled.classList.remove('header__switch--hidden');
-  } else {
-    el.headerSwitchEnabled.classList.remove('header__switch--hidden');
-    el.headerSwitchDisabled.classList.add('header__switch--hidden');
-  }
-}
-
 const Popup = {
   /**
    * Initialise popup
@@ -35,10 +20,6 @@ const Popup = {
       empty: document.querySelector('.empty'),
       emptyReload: document.querySelector('.empty__reload'),
       footer: document.querySelector('.footer'),
-      headerSwitchDisabled: document.querySelector('.header__switch--disabled'),
-      headerSwitchEnabled: document.querySelector('.header__switch--enabled'),
-      headerSwitches: document.querySelectorAll('.header__switch'),
-      headerSettings: document.querySelector('.header__settings'),
       issue: document.querySelector('.issue'),
       tabItems: document.querySelectorAll('.tab-item'),
       tabs: document.querySelectorAll('.tab'),
@@ -55,14 +36,11 @@ const Popup = {
     }, {});
 
     // Disabled domains
-    const dynamicIcon = await getOption('dynamicIcon', false);
+    const dynamicIcon = await getOption('dynamicIcon', true);
 
     if (dynamicIcon) {
       el.body.classList.add('dynamic-icon');
     }
-
-    // Disabled domains
-    let disabledDomains = await getOption('disabledDomains', []);
 
     Popup.driver('getDetections').then(Popup.onGetDetections.bind(this));
 
@@ -78,43 +56,8 @@ const Popup = {
 
       if (url.startsWith('http')) {
         Popup.cache.url = url;
-
-        const { hostname } = new URL(url);
-
-        setDisabledDomain(disabledDomains.includes(hostname));
-
-        el.headerSwitchDisabled.addEventListener('click', async () => {
-          disabledDomains = disabledDomains.filter(
-            (_hostname) => _hostname !== hostname
-          );
-
-          await setOption('disabledDomains', disabledDomains);
-
-          setDisabledDomain(false);
-
-          Popup.driver('getDetections').then(Popup.onGetDetections.bind(this));
-        });
-
-        el.headerSwitchEnabled.addEventListener('click', async () => {
-          disabledDomains.push(hostname);
-
-          await setOption('disabledDomains', disabledDomains);
-
-          setDisabledDomain(true);
-
-          Popup.driver('getDetections').then(Popup.onGetDetections.bind(this));
-        });
-      } else {
-        for (const headerSwitch of el.headerSwitches) {
-          headerSwitch.classList.add('header__switch--hidden');
-        }
       }
     }
-
-    // Header
-    el.headerSettings.addEventListener('click', () =>
-      chrome.runtime.openOptionsPage()
-    );
 
     // Tabs
     el.tabs.forEach((tab, index) => {

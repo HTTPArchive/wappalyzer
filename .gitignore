@@ -1,3 +1,8 @@
+/build/*
+/src/drivers/**/categories.json
+/src/drivers/**/technologies/*
+/src/drivers/**/wappalyzer.js
+
 /src/images/icons/converted/*
 node_modules
 Thumbs.db
@@ -5,3 +10,4 @@ Desktop.ini
 *.DS_Store
 *.log
 .idea
+

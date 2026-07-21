@@ -611,6 +611,19 @@
     "scriptSrc": "cdn\\.tamara\\.co",
     "website": "https://tamara.co/"
   },
+  "TanStack Start": {
+    "cats": [
+      12,
+      18
+    ],
+    "description": "TanStack Start takes TanStack Router's typed route tree, URL state, loaders, and prefetching, then adds the server pieces: full-document SSR, streaming, server functions, server routes, and build output for the runtime you choose.",
+    "icon": "TanStack.svg",
+    "js": {
+      "__TSS_START_OPTIONS__": ""
+    },
+    "oss": true,
+    "website": "https://tanstack.com/start"
+  },
   "Tangled Network": {
     "cats": [
       88

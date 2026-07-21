@@ -31,6 +31,12 @@ npm install
 
 ## Usage
 
+### Command line
+
+```sh
+node cli.js https://example.com
+```
+
 ### Chrome extension
 
 - Go to `chrome:extensions`

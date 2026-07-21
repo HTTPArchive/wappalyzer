@@ -40,12 +40,6 @@ function getRequiredTechnologies(name, categoryId) {
   return undefined;
 }
 
-function isSimilarUrl(a, b) {
-  const normalise = (url) => String(url || '').replace(/(\/|\/?#.+)$/, '');
-
-  return normalise(a) === normalise(b);
-}
-
 const Driver = {
   /**
    * Initialise driver
@@ -53,32 +47,8 @@ const Driver = {
   async init() {
     await Driver.loadTechnologies();
 
-    const hostnameCache = await getOption('hostnames', {});
-
     Driver.cache = {
-      hostnames: Object.keys(hostnameCache).reduce(
-        (cache, hostname) => ({
-          ...cache,
-          [hostname]: {
-            ...hostnameCache[hostname],
-            detections: hostnameCache[hostname].detections.map(
-              ({
-                technology: name,
-                pattern: { regex, confidence },
-                version
-              }) => ({
-                technology: getTechnology(name, true),
-                pattern: {
-                  regex: new RegExp(regex, 'i'),
-                  confidence
-                },
-                version
-              })
-            )
-          }
-        }),
-        {}
-      ),
+      urls: {},
       robots: await getOption('robots', {})
     };
 
@@ -462,27 +432,21 @@ const Driver = {
       return;
     }
 
-    let hostname;
+    const pageUrl = initiatorUrl.split('#')[0];
 
-    try {
-      ({ hostname } = new URL(initiatorUrl));
-    } catch (error) {
+    if (!Driver.cache.urls[pageUrl]) {
+      Driver.cache.urls[pageUrl] = {};
+    }
+
+    if (!Driver.cache.urls[pageUrl].analyzedScripts) {
+      Driver.cache.urls[pageUrl].analyzedScripts = [];
+    }
+
+    if (Driver.cache.urls[pageUrl].analyzedScripts.length >= 25) {
       return;
     }
 
-    if (!Driver.cache.hostnames[hostname]) {
-      Driver.cache.hostnames[hostname] = {};
-    }
-
-    if (!Driver.cache.hostnames[hostname].analyzedScripts) {
-      Driver.cache.hostnames[hostname].analyzedScripts = [];
-    }
-
-    if (Driver.cache.hostnames[hostname].analyzedScripts.length >= 25) {
-      return;
-    }
-
-    Driver.cache.hostnames[hostname].analyzedScripts.push(request.url);
+    Driver.cache.urls[pageUrl].analyzedScripts.push(request.url);
 
     const response = await fetch(request.url);
 
@@ -586,13 +550,7 @@ const Driver = {
    * Check if Wappalyzer has been disabled for the domain
    */
   async isDisabledDomain(url) {
-    try {
-      const { hostname } = new URL(url);
-
-      return (await getOption('disabledDomains', [])).includes(hostname);
-    } catch (error) {
-      return false;
-    }
+    return false;
   },
 
   /**
@@ -618,12 +576,12 @@ const Driver = {
     const { hostname, pathname } = new URL(url);
 
     // Cache detections
-    const cache = (Driver.cache.hostnames[hostname] = {
+    const cache = (Driver.cache.urls[url] = {
       detections: [],
       hits: incrementHits ? 0 : 1,
       https: url.startsWith('https://'),
       analyzedScripts: [],
-      ...(Driver.cache.hostnames[hostname] || []),
+      ...(Driver.cache.urls[url] || []),
       dateTime: Date.now()
     });
 
@@ -703,58 +661,22 @@ const Driver = {
     cache.language = cache.language || language;
 
     // Expire cache
-    Driver.cache.hostnames = Object.keys(Driver.cache.hostnames)
+    Driver.cache.urls = Object.keys(Driver.cache.urls)
       .sort((a, b) =>
-        Driver.cache.hostnames[a].dateTime > Driver.cache.hostnames[b].dateTime
-          ? -1
-          : 1
+        Driver.cache.urls[a].dateTime > Driver.cache.urls[b].dateTime ? -1 : 1
       )
-      .reduce((hostnames, hostname) => {
-        const cache = Driver.cache.hostnames[hostname];
+      .reduce((urls, u) => {
+        const cache = Driver.cache.urls[u];
 
         if (
           cache.dateTime > Date.now() - expiry &&
-          Object.keys(hostnames).length < maxHostnames
+          Object.keys(urls).length < maxHostnames
         ) {
-          hostnames[hostname] = cache;
+          urls[u] = cache;
         }
 
-        return hostnames;
+        return urls;
       }, {});
-
-    // Save cache
-    await setOption(
-      'hostnames',
-      Object.keys(Driver.cache.hostnames).reduce(
-        (hostnames, hostname) => ({
-          ...hostnames,
-          [hostname]: {
-            ...cache,
-            detections: Driver.cache.hostnames[hostname].detections
-              .filter(({ technology }) => technology)
-              .map(
-                ({
-                  technology: { name: technology },
-                  pattern: { regex, confidence },
-                  version,
-                  rootPath,
-                  lastUrl
-                }) => ({
-                  technology,
-                  pattern: {
-                    regex: regex.source,
-                    confidence
-                  },
-                  version,
-                  rootPath,
-                  lastUrl
-                })
-              )
-          }
-        }),
-        {}
-      )
-    );
 
     Driver.log({ hostname, technologies: resolved });
   },
@@ -769,16 +691,13 @@ const Driver = {
       technologies = [];
     }
 
-    const dynamicIcon = await getOption('dynamicIcon', false);
-    const showCached = await getOption('showCached', true);
+    const dynamicIcon = await getOption('dynamicIcon', true);
     const badge = await getOption('badge', true);
 
     let icon = 'default.svg';
 
     const _technologies = technologies.filter(
-      ({ slug, lastUrl }) =>
-        slug !== 'cart-functionality' &&
-        (showCached || isSimilarUrl(url, lastUrl))
+      ({ slug }) => slug !== 'cart-functionality'
     );
 
     if (dynamicIcon) {
@@ -854,15 +773,25 @@ const Driver = {
       return;
     }
 
-    const showCached = await getOption('showCached', true);
+    // Force a fresh scan on the active tab's content script with a 500ms timeout
+    try {
+      await Promise.race([
+        chrome.tabs.sendMessage(tab.id, {
+          source: 'index.js',
+          func: 'onGetTechnologies',
+          args: [Wappalyzer.technologies]
+        }),
+        new Promise((resolve) => setTimeout(resolve, 500))
+      ]);
+    } catch (error) {
+      // Content script not loaded/ready or target page is restricted (e.g. chrome://)
+    }
 
-    const { hostname } = new URL(url);
+    const pageUrl = url.split('#')[0];
 
-    const cache = Driver.cache.hostnames?.[hostname];
+    const cache = Driver.cache.urls?.[pageUrl];
 
-    const resolved = (cache ? resolve(cache.detections) : []).filter(
-      ({ lastUrl }) => showCached || isSimilarUrl(url, lastUrl)
-    );
+    const resolved = cache ? resolve(cache.detections) : [];
 
     await Driver.setIcon(url, resolved);
 
@@ -965,11 +894,9 @@ const Driver = {
    * Clear caches
    */
   async clearCache() {
-    Driver.cache.hostnames = {};
+    Driver.cache.urls = {};
 
     xhrAnalyzed = {};
-
-    await setOption('hostnames', {});
   }
 };
 
@@ -997,15 +924,11 @@ chrome.tabs.onUpdated.addListener(async (id, { status, url }) => {
   }
 
   if (url) {
-    const { hostname } = new URL(url);
+    const pageUrl = url.split('#')[0];
 
-    const showCached = await getOption('showCached', true);
+    const cache = Driver.cache?.urls?.[pageUrl];
 
-    const cache = Driver.cache?.hostnames?.[hostname];
-
-    const resolved = (cache ? resolve(cache.detections) : []).filter(
-      ({ lastUrl }) => showCached || isSimilarUrl(url, lastUrl)
-    );
+    const resolved = cache ? resolve(cache.detections) : [];
 
     await Driver.setIcon(url, resolved);
   }

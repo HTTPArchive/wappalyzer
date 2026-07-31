@@ -31,6 +31,25 @@
     "scriptSrc": "w3counter\\.com/tracker\\.js",
     "website": "https://www.w3counter.com"
   },
+  "WARP Performance": {
+    "cats": [
+      87,
+      92
+    ],
+    "description": "WARP Performance is a WordPress plugin that improves website performance through page caching, asset optimisation, lazy loading, and other speed-focused features.",
+    "dom": [
+      "script[src*='/wp-content/plugins/warp-performance/']",
+      "script[data-src*='/wp-content/plugins/warp-performance/']"
+    ],
+    "icon": "warp-performance.svg",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/warp-performance/",
+    "website": "https://warpperformance.com"
+  },
   "WEBDEV": {
     "cats": [
       20

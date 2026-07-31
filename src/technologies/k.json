@@ -1114,8 +1114,8 @@
       87
     ],
     "description": "Koko Analytics is a privacy-friendly analytics plugin for WordPress.",
-    "html": "<!--\\s*Koko Analytics v([\\d.]+)\\;version:\\1",
-    "icon": "Koko Analytics.png",
+    "html": "<!--\\s*Koko Analytics v([\\d.]+)[^>]*-->\\;version:\\1",
+    "icon": "Koko Analytics.svg",
     "js": {
       "koko_analytics": ""
     },

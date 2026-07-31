@@ -508,6 +508,9 @@
         }
       }
     },
+    "html": [
+      "data-block-key=\"[a-z0-9]{5}\""
+    ],
     "icon": "Wagtail.svg",
     "implies": [
       "Django",

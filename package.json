@@ -7,7 +7,7 @@
     "puppeteer": "~25.5.0"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "8.3.1",
+    "@google-cloud/bigquery": "9.0.1",
     "@google-cloud/storage": "7.21.0",
     "@prantlf/jsonlint": "17.0.1",
     "eslint": "10.8.0",

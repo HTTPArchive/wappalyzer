@@ -11,7 +11,7 @@
     "@google-cloud/storage": "7.21.0",
     "@prantlf/jsonlint": "17.0.1",
     "eslint": "10.8.0",
-    "eslint-plugin-jsonc": "3.3.0",
+    "eslint-plugin-jsonc": "3.4.1",
     "eslint-plugin-prettier": "5.5.6",
     "globals": "^17.8.0",
     "jest": "30.4.2",

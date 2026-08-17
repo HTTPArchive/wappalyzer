@@ -237,4 +237,8 @@ const main = async () => {
   fs.unlinkSync(categoriesFilePath);
 };
 
-main().catch(console.error);
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
+

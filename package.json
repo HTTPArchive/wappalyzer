@@ -4,16 +4,16 @@
     "wappalyzer": "./cli.js"
   },
   "dependencies": {
-    "puppeteer": "~25.4.0"
+    "puppeteer": "~25.8.0"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "8.3.1",
-    "@google-cloud/storage": "7.21.0",
+    "@google-cloud/bigquery": "9.0.2",
+    "@google-cloud/storage": "8.0.1",
     "@prantlf/jsonlint": "17.0.1",
-    "eslint": "10.8.0",
-    "eslint-plugin-jsonc": "3.3.0",
+    "eslint": "10.9.0",
+    "eslint-plugin-jsonc": "3.4.1",
     "eslint-plugin-prettier": "5.5.6",
-    "globals": "^17.8.0",
+    "globals": "^17.11.0",
     "jest": "30.4.2",
     "prettier": "3.9.6",
     "webpagetest": "github:HTTPArchive/WebPageTest.api-nodejs"

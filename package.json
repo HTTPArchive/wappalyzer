@@ -4,7 +4,7 @@
     "wappalyzer": "./cli.js"
   },
   "dependencies": {
-    "puppeteer": "~25.9.0"
+    "puppeteer": "~25.10.0"
   },
   "devDependencies": {
     "@google-cloud/bigquery": "9.0.3",

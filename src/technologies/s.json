@@ -3096,6 +3096,21 @@
     "scriptSrc": "\\.signifyd\\.com",
     "website": "https://www.signifyd.com"
   },
+  "Silex": {
+    "cats": [
+      51
+    ],
+    "description": "Silex is a free and open source no-code website builder. It exports static websites and is also available as a desktop application.",
+    "icon": "Silex.png",
+    "meta": {
+      "generator": "^Silex v([\\d.]+)\\;version:\\1"
+    },
+    "oss": true,
+    "pricing": [
+      "freemium"
+    ],
+    "website": "https://www.silex.me"
+  },
   "Silverstripe": {
     "cats": [
       1

@@ -2082,6 +2082,18 @@
     "saas": true,
     "website": "https://www.useplaza.com"
   },
+  "PlentyONE Shop": {
+    "cats": [
+      6
+    ],
+    "description": "The official shop solution developed by PlentyONE. PlentyONE Shop is the new default Shop solution for PlentyONE online stores.",
+    "headers": {
+      "X-Plenty-Shop": "PlentyONE Shop"
+    },
+    "icon": "PlentyONE.svg",
+    "oss": true,
+    "website": "https://www.plentyone.com/product/online-shop"
+  },
   "Pleroma": {
     "cats": [
       2
@@ -3943,18 +3955,6 @@
       "X-Plenty-Shop": "Ceres"
     },
     "icon": "plentyShop LTS.svg",
-    "oss": true,
-    "website": "https://www.plentyone.com/product/online-shop"
-  },
-  "PlentyONE Shop": {
-    "cats": [
-      6
-    ],
-    "description": "The official shop solution developed by PlentyONE. PlentyONE Shop is the new default Shop solution for PlentyONE online stores.",
-    "headers": {
-      "X-Plenty-Shop": "PlentyONE Shop"
-    },
-    "icon": "PlentyONE.svg",
     "oss": true,
     "website": "https://www.plentyone.com/product/online-shop"
   },

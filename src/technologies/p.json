@@ -3938,13 +3938,25 @@
     "cats": [
       6
     ],
-    "description": "The official template plugin developed by plentymarkets. plentyShop LTS is the default template for plentymarkets online stores.",
+    "description": "The LTS shop plugin developed by PlentyONE. plentyShop LTS is a template for PlentyONE online stores.",
     "headers": {
       "X-Plenty-Shop": "Ceres"
     },
     "icon": "plentyShop LTS.svg",
     "oss": true,
-    "website": "https://www.plentymarkets.com/product/modules/online-shop/"
+    "website": "https://www.plentyone.com/product/online-shop"
+  },
+  "PlentyONE Shop": {
+    "cats": [
+      6
+    ],
+    "description": "The official shop solution developed by PlentyONE. PlentyONE Shop is the new default Shop solution for PlentyONE online stores.",
+    "headers": {
+      "X-Plenty-Shop": "PlentyONE Shop"
+    },
+    "icon": "PlentyONE.svg",
+    "oss": true,
+    "website": "https://www.plentyone.com/product/online-shop"
   },
   "plentymarkets": {
     "cats": [
@@ -3961,7 +3973,7 @@
     "scriptSrc": [
       "plenty\\.shop\\.(?:min\\.)?js"
     ],
-    "website": "https://www.plentymarkets.com/"
+    "website": "https://www.plentyone.com"
   },
   "prettyPhoto": {
     "cats": [

@@ -3950,7 +3950,7 @@
     "cats": [
       6
     ],
-    "description": "The LTS shop plugin developed by PlentyONE. plentyShop LTS is a template for PlentyONE online stores.",
+    "description": "The plentyShop LTS plugin developed by PlentyONE. plentyShop LTS is the plugin based shop solution for PlentyONE. The predecessor to PlentyONE Shop",
     "headers": {
       "X-Plenty-Shop": "Ceres"
     },

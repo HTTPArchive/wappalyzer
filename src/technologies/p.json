@@ -624,6 +624,20 @@
     "scriptSrc": "\\.1password\\.com/",
     "website": "https://passage.1password.com"
   },
+  "Password Protected Categories": {
+    "cats": [
+      87
+    ],
+    "description": "Password Protected Categories is a WordPress plugin from Barn2 that restricts categories of posts, pages or custom post types behind a password or a user role.",
+    "dom": "link[href*='/wp-content/plugins/password-protected-categories/']",
+    "icon": "Barn2.svg",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "website": "https://barn2.com/wordpress-plugins/password-protected-categories/"
+  },
   "Paths.js": {
     "cats": [
       25
@@ -2554,6 +2568,37 @@
     "saas": true,
     "scriptSrc": "cdn\\.postpay\\.io/(?:.+\\?ver=([\\d\\.]+))?\\;version:\\1",
     "website": "https://postpay.io"
+  },
+  "Posts Table Pro": {
+    "cats": [
+      87
+    ],
+    "description": "Posts Table Pro is a WordPress plugin from Barn2 that lists posts, pages or any custom post type in a searchable, sortable and filterable table.",
+    "dom": "link[href*='/wp-content/plugins/posts-table-pro/']",
+    "icon": "Barn2.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/posts-table-pro/",
+    "website": "https://barn2.com/wordpress-plugins/posts-table-pro/"
+  },
+  "Posts Table with Search & Sort": {
+    "cats": [
+      87
+    ],
+    "description": "Posts Table with Search & Sort is the free edition of Barn2’s Posts Table plugin for WordPress. It lists posts and pages in a table with instant search and sorting.",
+    "dom": "link[href*='/wp-content/plugins/posts-data-table/']",
+    "icon": "Barn2.svg",
+    "oss": true,
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/posts-data-table/",
+    "website": "https://barn2.com/wordpress-plugins/posts-table-with-search-and-sort/"
   },
   "Postscript": {
     "cats": [

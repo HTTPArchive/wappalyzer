@@ -133,7 +133,7 @@
       "katex.version": "^(.+)$\\;version:\\1"
     },
     "oss": true,
-    "scriptSrc": "katex(@|/)[0-9.]+(?:/dist)?/katex(?:\\.min)?\\.(mjs|js|css)\\;version:\\1",
+    "scriptSrc": "katex[@/]([0-9.]+)(?:/dist)?/katex(?:\\.min)?\\.(?:mjs|js|css)\\;version:\\1",
     "website": "https://katex.org/"
   },
   "Kadence WP Blocks": {

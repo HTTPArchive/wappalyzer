@@ -40,83 +40,125 @@ for (const index of Array(27).keys()) {
   };
 }
 
+// Flatten a pattern field (string, array or nested object, as in `dom`)
+// into its leaf patterns, keeping the key path for error messages.
+const getPatterns = (value, path = '') => {
+  if (typeof value === 'string' || typeof value === 'number') {
+    return [{ path, pattern: value }];
+  }
+
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) =>
+      getPatterns(item, `${path}[${index}]`)
+    );
+  }
+
+  return Object.keys(value).flatMap((key) =>
+    getPatterns(value[key], `${path}[${key}]`)
+  );
+};
+
+// Parse `\\;key:value` flags the same way Wappalyzer.parsePattern does.
+const parseFlags = (flags) =>
+  flags.map((flag) => {
+    const [key, ...value] = flag.split(':');
+
+    return [key, value.join(':')];
+  });
+
+const validateConfidence = (value, id) => {
+  if (
+    !/^\d+$/.test(value) ||
+    parseInt(value, 10) < 0 ||
+    parseInt(value, 10) > 99
+  ) {
+    throw new Error(
+      `Confidence value must a number between 0 and 99: ${value} (${id})`
+    );
+  }
+};
+
+const validatePattern = (pattern, id, type) => {
+  const [regex, ...flags] = pattern.split('\\;');
+
+  let maxGroups = 0;
+
+  parseFlags(flags).forEach(([key, value]) => {
+    if (key === 'version') {
+      const refs = value.match(/\\(\d+)/g) || [];
+
+      maxGroups = Math.max(0, ...refs.map((ref) => parseInt(ref.slice(1), 10)));
+    } else if (key === 'confidence') {
+      validateConfidence(value, id);
+    } else {
+      throw new Error(`Invalid flag: ${key} (${id})`);
+    }
+  });
+
+  try {
+    new RegExp(regex);
+  } catch (error) {
+    throw new Error(`${error.message} (${id})`);
+  }
+
+  // Count capture groups
+  const groups = new RegExp(`${regex}|`).exec('').length - 1;
+
+  // A reference to a missing group resolves to an empty version.
+  if (groups < maxGroups) {
+    console.warn(
+      `Version references group ${maxGroups} but pattern has ${groups}: ${regex} (${id})`
+    );
+  }
+
+  // Unused groups don't affect detection; prefer (?:...) in new patterns.
+  if (groups > maxGroups) {
+    console.warn(
+      `Unused capturing groups, expected at most ${maxGroups}: ${regex} (${id})`
+    );
+  }
+
+  if (type === 'html' && !/[<>]/.test(regex)) {
+    throw new Error(`HTML pattern must include < or >: ${regex} (${id})`);
+  }
+};
+
 Object.keys(technologies).forEach((name) => {
   const technology = technologies[name];
 
   // Validate regular expressions
-  ['url', 'html', 'meta', 'headers', 'cookies', 'script', 'js'].forEach(
-    (type) => {
-      if (technology[type]) {
-        const keyed =
-          typeof technology[type] === 'string' ||
-          Array.isArray(technology[type])
-            ? { _: technology[type] }
-            : technology[type];
+  [
+    'certIssuer',
+    'cookies',
+    'css',
+    'dns',
+    'dom',
+    'headers',
+    'html',
+    'js',
+    'meta',
+    'probe',
+    'robots',
+    'scriptSrc',
+    'scripts',
+    'text',
+    'url',
+    'xhr'
+  ].forEach((type) => {
+    const value = technology[type];
 
-        Object.keys(keyed).forEach((key) => {
-          const patterns = Array.isArray(keyed[key])
-            ? keyed[key]
-            : [keyed[key]];
-
-          patterns.forEach((pattern, index) => {
-            const id = `${name}: ${type}[${key === '_' ? `${index}` : key}]`;
-
-            const [regex, ...flags] = pattern.split('\\;');
-
-            let maxGroups = 0;
-
-            flags.forEach((flag) => {
-              const [key, value] = flag.split(':');
-
-              if (key === 'version') {
-                const refs = value.match(/\\(\d+)/g);
-
-                if (refs) {
-                  maxGroups = refs.reduce((max, ref) =>
-                    Math.max(max, parseInt(refs[1] || 0))
-                  );
-                }
-              } else if (key === 'confidence') {
-                if (
-                  !/^\d+$/.test(value) ||
-                  parseInt(value, 10) < 0 ||
-                  parseInt(value, 10) > 99
-                ) {
-                  throw new Error(
-                    `Confidence value must a number between 0 and 99: ${value} (${id})`
-                  );
-                }
-              } else {
-                throw new Error(`Invalid flag: ${key} (${id})`);
-              }
-            });
-
-            // Validate regular expression
-            try {
-              new RegExp(regex);
-            } catch (error) {
-              throw new Error(`${error.message} (${id})`);
-            }
-
-            // Count capture groups
-            const groups = new RegExp(`${regex}|`).exec('').length - 1;
-
-            if (groups > maxGroups) {
-              throw new Error(
-                `Too many non-capturing groups, expected ${maxGroups}: ${regex} (${id})`
-              );
-            }
-
-            if (type === 'html' && !/[<>]/.test(regex)) {
-              throw new Error(
-                `HTML pattern must include < or >: ${regex} (${id})`
-              );
-            }
-          });
-        });
-      }
+    // String/array `dom` values are CSS selectors, not patterns
+    if (
+      !value ||
+      (type === 'dom' && (typeof value === 'string' || Array.isArray(value)))
+    ) {
+      return;
     }
-  );
+
+    getPatterns(value).forEach(({ path, pattern }) =>
+      validatePattern(String(pattern), `${name}: ${type}${path}`, type)
+    );
+  });
 
   // Validate categories
   technology.cats.forEach((id) => {
@@ -164,24 +206,10 @@ Object.keys(technologies).forEach((name) => {
         throw new Error(`Implied technology does not exist: ${_name} (${id})`);
       }
 
-      flags.forEach((flag) => {
-        const [key, value] = flag.split(':');
-
-        if (key === 'version') {
-          return;
-        }
-
+      parseFlags(flags).forEach(([key, value]) => {
         if (key === 'confidence') {
-          if (
-            !/^\d+$/.test(value) ||
-            parseInt(value, 10) < 0 ||
-            parseInt(value, 10) > 99
-          ) {
-            throw new Error(
-              `Confidence value must a number between 0 and 99: ${value} (${id})`
-            );
-          }
-        } else {
+          validateConfidence(value, id);
+        } else if (key !== 'version') {
           throw new Error(`Invalid flag: ${key} (${id})`);
         }
       });

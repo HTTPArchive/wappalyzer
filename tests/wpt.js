@@ -36,6 +36,10 @@ function runWPTTest(url) {
         console.error(`WPT test run for ${url} failed:`);
 
         console.error(error || response);
+        fs.appendFileSync(
+          'test-results.md',
+          `**WPT test run for ${url} failed.** See workflow logs.\n\n`
+        );
         reject(error || response);
       } else {
         const technologies = {
@@ -66,7 +70,9 @@ ${JSON.stringify(technologies, null, 4)}
 
 if (isDirectRun) {
   const url = argv[2];
-  runWPTTest(url);
+  runWPTTest(url).catch(() => {
+    process.exitCode = 1;
+  });
 }
 
 module.exports = { runWPTTest };

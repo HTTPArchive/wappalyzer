@@ -6,6 +6,13 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     name: Lint & validate
@@ -14,8 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
@@ -56,21 +69,24 @@ jobs:
 
           URLS=""
           if [ $start_index -gt -1 ]; then
-            url_pattern="(https:\/\/[^[:space:]]+)"
+            url_pattern="(https://[^[:space:]]+)"
             for ((i=start_index; i<${#lines[@]}; i++)); do
               if [[ ${lines[$i]} =~ $url_pattern ]]; then
                 URLS+="${BASH_REMATCH[1]} "
               fi
             done
           fi
-          echo "urls=$URLS" >> $GITHUB_OUTPUT
+          echo "urls=$URLS" >> "$GITHUB_OUTPUT"
 
       - name: Save PR info
         if: steps.filter.outputs.wpt == 'true'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          WPT_URLS: ${{ steps.wpt-urls.outputs.urls }}
         run: |
           mkdir -p pr-metadata
-          echo "${{ github.event.pull_request.number }}" > pr-metadata/pr_number
-          echo "${{ steps.wpt-urls.outputs.urls }}" > pr-metadata/urls
+          printf '%s\n' "$PR_NUMBER" > pr-metadata/pr_number
+          printf '%s\n' "$WPT_URLS" > pr-metadata/urls
 
       - name: Upload PR Metadata
         if: steps.filter.outputs.wpt == 'true'
@@ -94,9 +110,15 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v3
 
-      - name: Enable auto-merge for Dependabot PRs
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+      # Patch updates merge for any dependency; minor updates only for dev
+      # dependencies and GitHub Actions. Runtime minor bumps need a human.
+      - name: Merge Dependabot PR
+        if: >-
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          (steps.metadata.outputs.update-type == 'version-update:semver-minor' &&
+           (steps.metadata.outputs.dependency-type == 'direct:development' ||
+            steps.metadata.outputs.package-ecosystem == 'github_actions'))
         run: gh pr merge --admin --squash "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{github.token}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ github.token }}

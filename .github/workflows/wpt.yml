@@ -5,10 +5,16 @@ on:
     workflows: ["Lint, validate & Dependabot auto-merge"]
     types: [completed]
 
+concurrency:
+  group: wpt-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
 jobs:
   wpt:
     name: Run WebPageTest
+    # ubuntu-slim caps jobs at 15 minutes; WPT runs can take longer.
     runs-on: ubuntu-slim
+    timeout-minutes: 60
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
@@ -28,41 +34,70 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: ${{ runner.temp }}/pr-metadata
 
+      # The artifact is written by PR-controlled code, so treat it as untrusted:
+      # the PR number must belong to the commit that triggered the run, and
+      # URLs are capped and restricted to https.
       - name: Check if WPT run is needed
         id: check-run
+        env:
+          DOWNLOAD_OUTCOME: ${{ steps.download-artifact.outcome }}
+          METADATA_DIR: ${{ runner.temp }}/pr-metadata
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          GH_TOKEN: ${{ github.token }}
+          MAX_URLS: 5
         run: |
-          if [ "${{ steps.download-artifact.outcome }}" = "success" ] && [ -f "${{ runner.temp }}/pr-metadata/pr_number" ]; then
-            PR_NUMBER_RAW="$(cat "${{ runner.temp }}/pr-metadata/pr_number")"
-            if ! printf '%s' "$PR_NUMBER_RAW" | grep -Eq '^[0-9]+$'; then
-              echo "run_wpt=false" >> "$GITHUB_OUTPUT"
-              echo "Invalid PR number metadata."
-              exit 0
-            fi
-
-            WPT_URLS_RAW=""
-            if [ -f "${{ runner.temp }}/pr-metadata/urls" ]; then
-              WPT_URLS_RAW="$(cat "${{ runner.temp }}/pr-metadata/urls")"
-            fi
-
-            # Prevent output/env-file injection by stripping CR/LF from untrusted artifact content.
-            WPT_URLS_SAFE="$(printf '%s' "$WPT_URLS_RAW" | tr '\r\n' '  ')"
-
-            echo "run_wpt=true" >> "$GITHUB_OUTPUT"
-            printf 'pr_number=%s\n' "$PR_NUMBER_RAW" >> "$GITHUB_OUTPUT"
-            printf 'wpt_urls=%s\n' "$WPT_URLS_SAFE" >> "$GITHUB_OUTPUT"
-            echo "Starting WPT run."
-          else
+          if [ "$DOWNLOAD_OUTCOME" != "success" ] || [ ! -f "$METADATA_DIR/pr_number" ]; then
             echo "run_wpt=false" >> "$GITHUB_OUTPUT"
             echo "No WPT run needed."
+            exit 0
           fi
+
+          PR_NUMBER="$(tr -d '[:space:]' < "$METADATA_DIR/pr_number")"
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "run_wpt=false" >> "$GITHUB_OUTPUT"
+            echo "Invalid PR number metadata."
+            exit 0
+          fi
+
+          PR_HEAD_SHA="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .head.sha)"
+          if [ "$PR_HEAD_SHA" != "$HEAD_SHA" ]; then
+            echo "run_wpt=false" >> "$GITHUB_OUTPUT"
+            echo "PR #$PR_NUMBER head ($PR_HEAD_SHA) does not match triggering commit ($HEAD_SHA)."
+            exit 0
+          fi
+
+          WPT_URLS=""
+          if [ -f "$METADATA_DIR/urls" ]; then
+            set -f  # no glob expansion of URLs
+            count=0
+            url_re='^https://[^[:space:]]+$'
+            for url in $(tr '\r\n' '  ' < "$METADATA_DIR/urls"); do
+              if [[ "$url" =~ $url_re ]] && [ "$count" -lt "$MAX_URLS" ]; then
+                WPT_URLS+="$url "
+                count=$((count + 1))
+              fi
+            done
+          fi
+
+          echo "run_wpt=true" >> "$GITHUB_OUTPUT"
+          printf 'pr_number=%s\n' "$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          printf 'wpt_urls=%s\n' "$WPT_URLS" >> "$GITHUB_OUTPUT"
+          echo "Starting WPT run."
+
+      - name: Setup Node.js
+        if: steps.check-run.outputs.run_wpt == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
 
       - name: Install dependencies
         if: steps.check-run.outputs.run_wpt == 'true'
-        run: npm install
+        run: npm ci
 
       - name: Run WebPageTest with unit tests
         if: steps.check-run.outputs.run_wpt == 'true'
         id: unit-test
+        continue-on-error: true
         env:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
@@ -72,26 +107,49 @@ jobs:
       - name: Run WebPageTest for more websites
         if: steps.check-run.outputs.run_wpt == 'true'
         id: wpt-test
+        continue-on-error: true
         env:
           WPT_SERVER: "webpagetest.httparchive.org"
           WPT_API_KEY: ${{ secrets.HA_API_KEY }}
           PR_NUMBER: ${{ steps.check-run.outputs.pr_number }}
           WPT_URLS: ${{ steps.check-run.outputs.wpt_urls }}
         run: |
-          if [ -n "$WPT_URLS" ]; then
-            for TEST_WEBSITE in $WPT_URLS; do
-              echo "::group::Running WPT test for $TEST_WEBSITE"
-              node tests/wpt.js "$TEST_WEBSITE"
-              echo "::endgroup::"
-            done
-          else
+          set -f  # no glob expansion of URLs
+          read -ra urls <<< "$WPT_URLS"
+          if [ ${#urls[@]} -eq 0 ]; then
             echo "No websites found."
+            exit 0
           fi
 
+          failed=0
+          for TEST_WEBSITE in "${urls[@]}"; do
+            echo "::group::Running WPT test for $TEST_WEBSITE"
+            node tests/wpt.js "$TEST_WEBSITE" || failed=$((failed + 1))
+            echo "::endgroup::"
+          done
+          exit "$failed"
+
+      - name: Prepare comment
+        if: steps.check-run.outputs.run_wpt == 'true' && !cancelled()
+        env:
+          UNIT_OUTCOME: ${{ steps.unit-test.outcome }}
+          WPT_OUTCOME: ${{ steps.wpt-test.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "**WPT unit tests:** $UNIT_OUTCOME · **Custom websites:** $WPT_OUTCOME · [logs]($RUN_URL)"
+            echo
+            [ -f test-results.md ] && cat test-results.md
+          } > comment.md
+
       - name: Add comment with results
-        if: steps.check-run.outputs.run_wpt == 'true' && (steps.unit-test.outcome == 'success' || steps.wpt-test.outcome == 'success')
+        if: steps.check-run.outputs.run_wpt == 'true' && !cancelled()
         uses: mshick/add-pr-comment@v3
         with:
           refresh-message-position: true
-          message-path: test-results.md
+          message-path: comment.md
           issue: ${{ steps.check-run.outputs.pr_number }}
+
+      - name: Fail if tests failed
+        if: steps.unit-test.outcome == 'failure' || steps.wpt-test.outcome == 'failure'
+        run: exit 1

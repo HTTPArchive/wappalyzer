@@ -6775,7 +6775,7 @@
     "dom": {
       "link": {
         "attributes": {
-          "href": "com\\.summercart\\.\\;confidence:100"
+          "href": "com\\.summercart\\."
         }
       }
     },
@@ -7143,8 +7143,8 @@
     "scriptSrc": [
       "sweetalert2(?:\\.all)?(?:\\.min)?\\.js",
       "/npm/sweetalert2@([\\d.]+)\\;version:\\1",
-      "sweetalert2@([\\d.]+)/dist/sweetalert2(?:\\.all)(?:\\.min)\\.js",
-      "limonte-sweetalert2/([\\d.]+)/sweetalert2(?:\\.all)(?:\\.min)\\.js"
+      "sweetalert2@([\\d.]+)/dist/sweetalert2(?:\\.all)(?:\\.min)\\.js\\;version:\\1",
+      "limonte-sweetalert2/([\\d.]+)/sweetalert2(?:\\.all)(?:\\.min)\\.js\\;version:\\1"
     ],
     "website": "https://sweetalert2.github.io/"
   },

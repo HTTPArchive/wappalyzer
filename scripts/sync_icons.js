@@ -3,23 +3,29 @@
 // For each source file, a SHA-256 hash is computed and compared against the
 // hash stored in the GCS object's custom metadata (source-hash). Files whose
 // hash hasn't changed are skipped. SVGs are converted to PNG via rsvg-convert
-// before uploading; source PNGs are uploaded as-is.
+// before uploading; source PNGs are uploaded as-is. Objects previously
+// uploaded by this script whose source icon has been removed are deleted.
 //
 // Usage:
 //   npm run sync_icons          — incremental (skip unchanged files)
 //   npm run sync_icons -- --all — force re-convert and re-upload everything
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const { Storage } = require('@google-cloud/storage');
 
 const ICONS_DIR = './src/images/icons';
 const GCS_BUCKET = 'httparchive';
 const GCS_PREFIX = 'icons_temp';
-const CACHE_CONTROL = 'public, max-age=31536000, immutable';
+// Objects are overwritten in place when an icon changes, so they must not be
+// cached as immutable.
+const CACHE_CONTROL = 'public, max-age=86400';
 const FORCE_ALL = process.argv.includes('--all');
+// Guard against a broken checkout wiping the bucket.
+const MAX_PRUNE = 50;
 
 const storage = new Storage();
 const bucket = storage.bucket(GCS_BUCKET);
@@ -35,33 +41,37 @@ function sha256(filePath) {
 }
 
 /**
- * Retrieve the source-hash stored in a GCS object's custom metadata.
- * Returns null if the object doesn't exist or has no hash stored.
- * @param {string} gcsPath
- * @returns {Promise<string|null>}
+ * List the source-hash of every object under GCS_PREFIX in one paginated call.
+ * Objects without a stored hash map to null.
+ * @returns {Promise<Map<string, string|null>>} object name → source-hash
  */
-async function getGcsHash(gcsPath) {
-  try {
-    const file = bucket.file(gcsPath);
-    const [metadata] = await file.getMetadata();
-    return metadata?.metadata?.['source-hash'] || null;
-  } catch (e) {
-    if (e.code === 404) return null;
-    throw e;
-  }
+async function listGcsHashes() {
+  const [files] = await bucket.getFiles({ prefix: `${GCS_PREFIX}/` });
+  return new Map(
+    files.map((file) => [
+      file.name,
+      file.metadata?.metadata?.['source-hash'] || null
+    ])
+  );
 }
 
 /**
- * Convert an SVG file to a 128×128 PNG using rsvg-convert.
- * Writes the PNG to a temporary path and returns it.
+ * Convert an SVG file to a PNG fitting in 128×128 (aspect ratio preserved)
+ * using rsvg-convert. Writes the PNG to tmpDir and returns its path.
  * @param {string} svgPath
+ * @param {string} tmpDir
  * @returns {string} path to the generated PNG
  */
-function convertSvgToPng(svgPath) {
-  const tmpPng = svgPath.replace(/\.svg$/i, `._tmp_${process.pid}.png`);
-  execSync(`rsvg-convert "${svgPath}" -o "${tmpPng}" -w 128 -h 128`, {
-    stdio: 'inherit'
-  });
+function convertSvgToPng(svgPath, tmpDir) {
+  const tmpPng = path.join(
+    tmpDir,
+    `${path.basename(svgPath, path.extname(svgPath))}.png`
+  );
+  execFileSync(
+    'rsvg-convert',
+    [svgPath, '-o', tmpPng, '-w', '128', '-h', '128', '--keep-aspect-ratio'],
+    { stdio: 'inherit' }
+  );
   return tmpPng;
 }
 
@@ -90,9 +100,29 @@ async function main() {
     return (ext === '.svg' || ext === '.png') && !f.startsWith('.');
   });
 
+  if (iconFiles.length === 0) {
+    throw new Error(`No icons found in ${ICONS_DIR}`);
+  }
+
+  // Foo.svg and Foo.png would both map to icons/Foo.png and overwrite each
+  // other on every run.
+  const byGcsPath = new Map();
+  for (const file of iconFiles) {
+    const gcsPath = `${GCS_PREFIX}/${path.basename(file, path.extname(file))}.png`;
+    if (byGcsPath.has(gcsPath)) {
+      throw new Error(
+        `${byGcsPath.get(gcsPath)} and ${file} both map to ${gcsPath}`
+      );
+    }
+    byGcsPath.set(gcsPath, file);
+  }
+
   console.log(
     `Found ${iconFiles.length} icon files (--all=${FORCE_ALL}). Processing...`
   );
+
+  const gcsHashes = await listGcsHashes();
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sync_icons-'));
 
   let uploaded = 0;
   let skipped = 0;
@@ -100,64 +130,73 @@ async function main() {
   let consecutiveFailures = 0;
   let processed = 0;
 
-  for (const file of iconFiles) {
-    processed++;
-    if (processed % 100 === 0) {
-      console.log(
-        `[Progress] Processed ${processed}/${iconFiles.length} files (uploaded: ${uploaded}, skipped: ${skipped}, failed: ${failed})`
-      );
-    }
+  try {
+    for (const [gcsPath, file] of byGcsPath) {
+      processed++;
+      if (processed % 100 === 0) {
+        console.log(
+          `[Progress] Processed ${processed}/${iconFiles.length} files (uploaded: ${uploaded}, skipped: ${skipped}, failed: ${failed})`
+        );
+      }
 
-    const filePath = path.join(ICONS_DIR, file);
-    const basename = path.basename(file, path.extname(file));
-    const gcsPath = `${GCS_PREFIX}/${basename}.png`;
-    const ext = path.extname(file).toLowerCase();
+      const filePath = path.join(ICONS_DIR, file);
+      const ext = path.extname(file).toLowerCase();
 
-    let tmpPng = null;
+      try {
+        const localHash = sha256(filePath);
 
-    try {
-      const localHash = sha256(filePath);
-
-      if (!FORCE_ALL) {
-        const gcsHash = await getGcsHash(gcsPath);
-        if (gcsHash === localHash) {
+        if (!FORCE_ALL && gcsHashes.get(gcsPath) === localHash) {
           skipped++;
           consecutiveFailures = 0;
           continue;
         }
-      }
 
-      let pngPath;
-      if (ext === '.svg') {
-        tmpPng = convertSvgToPng(filePath);
-        pngPath = tmpPng;
-      } else {
-        pngPath = filePath;
-      }
+        const pngPath =
+          ext === '.svg' ? convertSvgToPng(filePath, tmpDir) : filePath;
 
-      await uploadToGcs(pngPath, gcsPath, localHash);
-      console.log(`  ✓ ${file} → gs://${GCS_BUCKET}/${gcsPath}`);
-      uploaded++;
-      consecutiveFailures = 0;
-    } catch (e) {
-      console.error(`  ✗ ${file}: ${e.message}`);
-      failed++;
-      consecutiveFailures++;
-      if (consecutiveFailures >= 10) {
-        console.error(
-          `\n[Abort] Encountered ${consecutiveFailures} consecutive failures. Aborting sync to prevent endless retries.`
-        );
-        break;
+        await uploadToGcs(pngPath, gcsPath, localHash);
+        console.log(`  ✓ ${file} → gs://${GCS_BUCKET}/${gcsPath}`);
+        uploaded++;
+        consecutiveFailures = 0;
+      } catch (e) {
+        console.error(`  ✗ ${file}: ${e.message}`);
+        failed++;
+        consecutiveFailures++;
+        if (consecutiveFailures >= 10) {
+          console.error(
+            `\n[Abort] Encountered ${consecutiveFailures} consecutive failures. Aborting sync to prevent endless retries.`
+          );
+          break;
+        }
       }
-    } finally {
-      if (tmpPng && fs.existsSync(tmpPng)) {
-        fs.unlinkSync(tmpPng);
-      }
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+
+  // Delete objects this script uploaded (they carry a source-hash) whose source
+  // icon no longer exists. Skipped after failures so a partial run never prunes.
+  let deleted = 0;
+  if (failed === 0) {
+    const orphans = [...gcsHashes]
+      .filter(([name, hash]) => hash && !byGcsPath.has(name))
+      .map(([name]) => name);
+
+    if (orphans.length > MAX_PRUNE) {
+      throw new Error(
+        `Refusing to delete ${orphans.length} objects (limit ${MAX_PRUNE}); run locally after checking ${ICONS_DIR}.`
+      );
+    }
+
+    for (const name of orphans) {
+      await bucket.file(name).delete();
+      console.log(`  🗑 gs://${GCS_BUCKET}/${name}`);
+      deleted++;
     }
   }
 
   console.log(
-    `\nDone. Uploaded: ${uploaded}, Skipped: ${skipped}, Failed: ${failed}`
+    `\nDone. Uploaded: ${uploaded}, Skipped: ${skipped}, Deleted: ${deleted}, Failed: ${failed}`
   );
 
   if (failed > 0) {

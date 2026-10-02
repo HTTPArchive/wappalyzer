@@ -1,6 +1,7 @@
 // A script to upload technologies and their categories to BigQuery.
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { BigQuery } = require('@google-cloud/bigquery');
 
@@ -15,6 +16,7 @@ const schemas = {
       { name: 'description', type: 'STRING' },
       { name: 'icon', type: 'STRING' },
       { name: 'cpe', type: 'STRING' },
+      { name: 'certIssuer', type: 'STRING' },
       { name: 'saas', type: 'BOOLEAN' },
       { name: 'oss', type: 'BOOLEAN' },
       { name: 'pricing', type: 'STRING', mode: 'REPEATED' },
@@ -104,7 +106,9 @@ const schemas = {
 };
 
 const readJsonFiles = (directory) => {
-  const files = fs.readdirSync(directory);
+  const files = fs
+    .readdirSync(directory)
+    .filter((file) => file.endsWith('.json'));
   return files.reduce((mergedData, file) => {
     const filePath = path.join(directory, file);
     const data = fs.readFileSync(filePath, 'utf8');
@@ -138,23 +142,24 @@ const getRuleObject = (value) => {
   return [];
 };
 
-const loadToBigQuery = async (
-  data,
-  tableName = 'technologies',
-  datasetName = 'wappalyzer',
-  writeDisposition = 'WRITE_TRUNCATE',
-  sourceFormat = 'NEWLINE_DELIMITED_JSON'
-) => {
-  if (!data) {
+const datasetName = 'wappalyzer';
+
+const loadToBigQuery = async (rows, tableName, tmpDir) => {
+  if (!rows.length) {
     throw new Error(`No data to load to \`${datasetName}.${tableName}\`.`);
   }
 
-  const schema = schemas[tableName];
-  const options = { schema, sourceFormat, writeDisposition };
+  const filePath = path.join(tmpDir, `${tableName}.jsonl`);
+  fs.writeFileSync(filePath, rows.map((row) => JSON.stringify(row)).join('\n'));
+
   const [job] = await bigquery
     .dataset(datasetName)
     .table(tableName)
-    .load(data, options);
+    .load(filePath, {
+      schema: schemas[tableName],
+      sourceFormat: 'NEWLINE_DELIMITED_JSON',
+      writeDisposition: 'WRITE_TRUNCATE'
+    });
 
   if (job.status.errors && job.status.errors.length > 0) {
     console.error('Errors encountered:', job.status.errors);
@@ -191,21 +196,28 @@ const main = async () => {
       'url',
       'xhr',
       'scriptSrc',
-      'script',
       'html'
     ].forEach((field) => {
       app[field] = getArray(technologies[key][field]);
     });
+    // The BigQuery column is `script`; the source field is `scripts`.
+    app.script = getArray(technologies[key].scripts);
     ['cookies', 'dom', 'dns', 'js', 'headers', 'probe', 'meta'].forEach(
       (field) => {
         app[field] = getRuleObject(technologies[key][field]);
       }
     );
-    ['website', 'description', 'cpe', 'saas', 'oss', 'pricing'].forEach(
-      (field) => {
-        app[field] = technologies[key][field];
-      }
-    );
+    [
+      'website',
+      'description',
+      'cpe',
+      'certIssuer',
+      'saas',
+      'oss',
+      'pricing'
+    ].forEach((field) => {
+      app[field] = technologies[key][field];
+    });
 
     // Handle icon field separately to ensure .png extension
     app.icon = technologies[key].icon
@@ -215,26 +227,18 @@ const main = async () => {
     return app;
   });
 
-  const transformedTechnologiesJsonL = transformedTechnologies
-    .map((line) => JSON.stringify(line))
-    .join('\n');
-  const technologiesFilePath = './transformedTechnologies.jsonl';
-  fs.writeFileSync(technologiesFilePath, transformedTechnologiesJsonL);
-  await loadToBigQuery(technologiesFilePath, 'technologies');
-  fs.unlinkSync(technologiesFilePath);
+  const transformedCategories = Object.values(categories).map((value) => ({
+    name: value.name,
+    description: value.description
+  }));
 
-  const transformedCategoriesJsonL = Object.values(categories)
-    .map((value) =>
-      JSON.stringify({
-        name: value.name,
-        description: value.description
-      })
-    )
-    .join('\n');
-  const categoriesFilePath = './transformedCategories.jsonl';
-  fs.writeFileSync(categoriesFilePath, transformedCategoriesJsonL);
-  await loadToBigQuery(categoriesFilePath, 'categories');
-  fs.unlinkSync(categoriesFilePath);
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'tech_upload-'));
+  try {
+    await loadToBigQuery(transformedTechnologies, 'technologies', tmpDir);
+    await loadToBigQuery(transformedCategories, 'categories', tmpDir);
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
 };
 
 main().catch((e) => {

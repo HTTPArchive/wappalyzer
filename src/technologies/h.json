@@ -153,7 +153,7 @@
       32,
       53
     ],
-    "description": "Hackle is an experimentation and growth platform providing A/B testing, feature flags, product analytics, and behavioral messaging.",
+    "description": "Hackle is an experimentation and growth platform providing A/B testing, feature flags, product analytics, and behavioral messaging",
     "html": [
       "<script[^>]*>[^<]*HACKLE_SDK_KEY"
     ],

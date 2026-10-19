@@ -1634,7 +1634,10 @@
       "freemium"
     ],
     "saas": true,
-    "scriptSrc": "\\.googleadservices\\.com/pagead/conversion_async\\.js",
+    "scriptSrc": [
+      "\\.googleadservices\\.com/pagead/conversion_async\\.js",
+      "googletagmanager\\.com/gtag/js\\?id=AW-"
+    ],
     "scripts": "gtag\\([^)]+'(AW-)",
     "website": "https://support.google.com/google-ads/answer/1722022"
   },

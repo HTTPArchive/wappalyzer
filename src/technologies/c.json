@@ -3620,6 +3620,20 @@
     ],
     "website": "https://www.cookieyes.com/"
   },
+  "CookieYes SDK": {
+    "cats": [
+      67
+    ],
+    "description": "CookieYes SDK is the npm package version of the CookieYes consent banner: a consent management SDK for websites.",
+    "dom": "[data-cy-part='banner'] [data-cy-part='accept-all']",
+    "icon": "cookieyes.svg",
+    "implies": "CookieYes",
+    "js": {
+      "CookieYesSDK.version": "^(.+)$\\;version:\\1"
+    },
+    "oss": true,
+    "website": "https://developers.cookieyes.com/"
+  },
   "Cookiebot": {
     "cats": [
       67

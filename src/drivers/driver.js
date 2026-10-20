@@ -105,11 +105,11 @@ function getJs(page, technologies = Wappalyzer.technologies) {
 function analyzeJs(js, technologies = Wappalyzer.technologies) {
   return js
     .map(({ name, chain, value }) => {
-      return analyzeManyToMany(
-        technologies.find(({ name: _name }) => name === _name),
-        'js',
-        { [chain]: [value] }
-      );
+      const technology = technologies.find(({ name: _name }) => name === _name);
+      if (!technology) {
+        return [];
+      }
+      return analyzeManyToMany(technology, 'js', { [chain]: [value] });
     })
     .flat();
 }
@@ -252,6 +252,9 @@ function analyzeDom(dom, technologies = Wappalyzer.technologies) {
   return dom
     .map(({ name, selector, exists, text, property, attribute, value }) => {
       const technology = technologies.find(({ name: _name }) => name === _name);
+      if (!technology) {
+        return [];
+      }
 
       if (typeof exists !== 'undefined') {
         return analyzeManyToMany(technology, 'dom.exists', {
@@ -949,35 +952,43 @@ class Site {
 
     return {
       urls: this.analyzedUrls,
-      technologies: resolved.map((resolved) => {
-        const technology = Wappalyzer.technologies.find(
-          ({ name }) => name === resolved.name
-        );
+      technologies: resolved
+        .map((resolved) => {
+          const technology = Wappalyzer.technologies.find(
+            ({ name }) => name === resolved.name
+          );
 
-        const { name, slug, description, confidence, icon, website } =
-          technology;
+          if (!technology) {
+            return null;
+          }
 
-        const categories = technology.categories.map((id) =>
-          Wappalyzer.categories.find((category) => category.id === id)
-        );
+          const { name, slug, description, confidence, icon, website } =
+            technology;
 
-        return {
-          slug,
-          name,
-          description: description || null,
-          confidence,
-          version: resolved.version || null,
-          icon,
-          website,
-          cpe: technology.cpe || null,
-          categories: categories.map(({ id, slug, name }) => ({
-            id,
+          const categories = (technology.categories || [])
+            .map((id) =>
+              Wappalyzer.categories.find((category) => category.id === id)
+            )
+            .filter(Boolean);
+
+          return {
             slug,
-            name
-          })),
-          rootPath: resolved.rootPath || undefined
-        };
-      })
+            name,
+            description: description || null,
+            confidence,
+            version: resolved.version || null,
+            icon,
+            website,
+            cpe: technology.cpe || null,
+            categories: categories.map(({ id, slug, name }) => ({
+              id,
+              slug,
+              name
+            })),
+            rootPath: resolved.rootPath || undefined
+          };
+        })
+        .filter(Boolean)
     };
   }
 

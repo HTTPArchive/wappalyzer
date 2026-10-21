@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const { Storage } = require('@google-cloud/storage');
 
 const ICONS_DIR = './src/images/icons';
@@ -59,7 +59,7 @@ async function getGcsHash(gcsPath) {
  */
 function convertSvgToPng(svgPath) {
   const tmpPng = svgPath.replace(/\.svg$/i, `._tmp_${process.pid}.png`);
-  execSync(`rsvg-convert "${svgPath}" -o "${tmpPng}" -w 128 -h 128`, {
+  execFileSync('rsvg-convert', [svgPath, '-o', tmpPng, '-w', '128', '-h', '128'], {
     stdio: 'inherit'
   });
   return tmpPng;

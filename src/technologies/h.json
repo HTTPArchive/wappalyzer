@@ -168,7 +168,7 @@
     },
     "saas": true,
     "scriptSrc": [
-      "@hackler/javascript-sdk@([\\d.]+)/\\;version:\\1",
+      "@hackler/javascript-sdk@([\\d.]+)(?:/|[?#]|$)\\;version:\\1",
       "@hackler/javascript-sdk",
       "\\.hackle\\.io/"
     ],

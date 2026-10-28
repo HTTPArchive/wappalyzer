@@ -6,19 +6,13 @@ const isDirectRun = require.main === module;
 
 const wptServer = process.env.WPT_SERVER;
 const wptApiKey = process.env.WPT_API_KEY;
-const prNumber = parseInt(process.env.PR_NUMBER);
+const prNumber = parseInt(process.env.PR_NUMBER, 10);
+const hasWptConfig = Boolean(wptServer && wptApiKey && !isNaN(prNumber));
 
-if (!wptServer || !wptApiKey || isNaN(prNumber)) {
-  const error =
-    'Missing required environment variables: WPT_SERVER, WPT_API_KEY, and PR_NUMBER';
-  if (isDirectRun) {
-    console.error(error);
-    process.exit(1);
-  }
-  throw new Error(error);
+let wpt;
+if (hasWptConfig) {
+  wpt = new WebPageTest(wptServer, wptApiKey);
 }
-
-const wpt = new WebPageTest(wptServer, wptApiKey);
 
 /**
  * Runs a WebPageTest (WPT) test for a given URL.
@@ -28,6 +22,16 @@ const wpt = new WebPageTest(wptServer, wptApiKey);
  * @throws {Error} If the test run fails or the response status code is not 200.
  */
 function runWPTTest(url) {
+  if (!hasWptConfig) {
+    const error =
+      'Missing required environment variables: WPT_SERVER, WPT_API_KEY, and PR_NUMBER';
+    if (isDirectRun) {
+      console.error(error);
+      process.exit(1);
+    }
+    throw new Error(error);
+  }
+
   const options = { key: wptApiKey, wappalyzerPR: prNumber };
 
   return new Promise((resolve, reject) => {

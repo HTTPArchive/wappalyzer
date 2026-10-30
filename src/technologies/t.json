@@ -537,6 +537,18 @@
     "saas": true,
     "website": "https://www.talkable.com"
   },
+  "TalksMedia": {
+    "cats": [
+      36
+    ],
+    "description": "TalksMedia is an advertising platform that helps publishers monetize their websites.",
+    "icon": "TalksMedia.png",
+    "scriptSrc": [
+      "^(?:https?:)?//ads\\.talkscreativity\\.com/assets/publisher/[^/?#]+/init\\.js(?:[?#]|$)",
+      "^(?:https?:)?//ads\\.talkscreativity\\.com/assets/publisher/[^/?#]+/prebid\\.[\\w-]+\\.js(?:[?#]|$)"
+    ],
+    "website": "https://www.talksmedia.it"
+  },
   "Tallentor": {
     "cats": [
       10

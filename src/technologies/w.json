@@ -1937,6 +1937,38 @@
     ],
     "website": "https://github.com/woocommerce/woocommerce-gutenberg-products-block"
   },
+  "WooCommerce Bulk Variations": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Bulk Variations is a WordPress plugin from Barn2 that displays product variations as a grid or matrix, so customers can order several variations at once.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-bulk-variations/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-bulk-variations/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-bulk-variations/"
+  },
+  "WooCommerce Fast Cart": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Fast Cart is a WordPress plugin from Barn2 that replaces the cart and checkout pages with a pop-up, allowing customers to check out without leaving the page.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-fast-cart/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-fast-cart/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-fast-cart/"
+  },
   "WooCommerce Multilingual": {
     "cats": [
       87,
@@ -1980,6 +2012,117 @@
     "scriptSrc": "/wp-content/plugins/woocommerce-paypal-payments/.+\\.js(?:\\?ver=(\\d+(?:\\.\\d+)+))?\\;version:\\1",
     "website": "https://github.com/woocommerce/woocommerce-paypal-payments"
   },
+  "WooCommerce Private Store": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Private Store is a WordPress plugin from Barn2 that hides an entire shop behind a password or login, including its products, categories, cart and search results.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-private-store/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-private-store/"
+  },
+  "WooCommerce Product Filters": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Product Filters is a WordPress plugin from Barn2 that adds AJAX filters for categories, attributes, price, stock and custom taxonomies to shop pages.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-product-filters/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-product-filters/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-product-filters/"
+  },
+  "WooCommerce Product Options": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Product Options is a WordPress plugin from Barn2 that adds extra fields to product pages, such as text inputs, dropdowns, swatches, file uploads and date pickers.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-product-options/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-product-options/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-product-options/"
+  },
+  "WooCommerce Product Table": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Product Table is a WordPress plugin from Barn2 that lists products in a searchable, sortable order form table with variations, quantity boxes and add to cart buttons.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-product-table/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-product-table/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-product-table/"
+  },
+  "WooCommerce Product Tabs": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Product Tabs is a WordPress plugin from Barn2 that adds custom tabs to product pages, either globally or per product, with content from the block editor.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-product-tabs-pro/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-product-tabs-pro/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-product-tabs/"
+  },
+  "WooCommerce Protected Categories": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Protected Categories is a WordPress plugin from Barn2 that hides product categories behind a password, a user role or a direct link.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-protected-categories/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-protected-categories/"
+  },
+  "WooCommerce Quick View Pro": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Quick View Pro is a WordPress plugin from Barn2 that opens product details in a lightbox from the shop page, so customers can buy without loading the product page.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-quick-view-pro/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-quick-view-pro/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-quick-view-pro/"
+  },
   "WooCommerce Stripe Payment Gateway": {
     "cats": [
       87
@@ -2009,6 +2152,22 @@
     ],
     "requires": "WordPress",
     "website": "https://woocommerce.com/products/woocommerce-subscriptions"
+  },
+  "WooCommerce Wholesale Pro": {
+    "cats": [
+      87
+    ],
+    "description": "WooCommerce Wholesale Pro is a WordPress plugin from Barn2 that adds wholesale pricing, wholesale user roles, a B2B registration form and a private wholesale store.",
+    "dom": "link[href*='/wp-content/plugins/woocommerce-wholesale-pro/']",
+    "icon": "Barn2.svg",
+    "implies": "WooCommerce",
+    "pricing": [
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/woocommerce-wholesale-pro/",
+    "website": "https://barn2.com/wordpress-plugins/woocommerce-wholesale-pro/"
   },
   "Woopra": {
     "cats": [

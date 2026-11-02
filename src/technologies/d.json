@@ -1153,6 +1153,37 @@
     "website": "https://www.docusign.com",
     "xhr": "docusign\\.net"
   },
+  "Document Library Lite": {
+    "cats": [
+      87
+    ],
+    "description": "Document Library Lite is the free edition of Barn2’s Document Library plugin for WordPress. It lists documents and downloads in a searchable, sortable table.",
+    "dom": "link[href*='/wp-content/plugins/document-library-lite/']",
+    "icon": "Barn2.svg",
+    "oss": true,
+    "pricing": [
+      "freemium"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/document-library-lite/",
+    "website": "https://wordpress.org/plugins/document-library-lite/"
+  },
+  "Document Library Pro": {
+    "cats": [
+      87
+    ],
+    "description": "Document Library Pro is a WordPress plugin from Barn2 that lists documents in searchable tables, grids or folders, with filters, front-end uploads and access control.",
+    "dom": "link[href*='/wp-content/plugins/document-library-pro/']",
+    "icon": "Barn2.svg",
+    "pricing": [
+      "freemium",
+      "low",
+      "recurring"
+    ],
+    "requires": "WordPress",
+    "scriptSrc": "/wp-content/plugins/document-library-pro/",
+    "website": "https://barn2.com/wordpress-plugins/document-library-pro/"
+  },
   "Docusaurus": {
     "cats": [
       4,

@@ -13,3 +13,5 @@ Description of the changes...
 
 <!-- Did you include test websites? With one bullet per sites? -->
 <!-- Test websites MUST be provided for any detection changes of PRs will be closed. -->
+
+_Note: Please only provide a maximum of 5 websites._

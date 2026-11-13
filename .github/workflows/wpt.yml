@@ -8,8 +8,8 @@ on:
 jobs:
   wpt:
     name: Run WebPageTest
-    runs-on: ubuntu-latest # ubuntu-slim has a hard 15-minute job limit
-    timeout-minutes: 30 # up to 6 hours allowed for ubuntu-latest runner
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # up to 6 hours for ubuntu-latest runner, up to 15 min for ubuntu-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read

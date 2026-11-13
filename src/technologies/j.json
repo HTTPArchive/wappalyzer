@@ -354,7 +354,7 @@
       22
     ],
     "headers": {
-      "Server": "Jetty(?:\\(([\\d\\.]*\\d+))?\\;version:\\1"
+      "Server": "Jetty(?:\\((\\d+(?:\\.\\d+)*))?\\;version:\\1"
     },
     "icon": "Jetty.png",
     "implies": "Java",

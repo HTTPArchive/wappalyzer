@@ -1675,7 +1675,7 @@
       72
     ],
     "description": "Eveve is a restaurant table booking widget.",
-    "html": "<iframe[^>]*[\\w]+\\.eveve\\.com",
+    "html": "<iframe[^>]*?//[^\"'>]*\\.eveve\\.com",
     "icon": "Eveve.svg",
     "implies": "PHP",
     "pricing": [

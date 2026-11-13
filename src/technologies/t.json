@@ -3106,7 +3106,7 @@
       "turf.point": "",
       "turf.random": ""
     },
-    "scriptSrc": "(turf@[\\d.]+)?/?turf\\.min\\.js",
+    "scriptSrc": "(?:turf@[\\d.]+)?/?turf\\.min\\.js",
     "website": "https://turfjs.org/"
   },
   "Twenty Eleven": {

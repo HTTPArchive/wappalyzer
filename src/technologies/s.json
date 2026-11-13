@@ -5949,7 +5949,7 @@
       "recurring"
     ],
     "scriptSrc": [
-      "/__data/assets/(js_file_folder|git_bridge|js_file)/"
+      "/__data/assets/(?:js_file_folder|git_bridge|js_file)/"
     ],
     "website": "https://www.squiz.net/matrix"
   },
@@ -7170,8 +7170,8 @@
     "scriptSrc": [
       "sweetalert2(?:\\.all)?(?:\\.min)?\\.js",
       "/npm/sweetalert2@([\\d.]+)\\;version:\\1",
-      "sweetalert2@([\\d.]+)/dist/sweetalert2(?:\\.all)(?:\\.min)\\.js",
-      "limonte-sweetalert2/([\\d.]+)/sweetalert2(?:\\.all)(?:\\.min)\\.js"
+      "sweetalert2@(?:[\\d.]+)/dist/sweetalert2(?:\\.all)(?:\\.min)\\.js",
+      "limonte-sweetalert2/(?:[\\d.]+)/sweetalert2(?:\\.all)(?:\\.min)\\.js"
     ],
     "website": "https://sweetalert2.github.io/"
   },

@@ -1035,7 +1035,7 @@
       "markoVars": ""
     },
     "oss": true,
-    "scripts": "\\.marko(\\.js)?",
+    "scripts": "\\.marko(?:\\.js)?",
     "website": "https://markojs.com"
   },
   "Master Slider": {

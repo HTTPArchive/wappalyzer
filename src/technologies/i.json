@@ -49,7 +49,7 @@
       "^https://(?:cdn\\.)?id5-sync\\.com/"
     ],
     "website": "https://id5.io/",
-    "xhr": ".*id5-sync\\.com"
+    "xhr": "id5-sync\\.com"
   },
   "IIS": {
     "cats": [

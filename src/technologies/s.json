@@ -2189,7 +2189,7 @@
     "cats": [
       10
     ],
-    "html": "<img[^>]*\\s+src=['\"]?https?://www\\.shinystat\\.com/cgi-bin/shinystat\\.cgi\\?[^'\"\\s>]*['\"\\s/>]",
+    "html": "<img[^>]*\\bsrc=['\"]?https?://www\\.shinystat\\.com/cgi-bin/shinystat\\.cgi\\?[^'\"\\s>]*['\"\\s/>]",
     "icon": "ShinyStat.png",
     "js": {
       "SSsdk": ""

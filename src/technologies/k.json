@@ -466,7 +466,7 @@
       66
     ],
     "description": "Kendo UI is a HTML5 user interface framework for building interactive and high-performance websites and applications.",
-    "html": "<link[^>]*\\s+href=[^>]*styles/kendo\\.common(?:\\.min)?\\.css[^>]*/>",
+    "html": "<link[^>]*\\bhref=[\"']?[^\"'>]*styles/kendo\\.common(?:\\.min)?\\.css[^>]*/>",
     "icon": "Kendo UI.png",
     "implies": "jQuery",
     "js": {

@@ -1478,7 +1478,7 @@
     },
     "oss": true,
     "scriptSrc": [
-      "choices\\.js(?:@|/)?([\\d\\.]+)?.+choices\\.min\\.js\\;version:\\1",
+      "choices\\.js(?:[@/]([\\d.]+))?/[^\"']*choices\\.min\\.js\\;version:\\1",
       "/modules/choices/js/choices\\.js"
     ],
     "website": "https://github.com/Choices-js/Choices"

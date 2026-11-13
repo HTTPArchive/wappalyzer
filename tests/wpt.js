@@ -65,8 +65,20 @@ ${JSON.stringify(technologies, null, 4)}
 }
 
 if (isDirectRun) {
-  const url = argv[2];
-  runWPTTest(url);
+  const urls = argv.slice(2).filter(Boolean);
+  if (urls.length === 0) {
+    console.error('Usage: node tests/wpt.js <url> [url...]');
+    process.exit(1);
+  }
+
+  Promise.all(
+    urls.map((url) => {
+      console.log(`Starting WPT test for ${url}`);
+      return runWPTTest(url);
+    })
+  ).catch(() => {
+    process.exit(1);
+  });
 }
 
 module.exports = { runWPTTest };

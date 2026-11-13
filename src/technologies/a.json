@@ -3056,7 +3056,7 @@
       "recurring"
     ],
     "saas": true,
-    "scriptSrc": "cdn\\.analyzee\\.io/sdk/(.*)\\.js",
+    "scriptSrc": "cdn\\.analyzee\\.io/sdk/.*\\.js",
     "website": "https://analyzee.io"
   },
   "AndersNoren Baskerville": {

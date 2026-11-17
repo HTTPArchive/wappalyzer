@@ -91,7 +91,7 @@
       "freemium",
       "mid"
     ],
-    "scriptSrc": "\\.landbot\\.io/.*-([\\d\\.]+)\\.js",
+    "scriptSrc": "\\.landbot\\.io/.*-[\\d\\.]+\\.js",
     "website": "https://landbot.io"
   },
   "LandingPress": {

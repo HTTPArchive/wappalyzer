@@ -89,8 +89,12 @@ const Wappalyzer = {
     ].find(({ name: _name }) => name === _name),
 
   getCategory: (id) => {
+    if (id === null || typeof id === 'undefined') {
+      return null;
+    }
+    const numId = parseInt(id, 10);
     for (const category of Wappalyzer.categories) {
-      if (category.id === id) {
+      if (category.id === id || (!isNaN(numId) && category.id === numId)) {
         return category;
       }
     }
@@ -102,55 +106,81 @@ const Wappalyzer = {
    * @param {Array} detections
    */
   resolve(detections = []) {
-    const resolved = detections.reduce((resolved, { technology, lastUrl }) => {
-      if (
-        resolved.findIndex(
-          ({ technology: { name } }) => name === technology?.name
-        ) === -1
-      ) {
-        let version = '';
-        let confidence = 0;
-        let rootPath;
+    const resolved = detections.reduce(
+      (resolved, { technology, lastUrl } = {}) => {
+        if (
+          !technology ||
+          typeof technology !== 'object' ||
+          typeof technology.name !== 'string' ||
+          !technology.name.trim()
+        ) {
+          return resolved;
+        }
 
-        detections
-          .filter(
-            ({ technology: _technology }) =>
-              _technology && _technology.name === technology.name
-          )
-          .forEach(
-            ({
-              technology: { name },
-              pattern,
-              version: _version = '',
-              rootPath: _rootPath
-            }) => {
-              confidence = Math.min(100, confidence + pattern.confidence);
-              version =
-                _version.length > version.length &&
-                _version.length <= 15 &&
-                (parseInt(_version, 10) || 0) < 10000 // Ignore long numeric strings like timestamps
-                  ? _version
-                  : version;
-              rootPath = rootPath || _rootPath || undefined;
-            }
-          );
+        if (
+          resolved.findIndex(
+            ({ technology: { name } = {} }) => name === technology.name
+          ) === -1
+        ) {
+          let version = '';
+          let confidence = 0;
+          let rootPath;
 
-        resolved.push({ technology, confidence, version, rootPath, lastUrl });
-      }
+          detections
+            .filter(
+              ({ technology: _technology } = {}) =>
+                _technology && _technology.name === technology.name
+            )
+            .forEach(
+              ({
+                technology: { name },
+                pattern,
+                version: _version = '',
+                rootPath: _rootPath
+              } = {}) => {
+                confidence = Math.min(
+                  100,
+                  confidence +
+                    (pattern && typeof pattern.confidence === 'number'
+                      ? pattern.confidence
+                      : 0)
+                );
+                version =
+                  typeof _version === 'string' &&
+                  _version.length > version.length &&
+                  _version.length <= 15 &&
+                  (parseInt(_version, 10) || 0) < 10000 && // Ignore long numeric strings like timestamps
+                  /[0-9a-zA-Z]/.test(_version)
+                    ? _version
+                    : version;
+                rootPath = rootPath || _rootPath || undefined;
+              }
+            );
 
-      return resolved;
-    }, []);
+          resolved.push({ technology, confidence, version, rootPath, lastUrl });
+        }
+
+        return resolved;
+      },
+      []
+    );
 
     Wappalyzer.resolveExcludes(resolved);
     Wappalyzer.resolveImplies(resolved);
 
-    const priority = ({ technology: { categories } }) =>
-      categories.reduce(
-        (max, id) => Math.max(max, Wappalyzer.getCategory(id).priority),
-        0
-      );
+    const priority = ({ technology: { categories } = {} }) =>
+      (Array.isArray(categories) ? categories : []).reduce((max, id) => {
+        const category = Wappalyzer.getCategory(id);
+        return Math.max(max, category?.priority || 0);
+      }, 0);
 
     return resolved
+      .filter(
+        ({ technology } = {}) =>
+          technology &&
+          typeof technology.name === 'string' &&
+          technology.name.trim()
+      )
       .sort((a, b) => (priority(a) > priority(b) ? 1 : -1))
       .map(
         ({
@@ -170,15 +200,22 @@ const Wappalyzer = {
           lastUrl
         }) => ({
           name,
-          description,
-          slug,
-          categories: categories.map((id) => Wappalyzer.getCategory(id)),
+          description: description || null,
+          slug: slug || Wappalyzer.slugify(name),
+          categories: (Array.isArray(categories) ? categories : [])
+            .map((id) => Wappalyzer.getCategory(id))
+            .filter(
+              (category) =>
+                category &&
+                typeof category.name === 'string' &&
+                category.name.trim()
+            ),
           confidence,
-          version,
-          icon,
-          website,
-          pricing,
-          cpe,
+          version: typeof version === 'string' ? version : '',
+          icon: icon || 'default.svg',
+          website: website || null,
+          pricing: pricing || [],
+          cpe: cpe || null,
           rootPath,
           lastUrl
         })
@@ -225,6 +262,18 @@ const Wappalyzer = {
       }
     }
 
+    if (typeof resolved === 'string') {
+      resolved = resolved.trim();
+      // Remove leading and trailing punctuation (e.g., ".", "..", "-", "_", "/", "\\", ":")
+      resolved = resolved.replace(/^[\s.,\-_/\\:]+|[\s.,\-_/\\:]+$/g, '');
+      // If version lacks any alphanumeric characters or contains raw HTML/tags, reject it
+      if (!/[0-9a-zA-Z]/.test(resolved) || /[<>{}]/.test(resolved)) {
+        resolved = '';
+      }
+    } else {
+      resolved = '';
+    }
+
     return resolved;
   },
 
@@ -234,18 +283,26 @@ const Wappalyzer = {
    */
   resolveExcludes(resolved) {
     resolved.forEach(({ technology }) => {
+      if (!technology || !Array.isArray(technology.excludes)) {
+        return;
+      }
+
       technology.excludes.forEach(({ name }) => {
+        if (!name) {
+          return;
+        }
+
         const excluded = Wappalyzer.getTechnology(name);
 
         if (!excluded) {
-          throw new Error(`Excluded technology does not exist: ${name}`);
+          return;
         }
 
         let index;
 
         do {
           index = resolved.findIndex(
-            ({ technology: { name } }) => name === excluded.name
+            ({ technology: { name } = {} }) => name === excluded.name
           );
 
           if (index !== -1) {
@@ -267,22 +324,30 @@ const Wappalyzer = {
       done = true;
 
       resolved.forEach(({ technology, confidence, lastUrl }) => {
+        if (!technology || !Array.isArray(technology.implies)) {
+          return;
+        }
+
         technology.implies.forEach(
           ({ name, confidence: _confidence, version }) => {
+            if (!name) {
+              return;
+            }
+
             const implied = Wappalyzer.getTechnology(name);
 
-            if (!implied) {
-              throw new Error(`Implied technology does not exist: ${name}`);
+            if (!implied || !implied.name) {
+              return;
             }
 
             if (
               resolved.findIndex(
-                ({ technology: { name } }) => name === implied.name
+                ({ technology: { name } = {} }) => name === implied.name
               ) === -1
             ) {
               resolved.push({
                 technology: implied,
-                confidence: Math.min(confidence, _confidence),
+                confidence: Math.min(confidence, _confidence || 100),
                 version: version || '',
                 lastUrl
               });

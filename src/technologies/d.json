@@ -2098,9 +2098,9 @@
       "Decimal.ROUND_HALF_FLOOR": ""
     },
     "scriptSrc": [
-      "decimal[.-]([\\d.]*\\d+)(?:\\.min)?\\.js\\;version:\\1",
-      "/([\\d.]*\\d+)/decimal(?:\\.min)?\\.js\\;version:\\1",
-      "decimal(?:\\.min)?\\.js(?:\\?ver(?:sion)?=([\\d.]*\\d+))?\\;version:\\1"
+      "decimal[.-](\\d+(?:\\.\\d+)*)(?:\\.min)?\\.js\\;version:\\1",
+      "/(\\d+(?:\\.\\d+)*)/decimal(?:\\.min)?\\.js\\;version:\\1",
+      "decimal(?:\\.min)?\\.js(?:\\?ver(?:sion)?=(\\d+(?:\\.\\d+)*))?\\;version:\\1"
     ],
     "website": "https://mikemcl.github.io/decimal.js/"
   },

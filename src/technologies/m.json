@@ -1986,7 +1986,7 @@
     "description": "Miestro is an all-in-one ecommerce platform wich allow create online course and membership sites.",
     "icon": "Miestro.svg",
     "meta": {
-      "base_url": ".+\\.miestro\\.com"
+      "base_url": "[^\\s/]+\\.miestro\\.com"
     },
     "pricing": [
       "low",

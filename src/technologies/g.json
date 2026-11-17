@@ -2120,7 +2120,7 @@
     },
     "oss": true,
     "scriptSrc": "grafana\\..+\\.com/public/build/",
-    "scripts": ".+latestVersion\":\"[\\d\\.\\w\\-]+\"\\,\"version\":\"([\\d\\.]+)\\;version:\\1\\;confidence:75",
+    "scripts": "latestVersion\":\"[\\d\\.\\w\\-]+\"\\,\"version\":\"([\\d\\.]+)\\;version:\\1\\;confidence:75",
     "website": "https://grafana.com"
   },
   "Graffiti CMS": {

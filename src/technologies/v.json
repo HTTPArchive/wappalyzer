@@ -237,7 +237,7 @@
     "icon": "varbase.png",
     "implies": "Drupal",
     "js": {
-      "drupalSettings.ajaxPageState.libraries": ".+varbase_.+"
+      "drupalSettings.ajaxPageState.libraries": "varbase_"
     },
     "oss": true,
     "website": "https://www.vardot.com/solutions/varbase"

@@ -3374,7 +3374,7 @@
       "payg"
     ],
     "saas": true,
-    "scriptSrc": ".+\\.twic\\.pics",
+    "scriptSrc": "[^\\s/]+\\.twic\\.pics",
     "website": "https://www.twicpics.com"
   },
   "Twik": {

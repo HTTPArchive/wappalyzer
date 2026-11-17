@@ -110,7 +110,7 @@
     },
     "oss": true,
     "scriptSrc": "pixi(?:\\.min|-legacy)?\\.js$",
-    "url": ".+\\.pixijs\\.com",
+    "url": "[^\\s/]+\\.pixijs\\.com",
     "website": "https://www.pixijs.com"
   },
   "POLi Payment": {

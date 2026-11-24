@@ -1247,6 +1247,22 @@
     ],
     "website": "https://nuxt.com"
   },
+  "next-intl": {
+    "cats": [
+      89,
+      59
+    ],
+    "description": "next-intl is an internationalization library for Next.js.",
+    "dom": {
+      "script:not([src])": {
+        "text": "(?:\\\\\"formats\\\\\":[^,]{0,40},\\\\\"locale\\\\\":\\\\\"[\\w-]{2,20}\\\\\",\\\\\"messages\\\\\":|\\\\\"now\\\\\":\\\\\"\\$(?:undefined|D\\d{4}-\\d\\d-\\d\\dT[\\d:.]{8,16}Z)\\\\\",\\\\\"timeZone\\\\\":|\\\\\"locale\\\\\":\\\\\"[\\w$-]{2,20}\\\\\",\\\\\"localeCookie\\\\\":)"
+      }
+    },
+    "icon": "next-intl.svg",
+    "oss": true,
+    "requires": "Next.js",
+    "website": "https://next-intl.dev"
+  },
   "nghttpx - HTTP/2 proxy": {
     "cats": [
       22

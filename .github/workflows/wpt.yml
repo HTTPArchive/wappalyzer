@@ -8,7 +8,8 @@ on:
 jobs:
   wpt:
     name: Run WebPageTest
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # up to 6 hours for ubuntu-latest runner, up to 15 min for ubuntu-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
@@ -79,11 +80,9 @@ jobs:
           WPT_URLS: ${{ steps.check-run.outputs.wpt_urls }}
         run: |
           if [ -n "$WPT_URLS" ]; then
-            for TEST_WEBSITE in $WPT_URLS; do
-              echo "::group::Running WPT test for $TEST_WEBSITE"
-              node tests/wpt.js "$TEST_WEBSITE"
-              echo "::endgroup::"
-            done
+            echo "::group::Running WPT tests in parallel for: $WPT_URLS"
+            node tests/wpt.js $WPT_URLS
+            echo "::endgroup::"
           else
             echo "No websites found."
           fi

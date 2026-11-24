@@ -1295,8 +1295,8 @@
       "recurring"
     ],
     "scriptSrc": [
-      "(?:F|f)o(?:n|r)t-?(?:A|a)wesome(?:.*?([0-9a-fA-F]{7,40}|[\\d]+(?:.[\\d]+(?:.[\\d]+)?)?)|)",
-      "\\.fontawesome\\.com/([0-9a-z]+).js"
+      "(?:F|f)o(?:n|r)t-?(?:A|a)wesome(?:.*?(?:[0-9a-fA-F]{7,40}|[\\d]+(?:.[\\d]+(?:.[\\d]+)?)?)|)",
+      "\\.fontawesome\\.com/(?:[0-9a-z]+).js"
     ],
     "website": "https://fontawesome.com/"
   },
@@ -2038,7 +2038,7 @@
       "poa"
     ],
     "saas": true,
-    "scripts": "x-frc-client\",\"js-(\\d+(\\.\\d+)+)\\;version:\\1",
+    "scripts": "x-frc-client\",\"js-(\\d+(?:\\.\\d+)+)\\;version:\\1",
     "website": "https://friendlycaptcha.com",
     "xhr": "api.friendlycaptcha.com"
   },

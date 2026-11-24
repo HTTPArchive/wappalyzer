@@ -3601,9 +3601,6 @@
     "cats": [
       67
     ],
-    "cookies": {
-      "co_consent": ""
-    },
     "description": "CookieOfficer is a consent management platform with cookie scanning, prior-consent script blocking, a consent log and Google Consent Mode v2 support.",
     "icon": "CookieOfficer.svg",
     "js": {

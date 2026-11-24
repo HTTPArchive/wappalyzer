@@ -284,7 +284,7 @@ function get(url, options = {}) {
   const timeout =
     options.timeout ||
     (this.options.fast
-      ? this.Math.min(this.options.maxWait, 3000)
+      ? Math.min(this.options.maxWait, 3000)
       : this.options.maxWait);
 
   if (['http:', 'https:'].includes(url.protocol)) {

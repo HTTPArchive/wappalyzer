@@ -91,7 +91,7 @@ const schemas = {
         ]
       },
       { name: 'scriptSrc', type: 'STRING', mode: 'REPEATED' },
-      { name: 'script', type: 'STRING', mode: 'REPEATED' },
+      { name: 'scripts', type: 'STRING', mode: 'REPEATED' },
       { name: 'html', type: 'STRING', mode: 'REPEATED' }
     ]
   },
@@ -113,10 +113,10 @@ const readJsonFiles = (directory) => {
 };
 
 const getArray = (value) =>
-  typeof value === 'string'
-    ? [value]
+  typeof value === 'string' || typeof value === 'number'
+    ? [String(value)]
     : Array.isArray(value)
-      ? value.sort()
+      ? [...value].map(String).sort()
       : [];
 
 const getRuleObject = (value) => {
@@ -126,13 +126,15 @@ const getRuleObject = (value) => {
   if (Array.isArray(value)) {
     return value.map((key) => ({ name: key, value: null }));
   }
-  if (typeof value === 'object') {
+  if (value && typeof value === 'object') {
     return Object.keys(value).map((key) => ({
       name: key,
       value:
-        typeof value[key] === 'object'
-          ? JSON.stringify(value[key])
-          : value[key].toString()
+        value[key] == null
+          ? null
+          : typeof value[key] === 'object'
+            ? JSON.stringify(value[key])
+            : value[key].toString()
     }));
   }
   return [];
@@ -191,7 +193,7 @@ const main = async () => {
       'url',
       'xhr',
       'scriptSrc',
-      'script',
+      'scripts',
       'html'
     ].forEach((field) => {
       app[field] = getArray(technologies[key][field]);

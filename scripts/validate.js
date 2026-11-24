@@ -44,79 +44,85 @@ Object.keys(technologies).forEach((name) => {
   const technology = technologies[name];
 
   // Validate regular expressions
-  ['url', 'html', 'meta', 'headers', 'cookies', 'script', 'js'].forEach(
-    (type) => {
-      if (technology[type]) {
-        const keyed =
-          typeof technology[type] === 'string' ||
-          Array.isArray(technology[type])
-            ? { _: technology[type] }
-            : technology[type];
+  [
+    'url',
+    'html',
+    'meta',
+    'headers',
+    'cookies',
+    'scripts',
+    'scriptSrc',
+    'js'
+  ].forEach((type) => {
+    if (technology[type]) {
+      const keyed =
+        typeof technology[type] === 'string' || Array.isArray(technology[type])
+          ? { _: technology[type] }
+          : technology[type];
 
-        Object.keys(keyed).forEach((key) => {
-          const patterns = Array.isArray(keyed[key])
-            ? keyed[key]
-            : [keyed[key]];
+      Object.keys(keyed).forEach((key) => {
+        const patterns = Array.isArray(keyed[key]) ? keyed[key] : [keyed[key]];
 
-          patterns.forEach((pattern, index) => {
-            const id = `${name}: ${type}[${key === '_' ? `${index}` : key}]`;
+        patterns.forEach((pattern, index) => {
+          const id = `${name}: ${type}[${key === '_' ? `${index}` : key}]`;
 
-            const [regex, ...flags] = pattern.split('\\;');
+          const [regex, ...flags] = pattern.split('\\;');
 
-            let maxGroups = 0;
+          let maxGroups = 0;
 
-            flags.forEach((flag) => {
-              const [key, value] = flag.split(':');
+          flags.forEach((flag) => {
+            const [key, ...rest] = flag.split(':');
+            const value = rest.join(':');
 
-              if (key === 'version') {
-                const refs = value.match(/\\(\d+)/g);
+            if (key === 'version') {
+              const refs = value.match(/\\(\d+)/g);
 
-                if (refs) {
-                  maxGroups = refs.reduce((max, ref) =>
-                    Math.max(max, parseInt(refs[1] || 0))
-                  );
-                }
-              } else if (key === 'confidence') {
-                if (
-                  !/^\d+$/.test(value) ||
-                  parseInt(value, 10) < 0 ||
-                  parseInt(value, 10) > 99
-                ) {
-                  throw new Error(
-                    `Confidence value must a number between 0 and 99: ${value} (${id})`
-                  );
-                }
-              } else {
-                throw new Error(`Invalid flag: ${key} (${id})`);
+              if (refs) {
+                maxGroups = refs.reduce(
+                  (max, ref) => Math.max(max, parseInt(ref.slice(1), 10) || 0),
+                  0
+                );
               }
-            });
-
-            // Validate regular expression
-            try {
-              new RegExp(regex);
-            } catch (error) {
-              throw new Error(`${error.message} (${id})`);
-            }
-
-            // Count capture groups
-            const groups = new RegExp(`${regex}|`).exec('').length - 1;
-
-            if (groups > maxGroups) {
-              throw new Error(
-                `Too many non-capturing groups, expected ${maxGroups}: ${regex} (${id})`
-              );
-            }
-
-            if (type === 'html' && !/[<>]/.test(regex)) {
-              throw new Error(
-                `HTML pattern must include < or >: ${regex} (${id})`
-              );
+            } else if (key === 'confidence') {
+              if (
+                !/^\d+$/.test(value) ||
+                parseInt(value, 10) < 0 ||
+                parseInt(value, 10) > 99
+              ) {
+                throw new Error(
+                  `Confidence value must a number between 0 and 99: ${value} (${id})`
+                );
+              }
+            } else {
+              throw new Error(`Invalid flag: ${key} (${id})`);
             }
           });
+
+          // Validate regular expression
+          try {
+            new RegExp(regex);
+          } catch (error) {
+            throw new Error(`${error.message} (${id})`);
+          }
+
+          // Count capture groups
+          const groups = new RegExp(`${regex}|`).exec('').length - 1;
+
+          if (groups > maxGroups) {
+            throw new Error(
+              `Too many non-capturing groups, expected ${maxGroups}: ${regex} (${id})`
+            );
+          }
+
+          if (type === 'html' && !/[<>]/.test(regex)) {
+            throw new Error(
+              `HTML pattern must include < or >: ${regex} (${id})`
+            );
+          }
         });
-      }
+      });
     }
-  );
+  });
 
   // Validate categories
   technology.cats.forEach((id) => {

@@ -1013,7 +1013,7 @@
     ],
     "description": "Manage session history with JavaScript",
     "scriptSrc": [
-      "/history(@|/)([\\d.]+)(?:/[a-z]+)?/history(?:(.production|.development))?(?:.min)?\\.js\\;version:\\2"
+      "/history(?:@|/)([\\d.]+)(?:/[a-z]+)?/history(?:.production|.development)?(?:.min)?\\.js\\;version:\\1"
     ],
     "website": "https://github.com/ReactTraining/history"
   },
